@@ -1,5 +1,5 @@
 package capaDomini;
 
-public abstract class RegioSenseRepeticions {
+public abstract class RegioSenseRepeticions { //SE ENCARGA MARTA
 
 }
