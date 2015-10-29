@@ -55,7 +55,7 @@ public class DriverCella {
             	System.out.println(cs.getY());
             	break;
             default:
-            	System.out.println("Opción no válida");
+            	System.out.println("Opcion no valida");
             }
         }
         entrada.close();
