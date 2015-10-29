@@ -30,6 +30,7 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 		try {
 			if (oc[val-1]) throw new Exception();
 			super.setNumero(pos, val);
+			oc[val-1] = true;
 		} catch (Exception e) {
 			System.out.println("Este numero ya esta puesto");
 		}
@@ -42,6 +43,7 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 		oc[valor-1] = false; //ahora ese valor está libre
 	}
 	
+	public boolean estaNumero(int val){ //no sé si lo necesitaremos pero lo pongo para probar que todo va bien por el driver
+		return oc[val-1];
+	}
 }
-
-/*falta comprobar :) bla*/

@@ -92,5 +92,3 @@ public class Regio { //SE ENCARGA MARTA
 		}
 	}
 }
-
-/*falta comprobar :) bla*/
