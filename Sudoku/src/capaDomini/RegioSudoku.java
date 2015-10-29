@@ -5,13 +5,13 @@ import java.util.Vector;
 public class RegioSudoku extends RegioSenseRepeticions{ //SE ENCARGA MARTA
 	private tipoRegioSudoku tipus;
 	
-	RegioSudoku(int tamano, tipoRegioSudoku tipo){
-		super(tamano);
+	RegioSudoku(int n, tipoRegioSudoku tipo){
+		super(n*n);
 		tipus = tipo; //tipoRegioSudoku.cuadrado;
 	}
 	
-	RegioSudoku(int tamano, Vector<Cella> vc, tipoRegioSudoku tipo){
-		super(tamano, vc);
+	RegioSudoku(int n, Vector<Cella> vc, tipoRegioSudoku tipo){
+		super(n*n, vc);
 		tipus = tipo; //tipoRegioSudoku.cuadrado;
 	}
 
