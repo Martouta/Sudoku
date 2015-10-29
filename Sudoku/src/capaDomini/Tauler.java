@@ -1,10 +1,9 @@
 package capaDomini;
 
+import capaDomini.Cella;
+import capaDomini.Regio;
+import capaDomini.RegioSenseRepeticions;
 import java.util.Vector;
-
-import capaDominio.Cella;
-import capaDominio.Regio;
-import capaDominio.RegioSenseRepeticions;
 
 public class Tauler {
 	
