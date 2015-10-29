@@ -43,3 +43,5 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 	}
 	
 }
+
+/*falta comprobar*/

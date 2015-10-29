@@ -10,7 +10,7 @@ public class DriverRegioSudoku {
 	        System.out.println("Escribe la n de la region");
 	        int n;
 	        n = entrada.nextInt();
-	        //r = new Regio(n); //perque es abstracta -> ferho amb la de RegioSudoku
+	        //rs = new RegioSudoku(n,); //perque es abstracta -> ferho amb la de RegioSudoku
 	        
 	        while(opc != 0) {
 	        	System.out.println("Driver de Regio Sudoku");
@@ -61,6 +61,7 @@ public class DriverRegioSudoku {
 	        entrada.close();
 		}
 		
-		//private static Regio r;
+		private static RegioSudoku rs;
 
 }
+/*falta comprobar*/

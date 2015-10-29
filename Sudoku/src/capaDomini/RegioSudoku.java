@@ -20,3 +20,5 @@ public class RegioSudoku extends RegioSenseRepeticions{ //SE ENCARGA MARTA
 	}
 
 }
+
+/*falta comprobar*/

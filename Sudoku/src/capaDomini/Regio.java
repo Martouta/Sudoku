@@ -59,3 +59,5 @@ public class Regio { //SE ENCARGA MARTA
 		vCellas.get(pos).borra();
 	}
 }
+
+/*falta comprobar*/
