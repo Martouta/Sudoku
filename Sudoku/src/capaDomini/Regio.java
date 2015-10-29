@@ -1,8 +1,9 @@
 package capaDomini;
 
 import java.util.Vector;
+//import java.util.*;
 
-public abstract class Regio { //SE ENCARGA MARTA
+public class Regio { //SE ENCARGA MARTA
 	private int tam;
 	private Vector<Cella> vCellas;
 	
@@ -16,13 +17,13 @@ public abstract class Regio { //SE ENCARGA MARTA
 		}
 	}
 	
-	Regio (int tamano, Vector<Cella> vc) {
+	Regio (int tamano, Vector<Cella> vc) { //deberíamos hacer que pase sólo Vector<Cella> vc y tamano se calcula con el .size()?
 		tam = tamano;
 		try {
 			if (vc.size() != tam) throw new Exception();
 			vCellas = (Vector) vc.clone();
 		} catch (Exception e) {
-			System.out.println("El nÃºmero de celas es diferente a la cantidad de celas requeridas");
+			System.out.println("El numero de celas es diferente a la cantidad de celas requeridas");
 		}
 	}
 	

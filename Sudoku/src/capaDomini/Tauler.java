@@ -2,10 +2,6 @@ package capaDomini;
 
 import java.util.Vector;
 
-import capaDominio.Cella;
-import capaDominio.Regio;
-import capaDominio.RegioSenseRepeticions;
-
 public class Tauler {
 	
 	public Tauler(int m, int n) { //mirar que m,n siguin > 0
