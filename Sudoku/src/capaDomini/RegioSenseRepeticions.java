@@ -42,10 +42,4 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 		oc[valor-1] = false; //ahora ese valor está libre
 	}
 	
-	
-	
-	/*
-	 + setNumero(int pos, int val)
-+ borra(int pos)
-	 */
 }
