@@ -1,6 +1,6 @@
 package capaDomini;
 
-import capaDominio.Regio;
+import capaDomini.Regio;
 
 public class TaulerSudoku extends Tauler {
 
