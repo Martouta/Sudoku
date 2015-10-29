@@ -1,6 +1,6 @@
 package capaDomini;
 
-public abstract class Cella {
+public class Cella {
 	public Cella() {
 		numero = -1;
 		fija = false;

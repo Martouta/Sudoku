@@ -9,6 +9,10 @@ public abstract class Regio { //SE ENCARGA MARTA
 	Regio (int tamano) {
 		tam = tamano;
 		vCellas = new Vector();
+		for (int i = 0; i < tam; ++i) {
+			Cella cellaAux = new Cella();
+			vCellas.addElement(cellaAux);
+		}
 	}
 	
 	Regio (int tamano, Vector<Cella> vc) {

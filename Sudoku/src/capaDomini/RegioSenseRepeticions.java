@@ -6,9 +6,9 @@ public abstract class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 		super(tamano);
 	}
 	
-	RegioSenseRepeticions() {
+	//RegioSenseRepeticions() {
 		//
-	}
+	//}
 	
 	/*
 	 + setNumero(int pos, int val)
