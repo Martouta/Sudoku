@@ -15,11 +15,11 @@ public class Tauler {
 			ancho = m;
 			alto = n;
 			tauler = new Cella[alto][ancho]; //mirar com ferho per als altres grups
+			regiones = new Vector<Regio>();
 			regionAfectada = new RegioSenseRepeticions[alto][ancho][3];
 			posAfectadas = new int[alto][ancho][3];
 			for (int i = 0; i < alto; ++i) {
 				for (int j = 0; j < ancho; ++j) {
-					//tauler[i][j] = new CellaSudoku(i,j);
 					tauler[i][j] = new Cella();
 					posAfectadas[i][j][0] = posAfectadas[i][j][1] = posAfectadas[i][j][2] = -1;
 				}
@@ -27,7 +27,6 @@ public class Tauler {
 		} catch(Exception e) {
 			System.out.println("m,n > 0");
 		}
-		//regio = new Regio[alto]; //esta parte mejor ponerla en la clase tauler sudoku, otras clases no tienen esta topologia de regiones
 	}
 	
 	//cal una creadora que passi un vector de celles ja inicialitzada com a regio??????????????????????????
