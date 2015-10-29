@@ -27,11 +27,11 @@ public abstract class Regio { //SE ENCARGA MARTA
 		return tam; //tengo que comprobar si están creadas???
 	}
 	
-	public int getNumCeldasRellenas() { //lo calculo cada vez, debería calcularlo sólo una vez y guardarlo en una variable?
+	public int getNumCeldasRellenas() { //lo calcula cada vez
 		try {
 			if (vCellas.size() != tam) throw new Exception();
 			int numCeldasRellenas = tam;
-			for (int i = 0; i < tam; ++i) {//estaVacia()
+			for (int i = 0; i < tam; ++i) {
 				if (vCellas.get(i).estaVacia()) numCeldasRellenas--;
 			}
 			return numCeldasRellenas;
