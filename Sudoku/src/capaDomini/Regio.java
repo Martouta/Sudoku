@@ -9,8 +9,9 @@ public abstract class Regio { //SE ENCARGA MARTA
 	Regio (int tamano) {
 		tam = tamano;
 		vCellas = new Vector();
+		Cella cellaAux = null;
 		for (int i = 0; i < tam; ++i) {
-			Cella cellaAux = new Cella();
+			cellaAux = new Cella();
 			vCellas.addElement(cellaAux);
 		}
 	}
@@ -25,72 +26,35 @@ public abstract class Regio { //SE ENCARGA MARTA
 		}
 	}
 	
-	//Falta algo para crear las Celdas?? creo que en sudoku sólo
-	
 	public int getNumCeldas() {
-		return tam; //tengo que comprobar si están creadas???
+		return tam;
 	}
 	
 	public int getNumCeldasRellenas() { //lo calcula cada vez
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			int numCeldasRellenas = tam;
-			for (int i = 0; i < tam; ++i) {
-				if (vCellas.get(i).estaVacia()) numCeldasRellenas--;
-			}
-			return numCeldasRellenas;
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
+		int numCeldasRellenas = tam;
+		for (int i = 0; i < tam; ++i) {
+			if (vCellas.get(i).estaVacia()) numCeldasRellenas--;
 		}
-		return -1;
+		return numCeldasRellenas;
 	}
 	
 	public boolean estaVacia(int pos) {
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			return (vCellas.get(pos).estaVacia());
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
-		}
-		return false;
+		return (vCellas.get(pos).estaVacia());
 	}
 	
 	public Cella getCella(int pos) {
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			return (vCellas.get(pos));
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
-		}
-		Cella cellaAux = null;
-		return cellaAux;
+		return (vCellas.get(pos));
 	}
 	
 	public int getNumero(int pos) {
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			return (vCellas.get(pos).getNumero());
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
-		}
-		return -1;
+		return (vCellas.get(pos).getNumero());
 	}
 	
 	public void setNumero(int pos, int val) {
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			vCellas.get(pos).setNumero(val);
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
-		}
+		vCellas.get(pos).setNumero(val);
 	}
 	
 	public void borra(int pos) {
-		try {
-			if (vCellas.size() != tam) throw new Exception();
-			vCellas.get(pos).borra();
-		} catch (Exception e) {
-			System.out.println("No están todas las celdas creadas");
-		}
+		vCellas.get(pos).borra();
 	}
 }
