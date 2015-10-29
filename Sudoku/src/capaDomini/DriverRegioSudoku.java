@@ -64,4 +64,4 @@ public class DriverRegioSudoku {
 		private static RegioSudoku rs;
 
 }
-/*falta comprobar*/
+/*falta comprobar :)*/
