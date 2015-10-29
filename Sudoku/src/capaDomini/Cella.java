@@ -2,11 +2,16 @@ package capaDomini;
 
 public class Cella {
 	public Cella() {
-		numero = -1;
+		numero = x = y = -1;
 		fija = false;
 	}
 	
-	// si la celda est√° vac√≠a, devuelve -1
+	public Cella(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	// si la celda est· vacÌa, devuelve -1
 	public int getNumero() {
 		return numero;
 	}
@@ -45,7 +50,7 @@ public class Cella {
 			fija = true;
 		}
 		catch (Exception e) {
-			System.out.println("No puedes fijar una casilla vac√≠a");
+			System.out.println("No puedes fijar una casilla vacÌa");
 		}
 	}
 	// comprobar
@@ -53,6 +58,28 @@ public class Cella {
 		fija = false;
 	}
 	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setX(int pos) {
+		x = pos;
+	}
+	
+	public void setY(int pos) {
+		y = pos;
+	}
+	
+	public boolean estaFija() {
+		return fija;
+	}
+	
 	private int numero;
 	private boolean fija;
+	private int x;
+	private int y;
 }
