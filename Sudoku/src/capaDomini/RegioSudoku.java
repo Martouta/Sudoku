@@ -2,9 +2,7 @@ package capaDomini;
 
 import java.util.Vector;
 
-public class RegioSudoku extends RegioSenseRepeticions{ //SE ENCARGA MARTA
-	private tipoRegioSudoku tipus;
-	
+public class RegioSudoku extends RegioSenseRepeticions{
 	RegioSudoku(int n, tipoRegioSudoku tipo){
 		super(n*n);
 		tipus = tipo; //tipoRegioSudoku.cuadrado;
@@ -18,7 +16,9 @@ public class RegioSudoku extends RegioSenseRepeticions{ //SE ENCARGA MARTA
 	public tipoRegioSudoku getTipus() {
 		return tipus;
 	}
+	
+	private tipoRegioSudoku tipus;
 
 }
 
-/*falta comprobar :) bla*/
+//HECHO

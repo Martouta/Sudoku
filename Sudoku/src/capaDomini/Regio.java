@@ -3,9 +3,7 @@ package capaDomini;
 import java.util.Vector;
 //import java.util.*;
 
-public class Regio { //SE ENCARGA MARTA
-	private int tam;
-	private Vector<Cella> vCellas;
+public class Regio {
 	
 	Regio (int tamano) {
 		tam = tamano;
@@ -39,7 +37,7 @@ public class Regio { //SE ENCARGA MARTA
 		return numCeldasRellenas;
 	}
 	
-	public boolean estaVacia(int pos) { //return (vCellas.get(pos).estaVacia());
+	public boolean estaVacia(int pos) {
 		try {
 			if (pos < 0 || pos >= tam) { throw new ArrayIndexOutOfBoundsException(); }
 			return (vCellas.get(pos).estaVacia());
@@ -49,7 +47,7 @@ public class Regio { //SE ENCARGA MARTA
 		return false;
 	}
 	
-	public Cella getCella(int pos) { //return (vCellas.get(pos));
+	public Cella getCella(int pos) {
 		try {
 			if (pos < 0 || pos >= tam) { throw new ArrayIndexOutOfBoundsException(); }
 			return (vCellas.get(pos));
@@ -59,7 +57,7 @@ public class Regio { //SE ENCARGA MARTA
 		return new Cella();
 	}
 	
-	public int getNumero(int pos) { //return (vCellas.get(pos).getNumero());
+	public int getNumero(int pos) {
 		try {
 			if (pos < 0 || pos >= tam) { throw new ArrayIndexOutOfBoundsException(); }
 			return (vCellas.get(pos).getNumero());
@@ -69,7 +67,7 @@ public class Regio { //SE ENCARGA MARTA
 		return -1;
 	}
 	
-	public void setNumero(int pos, int val) { //vCellas.get(pos).setNumero(val);
+	public void setNumero(int pos, int val) {
 		try {
 			if (pos < 0 || pos >= tam) {throw new ArrayIndexOutOfBoundsException();}
 			if (val < 1 || val > tam) {throw new Exception();}
@@ -83,7 +81,7 @@ public class Regio { //SE ENCARGA MARTA
 		}
 	}
 	
-	public void borra(int pos) { //vCellas.get(pos).borra();
+	public void borra(int pos) {
 		try {
 			if (pos < 0 || pos >= tam) { throw new ArrayIndexOutOfBoundsException(); }
 			vCellas.get(pos).borra();
@@ -91,4 +89,9 @@ public class Regio { //SE ENCARGA MARTA
 			System.out.println("Esta posición está fuera de rango");
 		}
 	}
+	
+	private int tam;
+	private Vector<Cella> vCellas;
 }
+
+//HECHO
