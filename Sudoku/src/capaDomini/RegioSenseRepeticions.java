@@ -19,7 +19,7 @@ public class RegioSenseRepeticions extends Regio {
 		}
 		for (int i = 0; i < tamano; ++i) {
 			int valor = vc.get(i).getNumero();
-			oc[valor-1] = true;
+			if (valor != -1) oc[valor-1] = true;
 		}
 	}
 
