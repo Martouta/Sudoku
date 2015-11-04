@@ -1,18 +1,17 @@
 package capaDomini;
 
-import java.util.Vector;
+import java.util.*;
+import excepciones.*;
 
 public class Tauler {
 
-	public Tauler(int m, int n) { //mirar que m,n siguin > 0
+	public Tauler(int m, int n) {
 		try {
-			if (m <= 0 || n <= 0) {
-				throw new Exception();
-			}
+			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
 			ancho = m; alto = n;
 			creaCeldas();
-		} catch(Exception e) {
-			System.out.println("m,n > 0");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -31,112 +30,84 @@ public class Tauler {
 	
 	public Cella getCella(int x, int y) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(x*ancho + y);
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
-		}
-		return null;
 	}
 	
 	public Cella getCella(int posicion) {
 		try {
-			if (posicion < 0 || posicion >= alto*ancho) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
+			if (posicion < 0 || posicion >= alto) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(posicion);
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + "La posicion esta fuera de rango");
-		}
-		return null;
 	}
 	
 	public int getNumero(int x, int y) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(x*ancho + y).getNumero();
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return -1;
 		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
-		}
-		return -2; // error de rango
 	}
 	
 	public boolean estaVacia(int x, int y) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(x*ancho + y).estaVacia();
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return false;
 		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
-		}
-		return false;
 	}
 	
 	public boolean estaFija(int x, int y) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(x*ancho + y).estaFija();
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return false;
 		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
-		}
-		return false;
 	}
 	
 	
 	public void setNumero(int x, int y, int val) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
-			if (val <= 0 || val > alto) { //cal mirar si a tots ens passa aixo
-				throw new Exception();
-			}
-			if (vCellas.get(x*ancho + y).estaFija()) {
-				throw new Exception();
-			}
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+			if (val < 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar valor por arriba
+			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
 			vCellas.get(x*ancho + y).setNumero(val);
-		}
-		catch (ArrayIndexOutOfBoundsException e1) {
-			System.out.println(e1 + " Out of bounds de x/y");
-		}
-		catch (Exception e2) { //la de val
-			System.out.println("val solo puede contener valores entre: 1<=val<=N");
-			System.out.println("la casilla esta fija, no se puede modificar");
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionValorFueraRango e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
 	public void borra(int x, int y) {
 		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
-				throw new ArrayIndexOutOfBoundsException();
-			}
-			if (vCellas.get(x*ancho + y).estaFija()) {
-				throw new Exception();
-			}
-			vCellas.get(x*ancho + y).borra(); //cal comunicarho a regio que s'ha eliminat el contingut d'una cella
-		}
-		catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
-		}
-		catch(Exception e) {
-			System.out.println("La celda estaba fija");
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
+			vCellas.get(x*ancho + y).borra();
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
 	private void creaCeldas() {
-    	vCellas = new Vector();
+    	vCellas = new Vector<Cella>();
         Cella cellaAux = null;
         for (int i = 0; i < ancho * alto; ++i) {
             cellaAux = new Cella();
