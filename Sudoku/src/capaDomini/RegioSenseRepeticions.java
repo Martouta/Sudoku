@@ -2,9 +2,7 @@ package capaDomini;
 
 import java.util.*;
 
-public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
-	boolean[] oc; //true = ese valor está ocupado
-	
+public class RegioSenseRepeticions extends Regio {
 	RegioSenseRepeticions(int tamano) {
 		super(tamano);
 		oc = new boolean[tamano];
@@ -21,7 +19,7 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 		}
 		for (int i = 0; i < tamano; ++i) {
 			int valor = vc.get(i).getNumero();
-			oc[valor-1] = true;
+			if (valor != -1) oc[valor-1] = true;
 		}
 	}
 
@@ -46,4 +44,9 @@ public class RegioSenseRepeticions extends Regio { //SE ENCARGA MARTA
 	public boolean estaNumero(int val){ //no sé si lo necesitaremos pero lo pongo para probar que todo va bien por el driver
 		return oc[val-1];
 	}
+	
+	boolean[] oc; //true = ese valor está ocupado
 }
+
+
+//HECHO

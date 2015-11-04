@@ -1,13 +1,13 @@
 package capaDomini;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class DriverRegioSudoku {
 
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 	    int opc = -1;
-	    System.out.println("Escribe el tamano de la region");
+	    System.out.println("Escribe el n del sudoku");
 	    int n;
 	    n = entrada.nextInt();
 	    rs = new RegioSudoku(n,tipoRegioSudoku.cuadrado);
@@ -19,8 +19,10 @@ public class DriverRegioSudoku {
 	    	System.out.println("3: Esta vacia?");
 	    	System.out.println("4: GetCella()");
 	    	System.out.println("5: Get numero en celda de la posicion");
-	    	System.out.println("6: Set numero (int pos, int val)");
-	    	System.out.println("7: Borra (pos)");
+	    	System.out.println("6: Set numero (int pos, int val) <--over");
+	    	System.out.println("7: Borra (pos) <--over");
+	    	System.out.println("8: estaNumero (int val)");
+	    	System.out.println("9: Get tipo de region de sudoku");
 	    	System.out.println("0: Salir");
 	    	opc = entrada.nextInt();
 	    	switch(opc) {
@@ -57,6 +59,12 @@ public class DriverRegioSudoku {
 		        	rs.borra(2);
 		        	System.out.println(rs.getNumero(2));
 		        	break;
+		        case 8:
+		        	System.out.println(rs.estaNumero(2));
+		        	break;
+		        case 9:
+		        	System.out.println(rs.getTipus());
+		        	break;
 		        default:
 		        	System.out.println("Opcion no valida");
 		        }
@@ -64,4 +72,7 @@ public class DriverRegioSudoku {
 	    	entrada.close();
 	}
 	private static RegioSudoku rs;
+
 }
+
+//HECHO
