@@ -32,24 +32,34 @@ public class TaulerSudoku extends Tauler {
     }
     
    public void setNumCelda(int x, int y, int val, boolean fija) { //FALTA: debería comprobar al principio de todo que no está fija
-        boolean posible = esPosible(x,y,val);
-         
-        try {
-            if (!posible) throw new Exception();
+	   try {
+		   if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+		   if (val <= 0 || val > n*n) throw new Exception();
+	   }
+	   catch (ArrayIndexOutOfBoundsException e1) {
+		   System.out.println(e1 + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
+	   }
+	   catch(Exception e) {
+		   System.out.println("1<=val<=n*n");
+	   }
+	   
+       boolean posible = esPosible(x,y,val);
+       try {
+    	   
+           if (!posible) throw new Exception();
+           SetNumEnFila(x,y,val);
+           SetNumEnColumna(x,y,val);
+           SetNumEnCuadrado(x,y,val);
+           
+           super.setNumero(x, y, val);
              
-            SetNumEnFila(x,y,val);
-            SetNumEnColumna(x,y,val);
-            SetNumEnCuadrado(x,y,val);
-            
-            super.setNumero(x, y, val);
-             
-            if (fija) fijar(x,y);
-            /*con fijarla una vez ya se aplica a las demás regiones
-             * pero no puedo hacer lo mismo con el valor
-             * porque entonces no se actualizaría el vector de RegióSenseRepeticions para cada Regio.
-             * Se fija al final de ponerle el valor a la Celda desde todas las Regiones que la tienen
-             */
-            System.out.println("Se ha insertado el valor " + val + " en la fila " + x + " y columna " + y);
+           if (fija) fijar(x,y);
+           /*con fijarla una vez ya se aplica a las demás regiones
+            * pero no puedo hacer lo mismo con el valor
+            * porque entonces no se actualizaría el vector de RegióSenseRepeticions para cada Regio.
+            * Se fija al final de ponerle el valor a la Celda desde todas las Regiones que la tienen
+            */
+           System.out.println("Se ha insertado el valor " + val + " en la fila " + x + " y columna " + y);
         } catch (Exception e) {
             System.out.println("Este numero ya esta puesto en la misma Región");
         }
@@ -107,110 +117,176 @@ public class TaulerSudoku extends Tauler {
     }
     
     public boolean esPosible(int x, int y, int val){
-    	//CALCULA POSICIONES:
-        //posición de la región fila en el vector rs: x + 0
-        int posRegFila = x + 0;
-        //posición de la región columna en el vector rs: y + (n*n)
-        int posRegColumna = y + (n*n);
-        //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
-            //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
-            //número de col. de región cuadrado (no de la celda): cmc = y/n
-        int fmc = x/n;
-        int cmc = y/n;
-        int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
- 
-        boolean posible = true;
-        posible = ! rs[posRegFila].estaNumero(val);
-        if (posible) posible = ! rs[posRegColumna].estaNumero(val);
-        if (posible) posible = ! rs[posRegCuadrado].estaNumero(val);
-        
-        return posible;
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val < 0 || val > n*n) throw new Exception();
+    		//CALCULA POSICIONES:
+            //posición de la región fila en el vector rs: x + 0
+            int posRegFila = x + 0;
+            //posición de la región columna en el vector rs: y + (n*n)
+            int posRegColumna = y + (n*n);
+            //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
+                //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
+                //número de col. de región cuadrado (no de la celda): cmc = y/n
+            int fmc = x/n;
+            int cmc = y/n;
+            int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+     
+            boolean posible = true;
+            posible = ! rs[posRegFila].estaNumero(val);
+            if (posible) posible = ! rs[posRegColumna].estaNumero(val);
+            if (posible) posible = ! rs[posRegCuadrado].estaNumero(val);
+            
+            return posible;
+    	} catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
+    	catch (Exception e) {
+    		System.out.println("1<=val<=n*n");
+    	}
+    	return false;
     }
     
     private void fijar(int x, int y) {
-    	//CALCULA POSICIONES:
-        //posición de la región fila en el vector rs: x + 0
-        int posRegFila = x + 0;
-        //posición de la región columna en el vector rs: y + (n*n)
-        int posRegColumna = y + (n*n);
-        //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
-            //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
-            //número de col. de región cuadrado (no de la celda): cmc = y/n
-        int fmc = x/n;
-        int cmc = y/n;
-        int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
-        
-        rs[posRegFila].getCella(y).fijar(); //Con hacerlo para una región ya vale porque se hace en la fila realmente
-        
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		//CALCULA POSICIONES:
+            //posición de la región fila en el vector rs: x + 0
+            int posRegFila = x + 0;
+            //posición de la región columna en el vector rs: y + (n*n)
+            int posRegColumna = y + (n*n);
+            //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
+                //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
+                //número de col. de región cuadrado (no de la celda): cmc = y/n
+            int fmc = x/n;
+            int cmc = y/n;
+            int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+            
+            rs[posRegFila].getCella(y).fijar(); //Con hacerlo para una región ya vale porque se hace en la fila realmente
+    	}catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
     }
     
     private void SetNumEnFila(int x, int y, int val) {
     	//CALCULA POSICION:
         //posición de la región fila en el vector rs: x + 0
         int posRegFila = x + 0;
-        
-        rs[posRegFila].setNumero(y, val);
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val < 0 || val > n*n) throw new Exception();
+            
+            rs[posRegFila].setNumero(y, val);
+    	} catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
+    	catch (Exception e) {
+    		System.out.println("1<=val<=n*n");
+    	}
     }
     
     private void SetNumEnColumna(int x, int y, int val) {
     	//CALCULA POSICION:
-        int posRegColumna = y + (n*n);
-        
-        rs[posRegColumna].setNumero(x, val);
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val < 0 || val > n*n) throw new Exception();
+            int posRegColumna = y + (n*n);
+            rs[posRegColumna].setNumero(x, val);
+    	}
+    	catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
+    	catch (Exception e) {
+    		System.out.println("1<=val<=n*n");
+    	}
     }
     
     private void SetNumEnCuadrado(int x, int y, int val) {
     	//CALCULA POSICION:
         //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
-            //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
-            //número de col. de región cuadrado (no de la celda): cmc = y/n
-        int fmc = x/n;
-        int cmc = y/n;
-        int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
-        
-        int modFila = x%n;
-        int modColu = y%n;
-        int posDentroDelCuadrado = modFila*n + modColu; //posicion dentro del cuadrado del 0 a n*n: modFila*n + modColu
-        rs[posRegCuadrado].setNumero(posDentroDelCuadrado, val);
+        //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
+        //número de col. de región cuadrado (no de la celda): cmc = y/n
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val < 0 || val > n*n) throw new Exception();
+    		
+            int fmc = x/n;
+            int cmc = y/n;
+            int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+            
+            int modFila = x%n;
+            int modColu = y%n;
+            int posDentroDelCuadrado = modFila*n + modColu; //posicion dentro del cuadrado del 0 a n*n: modFila*n + modColu
+            rs[posRegCuadrado].setNumero(posDentroDelCuadrado, val);
+    	}catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
+    	catch (Exception e) {
+    		System.out.println("1<=val<=n*n");
+    	}
+    	
     }
     
     private void borraNumEnFila(int x, int y) {
     	//CALCULA POSICION:
         //posición de la región fila en el vector rs: x + 0
-        int posRegFila = x + 0;
-        
-        rs[posRegFila].borra(y);
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+            int posRegFila = x + 0;
+            
+            rs[posRegFila].borra(y);
+    	}catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
     }
     
     private void borraNumEnColumna(int x, int y) {
     	//CALCULA POSICION:
-        int posRegColumna = y + (n*n);
-        
-        rs[posRegColumna].borra(x);
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+            int posRegColumna = y + (n*n);
+            
+            rs[posRegColumna].borra(x);
+    	}catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
     }
     
     private void borraNumEnCuadrado(int x, int y) {
     	//CALCULA POSICION:
         //posición de la región cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
-            //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
-            //número de col. de región cuadrado (no de la celda): cmc = y/n
-        int fmc = x/n;
-        int cmc = y/n;
-        int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+        //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
+        //número de col. de región cuadrado (no de la celda): cmc = y/n
+    	try {
+    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		
+    		int fmc = x/n;
+            int cmc = y/n;
+            int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+            
+            int modFila = x%n;
+            int modColu = y%n;
+            int posDentroDelCuadrado = modFila*n + modColu; //posicion dentro del cuadrado del 0 a n*n: modFila*n + modColu
+            rs[posRegCuadrado].borra(posDentroDelCuadrado);
+    	}catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
         
-        int modFila = x%n;
-        int modColu = y%n;
-        int posDentroDelCuadrado = modFila*n + modColu; //posicion dentro del cuadrado del 0 a n*n: modFila*n + modColu
-        rs[posRegCuadrado].borra(posDentroDelCuadrado);
     }
     
      
 
 	public void borraNumCelda(int x, int y) {
-		super.borra(x, y);
-		borraNumEnFila(x,y);
-		borraNumEnColumna(x,y);
-		borraNumEnCuadrado(x,y);
+		try {
+			if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+			super.borra(x, y);
+			borraNumEnFila(x,y);
+			borraNumEnColumna(x,y);
+			borraNumEnCuadrado(x,y);
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
+    	}
 	}
 
 
