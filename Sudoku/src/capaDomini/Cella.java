@@ -1,6 +1,8 @@
 package capaDomini;
 
-public class Cella { //FALTAN LAS EXCEPCIONES
+import excepciones.*;
+
+public class Cella {
 	public Cella() {
 		numero = x = y = -1;
 		fija = false;
@@ -18,12 +20,11 @@ public class Cella { //FALTAN LAS EXCEPCIONES
 	
 	public void setNumero(int val) {
 		try {
-			if(fija)
-				throw new Exception();
+			if(fija) throw (new ExcepcionNumeroFijo());
 			numero = val;
 		}
-		catch (Exception e) {
-			System.out.println("No puedes modificar una casilla fija");
+		catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -33,26 +34,24 @@ public class Cella { //FALTAN LAS EXCEPCIONES
 	
 	public void borra() {
 		try {
-			if(fija)
-				throw new Exception();
+			if(fija) throw (new ExcepcionNumeroFijo());
 			numero = -1;
 		}
-		catch (Exception e) {
-			System.out.println("No puedes borrar una casilla fija");
+		catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	// comprobar
+
 	public void fijar() {
 		try {
-			if(estaVacia())
-				throw new Exception();
+			if(numero == -1) throw (new ExcepcionCasillaVaciaNoFijable());
 			fija = true;
-		}
-		catch (Exception e) {
-			System.out.println("No puedes fijar una casilla vacía");
+		} catch (ExcepcionCasillaVaciaNoFijable e) {
+			System.out.println(e.getMessage());
 		}
 	}
+	
 	// comprobar
 	public void liberar() {
 		fija = false;
