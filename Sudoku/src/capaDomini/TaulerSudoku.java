@@ -33,7 +33,7 @@ public class TaulerSudoku extends Tauler {
     
    public void setNumCelda(int x, int y, int val, boolean fija) { //FALTA: debería comprobar al principio de todo que no está fija
 	   try {
-		   if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+		   if (x < 0 || x > n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
 		   if (val <= 0 || val > n*n) throw new Exception();
 	   }
 	   catch (ArrayIndexOutOfBoundsException e1) {
@@ -118,8 +118,8 @@ public class TaulerSudoku extends Tauler {
     
     public boolean esPosible(int x, int y, int val){
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
-    		if (val < 0 || val > n*n) throw new Exception();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val <= 0 || val > n*n) throw new Exception();
     		//CALCULA POSICIONES:
             //posición de la región fila en el vector rs: x + 0
             int posRegFila = x + 0;
@@ -149,7 +149,7 @@ public class TaulerSudoku extends Tauler {
     
     private void fijar(int x, int y) {
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
     		//CALCULA POSICIONES:
             //posición de la región fila en el vector rs: x + 0
             int posRegFila = x + 0;
@@ -173,8 +173,8 @@ public class TaulerSudoku extends Tauler {
         //posición de la región fila en el vector rs: x + 0
         int posRegFila = x + 0;
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
-    		if (val < 0 || val > n*n) throw new Exception();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val <= 0 || val > n*n) throw new Exception();
             
             rs[posRegFila].setNumero(y, val);
     	} catch(ArrayIndexOutOfBoundsException e) {
@@ -188,8 +188,8 @@ public class TaulerSudoku extends Tauler {
     private void SetNumEnColumna(int x, int y, int val) {
     	//CALCULA POSICION:
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
-    		if (val < 0 || val > n*n) throw new Exception();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val <= 0 || val > n*n) throw new Exception();
             int posRegColumna = y + (n*n);
             rs[posRegColumna].setNumero(x, val);
     	}
@@ -207,8 +207,8 @@ public class TaulerSudoku extends Tauler {
         //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
         //número de col. de región cuadrado (no de la celda): cmc = y/n
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
-    		if (val < 0 || val > n*n) throw new Exception();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (val <= 0 || val > n*n) throw new Exception();
     		
             int fmc = x/n;
             int cmc = y/n;
@@ -231,10 +231,9 @@ public class TaulerSudoku extends Tauler {
     	//CALCULA POSICION:
         //posición de la región fila en el vector rs: x + 0
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
             int posRegFila = x + 0;
-            
-            rs[posRegFila].borra(y);
+            rs[posRegFila].borra(y); //dona excepcio tot i que elimina el contingut, aixo igual als dos altres borracolumna i quadrat
     	}catch(ArrayIndexOutOfBoundsException e) {
     		System.out.println(e + "La x o y estan fuera de rango. 0 <= x,y < n*n");
     	}
@@ -243,7 +242,7 @@ public class TaulerSudoku extends Tauler {
     private void borraNumEnColumna(int x, int y) {
     	//CALCULA POSICION:
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
             int posRegColumna = y + (n*n);
             
             rs[posRegColumna].borra(x);
@@ -258,7 +257,7 @@ public class TaulerSudoku extends Tauler {
         //número de fila de región cuadrado (no de la celda): fmc = x/n (es x/n truncado)
         //número de col. de región cuadrado (no de la celda): cmc = y/n
     	try {
-    		if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+    		if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
     		
     		int fmc = x/n;
             int cmc = y/n;
@@ -278,7 +277,7 @@ public class TaulerSudoku extends Tauler {
 
 	public void borraNumCelda(int x, int y) {
 		try {
-			if (x < 0 || x > n*n || y < 0 || y > n*n) throw new ArrayIndexOutOfBoundsException();
+			if (x < 0 || x >= n*n || y < 0 || y >= n*n) throw new ArrayIndexOutOfBoundsException();
 			super.borra(x, y);
 			borraNumEnFila(x,y);
 			borraNumEnColumna(x,y);

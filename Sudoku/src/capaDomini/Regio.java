@@ -6,18 +6,28 @@ import java.util.Vector;
 public class Regio {
      
     Regio (int tamano) {
-        tam = tamano;
-        vCellas = new Vector();
-        Cella cellaAux = null;
-        for (int i = 0; i < tam; ++i) {
-            cellaAux = new Cella();
-            vCellas.addElement(cellaAux);
-        }
+    	try {
+    		if (tamano < 0) throw new Exception();
+    		tam = tamano;
+            vCellas = new Vector();
+            Cella cellaAux = null;
+            for (int i = 0; i < tam; ++i) {
+                cellaAux = new Cella();
+                vCellas.addElement(cellaAux);
+            }
+    	} catch (Exception e) {
+    		System.out.println("tamano > 0");
+    	}
     }
      
     Regio (int tamano, Vector<Cella> vc) { //deberíamos hacer que pase sólo Vector<Cella> vc y tamano se calcula con el .size()?
-        tam = tamano;
-        try {
+    	try {
+    		if (tamano < 0) throw new Exception();
+    		tam = tamano;
+    	}catch (Exception e) {
+    		System.out.println("tamano > 0");
+    	}
+    	try {
             if (vc.size() != tam) throw new Exception();
             vCellas = (Vector) vc.clone();
         } catch (Exception e) {
@@ -49,7 +59,7 @@ public class Regio {
      
     public Cella getCella(int pos) {
         try {
-            if (pos < 0 || pos >= tam) { throw new ArrayIndexOutOfBoundsException(); }
+            if (pos < 0) { throw new ArrayIndexOutOfBoundsException(); }
             return (vCellas.get(pos));
         } catch (Exception e1) {
             System.out.println("Esta posición está fuera de rango");
