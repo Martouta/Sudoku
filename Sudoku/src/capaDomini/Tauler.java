@@ -66,12 +66,16 @@ public class Tauler {
 			if (val <= 0 || val > alto) { //cal mirar si a tots ens passa aixo
 				throw new Exception();
 			}
+			if (tauler[x][y].estaFija()) {
+				throw new Exception();
+			}
 		}
-		catch (ArrayIndexOutOfBoundsException e1) { //la de x/y -> ArrayIndexOutOfBoundsException
+		catch (ArrayIndexOutOfBoundsException e1) {
 			System.out.println(e1 + " Out of bounds de x/y");
 		}
 		catch (Exception e2) { //la de val
 			System.out.println("val solo puede contener valores entre: 1<=val<=N");
+			System.out.println("la casilla esta fija, no se puede modificar");
 		}
 		int valant = getNumero(x,y);
 		try {
@@ -119,15 +123,20 @@ public class Tauler {
 	}
 	
 	public void borra(int x, int y) {
-		//try and catch
 		try {
 			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) {
 				throw new ArrayIndexOutOfBoundsException();
+			}
+			if (tauler[x][y].estaFija()) {
+				throw new Exception();
 			}
 			tauler[x][y].borra(); //cal comunicarho a regio que s'ha eliminat el contingut d'una cella
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
+		}
+		catch(Exception e) {
+			System.out.println("La celda estaba fija");
 		}
 	}
 	
