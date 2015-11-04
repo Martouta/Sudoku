@@ -54,10 +54,10 @@ public class RegioSenseRepeticions extends Regio {
     @Override
     public void borra(int pos) { //MIRAR
     	try {
-			if (pos <= 0) throw (new ExcepcionPosicionFueraRango()); //FALTA: mirar si pos es mes gran que la pos maxima
+			if (pos < 0) throw (new ExcepcionPosicionFueraRango()); //FALTA: mirar si pos es mes gran que la pos maxima
 			int valor = super.getCella(pos).getNumero();
 			super.borra(pos); //borra el num de la celda de la posicion que me pasan
-			oc[valor-1] = false;
+			if (valor != -1) oc[valor-1] = false;
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 		}

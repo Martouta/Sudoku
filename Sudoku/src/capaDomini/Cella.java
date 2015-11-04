@@ -1,6 +1,6 @@
 package capaDomini;
 
-public class Cella {
+public class Cella { //FALTAN LAS EXCEPCIONES
 	public Cella() {
 		numero = x = y = -1;
 		fija = false;

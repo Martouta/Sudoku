@@ -27,10 +27,10 @@ public class DriverTaulerSudoku {
             case 0:
             	break;
             case 1:
-            	System.out.println("El valor es + " + ts.getN());
+            	System.out.println("El valor es " + ts.getN());
             	break;
             case 2:
-            	System.out.println("El valor es + " + ts.getNN());
+            	System.out.println("El valor es " + ts.getNN());
             	break;
             case 3:
             	ts.muestraTabla();
@@ -44,33 +44,33 @@ public class DriverTaulerSudoku {
             	val = entrada.nextInt();
             	fija = entrada.nextBoolean();
             	ts.setNumCelda(x,y,val,fija);
-            	System.out.println("El valor es + " + ts.getNumero(x, y));
+            	System.out.println("El valor es " + ts.getNumero(x, y));
             	break;
             case 5:
             	System.out.println("Introduce X, Y, valor");
             	x = entrada.nextInt();
             	y = entrada.nextInt();
             	val = entrada.nextInt();
-            	System.out.println("Es posible:+ " + ts.esPosible(x, y, val));
+            	System.out.println("Es posible: " + ts.esPosible(x, y, val));
             	break;
             case 6:
             	System.out.println("Introduce X, Y");
             	x = entrada.nextInt();
             	y = entrada.nextInt();
-            	System.out.println("Esta fija:+ " + ts.estaFija(x,y));
+            	System.out.println("Esta fija: " + ts.estaFija(x,y));
             	break;
             case 7:
             	System.out.println("Introduce X, Y");
             	x = entrada.nextInt();
             	y = entrada.nextInt();
             	ts.borraNumCelda(x, y);
-            	System.out.println("El valor es + " + ts.getNumero(x, y));
+            	System.out.println("El valor es " + ts.getNumero(x, y));
             	break;
             case 8:
             	System.out.println("Introduce X, Y");
             	x = entrada.nextInt();
             	y = entrada.nextInt();
-            	System.out.println("El valor es + " + ts.getNumero(x, y));
+            	System.out.println("El valor es " + ts.getNumero(x, y));
             	break;
             default:
             	System.out.println("Opcion no valida");

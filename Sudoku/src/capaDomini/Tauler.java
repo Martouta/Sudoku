@@ -40,7 +40,7 @@ public class Tauler {
 	
 	public Cella getCella(int posicion) {
 		try {
-			if (posicion < 0 || posicion >= alto) throw (new ExcepcionPosicionFueraRango());
+			if (posicion < 0 || posicion >= alto*ancho) throw (new ExcepcionPosicionFueraRango());
 			return vCellas.get(posicion);
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
