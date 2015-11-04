@@ -5,6 +5,6 @@ public class ExcepcionNumeroFijo extends Exception {
 
 	@Override
 	public String getMessage() {
-		return "El numero es fijo y no se puede modificar";
+		return "La casilla esta fija y no se puede modificar";
 	}
 }
