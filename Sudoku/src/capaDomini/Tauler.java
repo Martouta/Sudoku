@@ -130,7 +130,7 @@ public class Tauler {
 			if (tauler[x][y].estaFija()) {
 				throw new Exception();
 			}
-			tauler[x][y].borra(); //cal comunicarho a regio que s'ha eliminat el contingut d'una cella
+			tauler[x][y].borra(); //cal comunicarho a regio que s'ha eliminat el contingut d'una celda
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println(e + " La x o y estan fuera de rango. 0 <= x,y < alto,ancho");
