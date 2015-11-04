@@ -25,7 +25,7 @@ public class Regio {
 			if (tamano < 1) throw (new ExcepcionTamanoIncorrecto());
 			tam = tamano;
 			if (vc.size() != tam) throw (new ExcepcionNumCeldasDiferenteTamano());
-			vCellas = (Vector<Cella>) vc.clone();
+			vCellas = (Vector<Cella>) vc;
 		} catch (ExcepcionTamanoIncorrecto e) {
 			System.out.println(e.getMessage());
 		} catch (ExcepcionNumCeldasDiferenteTamano e) {

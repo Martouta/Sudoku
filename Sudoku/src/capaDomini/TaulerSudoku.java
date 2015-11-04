@@ -73,7 +73,7 @@ public class TaulerSudoku extends Tauler {
                 case 0: //Filas
                     tipoRS = tipoRegioSudoku.fila;
                     for (int j = 0; j < n*n; ++j) { //Una iteracion por fila
-                        vCellasAux = new Vector();
+                        vCellasAux = new Vector<Cella>();
                         for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la fila (recorremos las columnas de esta fila)
                             int posicion = j*(n*n) + z; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
                             vCellasAux.addElement(super.getCella(posicion));
@@ -84,7 +84,7 @@ public class TaulerSudoku extends Tauler {
                 case 1: //Columnas
                     tipoRS = tipoRegioSudoku.columna;
                     for (int j = 0; j < n*n; ++j) { //Una iteracion por columna
-                        vCellasAux = new Vector();
+                        vCellasAux = new Vector<Cella>();
                         for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la columna (recorremos las filas de esta columna)
                             int posicion = z*(n*n) + j; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
                             vCellasAux.addElement(super.getCella(posicion));
@@ -97,7 +97,7 @@ public class TaulerSudoku extends Tauler {
                     for (int j = 0; j < n; ++j) { //Una iteracion por cada "fila de cuadrado"
                         for (int z = 0; z < n; ++z) { //una iteracion por cada "columna de cuadrado" dentro de esa "fila de cuadrado"
                             //EMPIEZA CODIGO PARA UNA SOLA REGION-CUADRADO
-                            vCellasAux = new Vector();
+                            vCellasAux = new Vector<Cella>();
                             for (int a1 = 0; a1 < n; ++a1) { //Para recorrer las filas de celdas dentro del cuadrado
                                 int numFilaGlobal = j*n + a1;
                                 for (int a2 = 0; a2 < n; ++a2) { //Para recorrer las columnas de celdas dentro del cuadrado
