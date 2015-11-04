@@ -51,14 +51,25 @@ public class RegioSenseRepeticions extends Regio {
 		}
     }
  
-    @Override
-    public void borra(int pos) { //MIRAR
+    /*@Override
+    public void borra(int pos) {
     	try {
 			if (pos < 0) throw (new ExcepcionPosicionFueraRango()); //FALTA: mirar si pos es mes gran que la pos maxima
 			int valor = super.getCella(pos).getNumero();
+			//if (valor != -1) oc[valor-1] = false; //importante hacerlo en este orden para que no pierda el valor antes de poner a falso este dato
 			super.borra(pos); //borra el num de la celda de la posicion que me pasan
-			if (valor != -1) oc[valor-1] = false;
 		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+		}
+    }*/
+    /*DATO IMPORTANTE: borra ya NO actualiza el vector de "esta el numero?" porque entonces al borrarse en una region, al hacerlo las demás regiones no pueden actualizarlo al no saber el valor que tenía la celda antes de borrarse
+     *
+     */
+    public void numeroYaNoEsta(int valor) {
+    	try {
+			if (valor <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
+			oc[valor-1] = false;
+		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
 		}
     }

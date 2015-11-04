@@ -245,14 +245,39 @@ public class TaulerSudoku extends Tauler {
 			System.out.println(e.getMessage());
 		}
     } 
-
+    
 	public void borraNumCelda(int x, int y) {
 		try {
 			if (x < 0 || x > n*n || y < 0 || y > n*n) throw (new ExcepcionPosicionFueraRango());
+			numeroYaNoEstaEnRegiones(x, y); //importante hacer este antes que los demás para no perder el valor.
 			super.borra(x, y);
 			borraNumEnFila(x,y);
 			borraNumEnColumna(x,y);
 			borraNumEnCuadrado(x,y);
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private void numeroYaNoEstaEnRegiones(int x, int y) {
+		try {
+			if (x < 0 || x > n*n || y < 0 || y > n*n) throw (new ExcepcionPosicionFueraRango());
+			//CALCULA POSICIONES:
+			//posicion de la region fila en el vector rs: x + 0
+			int posRegFila = x + 0;
+			//posicion de la region columna en el vector rs: y + (n*n)
+			int posRegColumna = y + (n*n);
+			//posicion de la region cuadrado en el vector rs: (fmc*n + cmc) + (n*n * 2)
+			    //numero de fila de region cuadrado (no de la celda): fmc = x/n (es x/n truncado)
+			    //numero de col. de region cuadrado (no de la celda): cmc = y/n
+			int fmc = x/n;
+			int cmc = y/n;
+			int posRegCuadrado = (fmc*n + cmc) + (n*n * 2);
+
+			int val = rs[posRegFila].getNumero(y);
+			rs[posRegFila].numeroYaNoEsta(val);
+			rs[posRegColumna].numeroYaNoEsta(val);
+			rs[posRegCuadrado].numeroYaNoEsta(val);
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 		}
