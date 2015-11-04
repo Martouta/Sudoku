@@ -58,8 +58,10 @@ public class RegioSenseRepeticions extends Regio {
     @Override
     public void borra(int pos) {
         int valor = super.getCella(pos).getNumero();
-        super.borra(pos); //borra el num de la celda de la posición que me pasan
-        oc[valor-1] = false; //ahora ese valor está libre ----------------------------------------->peta aqui ja que valor val -1 (fals ja que l'he canviat amb -4)
+        if (!super.getCella(pos).estaVacia()) {
+        	super.borra(pos); //borra el num de la celda de la posición que me pasan
+        	oc[valor-1] = false; //ahora ese valor está libre ----------------------------------------->peta aqui ja que valor val -1 (fals ja que l'he canviat amb -4)
+        }
     }
      
     public boolean estaNumero(int val){
