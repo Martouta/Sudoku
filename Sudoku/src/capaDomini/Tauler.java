@@ -128,7 +128,7 @@ public class Tauler {
 				throw new ArrayIndexOutOfBoundsException();
 			}
 			if (tauler[x][y].estaFija()) {
-				throw new Exception(); //asda
+				throw new Exception();
 			}
 			tauler[x][y].borra(); //cal comunicarho a regio que s'ha eliminat el contingut d'una cella
 		}
