@@ -18,8 +18,14 @@ public abstract class Joc {
 		tauler = new Tauler(m,n);
 	}
 	
-	public Joc(tipoDificultad dif, String idJoc, Tauler t) {
-		dificultad = dif;
+	public Joc(String idJoc, Tauler t) {
+		dificultad = null;
+		id = idJoc;
+		tauler = t;
+	}
+	
+	public Joc(String idJoc, Tauler t, tipoDificultad td) {
+		dificultad = td;
 		id = idJoc;
 		tauler = t;
 	}
