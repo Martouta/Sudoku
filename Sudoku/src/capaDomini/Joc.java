@@ -1,8 +1,6 @@
 package capaDomini;
 //import java.util.*;
 
-import capaDomini.Tauler;
-
 public abstract class Joc {
 	private tipoDificultad dificultad;
 	private String id;
