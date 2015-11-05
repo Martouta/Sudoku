@@ -9,7 +9,7 @@ public abstract class Joc {
 	private String id;
 	private Tauler tauler;
 	
-	//segurament no es necessaria ja que no serveixs
+	//segurament no es necessaria ja que no serveix
 	public Joc() {
 		n = 0;
 		dificultad = null;
