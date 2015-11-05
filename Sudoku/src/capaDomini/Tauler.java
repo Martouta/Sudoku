@@ -68,10 +68,10 @@ public class Tauler {
 		}
 	}
 	
-	public boolean estaBloqueada(int x, int y) { //POR HACER
+	public boolean estaBloqueada(int x, int y) {
 		try {
 			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y).estaFija();
+			return vCellas.get(x*ancho + y).estaBloqueada();
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 			return false;
