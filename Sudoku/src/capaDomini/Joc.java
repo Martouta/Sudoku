@@ -21,7 +21,7 @@ public abstract class Joc {
 		this.n = n;
 		dificultad = dif;
 		id = idJoc;
-		
+		tauler = new Tauler(m,n);
 	}
 	
 	public Joc(int m, int n, tipoDificultad dif, String idJoc, Tauler t) {
