@@ -38,16 +38,6 @@ public class Tauler {
 		}
 	}
 	
-	public Cella getCella(int posicion) {
-		try {
-			if (posicion < 0 || posicion >= alto*ancho) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(posicion);
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-	}
-	
 	public int getNumero(int x, int y) {
 		try {
 			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
@@ -78,6 +68,15 @@ public class Tauler {
 		}
 	}
 	
+	public boolean estaBloqueada(int x, int y) { //POR HACER
+		try {
+			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+			return vCellas.get(x*ancho + y).estaFija();
+		} catch (ExcepcionPosicionFueraRango e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 	
 	public void setNumero(int x, int y, int val) {
 		try {

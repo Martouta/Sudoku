@@ -24,7 +24,8 @@ public class TaulerSudoku extends Tauler {
             //if (i%n == 0) System.out.println("-----------------------------");
             for (int j = 0; j < n*n; ++j) {
                 if (j%n == 0) System.out.printf("|");
-                Cella cellaAux = super.getCella((i*n*n) + j);
+                //Cella cellaAux = super.getCella((i*n*n) + j);
+                Cella cellaAux = super.getCella(i,j);
                 if (cellaAux.estaVacia()) System.out.printf(0 + "");
                 else System.out.printf(cellaAux.getNumero() + "");
             }
@@ -63,57 +64,53 @@ public class TaulerSudoku extends Tauler {
 			System.out.println(e.getMessage());
 		}
     }
-    
-    private void rellenaRegiones() { //MEJORABLE POR EL FOR DE 3 Y LUEGO SWITCH
-        rs = new RegioSudoku[(n*n)*3]; //vector amb totes les regions del sudoku;
-        for (int i = 0; i < 3; ++i) { //porque hay 3 tipos de regiones
-            tipoRegioSudoku tipoRS;
-            Vector<Cella> vCellasAux;
-            switch (i) {
-                case 0: //Filas
-                    tipoRS = tipoRegioSudoku.fila;
-                    for (int j = 0; j < n*n; ++j) { //Una iteracion por fila
-                        vCellasAux = new Vector<Cella>();
-                        for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la fila (recorremos las columnas de esta fila)
-                            int posicion = j*(n*n) + z; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
-                            vCellasAux.addElement(super.getCella(posicion));
-                        }
-                        rs[(i*n*n)+j] = new RegioSudoku(n,vCellasAux,tipoRS);
-                    }
-                    break;
-                case 1: //Columnas
-                    tipoRS = tipoRegioSudoku.columna;
-                    for (int j = 0; j < n*n; ++j) { //Una iteracion por columna
-                        vCellasAux = new Vector<Cella>();
-                        for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la columna (recorremos las filas de esta columna)
-                            int posicion = z*(n*n) + j; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
-                            vCellasAux.addElement(super.getCella(posicion));
-                        }
-                        rs[(i*n*n)+j] = new RegioSudoku(n,vCellasAux,tipoRS);
-                    }
-                    break;
-                default: //Cuadrados
-                    tipoRS = tipoRegioSudoku.cuadrado;
-                    for (int j = 0; j < n; ++j) { //Una iteracion por cada "fila de cuadrado"
-                        for (int z = 0; z < n; ++z) { //una iteracion por cada "columna de cuadrado" dentro de esa "fila de cuadrado"
-                            //EMPIEZA CODIGO PARA UNA SOLA REGION-CUADRADO
-                            vCellasAux = new Vector<Cella>();
-                            for (int a1 = 0; a1 < n; ++a1) { //Para recorrer las filas de celdas dentro del cuadrado
-                                int numFilaGlobal = j*n + a1;
-                                for (int a2 = 0; a2 < n; ++a2) { //Para recorrer las columnas de celdas dentro del cuadrado
-                                    int numColumnaGlobal = z*n + a2;
-                                    int posicion = numFilaGlobal * (n*n) + numColumnaGlobal;
-                                    vCellasAux.addElement(super.getCella(posicion));
-                                }
-                            }
-                            rs[(i*n*n)+(j*n+z)] = new RegioSudoku(n,vCellasAux,tipoRS);
-                            //ACABA CODIGO PARA UNA SOLA REGION-CUADRADO
-                        }
-                    }
-                    break;
-            }
-        }
-    }
+   
+   private void rellenaRegiones() { //MEJORABLE POR EL FOR DE 3 Y LUEGO SWITCH
+       rs = new RegioSudoku[(n*n)*3]; //vector amb totes les regions del sudoku;
+       tipoRegioSudoku tipoRS;
+       Vector<Cella> vCellasAux;
+       //FILAS:
+       tipoRS = tipoRegioSudoku.fila;
+       for (int j = 0; j < n*n; ++j) { //Una iteracion por fila
+           vCellasAux = new Vector<Cella>();
+           for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la fila (recorremos las columnas de esta fila)
+               //int posicion = j*(n*n) + z; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
+               //vCellasAux.addElement(super.getCella(posicion));
+           	vCellasAux.addElement(super.getCella(j,z));
+           }
+           rs[j] = new RegioSudoku(n,vCellasAux,tipoRS); //rs[(0*n*n)+j] = new RegioSudoku(n,vCellasAux,tipoRS);
+       }
+       //COLUMNAS:
+       tipoRS = tipoRegioSudoku.columna;
+       for (int j = 0; j < n*n; ++j) { //Una iteracion por columna
+           vCellasAux = new Vector<Cella>();
+           for (int z = 0; z < n*n; ++z) { //una iteracion por cada Celda de la columna (recorremos las filas de esta columna)
+               //int posicion = z*(n*n) + j; //Formula de AC de: posicion = nFila*CuantasColumnas + nColumna
+               //vCellasAux.addElement(super.getCella(posicion));
+           	vCellasAux.addElement(super.getCella(z,j));
+           }
+           rs[(n*n)+j] = new RegioSudoku(n,vCellasAux,tipoRS); //rs[(1*n*n)+j] = new RegioSudoku(n,vCellasAux,tipoRS);
+       }
+       //CUADRADOS:
+       tipoRS = tipoRegioSudoku.cuadrado;
+       for (int j = 0; j < n; ++j) { //Una iteracion por cada "fila de cuadrado"
+           for (int z = 0; z < n; ++z) { //una iteracion por cada "columna de cuadrado" dentro de esa "fila de cuadrado"
+               //EMPIEZA CODIGO PARA UNA SOLA REGION-CUADRADO
+               vCellasAux = new Vector<Cella>();
+               for (int a1 = 0; a1 < n; ++a1) { //Para recorrer las filas de celdas dentro del cuadrado
+                   int numFilaGlobal = j*n + a1;
+                   for (int a2 = 0; a2 < n; ++a2) { //Para recorrer las columnas de celdas dentro del cuadrado
+                       int numColumnaGlobal = z*n + a2;
+                       //int posicion = numFilaGlobal * (n*n) + numColumnaGlobal;
+                       //vCellasAux.addElement(super.getCella(posicion));
+                       vCellasAux.addElement(super.getCella(numFilaGlobal,numColumnaGlobal));
+                   }
+               }
+               rs[(2*n*n)+(j*n+z)] = new RegioSudoku(n,vCellasAux,tipoRS);
+               //ACABA CODIGO PARA UNA SOLA REGION-CUADRADO
+           }
+       }
+   }
     
     public boolean esPosible(int x, int y, int val){
     	try {
