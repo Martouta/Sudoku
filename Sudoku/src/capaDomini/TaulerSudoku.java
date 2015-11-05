@@ -106,7 +106,7 @@ public class TaulerSudoku extends Tauler {
                        vCellasAux.addElement(super.getCella(numFilaGlobal,numColumnaGlobal));
                    }
                }
-               rs[(2*n*n)+(j*n+z)] = new RegioSudoku(n,vCellasAux,tipoRS);
+               rs[(2*n*n)+(j*n+z)] = new RegioSudoku(n,vCellasAux,tipoRS); //rs[(2*n*n)+(j*n+z)] = new RegioSudoku(n,vCellasAux,tipoRS);
                //ACABA CODIGO PARA UNA SOLA REGION-CUADRADO
            }
        }
