@@ -6,6 +6,7 @@ public class Cella {
 	public Cella() {
 		numero = x = y = -1;
 		fija = false;
+		bloqueada = false;
 	}
 	
 	public Cella(int x, int y) {
@@ -77,8 +78,17 @@ public class Cella {
 		return fija;
 	}
 	
+	public boolean estaBloqueada() {
+		return bloqueada;
+	}
+	
+	public void bloquear() {
+		bloqueada = true;
+	}
+	
 	private int numero;
 	private boolean fija;
+	private boolean bloqueada;
 	private int x;
 	private int y;
 }
