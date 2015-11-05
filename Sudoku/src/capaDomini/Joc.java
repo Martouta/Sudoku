@@ -11,7 +11,7 @@ public abstract class Joc {
 	
 	// no es necessaria ja que no serveix
 	public Joc() {
-		n = 0;
+		m = n = 0;
 		dificultad = null;
 		id = null;
 	}
