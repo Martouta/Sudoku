@@ -9,12 +9,12 @@ public class JocSudoku extends Joc {
 		super();
 	}
 	
-	public JocSudoku(int mida, tipoDificultad dif, String idJocSudoku) {
-		super(mida, dif, idJocSudoku);
+	public JocSudoku(int n, tipoDificultad dif, String idJocSudoku) {
+		super(n, n, dif, idJocSudoku);
 	}
 	
-	public JocSudoku(int mida, tipoDificultad dif, String idJocSudoku, Tauler t) {
-		super(mida, dif, idJocSudoku, t);
+	public JocSudoku(int n, tipoDificultad dif, String idJocSudoku, Tauler t) {
+		super(n, n, dif, idJocSudoku, t);
 	}
 
 	public void pista() {
