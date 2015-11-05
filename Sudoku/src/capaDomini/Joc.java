@@ -38,6 +38,10 @@ public abstract class Joc {
 		return dificultad;
 	}
 	
+	public void setDificultad(tipoDificultad t) {
+		dificultad = t;
+	}
+	
 	public Tauler getTauler() {
 		return tauler;
 	}

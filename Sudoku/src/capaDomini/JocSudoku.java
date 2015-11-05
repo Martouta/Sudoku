@@ -8,6 +8,7 @@ public class JocSudoku extends Joc {
 	
 	public JocSudoku(String idJocSudoku, TaulerSudoku t) {
 		super(idJocSudoku, t);
+		setDificultad(calcularDificultad(t));
 	}
 
 	public void pista() {
