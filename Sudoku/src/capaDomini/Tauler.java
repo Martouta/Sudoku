@@ -83,12 +83,15 @@ public class Tauler {
 			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			if (val < 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar valor por arriba
 			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
+			if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
 			vCellas.get(x*ancho + y).setNumero(val);
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
 		} catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionCasillaBloqueada e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -97,10 +100,13 @@ public class Tauler {
 		try {
 			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
 			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
+			if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
 			vCellas.get(x*ancho + y).borra();
 		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 		} catch (ExcepcionNumeroFijo e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionCasillaBloqueada e) {
 			System.out.println(e.getMessage());
 		}
 	}
