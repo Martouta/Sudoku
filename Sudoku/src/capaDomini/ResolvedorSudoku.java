@@ -33,7 +33,7 @@ public class ResolvedorSudoku {
 		matterm = new int[nn][nn];
 		filas = new boolean[nn][nn+1];
 		columnas = new boolean[nn][nn+1];
-		cuadros = new boolean[nn][nn+1];
+		cuadros = new boolean[nn][nn+1]; 
 		for(int i=0;i<nn;i++) {
 			for(int j=0;j<=nn;j++)
 				filas[i][j] = columnas[i][j] = cuadros[i][j] = false;
@@ -45,7 +45,7 @@ public class ResolvedorSudoku {
 					int a = s.getNumero(i,j);
 					mat[i][j] = a;
 					filas[i][a] = true;
-					columnas[j][a] = true;
+					columnas[j][a] = true; 
 					cuadros[(i/n)*n+(j/n)][a] = true;
 					ncr++;
 				}
