@@ -65,10 +65,10 @@ public class RegioSenseRepeticions extends Regio {
     /*DATO IMPORTANTE: borra ya NO actualiza el vector de "esta el numero?" porque entonces al borrarse en una region, al hacerlo las demás regiones no pueden actualizarlo al no saber el valor que tenía la celda antes de borrarse
      *
      */
-    public void numeroYaNoEsta(int valor) {
+    public void numeroYaNoEsta(int val) {
     	try {
-			if (valor <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
-			oc[valor-1] = false;
+			if (val <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
+			oc[val-1] = false;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
 		}

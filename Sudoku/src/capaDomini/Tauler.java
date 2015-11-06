@@ -15,6 +15,14 @@ public class Tauler {
 		}
 	}
 	
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public int getAlto() {
+		return alto;
+	}
+	
 	public int getNumCeldas() {
 		return ancho*alto;
 	}
