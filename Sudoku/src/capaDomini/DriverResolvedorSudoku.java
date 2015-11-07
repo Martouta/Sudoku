@@ -31,6 +31,10 @@ public class DriverResolvedorSudoku {
 	    	sol = ResolvedorSudoku.resuelveSudoku2(ts);
 		    b = ResolvedorSudoku.sols2(ts);
 	    }
+	    if(a==3) {
+	    	sol = ResolvedorSudoku.resuelveSudoku3(ts);
+		    b = ResolvedorSudoku.sols3(ts);
+	    }
 	    if(b==1)
 	    {
 	    	System.out.println("Solución única");
