@@ -6,7 +6,6 @@ public abstract class Joc {
 	private String id;
 	private Tauler tauler;
 	
-	// no es necessaria ja que no serveix
 	public Joc() {
 		dificultad = null;
 		id = null;
