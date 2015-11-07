@@ -19,10 +19,18 @@ public class DriverResolvedorSudoku {
 	    			ts.setNumCelda(i, j, a, true);
 	    	}
 	    }
-	    int b;
+	    System.out.println("Escoge algoritmo (1~3)");
+	    int a = entrada.nextInt();
+	    int b = -1;
 	    TaulerSudoku sol = new TaulerSudoku(n);
-	    sol = ResolvedorSudoku.resuelveSudoku(ts);
-	    b = ResolvedorSudoku.sols(ts);
+	    if(a==1) {
+		    sol = ResolvedorSudoku.resuelveSudoku1(ts);
+		    b = ResolvedorSudoku.sols1(ts);
+	    }
+	    if(a==2) {
+	    	sol = ResolvedorSudoku.resuelveSudoku2(ts);
+		    b = ResolvedorSudoku.sols2(ts);
+	    }
 	    if(b==1)
 	    {
 	    	System.out.println("Solución única");
@@ -30,7 +38,7 @@ public class DriverResolvedorSudoku {
 	    }
 	    else if(b==0)
 	    	System.out.println("No hay solución");
-	    else
+	    else if(b==2)
 	    	System.out.println("Múltiples soluciones");
 	    entrada.close();
 	}

@@ -2,7 +2,7 @@ package capaDomini;
 
 public class ResolvedorSudoku {
 	
-	public static int resuelveSudoku(TaulerSudoku s, TaulerSudoku sol) {
+	public static int resuelveSudoku1(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
 		sol = new TaulerSudoku(n);
 		rec();
@@ -10,15 +10,40 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static int sols(TaulerSudoku s) {
+	public static int sols1(TaulerSudoku s) {
 		carga(s);
 		rec();
 		return nsols;
 	}
 	
-	public static TaulerSudoku resuelveSudoku(TaulerSudoku s) {
+	public static TaulerSudoku resuelveSudoku1(TaulerSudoku s) {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
+		rec();
+		guarda(sol);
+		return sol;
+	}
+	
+	public static int resuelveSudoku2(TaulerSudoku s, TaulerSudoku sol) {
+		carga(s);
+		sol = new TaulerSudoku(n);
+		siso();
+		rec();
+		guarda(sol);
+		return nsols;
+	}
+	
+	public static int sols2(TaulerSudoku s) {
+		carga(s);
+		siso();
+		rec();
+		return nsols;
+	}
+	
+	public static TaulerSudoku resuelveSudoku2(TaulerSudoku s) {
+		carga(s);
+		TaulerSudoku sol = new TaulerSudoku(n);
+		siso();
 		rec();
 		guarda(sol);
 		return sol;
@@ -51,6 +76,32 @@ public class ResolvedorSudoku {
 				}
 				else
 					mat[i][j] = -1;
+			}
+		}
+	}
+	
+	private static void siso() {  // single solution
+		int a,b;
+		for(int i=0;i<nn;i++) {
+			for(int j=0;j<nn;j++) {
+				if(mat[i][j]>0)
+					continue;
+				a=0;
+				b=0;
+				for(int k=1;k<=nn && a<2;k++) {
+					if(!(filas[i][k] || columnas[j][k] 
+					|| cuadros[(i/n)*n+(j/n)][k])) {
+						a++;
+						b=k;
+					}
+				}
+				if(a>1)
+					continue;
+				mat[i][j] = b;
+				filas[i][b] = columnas[j][b] = cuadros[(i/n)*n+(j/n)][b] = true;
+				ncr++;
+				i=0;
+				j=-1;	// se lo que hago
 			}
 		}
 	}
