@@ -49,6 +49,34 @@ public class ResolvedorSudoku {
 		return sol;
 	}
 	
+	public static int resuelveSudoku3(TaulerSudoku s, TaulerSudoku sol) {
+		carga(s);
+		sol = new TaulerSudoku(n);
+		siso();
+		prepara();
+		rec2(0);
+		guarda(sol);
+		return nsols;
+	}
+	
+	public static int sols3(TaulerSudoku s) {
+		carga(s);
+		siso();
+		prepara();
+		rec2(0);
+		return nsols;
+	}
+	
+	public static TaulerSudoku resuelveSudoku3(TaulerSudoku s) {
+		carga(s);
+		TaulerSudoku sol = new TaulerSudoku(n);
+		siso();
+		prepara();
+		rec2(0);
+		guarda(sol);
+		return sol;
+	}
+	
 	private static void carga(TaulerSudoku s) { // inicializar
 		n = s.getN();
 		nn = s.getNN();
@@ -146,6 +174,60 @@ public class ResolvedorSudoku {
 		}
 	}
 	
+	private static void rec2(int pos) {	// funcion recursiva
+		if(nsols>1)
+			return;
+		if(ncr==nn*nn) {
+			for(int i=0;i<nn;i++) {
+				for(int j=0;j<nn;j++)
+					matterm[i][j] = mat[i][j];
+			}
+			nsols++;
+			return;
+		}
+		int xpos = orden[pos]/nn;
+		int ypos = orden[pos]%nn;
+		for(int i=1;i<=nn;i++) {
+			if(!(filas[xpos][i] || columnas[ypos][i] 
+					|| cuadros[(xpos/n)*n+(ypos/n)][i])) {
+				ncr++;
+				filas[xpos][i] = true;
+				columnas[ypos][i] = true;
+				cuadros[(xpos/n)*n+(ypos/n)][i] = true;
+				mat[xpos][ypos] = i;
+				rec();
+				mat[xpos][ypos] = -1;
+				filas[xpos][i] = false;
+				columnas[ypos][i] = false;
+				cuadros[(xpos/n)*n+(ypos/n)][i] = false;
+				ncr--;
+			}
+		}
+	}
+	
+	private static void prepara() {
+		orden = new int[nn*nn-ncr];
+		int pos = 0;
+		for(int ii=2;ii<=nn;ii++) {
+			for(int i=0;i<nn;i++) {
+				for(int j=0;j<nn;j++) {
+					int a=0;
+					if(mat[i][j]>=0)
+						continue;
+					for(int k=1;k<=nn && a<2;k++) {
+						if(!(filas[i][k] || columnas[j][k] 
+						|| cuadros[(i/n)*n+(j/n)][k]))
+							a++;
+					}
+					if(a==ii) {
+						orden[pos] = i*nn+j;
+						pos++;
+					}
+				}
+			}
+		}
+	}
+	
 	private static void guarda(TaulerSudoku sol) {	
 		if(nsols<1)
 			return;
@@ -164,4 +246,5 @@ public class ResolvedorSudoku {
 	private static boolean filas[][];
 	private static boolean columnas[][];
 	private static boolean cuadros[][];
+	private static int orden[];
 }
