@@ -195,7 +195,7 @@ public class ResolvedorSudoku {
 				columnas[ypos][i] = true;
 				cuadros[(xpos/n)*n+(ypos/n)][i] = true;
 				mat[xpos][ypos] = i;
-				rec();
+				rec2(pos+1);
 				mat[xpos][ypos] = -1;
 				filas[xpos][i] = false;
 				columnas[ypos][i] = false;
