@@ -10,8 +10,11 @@ public class Cella {
 	}
 	
 	public Cella(int x, int y) {
+		numero = -1;
 		this.x = x;
 		this.y = y;
+		fija = false;
+		bloqueada = false;
 	}
 	
 	// si la celda está vacía, devuelve -1
