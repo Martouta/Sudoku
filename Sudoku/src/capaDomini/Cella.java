@@ -9,7 +9,7 @@ public class Cella {
 		bloqueada = false;
 	}
 	
-	public Cella(int x, int y) { //cambios
+	public Cella(int x, int y) {
 		numero = -1;
 		this.x = x;
 		this.y = y;
