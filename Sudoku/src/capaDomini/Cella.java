@@ -70,11 +70,31 @@ public class Cella {
 	}
 	
 	public void setX(int pos) {
-		x = pos;
+		try {
+			if(x != -1 && y != -1) throw (new ExcepcionCasillaYaTienePosicion());
+			x = pos;
+		} catch (ExcepcionCasillaYaTienePosicion e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void setY(int pos) {
-		y = pos;
+		try {
+			if(x != -1 && y != -1) throw (new ExcepcionCasillaYaTienePosicion());
+			y = pos;
+		} catch (ExcepcionCasillaYaTienePosicion e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void setXeY(int x, int y) {
+		try {
+			if(x != -1 && y != -1) throw (new ExcepcionCasillaYaTienePosicion());
+			this.x = x;
+			this.y = y;
+		} catch (ExcepcionCasillaYaTienePosicion e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public boolean estaFija() {

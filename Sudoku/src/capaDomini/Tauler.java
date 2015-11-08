@@ -9,7 +9,7 @@ public class Tauler {
 		try {
 			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
 			ancho = m; alto = n;
-			creaCeldas();
+			creaCeldasConPosicion();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -119,12 +119,23 @@ public class Tauler {
 		}
 	}
 
-	private void creaCeldas() {
+	/*private void creaCeldasVacias() {
     	vCellas = new Vector<Cella>();
         Cella cellaAux = null;
         for (int i = 0; i < ancho * alto; ++i) {
             cellaAux = new Cella();
             vCellas.addElement(cellaAux);
+        }
+    }*/
+	
+	private void creaCeldasConPosicion() {
+    	vCellas = new Vector<Cella>();
+        Cella cellaAux = null;
+        for (int i = 0; i < alto; ++i) {
+        	for (int j = 0; j < ancho; ++j) {
+        		cellaAux = new Cella(i, j);
+                vCellas.addElement(cellaAux);
+        	}
         }
     }
 	

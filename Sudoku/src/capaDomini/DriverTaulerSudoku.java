@@ -21,6 +21,7 @@ public class DriverTaulerSudoku {
             System.out.println("6: fijar(int x, int y)");
             System.out.println("7: borraNumCelda(int x, int y)");
             System.out.println("8: getNumero(int x, int y)");
+            System.out.println("9: x e y en celda funciona");
             System.out.println("0: Salir");
             opc = entrada.nextInt();
             switch(opc) {
@@ -71,6 +72,12 @@ public class DriverTaulerSudoku {
             	x = entrada.nextInt();
             	y = entrada.nextInt();
             	System.out.println("El valor es " + ts.getNumero(x, y));
+            	break;
+            case 9:
+            	System.out.println("Introduce X, Y");
+            	x = entrada.nextInt();
+            	y = entrada.nextInt();
+            	System.out.println("X: " + ts.getCella(x, y).getX() + " Y: " + ts.getCella(x, y).getY());
             	break;
             default:
             	System.out.println("Opcion no valida");
