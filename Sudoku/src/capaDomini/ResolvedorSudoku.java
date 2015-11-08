@@ -125,6 +125,8 @@ public class ResolvedorSudoku {
 				}
 				if(a>1)
 					continue;
+				if(b==0)
+					continue;
 				mat[i][j] = b;
 				filas[i][b] = columnas[j][b] = cuadros[(i/n)*n+(j/n)][b] = true;
 				ncr++;
@@ -185,6 +187,8 @@ public class ResolvedorSudoku {
 			nsols++;
 			return;
 		}
+		if(pos>=tamord)
+			return;
 		int xpos = orden[pos]/nn;
 		int ypos = orden[pos]%nn;
 		for(int i=1;i<=nn;i++) {
@@ -207,6 +211,7 @@ public class ResolvedorSudoku {
 	
 	private static void prepara() {
 		orden = new int[nn*nn-ncr];
+		tamord = nn*nn-ncr;
 		int pos = 0;
 		for(int ii=2;ii<=nn;ii++) {
 			for(int i=0;i<nn;i++) {
@@ -247,4 +252,5 @@ public class ResolvedorSudoku {
 	private static boolean columnas[][];
 	private static boolean cuadros[][];
 	private static int orden[];
+	private static int tamord;
 }
