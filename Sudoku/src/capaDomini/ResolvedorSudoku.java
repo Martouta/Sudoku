@@ -7,12 +7,14 @@ public class ResolvedorSudoku {
 		sol = new TaulerSudoku(n);
 		rec();
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
 	public static int sols1(TaulerSudoku s) {
 		carga(s);
 		rec();
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -21,6 +23,7 @@ public class ResolvedorSudoku {
 		TaulerSudoku sol = new TaulerSudoku(n);
 		rec();
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -30,6 +33,7 @@ public class ResolvedorSudoku {
 		siso();
 		rec();
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -37,6 +41,7 @@ public class ResolvedorSudoku {
 		carga(s);
 		siso();
 		rec();
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -46,6 +51,7 @@ public class ResolvedorSudoku {
 		siso();
 		rec();
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -56,6 +62,7 @@ public class ResolvedorSudoku {
 		prepara();
 		rec2(0);
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -64,6 +71,7 @@ public class ResolvedorSudoku {
 		siso();
 		prepara();
 		rec2(0);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -74,6 +82,7 @@ public class ResolvedorSudoku {
 		prepara();
 		rec2(0);
 		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -82,6 +91,7 @@ public class ResolvedorSudoku {
 		nn = s.getNN();
 		ncr = 0;
 		nsols = 0;
+		niters = 0;
 		mat = new int[nn][nn];
 		matterm = new int[nn][nn];
 		filas = new boolean[nn][nn+1];
@@ -123,9 +133,7 @@ public class ResolvedorSudoku {
 						b=k;
 					}
 				}
-				if(a>1)
-					continue;
-				if(b==0)
+				if(a!=1)
 					continue;
 				mat[i][j] = b;
 				filas[i][b] = columnas[j][b] = cuadros[(i/n)*n+(j/n)][b] = true;
@@ -139,6 +147,7 @@ public class ResolvedorSudoku {
 	private static void rec() {	// funcion recursiva
 		if(nsols>1)
 			return;
+		niters++;
 		if(ncr==nn*nn) {
 			for(int i=0;i<nn;i++) {
 				for(int j=0;j<nn;j++)
@@ -178,6 +187,9 @@ public class ResolvedorSudoku {
 	
 	private static void rec2(int pos) {	// funcion recursiva
 		if(nsols>1)
+			return;
+		niters++;
+		if(niters>10000000)
 			return;
 		if(ncr==nn*nn) {
 			for(int i=0;i<nn;i++) {
@@ -253,4 +265,5 @@ public class ResolvedorSudoku {
 	private static boolean cuadros[][];
 	private static int orden[];
 	private static int tamord;
+	private static int niters;
 }

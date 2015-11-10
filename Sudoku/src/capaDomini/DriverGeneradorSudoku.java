@@ -9,8 +9,14 @@ public class DriverGeneradorSudoku {
 		System.out.println("Escribe las medidas n del tablero");
 	    int n;
 	    n = entrada.nextInt();
+	    System.out.println("Escribe algoritmo (1~2)");
+	    int alg;
+	    alg = entrada.nextInt();
 	    ts = new TaulerSudoku(n);
-	    ts = GeneradorSudoku.generaSudokuprueba(n);
+	    if(alg==1)
+	    	ts = GeneradorSudoku.generaSudokuprueba(n);
+	    else
+	    	ts = GeneradorSudoku.generaSudokuprueba2(n);
 	    ts.muestraTabla();
 	    System.out.println("Escoge algoritmo (1~3)");
 	    int a = entrada.nextInt();

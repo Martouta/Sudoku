@@ -11,6 +11,7 @@ public class GeneradorSudoku {
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 			if(ResolvedorSudoku.sols3(ts)==0) {
+				System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
 				int a = mat[ultx][ulty];
 				filas[ultx][a] = false;
@@ -51,6 +52,29 @@ public class GeneradorSudoku {
 		return ts;
 	}
 	
+	// este no mola, salen muchos valores muy juntos
+	public static TaulerSudoku generaSudokuprueba2(int n) {
+		rand = new Random();
+		TaulerSudoku ts = new TaulerSudoku(n);
+		init(n);
+		while(ResolvedorSudoku.sols3(ts)>1) {
+			itera2(n);
+			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
+			if(ResolvedorSudoku.sols3(ts)==0) {
+				System.out.println("Sudoku no resoluble, borrando última casilla");
+				ts.borraNumCelda(ultx, ulty);
+				int a = mat[ultx][ulty];
+				filas[ultx][a] = false;
+				columnas[ulty][a] = false;
+				cuadros[(ultx/n)*n+(ulty/n)][a] = false;
+				mat[ultx][ulty] = 0;
+			}
+			else
+				ts.getCella(ultx, ulty).fijar();
+		}
+		return ts;
+	}
+	
 	private static void init(int n) {
 		filas = new boolean[n*n][n*n+1];
 		columnas = new boolean[n*n][n*n+1];
@@ -77,6 +101,31 @@ public class GeneradorSudoku {
 			num = rand.nextInt(n*n)+1;
 		} while(filas[fila][num] || columnas[columna][num]
 				|| cuadros[(fila/n)*n+(columna/n)][num]);
+		ultx = fila;
+		ulty = columna;
+		filas[fila][num] = true;
+		columnas[columna][num] = true;
+		cuadros[(fila/n)*n+(columna/n)][num] = true;
+		mat[fila][columna] = num;
+	}
+	
+	private static void itera2(int n) {
+		int fila = 0;
+		int columna = 0;
+		int pos = rand.nextInt(n*n*n*n);
+		while(mat[pos/(n*n)][pos%(n*n)]!=0) {
+			pos++;
+			pos %= n*n*n*n;
+		}
+		fila = pos/(n*n);
+		columna = pos%(n*n);
+		int num = rand.nextInt(n*n)+1;
+		while(filas[fila][num] || columnas[columna][num]
+				|| cuadros[(fila/n)*n+(columna/n)][num]) {
+			num++;
+			if(num>n*n)
+				num-=n*n;
+		}
 		ultx = fila;
 		ulty = columna;
 		filas[fila][num] = true;
