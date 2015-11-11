@@ -3,6 +3,54 @@ package capaDomini;
 import java.util.*;
 
 public class GeneradorSudoku {
+	
+	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) {
+		TaulerSudoku ts = new TaulerSudoku(n);
+		init(n);
+		try {
+			if(dif==tipoDificultad.trivial)
+				throw new Exception();
+		} catch (Exception e) {
+			System.out.println("No se pueden generar sudokus de dificultad trivial");
+			return ts;
+		}
+		rand = new Random();
+		while(ResolvedorSudoku.sols3(ts)>1) {	// usamos el algoritmo pepino, obviamente
+			itera(n);
+			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
+			if(ResolvedorSudoku.sols3(ts)==0) {
+				System.out.println("Sudoku no resoluble, borrando última casilla");
+				ts.borraNumCelda(ultx, ulty);
+				int a = mat[ultx][ulty];
+				filas[ultx][a] = false;
+				columnas[ulty][a] = false;
+				cuadros[(ultx/n)*n+(ulty/n)][a] = false;
+				mat[ultx][ulty] = 0;
+			}
+			else {
+				ts.borraNumCelda(ultx, ulty);
+				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], true);
+			}
+		}
+		if(dif==tipoDificultad.dificil)
+			return ts;
+		double ratio = 0.0;
+		if(dif==tipoDificultad.medio)
+			ratio = 0.37037+rand.nextDouble()*(0.39506-0.37037);
+		else
+			ratio = 0.39506+rand.nextDouble()*(0.61728-0.39506);
+		int ncr = (int) (ratio*n*n*n*n);
+		TaulerSudoku ts2 = new TaulerSudoku(n);
+		ts2 = ResolvedorSudoku.resuelveSudoku3(ts);
+		while(ts.getNumCeldasRellenas()<ncr) {
+			int pos = rand.nextInt(n*n*n*n);
+			while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
+				pos = rand.nextInt(n*n*n*n);
+			ts.setNumCelda(pos/(n*n), pos%(n*n), ts2.getNumero(pos/(n*n), pos%(n*n)), true);
+		}
+		return ts;
+	}
+	
 	public static TaulerSudoku generaSudokuprueba(int n) {
 		rand = new Random();
 		TaulerSudoku ts = new TaulerSudoku(n);
@@ -23,31 +71,6 @@ public class GeneradorSudoku {
 				ts.borraNumCelda(ultx, ulty);
 				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], true);
 			}
-			
-			/*TaulerSudoku ts2 = new TaulerSudoku(n);
-			for(int i=0;i<n*n;i++) {
-				for(int j=0;j<n*n;j++) {
-					if(!ts.estaVacia(i, j))
-						ts2.setNumCelda(i, j, ts.getNumero(i, j), true);
-				}
-			}*//*
-			int fila = 0;
-			int columna = 0;
-			int num;
-			do {
-				fila = rand.nextInt(n*n);
-				columna = rand.nextInt(n*n);
-			} while(!ts.estaVacia(fila, columna));
-			do {
-				num = rand.nextInt(n*n)+1;
-			} while(!ts.esPosible(fila, columna, num));
-			ts.setNumCelda(fila, columna, num, false);
-			if(ResolvedorSudoku.sols3(ts)!=0) {
-				ts.borraNumCelda(fila, columna);
-				ts.setNumCelda(fila, columna, num, true);
-			}
-			else
-				ts.borraNumCelda(fila, columna);*/
 		}
 		return ts;
 	}
