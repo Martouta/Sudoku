@@ -144,6 +144,6 @@ public class Tauler {
     }
 	
 	protected int ancho, alto;
-	private Vector<Cella> vCellas;
+	protected Vector<Cella> vCellas;
 	
 }
