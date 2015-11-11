@@ -84,5 +84,5 @@ public class RegioSenseRepeticions extends Regio {
 		}
     }
      
-    boolean[] oc; //true = ese valor esta ocupado
+    private boolean[] oc; //true = ese valor esta ocupado
 }
