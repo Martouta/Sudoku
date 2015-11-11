@@ -5,6 +5,10 @@ import excepciones.*;
 
 public class Tauler {
 
+	public Tauler() {
+		//
+	}
+	
 	public Tauler(int m, int n) {
 		try {
 			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
@@ -139,7 +143,7 @@ public class Tauler {
         }
     }
 	
-	private int ancho, alto;
+	protected int ancho, alto;
 	private Vector<Cella> vCellas;
 	
 }
