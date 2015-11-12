@@ -2,6 +2,14 @@ package capaDomini;
 
 import java.util.Scanner;
 
+/*
+ * Este driver permite testear los cuatro algoritmos de generación de sudokus,
+ * tanto los de prueba como los definitivos. Tras escoger el algorimo, genera el
+ * sudoku y lo muestra en pantalla. Tras ello, pide el número del algoritmo de 
+ * resolución a usar. Tras resolver el sudoku, lo muestra en pantalla y el programa
+ * está listo para generar otro sudoku.
+ */
+
 public class DriverGeneradorSudoku {
 
 	public static void main(String[] args) {

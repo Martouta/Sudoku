@@ -4,6 +4,15 @@ import java.util.*;
 
 import excepciones.*;
 
+/* Esta clase genera Sudokus con cuatro algoritmos distintos. Están dos de prueba:
+ * generaSudokuPrueba y generaSudokuPrueba2. Estos dos no permiten distinguir dificultad
+ * y la diferencia entre ellos es que en el primero los números quedan más dispersos.
+ * generaSudoku es bastante más lenta que generaSudoku2, pero generaSudoku2 genera sudokus
+ * menos aleatorios, debido a su algoritmo. Estas dos funciones generarán una excepción si
+ * la dificultad pedida es trivial o si n no es 2, 3 o 4
+ * Si se pide un sudoku de n=4 a los algoritmos de prueba no acabarán en la vida, aviso.
+ */
+
 public class GeneradorSudoku {
 	
 	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) {
@@ -12,7 +21,12 @@ public class GeneradorSudoku {
 		try {
 			if(dif==tipoDificultad.trivial)
 				throw new ExcepcionDificultadInvalida();
+			if(n<2 || n>4)
+				throw new ExcepcionTamanoIncorrecto();
 		} catch (ExcepcionDificultadInvalida e) {
+			System.out.println(e.getMessage());
+			return ts;
+		} catch (ExcepcionTamanoIncorrecto e) {
 			System.out.println(e.getMessage());
 			return ts;
 		}
@@ -55,7 +69,10 @@ public class GeneradorSudoku {
 		}
 		return ts;
 	}
-	
+	/*
+	 * Esta función ahorra tiempo generando solamente unas pocas casillas aleatorias,
+	 * y cogiendo uno de los sudokus posibles con esa disposición, rellena el tablero
+	 */
 	public static TaulerSudoku generaSudoku2(int n, tipoDificultad dif) {
 		TaulerSudoku ts = new TaulerSudoku(n);
 		init(n);
@@ -174,6 +191,7 @@ public class GeneradorSudoku {
 		filas[n*n-1][n*n] = columnas[n*n-1][n*n] = cuadros[n*n-1][n*n] = false;
 	}
 	
+	// para generaSudokuprueba
 	private static void itera(int n) {
 		int fila = 0;
 		int columna = 0;
@@ -194,6 +212,7 @@ public class GeneradorSudoku {
 		mat[fila][columna] = num;
 	}
 	
+	// para generaSudokuprueba2
 	private static void itera2(int n) {
 		int fila = 0;
 		int columna = 0;

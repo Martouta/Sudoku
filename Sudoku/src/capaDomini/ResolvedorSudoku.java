@@ -1,5 +1,19 @@
 package capaDomini;
 
+/*
+ * Esta clase provee tres algoritmos para resolver sudokus: las funciones que acaban
+ * en 1 utilizan un algoritmo de backtracking básico. Las funciones que acaban en 2
+ * utilizan el mismo algoritmo, pero con una optimización previa. Las funciones que 
+ * acaban en 3 usan un algoritmo de backtracking más elaborado y además tienen un 
+ * número de iteraciones límite, cosa orientada principalmente a la generación de
+ * sudokus. Por cada algoritmo, hay tres funciones: una que devuelve el número de
+ * soluciones (0, 1 o muchas, que se codifica con un 2) y además un tablero resuelto
+ * válido (si no hay solución, devolverá un tablero vacío); otra que sólo devuelve
+ * el número de soluciones y otra que devuelve solamente el tablero resuelto.
+ * En el driver realmente solo se testea la que devuelve el número de soluciones y
+ * el tablero, pero como el algoritmo es idéntico, da igual.
+ */
+
 public class ResolvedorSudoku {
 	
 	public static int resuelveSudoku1(TaulerSudoku s, TaulerSudoku sol) {
@@ -29,9 +43,8 @@ public class ResolvedorSudoku {
 	public static int resuelveSudoku2(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
 		siso();
-		if(flag)
-			return 0;
-		rec();
+		if(!flag)
+			rec();
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
@@ -40,9 +53,8 @@ public class ResolvedorSudoku {
 	public static int sols2(TaulerSudoku s) {
 		carga(s);
 		siso();
-		if(flag)
-			return 0;
-		rec();
+		if(!flag)
+			rec();
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
@@ -51,9 +63,8 @@ public class ResolvedorSudoku {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
-		if(flag)
-			return sol;
-		rec();
+		if(!flag)
+			rec();
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
@@ -62,10 +73,10 @@ public class ResolvedorSudoku {
 	public static int resuelveSudoku3(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
 		siso();
-		if(flag)
-			return 0;
-		prepara();
-		rec2(0);
+		if(!flag) {
+			prepara();
+			rec2(0);
+		}
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
@@ -74,10 +85,10 @@ public class ResolvedorSudoku {
 	public static int sols3(TaulerSudoku s) {
 		carga(s);
 		siso();
-		if(flag)
-			return 0;
-		prepara();
-		rec2(0);
+		if(!flag) {
+			prepara();
+			rec2(0);
+		}
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
@@ -86,10 +97,10 @@ public class ResolvedorSudoku {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
-		if(flag)
-			return sol;
-		prepara();
-		rec2(0);
+		if(!flag) {
+			prepara();
+			rec2(0);
+		}
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
@@ -144,8 +155,8 @@ public class ResolvedorSudoku {
 					}
 				}
 				if(a==0) {
-					flag = true;
-					return;
+					flag = true; // si el algoritmo llega aquí, seguro que no habrá
+					return;		 // solución; no hace falta ejecutar el backtracking
 				}
 				if(a!=1)
 					continue;
@@ -154,6 +165,7 @@ public class ResolvedorSudoku {
 				ncr++;
 				i=0;
 				j=-1;	// se lo que hago
+				// en serio, tiene sentido
 			}
 		}
 	}
@@ -203,6 +215,8 @@ public class ResolvedorSudoku {
 		if(nsols>1)
 			return;
 		niters++;
+		// esta extraña instrucción es para evitar confundir sudokus con múltiples
+		// soluciones como sudokus de una sola solución
 		if(niters>5000000*(1+2*nsols))
 			return;
 		if(ncr==nn*nn) {

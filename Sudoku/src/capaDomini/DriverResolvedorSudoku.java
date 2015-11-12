@@ -2,6 +2,10 @@ package capaDomini;
 
 import java.util.Scanner;
 
+/*
+ * Este driver permite testear los tres algoritmos de resolución de sudokus.
+ */
+
 public class DriverResolvedorSudoku {
 
 	public static void main(String[] args) {
