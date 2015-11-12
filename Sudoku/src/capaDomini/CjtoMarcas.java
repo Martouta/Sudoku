@@ -3,12 +3,12 @@ package capaDomini;
 import excepciones.*;
 
 public class CjtoMarcas {
-	int tamano;//FALTA (IMPORTANTE): necesito la n*n!!! que aun desde aqui no la puedo conseguir
+	int tamano;
 	private boolean[] marcas;
 	//DATO: se guarda Cella y Partida dependiendo de la navegabilidad
 	
-	public CjtoMarcas() {
-		tamano = 9;
+	public CjtoMarcas(int tamano) {
+		this.tamano = tamano;
 		marcas = new boolean[tamano];
 		for (int i = 0; i < tamano; ++i) {
 		     marcas[i] = false;

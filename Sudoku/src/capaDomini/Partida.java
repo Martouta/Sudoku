@@ -13,6 +13,8 @@ public class Partida {
 	//JocSudoku y Usuario? depende de si hay navegabilidad
 	private User usuario;
 	private JocSudoku sudoku;
+	private Vector<CjtoMarcas> vCjtoMarcas;
+	int nn;
 	
 	private int tiempoSegundos;
 	private Timer timer;
@@ -36,6 +38,13 @@ public class Partida {
 	public Partida (User usuario, JocSudoku sudoku) {
 		this.usuario = usuario;
 		this.sudoku = sudoku;
+		
+		int numCeldasTablero = sudoku.getTauler().getNumCeldas();
+		vCjtoMarcas = new Vector<CjtoMarcas>(numCeldasTablero);
+		nn = (int) Math.pow(numCeldasTablero,0.5);
+		for (int i = 0; i < numCeldasTablero; ++i) {
+			vCjtoMarcas.addElement(new CjtoMarcas(nn));
+		}
 		
 		nPistas = 0;
 		dataFi = null;
@@ -125,6 +134,24 @@ public class Partida {
 	
 	public Date getDataIni() {
 		return dataIni;
+	}
+	
+	public void marcarNumero(int x, int y, int val) {
+		vCjtoMarcas.get(x*nn + y).marcarNumero(val);
+	}
+	
+	public void desmarcarNumero(int x, int y, int val) {
+		vCjtoMarcas.get(x*nn + y).desmarcarNumero(val);
+	}
+	
+	public boolean estaMarcado(int x, int y, int val){
+		return vCjtoMarcas.get(x*nn + y).estaMarcado(val);
+	}
+	
+	public void mostrarMarcasPosicion(int x, int y){
+		for (int i = 0; i < nn; ++i) {
+			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) System.out.println(i + " ");
+		}
 	}
 	
 }

@@ -11,8 +11,6 @@ public class DriverPartidaUsuario {
         
 		User usuario = new User("usu1", null);
 		TaulerSudoku ts = new TaulerSudoku(n);
-		JocSudoku sudoku = new JocSudoku("1",ts);
-		Partida p = new Partida(usuario, sudoku);
 		TaulerSudoku tSol;
 		
 		//TaulerSudoku ts2 = ResolvedorSudoku.resuelveSudoku3(ts);
@@ -39,18 +37,12 @@ public class DriverPartidaUsuario {
 		}
 		
 		int nSols = 0;
-		if(n==1) {
-			tSol = ResolvedorSudoku.resuelveSudoku1(ts);
-		    nSols = ResolvedorSudoku.sols1(ts);
-	    }
-		else if(n==2) {
-	    	tSol = ResolvedorSudoku.resuelveSudoku2(ts);
-		    nSols = ResolvedorSudoku.sols2(ts);
-	    }
-	    else {
-	    	tSol = ResolvedorSudoku.resuelveSudoku3(ts);
-		    nSols = ResolvedorSudoku.sols3(ts);
-	    }
+		tSol = ResolvedorSudoku.resuelveSudoku3(ts);
+		nSols = ResolvedorSudoku.sols3(ts);
+		
+		
+		JocSudoku sudoku = new JocSudoku("1",ts,tSol);
+		Partida p = new Partida(usuario, sudoku);
 	    
 		if (nSols == 1) {
 			int opc = -1;
@@ -58,6 +50,12 @@ public class DriverPartidaUsuario {
 				System.out.println("1: Introduce celda no fija");
 				System.out.println("2: muestra sudoku en proceso");
 				System.out.println("3: muestra sudoku solucionado");
+				System.out.println("4: pedir pista");
+				System.out.println("5: numero de pistas");
+				System.out.println("6: marcar numero");
+				System.out.println("7: desmarcar numero");
+				System.out.println("8: esta marcado");
+				System.out.println("9: ver marcas de la casilla");
 				System.out.println("0: Salir");
 	            opc = entrada.nextInt();
 	            switch(opc) {
@@ -76,6 +74,40 @@ public class DriverPartidaUsuario {
 	            	break;
 	            case 3:
 	            	tSol.muestraTabla();
+	            	break;
+	            case 4:
+	            	sudoku.Pista();
+	            	p.incrementaPista();
+	            	break;
+	            case 5:
+	            	System.out.println("numero de pistas: " + p.getNumPistas());
+	            	break;
+	            case 6:
+	            	System.out.println("Introduce X, Y y valor");
+	    			x = entrada.nextInt();
+	    	    	y = entrada.nextInt();
+	    	    	val = entrada.nextInt();
+	            	p.marcarNumero(x, y, val);
+	            	break;
+	            case 7:
+	            	System.out.println("Introduce X, Y y valor");
+	    			x = entrada.nextInt();
+	    	    	y = entrada.nextInt();
+	    	    	val = entrada.nextInt();
+	            	p.desmarcarNumero(x, y, val);
+	            	break;
+	            case 8:
+	            	System.out.println("Introduce X, Y y valor");
+	    			x = entrada.nextInt();
+	    	    	y = entrada.nextInt();
+	    	    	val = entrada.nextInt();
+	            	System.out.println(p.estaMarcado(x, y, val));
+	            	break;
+	            case 9:
+	            	System.out.println("Introduce X e Y");
+	    			x = entrada.nextInt();
+	    	    	y = entrada.nextInt();
+	    	    	p.mostrarMarcasPosicion(x,y);
 	            	break;
 	            default:
 	            	System.out.println("Opcion no valida");
