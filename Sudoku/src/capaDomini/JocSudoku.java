@@ -1,18 +1,43 @@
 package capaDomini;
 
+import java.util.*;
+
 public class JocSudoku extends Joc {
+	
+	private TaulerSudoku tauler_sol;
 	
 	/*public JocSudoku(int n, String idJocSudoku) {
 		super(n, n, idJocSudoku);
 	}*/
 	
-	public JocSudoku(String idJocSudoku, TaulerSudoku t) {
+	public JocSudoku(String idJocSudoku, TaulerSudoku t, TaulerSudoku tSol) {
 		super(idJocSudoku, t);
 		setDificultad(calcularDificultad(t));
+		tauler_sol = tSol;
 	}
 
-	public void pista() {
-		
+	public void Pista() {
+	    int ncellas=super.getTauler().getAlto()*super.getTauler().getAncho();
+	    if(super.getTauler().getNumCeldasRellenas() < ncellas){
+            boolean found=false;
+            Random gen1 = new Random();
+            int x = gen1.nextInt(10);
+            Random gen2 = new Random();
+            int y = gen2.nextInt(10);
+            int i=0;
+   	        while(i<ncellas && !found){
+   	        	if(!super.getTauler().estaVacia(x,y)){
+   	        		++x;
+   	        		if(x==10){ ++y; x=0;}
+   	        		if(y==10){ y=0; x=0;}
+                }
+			else found=true;
+   	        ++i;
+		}
+   	        if (found){
+   	        	super.getTauler().setNumero(x,y,tauler_sol.getNumero(x,y));
+   	        }
+	    }
 	}
 	
 	private tipoDificultad calcularDificultad(TaulerSudoku ts) {

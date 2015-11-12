@@ -10,7 +10,9 @@ public class Partida {
 	
 	//DATO2: "resuelto" y "DataFi" estan relacionados
 	
-	//FALTAN JocSudoku y Usuario? depende de si hay navegabilidad
+	//JocSudoku y Usuario? depende de si hay navegabilidad
+	private User usuario;
+	private JocSudoku sudoku;
 	
 	private int tiempoSegundos;
 	private Timer timer;
@@ -21,7 +23,20 @@ public class Partida {
 	private Date dataFi; //para saber si está resuelto o no y para que no se pueda solapar 2 veces el mismo sudoku por la misma persona cuando aun no lo ha acabado de antes
 	private Date dataIni;
 	
-	public Partida () {
+	public Partida () {//CONSTRUCTOR TEMPORAL PARA EL DRIVER
+		nPistas = 0;
+		dataFi = null;
+		tiempoSegundos = 0; //para hacer pruebas he puesto 4200 y ha ido bien
+		dataIni = getFechaActual();
+		
+		enEjecucion = false;
+		startTiempo();
+	}
+	
+	public Partida (User usuario, JocSudoku sudoku) {
+		this.usuario = usuario;
+		this.sudoku = sudoku;
+		
 		nPistas = 0;
 		dataFi = null;
 		tiempoSegundos = 0; //para hacer pruebas he puesto 4200 y ha ido bien
