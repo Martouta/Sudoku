@@ -2,6 +2,8 @@ package capaDomini;
 
 import java.util.*;
 
+import excepciones.*;
+
 public class GeneradorSudoku {
 	
 	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) {
@@ -9,14 +11,13 @@ public class GeneradorSudoku {
 		init(n);
 		try {
 			if(dif==tipoDificultad.trivial)
-				throw new Exception();
-		} catch (Exception e) {
-			System.out.println("No se pueden generar sudokus de dificultad trivial");
+				throw new ExcepcionDificultadInvalida();
+		} catch (ExcepcionDificultadInvalida e) {
+			System.out.println(e.getMessage());
 			return ts;
 		}
 		rand = new Random();
 		while(true) {
-		//while(ResolvedorSudoku.sols3(ts)>1) {	// usamos el algoritmo pepino, obviamente
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 			int aa=ResolvedorSudoku.sols3(ts);
@@ -37,6 +38,7 @@ public class GeneradorSudoku {
 		}
 		if(dif==tipoDificultad.dificil)
 			return ts;
+		// si hay que hacer el sudoku más facil, hay que rellenar casillas
 		double ratio = 0.0;
 		if(dif==tipoDificultad.medio)
 			ratio = 0.37037+rand.nextDouble()*(0.39506-0.37037);

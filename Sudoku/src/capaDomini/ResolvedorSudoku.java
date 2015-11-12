@@ -4,7 +4,6 @@ public class ResolvedorSudoku {
 	
 	public static int resuelveSudoku1(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
-		sol = new TaulerSudoku(n);
 		rec();
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
@@ -29,7 +28,6 @@ public class ResolvedorSudoku {
 	
 	public static int resuelveSudoku2(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
-		sol = new TaulerSudoku(n);
 		siso();
 		if(flag)
 			return 0;
@@ -63,7 +61,6 @@ public class ResolvedorSudoku {
 	
 	public static int resuelveSudoku3(TaulerSudoku s, TaulerSudoku sol) {
 		carga(s);
-		sol = new TaulerSudoku(n);
 		siso();
 		if(flag)
 			return 0;
