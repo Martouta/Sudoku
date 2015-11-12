@@ -31,6 +31,8 @@ public class ResolvedorSudoku {
 		carga(s);
 		sol = new TaulerSudoku(n);
 		siso();
+		if(flag)
+			return 0;
 		rec();
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
@@ -40,6 +42,8 @@ public class ResolvedorSudoku {
 	public static int sols2(TaulerSudoku s) {
 		carga(s);
 		siso();
+		if(flag)
+			return 0;
 		rec();
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
@@ -49,6 +53,8 @@ public class ResolvedorSudoku {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
+		if(flag)
+			return sol;
 		rec();
 		guarda(sol);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
@@ -59,6 +65,8 @@ public class ResolvedorSudoku {
 		carga(s);
 		sol = new TaulerSudoku(n);
 		siso();
+		if(flag)
+			return 0;
 		prepara();
 		rec2(0);
 		guarda(sol);
@@ -69,6 +77,8 @@ public class ResolvedorSudoku {
 	public static int sols3(TaulerSudoku s) {
 		carga(s);
 		siso();
+		if(flag)
+			return 0;
 		prepara();
 		rec2(0);
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
@@ -79,6 +89,8 @@ public class ResolvedorSudoku {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
+		if(flag)
+			return sol;
 		prepara();
 		rec2(0);
 		guarda(sol);
@@ -92,6 +104,7 @@ public class ResolvedorSudoku {
 		ncr = 0;
 		nsols = 0;
 		niters = 0;
+		flag = false;
 		mat = new int[nn][nn];
 		matterm = new int[nn][nn];
 		filas = new boolean[nn][nn+1];
@@ -132,6 +145,10 @@ public class ResolvedorSudoku {
 						a++;
 						b=k;
 					}
+				}
+				if(a==0) {
+					flag = true;
+					return;
 				}
 				if(a!=1)
 					continue;
@@ -258,6 +275,7 @@ public class ResolvedorSudoku {
 	private static int n;
 	private static int nsols;
 	private static int ncr;	// num casillas rellenas
+	private static boolean flag;
 	private static int mat[][];
 	private static int matterm[][];	// matriz terminada
 	private static boolean filas[][];

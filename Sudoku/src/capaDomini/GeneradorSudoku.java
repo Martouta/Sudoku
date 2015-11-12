@@ -15,10 +15,12 @@ public class GeneradorSudoku {
 			return ts;
 		}
 		rand = new Random();
-		while(ResolvedorSudoku.sols3(ts)>1) {	// usamos el algoritmo pepino, obviamente
+		while(true) {
+		//while(ResolvedorSudoku.sols3(ts)>1) {	// usamos el algoritmo pepino, obviamente
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
-			if(ResolvedorSudoku.sols3(ts)==0) {
+			int aa=ResolvedorSudoku.sols3(ts);
+			if(aa==0) {
 				System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
 				int a = mat[ultx][ulty];
@@ -28,8 +30,9 @@ public class GeneradorSudoku {
 				mat[ultx][ulty] = 0;
 			}
 			else {
-				ts.borraNumCelda(ultx, ulty);
-				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], true);
+				ts.getCella(ultx, ulty).fijar();
+				if(aa==1)
+					break;
 			}
 		}
 		if(dif==tipoDificultad.dificil)

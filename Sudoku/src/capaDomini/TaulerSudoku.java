@@ -19,7 +19,7 @@ public class TaulerSudoku extends Tauler {
     	return n*n;
     }
     
-    public void muestraTabla() {
+    /*public void muestraTabla() {
         for (int i = 0; i < n*n; ++i) {
             //if (i%n == 0) System.out.println("-----------------------------");
             for (int j = 0; j < n*n; ++j) {
@@ -31,6 +31,41 @@ public class TaulerSudoku extends Tauler {
             }
             System.out.printf("%n");
         }
+    }*/
+    
+    public void muestraTabla() {
+        for (int i = 0; i < n*n; ++i) {
+            //if (i%n == 0) System.out.println("-----------------------------");
+        	if(i%n==0) {
+        		System.out.print("++");
+        		for(int j=0;j<n;j++) {
+        			int niters = 3*n-1;
+        			for(int k=0;k<niters;k++)
+        				System.out.print("-");
+        			System.out.print("++");
+        		}
+            	System.out.println();
+            }
+        	for (int j = 0; j < n*n; ++j) {
+            	if (j%n == 0) System.out.printf("|");
+                System.out.printf("|");
+                Cella cellaAux = super.getCella(i,j);
+                if (cellaAux.estaVacia()) System.out.printf(" " + 0);
+                else if (cellaAux.getNumero() <= 9) System.out.printf(" " + cellaAux.getNumero());
+                else System.out.printf(cellaAux.getNumero() + "");
+            }
+            System.out.println("||");
+            //System.out.printf("%n");
+            
+        }
+        System.out.print("++");
+		for(int j=0;j<n;j++) {
+			int niters = 3*n-1;
+			for(int k=0;k<niters;k++)
+				System.out.print("-");
+			System.out.print("++");
+		}
+    	System.out.println();
     }
     
    public void setNumCelda(int x, int y, int val, boolean fija) {
