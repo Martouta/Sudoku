@@ -46,7 +46,7 @@ public class JocSudoku extends Joc {
 		int c, cr;
 		cr = ts.getNumCeldasRellenas();
 		c = ts.getNumCeldas();
-		int ratio = cr/c;
+		double ratio = ((double)(cr))/((double)(c));
 		if (ratio > 0.61728) t = tipoDificultad.trivial;
 		else if (ratio > 0.39506) t = tipoDificultad.facil;
 		else if (ratio > 0.37037) t = tipoDificultad.medio;

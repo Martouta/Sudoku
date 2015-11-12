@@ -56,6 +56,63 @@ public class GeneradorSudoku {
 		return ts;
 	}
 	
+	public static TaulerSudoku generaSudoku2(int n, tipoDificultad dif) {
+		TaulerSudoku ts = new TaulerSudoku(n);
+		init(n);
+		try {
+			if(dif==tipoDificultad.trivial)
+				throw new ExcepcionDificultadInvalida();
+		} catch (ExcepcionDificultadInvalida e) {
+			System.out.println(e.getMessage());
+			return ts;
+		}
+		rand = new Random();
+		while(ts.getNumCeldasRellenas()<n*n*n*n/5) {
+			itera(n);
+			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
+			int aa=ResolvedorSudoku.sols3(ts);
+			if(aa==0) {
+				System.out.println("Sudoku no resoluble, borrando última casilla");
+				ts.borraNumCelda(ultx, ulty);
+				int a = mat[ultx][ulty];
+				filas[ultx][a] = false;
+				columnas[ulty][a] = false;
+				cuadros[(ultx/n)*n+(ulty/n)][a] = false;
+				mat[ultx][ulty] = 0;
+			}
+			else {
+				ts.getCella(ultx, ulty).fijar();
+				if(aa==1)
+					break;
+			}
+		}
+		TaulerSudoku ts2 = new TaulerSudoku(n);
+		ts2 = ResolvedorSudoku.resuelveSudoku3(ts);	// es una de las soluciones posibles
+		// a partir de este punto, simplemente rellenamos, que es más rápido
+		while(ResolvedorSudoku.sols3(ts)>1) {
+			int pos = rand.nextInt(n*n*n*n);
+			while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
+				pos = rand.nextInt(n*n*n*n);
+			ts.setNumCelda(pos/(n*n), pos%(n*n), ts2.getNumero(pos/(n*n), pos%(n*n)), true);
+		}
+		if(dif==tipoDificultad.dificil)
+			return ts;
+		// si hay que hacer el sudoku más facil, hay que rellenar casillas
+		double ratio = 0.0;
+		if(dif==tipoDificultad.medio)
+			ratio = 0.37037+rand.nextDouble()*(0.39506-0.37037);
+		else
+			ratio = 0.39506+rand.nextDouble()*(0.61728-0.39506);
+		int ncr = (int) (ratio*n*n*n*n);
+		while(ts.getNumCeldasRellenas()<ncr) {
+			int pos = rand.nextInt(n*n*n*n);
+			while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
+				pos = rand.nextInt(n*n*n*n);
+			ts.setNumCelda(pos/(n*n), pos%(n*n), ts2.getNumero(pos/(n*n), pos%(n*n)), true);
+		}
+		return ts;
+	}
+	
 	public static TaulerSudoku generaSudokuprueba(int n) {
 		rand = new Random();
 		TaulerSudoku ts = new TaulerSudoku(n);

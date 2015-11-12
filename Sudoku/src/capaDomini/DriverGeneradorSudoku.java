@@ -55,15 +55,30 @@ public class DriverGeneradorSudoku {
 			    System.out.println("Escribe dificultad (1~3)");
 			    int dif;
 			    dif = entrada.nextInt();
+			    System.out.println("Escribe algoritmo (1~2)");
+			    int alg;
+			    alg = entrada.nextInt();
 			    ts = new TaulerSudoku(n);
-			    if(dif==1)
-			    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.facil);
-			    else if(dif==2)
-			    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.medio);
-			    else if(dif==3)
-			    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.dificil);
-			    else
-			    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.trivial);
+			    if(alg==1) {
+				    if(dif==1)
+				    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.facil);
+				    else if(dif==2)
+				    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.medio);
+				    else if(dif==3)
+				    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.dificil);
+				    else
+				    	ts = GeneradorSudoku.generaSudoku(n, tipoDificultad.trivial);
+			    }
+			    else if(alg==2) {
+			    	if(dif==1)
+				    	ts = GeneradorSudoku.generaSudoku2(n, tipoDificultad.facil);
+				    else if(dif==2)
+				    	ts = GeneradorSudoku.generaSudoku2(n, tipoDificultad.medio);
+				    else if(dif==3)
+				    	ts = GeneradorSudoku.generaSudoku2(n, tipoDificultad.dificil);
+				    else
+				    	ts = GeneradorSudoku.generaSudoku2(n, tipoDificultad.trivial);
+			    }
 			    ts.muestraTabla();
 			    System.out.println("Escoge algoritmo (1~3)");
 			    int a = entrada.nextInt();
