@@ -7,9 +7,10 @@ import excepciones.*;
 /* Esta clase genera Sudokus con cuatro algoritmos distintos. Están dos de prueba:
  * generaSudokuPrueba y generaSudokuPrueba2. Estos dos no permiten distinguir dificultad
  * y la diferencia entre ellos es que en el primero los números quedan más dispersos.
- * generaSudoku es bastante más lenta que generaSudoku2, pero generaSudoku2 genera sudokus
- * menos aleatorios, debido a su algoritmo. Estas dos funciones generarán una excepción si
- * la dificultad pedida es trivial o si n no es 2, 3 o 4
+ * generaSudoku es bastante más lenta (y además el tiempo que tarda es irregular, lo que
+ * hace que algunas veces tarde muchísimo) que generaSudoku2, pero generaSudoku2 genera 
+ * sudokus menos aleatorios, debido a su algoritmo. Estas dos funciones generarán una 
+ * excepción si la dificultad pedida es trivial o si n no es 2, 3 o 4
  * Si se pide un sudoku de n=4 a los algoritmos de prueba no acabarán en la vida, aviso.
  */
 
@@ -46,8 +47,11 @@ public class GeneradorSudoku {
 			}
 			else {
 				ts.getCella(ultx, ulty).fijar();
-				if(aa==1)
-					break;
+				if(aa==1) {
+					aa=ResolvedorSudoku.sols2(ts);	// medida de seguridad: este algoritmo
+					if(aa==1)						// no corta la búsqueda
+						break;
+				}
 			}
 		}
 		if(dif==tipoDificultad.dificil)

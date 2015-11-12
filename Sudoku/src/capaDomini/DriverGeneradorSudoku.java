@@ -8,6 +8,8 @@ import java.util.Scanner;
  * sudoku y lo muestra en pantalla. Tras ello, pide el número del algoritmo de 
  * resolución a usar. Tras resolver el sudoku, lo muestra en pantalla y el programa
  * está listo para generar otro sudoku.
+ * Dificultad 1 es fácil, 2 es normal, 3 es difícil y cualquier otra cosa lo trata
+ * como dificultad trivial.
  */
 
 public class DriverGeneradorSudoku {
