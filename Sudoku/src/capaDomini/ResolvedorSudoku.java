@@ -206,7 +206,7 @@ public class ResolvedorSudoku {
 		if(nsols>1)
 			return;
 		niters++;
-		if(niters>10000000)
+		if(niters>5000000*(1+2*nsols))
 			return;
 		if(ncr==nn*nn) {
 			for(int i=0;i<nn;i++) {
