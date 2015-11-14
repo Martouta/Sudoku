@@ -2,6 +2,7 @@ package persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import capaDomini.JocSudoku;
 import capaDomini.TaulerSudoku;
@@ -66,6 +67,14 @@ public class CtrlJocSudoku {
     
     public static ArrayList<JocSudoku> getTaula() {
         return jocs;
+    }
+    
+    public static JocSudoku getJocSudoku(String id)
+    {
+        for (JocSudoku joc : jocs) {
+            if (Objects.equals(joc.getId(), id)) return joc;
+        }
+        return null;
     }
     
     
