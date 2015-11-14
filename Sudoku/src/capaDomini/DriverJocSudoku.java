@@ -13,9 +13,7 @@ public class DriverJocSudoku {
         
         TaulerSudoku t;
         TaulerSudoku tsol;
-        //GeneradorSudoku g=null;
         t=GeneradorSudoku.generaSudoku(n, tipoDificultad.dificil);
-	    //ResolvedorSudoku r=null;
 	    tsol = ResolvedorSudoku.resuelveSudoku1(t);
 	    t.muestraTabla();
 	    tsol.muestraTabla();
