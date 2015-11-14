@@ -25,7 +25,7 @@ public class CtrlTauler
         try {
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
-                taulersObj.add(new Tauler((Integer.parseInt(fila.get(0)),Integer.parseInt(fila.get(1)),Integer.parseInt(fila.get(2))));
+                taulersObj.add(new Tauler(Integer.parseInt(fila.get(0)),Integer.parseInt(fila.get(1))));
             }
         } catch (Exception e) {
             e.printStackTrace();
