@@ -3,6 +3,7 @@ package capaDomini;
 import excepciones.*;
 
 public class Cella {
+	
 	public Cella() {
 		numero = x = y = -1;
 		fija = false;
@@ -56,7 +57,6 @@ public class Cella {
 		}
 	}
 	
-	// comprobar
 	public void liberar() {
 		fija = false;
 	}
