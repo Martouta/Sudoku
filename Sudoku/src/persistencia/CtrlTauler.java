@@ -15,7 +15,7 @@ import capaDomini.*;
 public class CtrlTauler
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
-	protected static ArrayList<User> taulersObj; // ordenats per nom
+	protected static ArrayList<Tauler> taulersObj; // ordenats per nom
     private static String path = "src/domini/JocsProva/taulers.txt";
 	
 	// Carrega els taulersObj de la BD
@@ -25,7 +25,7 @@ public class CtrlTauler
         try {
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
-                taulersObj.add(new Tauler(fila.get(0), fila.get(1), fila.get(2)));
+                taulersObj.add(new Tauler((Integer.parseInt(fila.get(0)),Integer.parseInt(fila.get(1)),Integer.parseInt(fila.get(2))));
             }
         } catch (Exception e) {
             e.printStackTrace();
