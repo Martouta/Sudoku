@@ -38,6 +38,7 @@ public class DriverRegio { //Falta comprobar el constructor que le paso las celd
 	    			}
 	    			break;
 	    		case 4:
+	    			System.out.println("Introduce una posicion pos que cumpla 0<=pos<numCeldasTotales");
 	    			int pos = entrada.nextInt();
 	    			Cella cellaAux = rs.getCella(pos);
 	    			int val = entrada.nextInt();
@@ -47,16 +48,19 @@ public class DriverRegio { //Falta comprobar el constructor que le paso las celd
 	    			System.out.println(cellaAux.getNumero());
 		            break;
 		        case 5:
+		        	System.out.println("Introduce una posicion pos que cumpla 0<=pos<numCeldasTotales");
 		        	pos = entrada.nextInt();
 		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 6:
+		        	System.out.println("Introduce una posicion pos que cumpla 0<=pos<numCeldasTotales");
 		        	pos = entrada.nextInt();
 		        	val = entrada.nextInt();
 		        	rs.setNumero(pos,val);
 		        	System.out.println(rs.getNumero(pos));
 		            break;
 		        case 7:
+		        	System.out.println("Introduce una posicion pos que cumpla 0<=pos<numCeldasTotales");
 		        	pos = entrada.nextInt();
 		        	rs.borra(pos);
 		        	System.out.println(rs.getNumero(pos));
