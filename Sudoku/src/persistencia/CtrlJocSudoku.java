@@ -16,7 +16,7 @@ public class CtrlJocSudoku {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
-            TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
+            TaulerSudoku ts = //aqui se obtiene el tablero de la BD para cargarlo junto a juego
             carrega(ts);
         } catch (Exception e) {
             e.printStackTrace();
