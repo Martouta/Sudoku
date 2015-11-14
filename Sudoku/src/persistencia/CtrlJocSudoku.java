@@ -16,19 +16,20 @@ public class CtrlJocSudoku {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
-            TaulerSudoku ts = //aqui se obtiene el tablero de la BD para cargarlo junto a juego
-            carrega(ts);
+            TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
+            TaulerSudoku tssol = ;
+            carrega(ts, tssol);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    protected static void carrega(TaulerSudoku ts)
+    protected static void carrega(TaulerSudoku ts, TaulerSudoku tssol)
     {
         try {
             ArrayList<ArrayList<String>> joc = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : joc) {
-                jocs.add(new JocSudoku(fila.get(0), fila.get(1), ts));
+                jocs.add(new JocSudoku(fila.get(0), ts, tssol));
             }
         } catch (Exception e) {
             e.printStackTrace();
