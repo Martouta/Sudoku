@@ -16,8 +16,8 @@ public class CtrlJocSudoku {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
-            TaulerSudoku ts = 
-            carrega();
+            TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
+            carrega(ts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +28,7 @@ public class CtrlJocSudoku {
         try {
             ArrayList<ArrayList<String>> joc = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : joc) {
-                jocs.add(new JocSudoku(joc.get(0)));
+                jocs.add(new JocSudoku(fila.get(0), fila.get(1), ts));
             }
         } catch (Exception e) {
             e.printStackTrace();
