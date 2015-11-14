@@ -4,6 +4,7 @@ import java.util.*;
 import excepciones.*;
  
 public class RegioSenseRepeticions extends Regio {
+	
     RegioSenseRepeticions(int tamano) {
     	super(tamano);
     	try {
