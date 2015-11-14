@@ -12,12 +12,12 @@ public class CtrlJocSudoku {
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
     private static String path = "src/domini/JocsProva/jocs.txt";
     
-    public CtrlJocSudoku() {
+    public CtrlJocSudoku(TaulerSudoku ts, TaulerSudoku tssol) {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
-            TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
-            TaulerSudoku tssol = ;
+            /*TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
+            TaulerSudoku tssol = ; //obtener el tablero solucionado*/
             carrega(ts, tssol);
         } catch (Exception e) {
             e.printStackTrace();
