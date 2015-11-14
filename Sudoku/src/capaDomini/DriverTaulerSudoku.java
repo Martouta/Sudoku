@@ -21,7 +21,14 @@ public class DriverTaulerSudoku {
             System.out.println("6: fijar(int x, int y)");
             System.out.println("7: borraNumCelda(int x, int y)");
             System.out.println("8: getNumero(int x, int y)");
-            System.out.println("9: x e y en celda funciona");
+            System.out.println("9: get celda");
+            System.out.println("10: get ancho del tablero");
+            System.out.println("11: get alto del tablero");
+            System.out.println("12: get numero de celdas totales del tablero");
+            System.out.println("13: get del numero de celdas rellenas del tablero");
+            System.out.println("14: indica si la celda indicada esta vacia");
+            System.out.println("15: indica si la celda indicada esta fijada");
+            System.out.println("16: indica si la celda indicada esta bloqueada");
             System.out.println("0: Salir");
             opc = entrada.nextInt();
             switch(opc) {
@@ -78,6 +85,33 @@ public class DriverTaulerSudoku {
             	x = entrada.nextInt();
             	y = entrada.nextInt();
             	System.out.println("X: " + ts.getCella(x, y).getX() + " Y: " + ts.getCella(x, y).getY());
+            	break;
+            case 10:
+            	System.out.println(ts.getAncho());
+            	break;
+            case 11:
+            	System.out.println(ts.getAlto());
+            	break;
+            case 12:
+            	System.out.println(ts.getNumCeldas());
+            	break;
+            case 13:
+            	System.out.println(ts.getNumCeldasRellenas());
+            	break;
+            case 14:
+            	x = entrada.nextInt();
+            	y = entrada.nextInt();
+            	System.out.println(ts.estaVacia(x,y));
+            	break;
+            case 15:
+            	x = entrada.nextInt();
+            	y = entrada.nextInt();
+            	System.out.println(ts.estaFija(x,y));
+            	break;
+            case 16:
+            	x = entrada.nextInt();
+            	y = entrada.nextInt();
+            	System.out.println(ts.estaBloqueada(x,y));
             	break;
             default:
             	System.out.println("Opcion no valida");
