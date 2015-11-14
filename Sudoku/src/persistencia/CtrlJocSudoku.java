@@ -1,10 +1,10 @@
 package persistencia;
 
 import java.util.ArrayList;
+
 import capaDomini.JocSudoku;
 import capaDomini.TaulerSudoku;
-
-import capaDomini.User;
+import capaDomini.tipoDificultad;
 
 public class CtrlJocSudoku {
 
@@ -34,6 +34,22 @@ public class CtrlJocSudoku {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    protected static ArrayList<ArrayList<String>> codifica()
+    {
+        ArrayList<ArrayList<String>> joc = new ArrayList<ArrayList<String>>();
+        try {
+            for (JocSudoku js : jocs) {
+                ArrayList<String> fila = new ArrayList<String>();
+                fila.add(js.getId());
+                fila.add(js.getDificultad().toString());                
+                joc.add(fila);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return joc;
     }
 
 }
