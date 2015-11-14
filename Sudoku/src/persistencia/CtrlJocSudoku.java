@@ -77,6 +77,35 @@ public class CtrlJocSudoku {
         return null;
     }
     
-    
+    // Afegeix l'Usuari us a l'agregat
+ 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
+ 	public static boolean afegeixUsuari(JocSudoku js)
+     {
+         try {
+             for (JocSudoku aux : jocs) {
+                 if (Objects.equals(aux.getId(), js.getId())) {
+                     return false;
+                 }
+             }
+             dirty = jocs.add(js);
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         return dirty;
+     }
 
+ 	// Esborra l'Usuari amb username nom de l'agregat
+ 	// Retorna false si hi ha hagut cap error i llença excepció
+ 	public static boolean esborraUsuari(String id)
+     {
+         try {
+             for (int i = jocs.size() - 1; i >= 0; i--) {
+                 JocSudoku js = jocs.get(i);
+                 if (Objects.equals(js.getId(), id)) dirty = jocs.remove(js);
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         return dirty;
+     }
 }
