@@ -38,24 +38,28 @@ public class DriverRegio { //Falta comprobar el constructor que le paso las celd
 	    			}
 	    			break;
 	    		case 4:
-	    			Cella cellaAux = rs.getCella(rs.getNumCeldas()-1);
-	    			cellaAux.setNumero(rs.getNumCeldas());
+	    			int pos = entrada.nextInt();
+	    			Cella cellaAux = rs.getCella(pos);
+	    			int val = entrada.nextInt();
+	    			cellaAux.setNumero(val);
 	    			System.out.println(cellaAux.getNumero());
 	    			cellaAux.borra();
 	    			System.out.println(cellaAux.getNumero());
 		            break;
 		        case 5:
-		        	System.out.println(rs.getNumero(rs.getNumCeldas()-1));
+		        	pos = entrada.nextInt();
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 6:
-		        	rs.setNumero(2,4);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	val = entrada.nextInt();
+		        	rs.setNumero(pos,val);
+		        	System.out.println(rs.getNumero(pos));
 		            break;
 		        case 7:
-		        	rs.setNumero(2,3);
-		        	System.out.println(rs.getNumero(2));
-		        	rs.borra(2);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	rs.borra(pos);
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        default:
 		        	System.out.println("Opcion no valida");
