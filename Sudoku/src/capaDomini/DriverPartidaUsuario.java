@@ -13,17 +13,7 @@ public class DriverPartidaUsuario {
 		TaulerSudoku ts = new TaulerSudoku(n);
 		TaulerSudoku tSol;
 		
-		//TaulerSudoku ts2 = ResolvedorSudoku.resuelveSudoku3(ts);
 		
-		/*System.out.println("Introduce X, Y, valor");
-    	int x, y, val;
-    	boolean fija;
-    	x = entrada.nextInt();
-    	y = entrada.nextInt();
-    	val = entrada.nextInt();
-    	fija = entrada.nextBoolean();
-    	ts.setNumCelda(x,y,val,fija);
-    	System.out.println("El valor es " + ts.getNumero(x, y));*/
 		
 		System.out.println("Introduce el numero de celdas fijas");
 		int nCeldasFijas = entrada.nextInt();
@@ -117,7 +107,7 @@ public class DriverPartidaUsuario {
 			System.out.println("El Sudoku no tiene solucion");
 			ts.muestraTabla();
 		} else {
-			System.out.println("El Sudoku tiene mas de una solucion, pero puedes jugar igualmente");
+			System.out.println("No es un Sudoku valido porque tiene mas de una solucion");
 		}
 		
 		
