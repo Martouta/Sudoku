@@ -143,7 +143,7 @@ public class Tauler {
         }
     }
 	
-	protected int ancho, alto;
+	protected int idTauler, ancho, alto;
 	protected Vector<Cella> vCellas;
 	
 }
