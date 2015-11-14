@@ -21,11 +21,14 @@ public class DriverJocSudoku {
 	    tsol.muestraTabla();
 	    
 	    
-	    JocSudoku js = new JocSudoku("hue",t,tsol);
+	    js = new JocSudoku("prova1",t,tsol);
 	    
 	    while(opc != 0) {
 	    	System.out.println("Driver de Joc Sudoku");
 	    	System.out.println("1: Pista");
+	    	System.out.println("2: Get id del JocSudoku");
+	    	System.out.println("3: Get dificultad del JocSudoku");
+	    	System.out.println("4: Set la dificultad del JocSudoku");
 	    	System.out.println("0: Salir");
 	    	opc = entrada.nextInt();
 	    	switch(opc) {
@@ -36,6 +39,19 @@ public class DriverJocSudoku {
 	    			System.out.println("pista donada");
 	    			t.muestraTabla();
 	    			break;
+	    		case 2:
+	    			System.out.println(js.getId());
+	    			break;
+	    		case 3:
+	    			System.out.println(js.getDificultad());
+	    			break;
+	    		case 4:
+	    			System.out.println("Introduce la dificultad del sudoku manualmente");
+	    			System.out.println("trivial, facil, medio, dificil");
+	    			tipoDificultad td = tipoDificultad.valueOf(entrada.next());
+	    			js.setDificultad(td);
+	    			System.out.println(js.getDificultad());
+	    			break;
 		        default:
 		        	System.out.println("Opcion no valida");
 		        }
@@ -43,4 +59,5 @@ public class DriverJocSudoku {
 	    	entrada.close();
 	}
 
+	private static JocSudoku js;
 }
