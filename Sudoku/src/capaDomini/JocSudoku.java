@@ -4,6 +4,8 @@ import java.util.*;
 
 public class JocSudoku extends Joc {
 	
+	private static String idmarca; //que os parece hacer un idstatic para ir assignando ids a los diferentes juegos? o mejor en Joc?
+	
 	private TaulerSudoku tauler_sol;
 	
 	/*public JocSudoku(int n, String idJocSudoku) {
