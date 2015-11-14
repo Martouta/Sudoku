@@ -6,8 +6,7 @@ import java.util.Objects;
 
 import capaDomini.JocSudoku;
 import capaDomini.TaulerSudoku;
-import capaDomini.User;
-import capaDomini.tipoDificultad;
+//import capaDomini.tipoDificultad;
 
 public class CtrlJocSudoku {
 
@@ -15,6 +14,7 @@ public class CtrlJocSudoku {
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
     private static String path = "src/domini/JocsProva/jocs.txt";
     
+    //antes de llamar a CtrlJocSudoku, se debe llamar a CtrlTauler para obtener los tableros original y resuelto
     public CtrlJocSudoku(TaulerSudoku ts, TaulerSudoku tssol) {
 		dirty = false;
 		try {
@@ -77,8 +77,8 @@ public class CtrlJocSudoku {
         return null;
     }
     
-    // Afegeix l'Usuari us a l'agregat
- 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
+    // Afegeix el JocSudoku js a l'agregat
+ 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si el joc ja hi és i no es pot afegir
  	public static boolean afegeixUsuari(JocSudoku js)
      {
          try {
@@ -94,7 +94,7 @@ public class CtrlJocSudoku {
          return dirty;
      }
 
- 	// Esborra l'Usuari amb username nom de l'agregat
+ 	// Esborra el joc amb id de l'agregat
  	// Retorna false si hi ha hagut cap error i llença excepció
  	public static boolean esborraUsuari(String id)
      {
