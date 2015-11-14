@@ -19,16 +19,16 @@ public class Tauler {
 		}
 	}
 	
-	public Tauler(int idTauler, int m, int n) {
+	/*public Tauler(int idTauler, int m, int n) {
 		try {
 			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
 			ancho = m; alto = n;
-			this.idTauler = idTauler;
+			//this.idTauler = idTauler;
 			creaCeldasConPosicion();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}
+	}*/
 	
 	public int getAncho() {
 		return ancho;
@@ -154,7 +154,7 @@ public class Tauler {
         }
     }
 	
-	protected int idTauler, ancho, alto;
+	protected int ancho, alto; //idTauler, 
 	protected Vector<Cella> vCellas;
 	
 }
