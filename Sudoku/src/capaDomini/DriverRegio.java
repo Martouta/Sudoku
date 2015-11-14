@@ -18,7 +18,7 @@ public class DriverRegio { //Falta comprobar el constructor que le paso las celd
 	    	System.out.println("2: Get numero de celdas rellenas");
 	    	System.out.println("3: Esta vacia?");
 	    	System.out.println("4: GetCella()");
-	    	System.out.println("5: Get numero en celda de la posicion");
+	    	System.out.println("5: Get numero en celda de la posicion pos");
 	    	System.out.println("6: Set numero (int pos, int val)");
 	    	System.out.println("7: Borra (pos)");
 	    	System.out.println("0: Salir");
