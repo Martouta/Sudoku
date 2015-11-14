@@ -1,9 +1,11 @@
 package persistencia;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import capaDomini.JocSudoku;
 import capaDomini.TaulerSudoku;
+import capaDomini.User;
 import capaDomini.tipoDificultad;
 
 public class CtrlJocSudoku {
@@ -51,5 +53,21 @@ public class CtrlJocSudoku {
         }
         return joc;
     }
+    
+    public static void end() {
+        if (dirty) {
+            try {
+                CtrlPersistencia.storeTable(path, codifica());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+	}
+    
+    public static ArrayList<JocSudoku> getTaula() {
+        return jocs;
+    }
+    
+    
 
 }
