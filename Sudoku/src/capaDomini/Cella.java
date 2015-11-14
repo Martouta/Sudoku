@@ -11,11 +11,18 @@ public class Cella {
 	}
 	
 	public Cella(int x, int y) {
-		numero = -1;
-		this.x = x;
-		this.y = y;
-		fija = false;
-		bloqueada = false;
+		try {
+			if (x < 0 || y < 0) throw new ExcepcionPosicionFueraRango();
+			numero = -1;
+			this.x = x;
+			this.y = y;
+			fija = false;
+			bloqueada = false;
+		}
+		catch (ExcepcionPosicionFueraRango e) {
+			System.out.println("La posicion x e/o y introducida no es valida");
+		}
+		
 	}
 	
 	// si la celda está vacía, devuelve -1
