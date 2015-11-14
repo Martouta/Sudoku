@@ -2,7 +2,7 @@ package persistencia;
 
 import java.util.ArrayList;
 import capaDomini.JocSudoku;
-import capaDomini.Joc;
+import capaDomini.TaulerSudoku;
 
 import capaDomini.User;
 
@@ -16,13 +16,14 @@ public class CtrlJocSudoku {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
+            TaulerSudoku ts = 
             carrega();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    protected static void carrega()
+    protected static void carrega(TaulerSudoku ts)
     {
         try {
             ArrayList<ArrayList<String>> joc = CtrlPersistencia.loadTable(path);
