@@ -73,3 +73,11 @@
 2
 
 0
+
+
+Explicación:
+1er sudoku: Sudoku de 16x16 que resolvemos con el algoritmo número 3.
+2o sudoku: Lo mismo, pero probando el algoritmo número 2. (No probaremos el algoritmo 1 con
+sudokus de 16x16, es excesivamente lento)
+3er sudoku: Prueba del algoritmo número 1 con un sudoku pequeño 4x4.
+4o sudoku: Sudoku difícil de 9x9 que resolvemos con el algoritmo número 2.

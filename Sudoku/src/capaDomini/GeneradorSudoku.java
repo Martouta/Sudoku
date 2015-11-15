@@ -88,7 +88,7 @@ public class GeneradorSudoku {
 			return ts;
 		}
 		rand = new Random();
-		while(ts.getNumCeldasRellenas()<n*n*n*n/5) {
+		while(ts.getNumCeldasRellenas()<(n*n*n*n)/5) {
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 			int aa=ResolvedorSudoku.sols3(ts);
