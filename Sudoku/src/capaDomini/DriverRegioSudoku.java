@@ -10,8 +10,13 @@ public class DriverRegioSudoku {
 	    System.out.println("Escribe el n del sudoku");
 	    int n;
 	    n = entrada.nextInt();
-	    rs = new RegioSudoku(n,tipoRegioSudoku.cuadrado);
-	    
+	    System.out.println("Escoge el tipo de region: fila(1), columna(2) o cuadrado(3)");
+	    int opt = entrada.nextInt();
+	    if (opt == 1) rs = new RegioSudoku(n,tipoRegioSudoku.fila);
+	    else if (opt == 2) rs = new RegioSudoku(n,tipoRegioSudoku.columna);
+	    else if (opt == 3) rs = new RegioSudoku(n,tipoRegioSudoku.cuadrado);
+	    else System.out.println("Opcion no valida"); 
+	    	
 	    while(opc != 0) {
 	    	System.out.println("Driver de Regio Sudoku");
 	    	System.out.println("1: Get numero de celdas");
@@ -40,27 +45,33 @@ public class DriverRegioSudoku {
 	    			}
 	    			break;
 	    		case 4:
-	    			Cella cellaAux = rs.getCella(rs.getNumCeldas()-1);
+	    			System.out.println("Introduce la posición 0<=pos<TotalCeldas");
+	    			int pos = entrada.nextInt();
+	    			Cella cellaAux = rs.getCella(pos);
 	    			cellaAux.setNumero(rs.getNumCeldas());
 	    			System.out.println(cellaAux.getNumero());
 	    			cellaAux.borra();
 	    			System.out.println(cellaAux.getNumero());
 		            break;
 		        case 5:
-		        	System.out.println(rs.getNumero(rs.getNumCeldas()-1));
+		        	pos = entrada.nextInt();
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 6:
-		        	rs.setNumero(2,4);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	int val = entrada.nextInt();
+		        	rs.setNumero(pos,val);
+		        	System.out.println(rs.getNumero(pos));
 		            break;
 		        case 7:
-		        	rs.setNumero(2,3);
-		        	System.out.println(rs.getNumero(2));
-		        	rs.borra(2);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	System.out.println(rs.getNumero(pos));
+		        	rs.borra(pos);
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 8:
-		        	System.out.println(rs.estaNumero(2));
+		        	val = entrada.nextInt();
+		        	System.out.println(rs.estaNumero(val));
 		        	break;
 		        case 9:
 		        	System.out.println(rs.getTipus());

@@ -41,13 +41,16 @@ public class RegioSenseRepeticions extends Regio {
     @Override
     public void setNumero(int pos, int val) {
     	try {
-			if (val <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
+			if (val <= 0 || val > getNumCeldas()) throw (new ExcepcionValorFueraRango());
+			if (pos < 0 || pos >= getNumCeldas()) throw new ExcepcionPosicionFueraRango();
 			if (oc[val-1]) throw (new ExcepcionValorYaPuesto());
 			super.setNumero(pos, val);
 			oc[val-1] = true;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
 		} catch (ExcepcionValorYaPuesto e) {
+			System.out.println(e.getMessage());
+		} catch (ExcepcionPosicionFueraRango e) {
 			System.out.println(e.getMessage());
 		}
     }
@@ -68,7 +71,7 @@ public class RegioSenseRepeticions extends Regio {
      */
     public void numeroYaNoEsta(int val) {
     	try {
-			if (val <= 0) throw (new ExcepcionValorFueraRango());
+			if (val <= 0 || val > getNumCeldas()) throw (new ExcepcionValorFueraRango());
 			oc[val-1] = false;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
@@ -77,7 +80,7 @@ public class RegioSenseRepeticions extends Regio {
      
     public boolean estaNumero(int val){
     	try {
-			if (val <= 0) throw (new ExcepcionValorFueraRango());
+			if (val <= 0 || val > getNumCeldas()) throw (new ExcepcionValorFueraRango());
 			return oc[val-1];
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
