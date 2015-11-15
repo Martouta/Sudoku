@@ -1,0 +1,127 @@
+3
+
+1
+
+1
+
+6
+3 10
+
+
+6
+3 -1
+
+6
+-1 5
+
+8
+5
+
+6
+3 5
+
+8
+5
+
+3
+
+2
+
+5
+3
+
+5
+1
+
+8
+2
+
+7
+5
+
+3
+
+5
+3
+
+7
+3
+
+5
+3
+
+5
+5
+
+3
+
+8
+5
+
+0
+
+
+Explicación:
+
+Escribe el n del sudoku
+3 //al introducir un 3 como n, nos crea una región de 9 celdas ya sea una fila, cuadrado o columna
+Escoge el tipo de region: fila(1), columna(2) o cuadrado(3)
+1
+
+1 //vemos que realmente contiene 9 celdas
+
+6 //intentamos meter un valor no válido que supere (por arriba) el valor máximo permitido en una región
+3 10
+
+
+6 //igual que el caso anterior, pero en esta ocasión el número es inferior al numero permitido
+3 -1
+
+6 //en este caso intentamos tener en cuenta que la posición no sea válida
+-1 5
+
+8 //comprobamos que aunque el valor fuera válido en el caso anterior, el valor no se haya introducido o marcado como válido en el vector de booleanos
+5
+
+6 //introducimos un número válido finalmente
+3 5
+
+8 //vemos que en esta ocasión si que se ha marcado como presente en la región
+5
+
+3 //mostramos todas las celdas para ver si ha marcado la número 3 como vacía o no
+
+2 //vemos que se ha actualizado el número de celdas rellenas correctamente
+
+5 //obtenemos el contenido de la celda 3 para ver que realmente lo ha guardado bien
+3
+
+5 //vemos que el resto de celdas siguen estando vacías y contienen un -1, excepto la 3
+1
+
+8 //comprobamos que el valor 2 no está presente en la región
+2
+
+7 //borramos el contenido de la celda 5, que ya estaba previamente vacía
+5
+
+3 //comprobamos otra vez que no se ha modificado en ningún momento el contenido de la celda 3 ni de las otras
+
+5 //la celda 3 aún mantiene su valor
+3
+
+7 //eliminamos el contenido de la celda 3, que contenía el 5
+3
+
+5 //vemos que ahora ha pasado a contener un -1, por lo tanto se ha eliminado correctamente el valor y ahora está vacía
+3
+
+5 //vemos que el contenido de otras celdas se mantiene vacío
+5
+
+3 //vemos que todas las celdas están vacías
+
+8
+5
+
+0
