@@ -35,7 +35,7 @@ public class CjtoMarcas {
 	
 	public boolean estaMarcado(int val) {
 		try {
-			if (val <= 0 || val > tamano-1) throw (new ExcepcionValorFueraRango());
+			if (val < 1 || val > tamano) throw (new ExcepcionValorFueraRango());
 			return marcas[val-1];
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
