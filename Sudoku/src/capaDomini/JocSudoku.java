@@ -29,7 +29,7 @@ public class JocSudoku extends Joc {
             int y = gen2.nextInt(nn);
             int i=0;
    	        while(i<ncellas && !found){
-   	        	System.out.println("Pista " + x + " " + y); //
+   	        	//System.out.println("Pista " + x + " " + y); //
    	        	if(!super.getTauler().estaVacia(x,y)){
    	        		++x;
    	        		if(x==nn){ ++y; x=0;}
