@@ -66,6 +66,7 @@ public class DriverRegioSudoku {
 		        case 7:
 		        	pos = entrada.nextInt();
 		        	System.out.println(rs.getNumero(pos));
+		        	rs.numeroYaNoEsta(rs.getNumero(pos));
 		        	rs.borra(pos);
 		        	System.out.println(rs.getNumero(pos));
 		        	break;

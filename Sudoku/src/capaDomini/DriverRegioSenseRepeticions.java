@@ -59,9 +59,7 @@ public class DriverRegioSenseRepeticions {
 		            break;
 		        case 7:
 		        	pos = entrada.nextInt();
-		        	val = entrada.nextInt();
-		        	rs.setNumero(pos, val);
-		        	System.out.println(rs.getNumero(pos));
+		        	rs.numeroYaNoEsta(rs.getNumero(pos));
 		        	rs.borra(pos);
 		        	System.out.println(rs.getNumero(pos));
 		        	break;
