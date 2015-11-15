@@ -13,7 +13,7 @@ public class DriverPartidaUsuarioGenerado {
 		TaulerSudoku ts;
 		TaulerSudoku tSol;
 		tipoDificultad dif;
-		System.out.println("Selecciona la dificultad: facil(1), medio(2) y dificil(3)");
+		System.out.println("Selecciona la dificultad: facil(1), medio(2) y dificil(3)"); //trivial no se genera
 		int opt = entrada.nextInt();
 		
 		if (opt == 1) {
