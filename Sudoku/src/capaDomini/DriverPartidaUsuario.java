@@ -109,7 +109,7 @@ public class DriverPartidaUsuario {
 		} else {
 			System.out.println("No es un Sudoku valido porque tiene mas de una solucion");
 		}
-		
+		System.out.println("Se ha acabado el juego");
 		
         entrada.close();
 	}
