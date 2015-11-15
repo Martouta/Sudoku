@@ -20,6 +20,7 @@ public class DriverJocSudoku {
 	    
 	    
 	    js = new JocSudoku("prova1",t,tsol);
+	    //js = new JocSudoku("prova1",tsol,tsol); //para probar Pista si el tablero esta lleno
 	    
 	    while(opc != 0) {
 	    	System.out.println("Driver de Joc Sudoku");
@@ -34,7 +35,7 @@ public class DriverJocSudoku {
 	    			break;
 	    		case 1: //si el tauler està complet no fa res
 	    			js.Pista();
-	    			System.out.println("pista donada");
+	    			//System.out.println("pista donada");
 	    			t.muestraTabla();
 	    			break;
 	    		case 2:
@@ -46,9 +47,14 @@ public class DriverJocSudoku {
 	    		case 4:
 	    			System.out.println("Introduce la dificultad del sudoku manualmente");
 	    			System.out.println("trivial, facil, medio, dificil");
-	    			tipoDificultad td = tipoDificultad.valueOf(entrada.next());
-	    			js.setDificultad(td);
-	    			System.out.println(js.getDificultad());
+	    			try {
+	    				tipoDificultad td = tipoDificultad.valueOf(entrada.next());
+		    			js.setDificultad(td);
+		    			System.out.println(js.getDificultad());
+	    			}
+	    			catch(IllegalArgumentException e) {
+	    				System.out.println("La dificultad introducida no es valida");
+	    			}
 	    			break;
 		        default:
 		        	System.out.println("Opcion no valida");
