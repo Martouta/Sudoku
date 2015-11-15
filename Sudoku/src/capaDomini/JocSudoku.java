@@ -24,9 +24,9 @@ public class JocSudoku extends Joc {
             boolean found=false;
             Random gen1 = new Random();
             int nn = (int) Math.pow(super.getTauler().getNumCeldas(),0.5);
-            int x = gen1.nextInt(nn+1);
+            int x = gen1.nextInt(nn);
             Random gen2 = new Random();
-            int y = gen2.nextInt(nn+1);
+            int y = gen2.nextInt(nn);
             int i=0;
    	        while(i<ncellas && !found){
    	        	System.out.println("Pista " + x + " " + y); //
