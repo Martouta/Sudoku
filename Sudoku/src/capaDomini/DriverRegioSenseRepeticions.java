@@ -39,27 +39,35 @@ public class DriverRegioSenseRepeticions {
 	    			}
 	    			break;
 	    		case 4:
-	    			Cella cellaAux = rs.getCella(rs.getNumCeldas()-1);
+	    			System.out.println("Introduce la posicion pos de la celda");
+	    			int pos = entrada.nextInt();
+	    			Cella cellaAux = rs.getCella(pos);
 	    			cellaAux.setNumero(rs.getNumCeldas());
 	    			System.out.println(cellaAux.getNumero());
 	    			cellaAux.borra();
 	    			System.out.println(cellaAux.getNumero());
 		            break;
 		        case 5:
-		        	System.out.println(rs.getNumero(rs.getNumCeldas()-1));
+		        	pos = entrada.nextInt();
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 6:
-		        	rs.setNumero(2,4);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	int val = entrada.nextInt();
+		        	rs.setNumero(pos, val);
+		        	System.out.println(rs.getNumero(pos));
 		            break;
 		        case 7:
-		        	rs.setNumero(2,3);
-		        	System.out.println(rs.getNumero(2));
-		        	rs.borra(2);
-		        	System.out.println(rs.getNumero(2));
+		        	pos = entrada.nextInt();
+		        	val = entrada.nextInt();
+		        	rs.setNumero(pos, val);
+		        	System.out.println(rs.getNumero(pos));
+		        	rs.borra(pos);
+		        	System.out.println(rs.getNumero(pos));
 		        	break;
 		        case 8:
-		        	System.out.println(rs.estaNumero(2));
+		        	val = entrada.nextInt();
+		        	System.out.println(rs.estaNumero(val));
 		        	break;
 		        default:
 		        	System.out.println("Opcion no valida");

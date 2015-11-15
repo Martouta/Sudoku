@@ -68,7 +68,7 @@ public class RegioSenseRepeticions extends Regio {
      */
     public void numeroYaNoEsta(int val) {
     	try {
-			if (val <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
+			if (val <= 0) throw (new ExcepcionValorFueraRango());
 			oc[val-1] = false;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
@@ -77,7 +77,7 @@ public class RegioSenseRepeticions extends Regio {
      
     public boolean estaNumero(int val){
     	try {
-			if (val <= 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar si el val es mes gran del maxim permes
+			if (val <= 0) throw (new ExcepcionValorFueraRango());
 			return oc[val-1];
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
