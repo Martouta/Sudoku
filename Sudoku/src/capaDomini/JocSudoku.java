@@ -38,7 +38,7 @@ public class JocSudoku extends Joc {
    	        ++i;
 		}
    	        if (found){
-   	        	System.out.println("Pista en la posicion " + x + " " + y);
+   	        	System.out.println("Pista en la posicion " + x + " " + y); //
    	        	super.getTauler().setNumero(x,y,tauler_sol.getNumero(x,y));
    	        }
 	    }
