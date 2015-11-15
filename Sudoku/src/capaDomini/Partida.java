@@ -149,7 +149,7 @@ public class Partida {
 	}
 	
 	public void mostrarMarcasPosicion(int x, int y){
-		for (int i = 0; i < nn; ++i) {
+		for (int i = 1; i <= nn; ++i) {
 			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) System.out.println(i + " ");
 		}
 	}
