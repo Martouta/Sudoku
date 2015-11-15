@@ -31,8 +31,8 @@ public class JocSudoku extends Joc {
    	        while(i<ncellas && !found){
    	        	if(!super.getTauler().estaVacia(x,y)){
    	        		++x;
-   	        		if(x==10){ ++y; x=0;}
-   	        		if(y==10){ y=0; x=0;}
+   	        		if(x==nn){ ++y; x=0;}
+   	        		if(y==nn){ y=0; x=0;}
                 }
 			else found=true;
    	        ++i;
