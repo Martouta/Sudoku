@@ -23,9 +23,10 @@ public class JocSudoku extends Joc {
 	    if(super.getTauler().getNumCeldasRellenas() < ncellas){
             boolean found=false;
             Random gen1 = new Random();
-            int x = gen1.nextInt(10);
+            int nn = (int) Math.pow(super.getTauler().getNumCeldas(),0.5);
+            int x = gen1.nextInt(nn+1);
             Random gen2 = new Random();
-            int y = gen2.nextInt(10);
+            int y = gen2.nextInt(nn+1);
             int i=0;
    	        while(i<ncellas && !found){
    	        	if(!super.getTauler().estaVacia(x,y)){
