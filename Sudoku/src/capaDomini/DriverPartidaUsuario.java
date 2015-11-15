@@ -114,7 +114,8 @@ public class DriverPartidaUsuario {
 		
 		if (sudoku.getTauler().getNumCeldas() == sudoku.getTauler().getNumCeldasRellenas()) {
 			p.yaResuelto();
-			System.out.println("Has acabado el juego en " + p.getHoras() + " horas, " + p.getMinutos() + " minutos i " + p.getSegundos() + "segundos");
+			
+			System.out.println("Has acabado el juego en " + p.getHoras() + " horas, " + p.getMinutos() + " minutos i " + p.getSegundos() + " segundos");
 			System.out.println("El juego ha sido iniciado el " + p.getDataIni() + "y acabado el " + p.getDataFi());
 		} else {
 			System.out.println("Se ha acabado el juego");
