@@ -87,9 +87,11 @@ public class DriverTaulerSudoku {
             	System.out.println("X: " + ts.getCella(x, y).getX() + " Y: " + ts.getCella(x, y).getY());
             	break;
             case 10:
+            	//para tablero sudoku es lo mismo que getNN
             	System.out.println(ts.getAncho());
             	break;
             case 11:
+            	//para tablero sudoku es lo mismo que getNN
             	System.out.println(ts.getAlto());
             	break;
             case 12:
