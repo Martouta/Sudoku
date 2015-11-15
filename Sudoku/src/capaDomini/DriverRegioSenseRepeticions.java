@@ -59,7 +59,7 @@ public class DriverRegioSenseRepeticions {
 		            break;
 		        case 7:
 		        	pos = entrada.nextInt();
-		        	rs.numeroYaNoEsta(rs.getNumero(pos));
+		        	rs.numeroYaNoEsta(rs.getNumero(pos)); //borramos el numero en las 3 regiones
 		        	rs.borra(pos);
 		        	System.out.println(rs.getNumero(pos));
 		        	break;
