@@ -35,6 +35,7 @@ true
 false
 
 -1
+El valor esta fuera del rango permitido
 -1
 
 true
@@ -66,5 +67,5 @@ true
 true
 true
 
-true
+false
 

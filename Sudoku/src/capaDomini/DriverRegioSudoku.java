@@ -15,7 +15,7 @@ public class DriverRegioSudoku {
 	    if (opt == 1) rs = new RegioSudoku(n,tipoRegioSudoku.fila);
 	    else if (opt == 2) rs = new RegioSudoku(n,tipoRegioSudoku.columna);
 	    else if (opt == 3) rs = new RegioSudoku(n,tipoRegioSudoku.cuadrado);
-	    else System.out.println("Opcion no valida"); 
+	    else System.out.println("Opcion no valida");
 	    	
 	    while(opc != 0) {
 	    	System.out.println("Driver de Regio Sudoku");
@@ -66,6 +66,7 @@ public class DriverRegioSudoku {
 		        case 7:
 		        	pos = entrada.nextInt();
 		        	System.out.println(rs.getNumero(pos));
+		        	rs.numeroYaNoEsta(rs.getNumero(pos));
 		        	rs.borra(pos);
 		        	System.out.println(rs.getNumero(pos));
 		        	break;
