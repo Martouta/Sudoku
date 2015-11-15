@@ -19,7 +19,7 @@ public class JocSudoku extends Joc {
 	}
 
 	public void Pista() {
-	    int ncellas=super.getTauler().getAlto()*super.getTauler().getAncho();
+	    int ncellas=super.getTauler().getNumCeldas();
 	    if(super.getTauler().getNumCeldasRellenas() < ncellas){
             boolean found=false;
             Random gen1 = new Random();
