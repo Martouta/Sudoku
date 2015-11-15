@@ -36,7 +36,7 @@ public class DriverPartidaUsuario {
 	    
 		if (nSols == 1) {
 			int opc = -1;
-			while(opc != 0) {
+			while(opc != 0 && sudoku.getTauler().getNumCeldas() != sudoku.getTauler().getNumCeldasRellenas()) {
 				System.out.println("1: Introduce celda no fija");
 				System.out.println("2: muestra sudoku en proceso");
 				System.out.println("3: muestra sudoku solucionado");
@@ -46,6 +46,7 @@ public class DriverPartidaUsuario {
 				System.out.println("7: desmarcar numero");
 				System.out.println("8: esta marcado");
 				System.out.println("9: ver marcas de la casilla");
+				
 				System.out.println("0: Salir");
 	            opc = entrada.nextInt();
 	            switch(opc) {
@@ -109,7 +110,15 @@ public class DriverPartidaUsuario {
 		} else {
 			System.out.println("No es un Sudoku valido porque tiene mas de una solucion");
 		}
-		System.out.println("Se ha acabado el juego");
+		
+		
+		if (sudoku.getTauler().getNumCeldas() == sudoku.getTauler().getNumCeldasRellenas()) {
+			p.yaResuelto();
+			System.out.println("Has acabado el juego en " + p.getHoras() + " horas, " + p.getMinutos() + " minutos i " + p.getSegundos() + "segundos");
+			System.out.println("El juego ha sido iniciado el " + p.getDataIni() + "y acabado el " + p.getDataFi());
+		} else {
+			System.out.println("Se ha acabado el juego");
+		}
 		
         entrada.close();
 	}
