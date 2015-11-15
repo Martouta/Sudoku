@@ -17,7 +17,7 @@ public class CjtoMarcas {
 	
 	public void marcarNumero(int val){
 		try {
-			if (val <= 0 || val > tamano-1) throw (new ExcepcionValorFueraRango());
+			if (val < 1 || val > tamano) throw (new ExcepcionValorFueraRango());
 			marcas[val-1] = true;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());
@@ -26,7 +26,7 @@ public class CjtoMarcas {
 	
 	public void desmarcarNumero(int val){
 		try {
-			if (val <= 0 || val > tamano-1) throw (new ExcepcionValorFueraRango());
+			if (val < 1 || val > tamano) throw (new ExcepcionValorFueraRango());
 			marcas[val-1] = false;
 		} catch (ExcepcionValorFueraRango e) {
 			System.out.println(e.getMessage());

@@ -149,7 +149,6 @@ public class Partida {
 	}
 	
 	public void mostrarMarcasPosicion(int x, int y){
-		System.out.println("valor de prueba: " + nn);
 		for (int i = 1; i <= nn; ++i) {
 			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) System.out.println(i + " ");
 		}
