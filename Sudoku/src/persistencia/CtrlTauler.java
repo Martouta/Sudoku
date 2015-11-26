@@ -88,7 +88,7 @@ public class CtrlTauler
             nombresTauler = new ArrayList<String>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
-            else carrega(); //si no ho treiem, peta ja que intenta llegir d'un fitxer no existent
+            else carrega(); 
         } catch (Exception e) {
             e.printStackTrace();
         }
