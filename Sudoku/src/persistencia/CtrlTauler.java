@@ -16,6 +16,7 @@ public class CtrlTauler
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<TaulerSudoku> taulersObj; // ordenats per nom
+	protected static ArrayList<String> nombresTauler;
     private static String path = "src/domini/JocsProva/taulers.txt";
 	
 	// Carrega els taulersObj de la BD
@@ -27,7 +28,7 @@ public class CtrlTauler
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
                 //taulersObj.add(new TaulerSudoku(Integer.parseInt(fila.get(0)))); //creem un TaulerSudoku de mida (n*n)X(n*n), pero ens falta
-                																            //afegir-hi les regions i celles guardades al fitxer
+            	nombresTauler.add(fila.get(punt++));																            //afegir-hi les regions i celles guardades al fitxer
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
@@ -49,9 +50,11 @@ public class CtrlTauler
     {
         ArrayList<ArrayList<String>> taulersPers = new ArrayList<ArrayList<String>>();
         try {
-            for (TaulerSudoku ts : taulersObj) {
+            for (int ii=0;ii<taulersObj.size();ii++) {
+            	TaulerSudoku ts = taulersObj.get(ii);
+            	ArrayList<String> fila = new ArrayList<String>();
+            	fila.add(nombresTauler.get(ii));
             	int n = ts.getN();
-                ArrayList<String> fila = new ArrayList<String>();
                 fila.add(Integer.toString(n)); //guardem la n del tauler ----------> get(0)
                 
                 for(int i=0;i<n*n;i++) {
@@ -103,22 +106,23 @@ public class CtrlTauler
 	// Retorna null si no el troba
 	public static TaulerSudoku getTaulerSudoku(String nom) //com identifiquem els sudokus?
     {
-        for (TaulerSudoku ts : taulersObj) {
-            //if (Objects.equals(ts.getUsername(), nom)) return ts; ///-------------------------------------->provisional
+        for (int i=0;i<taulersObj.size();i++) {
+            if (Objects.equals(nombresTauler.get(i), nom)) return taulersObj.get(i);
         }
         return null;
     }
 	
 	// Afegeix l'Usuari us a l'agregat
 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
-	public static boolean afegeixTaulerSudoku(TaulerSudoku ts)
+	public static boolean afegeixTaulerSudoku(TaulerSudoku ts, String nom)
     {
         try {
-            /*for (TaulerSudoku aux : taulersObj) {
-                if (Objects.equals(aux.getUsername(), ts.getUsername())) { //haurem de posar id als taulers per tal d'identificarlos per la BD
+            for (String aux : nombresTauler) {
+                if (Objects.equals(aux, nom)) { //haurem de posar id als taulers per tal d'identificarlos per la BD
                     return false;
                 }
-            }*/
+            }
+        	nombresTauler.add(nom);
             dirty = taulersObj.add(ts);
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,17 +132,17 @@ public class CtrlTauler
 	
 	// Esborra l'Usuari amb username nom de l'agregat
 	// Retorna false si hi ha hagut cap error i llença excepció
-	public static boolean esborraUsuari(String nom) ////////////////////////////////////////////////////////////////////provisional
-    {
+	public static boolean esborraTaulerSudoku(String nom) {
         try {
-            /*for (int i = taulersObj.size() - 1; i >= 0; i--) {
-                TaulerSudoku ts = taulersObj.get(i);
-                if (Objects.equals(ts.getUsername(), nom)) dirty = taulersObj.remove(ts);
-            }*/
-        	for (int i = taulersObj.size() - 1; i >= 0; i--) {
-        		TaulerSudoku ts = taulersObj.get(i);
-        		taulersObj.remove(ts);
-        	}
+            for (int i = nombresTauler.size() - 1; i >= 0; i--) {
+                String s = nombresTauler.get(i);
+                if (Objects.equals(s, nom)) { 
+                	taulersObj.remove(i);
+                	nombresTauler.remove(i);
+                	dirty = true;
+                	return dirty;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
