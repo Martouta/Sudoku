@@ -1,5 +1,8 @@
 package capaPresentacion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
@@ -15,6 +18,12 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
     
     public JFrameIniciarSesion() {
 		initComponents();
+	}
+    
+    public JFrameIniciarSesion(String usuario, String contrasena) {
+		initComponents();
+		textfieldNombreUsuario.setText(usuario);
+		passwordfieldContrasena.setText(contrasena);
 	}
 	
 	private void initComponents() {
@@ -32,6 +41,21 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("hola");
+        
+        butIniciarSesion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+                ctrlCP.pressIniciarSesion();
+			}
+		});
+        butSalir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+                ctrlCP.pressSalir();
+			}
+		});
 
         javax.swing.GroupLayout panIniciarSesionLayout = new javax.swing.GroupLayout(panIniciarSesion);
         panIniciarSesion.setLayout(panIniciarSesionLayout);

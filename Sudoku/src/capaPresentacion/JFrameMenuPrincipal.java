@@ -36,6 +36,18 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
                 ctrlCP.pressSalir();
             }
         });
+        butIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+                ctrlCP.pressVentanaIniciarSesion();
+            }
+        });
+        butRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+                ctrlCP.pressVentanaRegistrarse();
+            }
+        });
 
         
 
