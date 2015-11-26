@@ -1,6 +1,8 @@
 package persistencia;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,8 +21,9 @@ public class CtrlJocSudoku {
 		dirty = false;
 		try {
             jocs = new ArrayList<JocSudoku>();
-            /*TaulerSudoku ts = ;//aqui se obtiene el tablero de la BD para cargarlo junto a juego
-            TaulerSudoku tssol = ; //obtener el tablero solucionado*/
+            File file = new File(Paths.get(path).toAbsolutePath().toString());
+            if(!file.exists()) file.getParentFile().mkdirs();
+            else carrega(ts,tssol); 
             carrega(ts, tssol);
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,6 +63,7 @@ public class CtrlJocSudoku {
         if (dirty) {
             try {
                 CtrlPersistencia.storeTable(path, codifica());
+                dirty = false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
