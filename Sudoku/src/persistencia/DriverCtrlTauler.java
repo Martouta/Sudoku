@@ -26,8 +26,7 @@ public class DriverCtrlTauler {
 		
 		CtrlTauler.carrega();
 		//CtrlTauler.getTaulerSudoku("pepe").muestraTabla(); //mes endavant caldra passar string idTauler per identificar quin agafa
-		if (CtrlTauler.getTaula().size() == 0) System.out.println("NYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-		else {
+		if (CtrlTauler.getTaula().size() != 0) {
 			//guarda un sudoku pero no l'omple
 			ArrayList<TaulerSudoku> ats = CtrlTauler.getTaula();
 			System.out.println(ats.size());

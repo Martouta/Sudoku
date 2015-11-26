@@ -1,6 +1,9 @@
 package persistencia;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 import capaDomini.*;
 
@@ -27,8 +30,7 @@ public class CtrlTauler
         	int punt = 0;
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
-                //taulersObj.add(new TaulerSudoku(Integer.parseInt(fila.get(0)))); //creem un TaulerSudoku de mida (n*n)X(n*n), pero ens falta
-            	nombresTauler.add(fila.get(punt++));																            //afegir-hi les regions i celles guardades al fitxer
+                nombresTauler.add(fila.get(punt++));
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
@@ -83,7 +85,10 @@ public class CtrlTauler
 		dirty = false;
 		try {
             taulersObj = new ArrayList<TaulerSudoku>();
-            //carrega(); //si no ho treiem, peta ja que intenta llegir d'un fitxer no existent
+            nombresTauler = new ArrayList<String>();
+            File file = new File(Paths.get(path).toAbsolutePath().toString());
+            if(!file.exists()) file.getParentFile().mkdirs();
+            else carrega(); //si no ho treiem, peta ja que intenta llegir d'un fitxer no existent
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,6 +100,7 @@ public class CtrlTauler
         if (dirty) {
             try {
                 CtrlPersistencia.storeTable(path, codifica());
+                dirty = false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
