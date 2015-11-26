@@ -35,7 +35,10 @@ public class CtrlTauler
                 	for(int j=0;j<n*n;j++){
                 		int num = Integer.parseInt(fila.get(punt++));
                 		if(num!=0)
-                			ts.setNumCelda(i, j, num, true);
+                			ts.setNumCelda(i, j, num, false);
+                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
+                		if(basaur)
+                			ts.getCella(i, j).fijar();
                 	}
                 }
                 taulersObj.add(ts);
@@ -63,6 +66,7 @@ public class CtrlTauler
                 			fila.add(Integer.toString(0));
                 		else
                 			fila.add(Integer.toString(ts.getNumero(i, j)));
+                		fila.add(Boolean.toString(ts.estaFija(i, j)));
                 	}
                 }
                 taulersPers.add(fila);
