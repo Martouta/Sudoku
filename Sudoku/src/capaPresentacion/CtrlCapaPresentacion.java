@@ -57,7 +57,7 @@ public class CtrlCapaPresentacion {
         });
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButRegistrarse().addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //ctrlCP.pressVentanaRegistrarse();
+                //FALTA: ocultar esta ventana y abrir la de registrarse
             }
         });
 		
@@ -78,6 +78,7 @@ public class CtrlCapaPresentacion {
             		//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
             		frameIniciarSesion.setVisible(false);
             		//FALTA abrir venatana de "MenuOpciones"
+            		System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);
             		
             	} catch (ExcepcionCamposVacios e) {
             		((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());

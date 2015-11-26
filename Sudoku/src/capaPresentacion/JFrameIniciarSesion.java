@@ -59,10 +59,12 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
         butIniciarSesion.setText("Iniciar Sesion");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
-        passwordfieldContrasena.setText("hola");
+        passwordfieldContrasena.setText("");
         
         textfieldNombreUsuario.setPreferredSize(new Dimension(50, 20));
         passwordfieldContrasena.setPreferredSize(new Dimension(50, 20)); 
+        labNombreUsuario.setPreferredSize(new Dimension(150, 20));
+        labContrasena.setPreferredSize(new Dimension(150, 20));
 
         javax.swing.GroupLayout panIniciarSesionLayout = new javax.swing.GroupLayout(panIniciarSesion);
         panIniciarSesion.setLayout(panIniciarSesionLayout);
