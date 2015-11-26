@@ -24,8 +24,7 @@ public class CtrlJocSudoku {
             jocs = new ArrayList<JocSudoku>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
-            else carrega(ts,tssol); 
-            carrega(ts, tssol);
+            else carrega(ts,tssol);
         } catch (Exception e) {
             e.printStackTrace();
         }
