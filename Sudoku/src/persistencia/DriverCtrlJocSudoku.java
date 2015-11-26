@@ -28,6 +28,7 @@ public class DriverCtrlJocSudoku {
 		    t.muestraTabla();
 		    tsol.muestraTabla();
 			js = new JocSudoku("pepito",t,tsol);
+			//js = new JocSudoku("aleix",t,tsol);
 			if(n==4 && js.getDificultad()!=tipoDificultad.trivial //&& js.getDificultad()!=tipoDificultad.facil)
 				)break;
         } while(js.getDificultad()!=tipoDificultad.dificil);
@@ -37,7 +38,6 @@ public class DriverCtrlJocSudoku {
 		CtrlJocSudoku.afegeixJocSudoku(js);
 		CtrlJocSudoku.end();
 		
-		
 		js = new JocSudoku("pepe",t,tsol);
 		//System.out.println(js.getDificultad());
 
@@ -45,21 +45,23 @@ public class DriverCtrlJocSudoku {
 		CtrlJocSudoku.end();
 		
 		//provem si esborran el vector de jocs i carregantlo del txt funciona
-		CtrlJocSudoku.esborraJocSudoku("pepe");
+		/*CtrlJocSudoku.esborraJocSudoku("pepe");
 		CtrlJocSudoku.esborraJocSudoku("pepito");
-		
-		ArrayList<JocSudoku> j = CtrlJocSudoku.getTaula();
+		CtrlJocSudoku.end();
+		*/
+		/*ArrayList<JocSudoku> j = CtrlJocSudoku.getTaula();
 		if (j.isEmpty()) System.out.println("Esta buit");
 		CtrlJocSudoku.carrega(t,tsol);
+		*/
 		
-		System.out.println("Carregat");
+		/*System.out.println("Carregat");
 		j = CtrlJocSudoku.getTaula();
 		if (j.isEmpty()) System.out.println("Falla");
 		else System.out.println("Correcte");
 		for (JocSudoku js1 : j) {
 			System.out.println(js1.getId());
 		}
-		
+		*/
 		System.out.println("Termino");
 		entrada.close();
 	}

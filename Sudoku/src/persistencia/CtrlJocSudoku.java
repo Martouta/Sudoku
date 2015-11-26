@@ -106,7 +106,11 @@ public class CtrlJocSudoku {
          try {
              for (int i = jocs.size() - 1; i >= 0; i--) {
                  JocSudoku js = jocs.get(i);
-                 if (Objects.equals(js.getId(), id)) dirty = jocs.remove(js);
+                 if (Objects.equals(js.getId(), id)) {
+                	 //System.out.println("Elimino el " + js.getId());
+                	 jocs.remove(i);
+                	 dirty = true;
+                 }
              }
          } catch (Exception e) {
              e.printStackTrace();
