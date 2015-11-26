@@ -6,6 +6,8 @@ import javax.swing.*;
 
 
 public class JFrameIniciarSesion extends javax.swing.JFrame{
+	private static final long serialVersionUID = 1L;
+	
 	private javax.swing.JButton butIniciarSesion;
     private javax.swing.JButton butSalir;
     private javax.swing.JLabel labNombreUsuario;

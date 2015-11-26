@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import capaDomini.*;
 import excepciones.*;
+import excepciones.excUsuario.ExcepcionContrasenaIncorrecta;
+import excepciones.excUsuario.ExcepcionUsuarioNoExiste;
 
 public class CtrlCapaPresentacion {
 	private static JFrame frameMenuPrincipal;
@@ -71,18 +73,26 @@ public class CtrlCapaPresentacion {
             	try {
             		nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
             		if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-            		System.out.println("llega01: -" + nombreUsuario + "-");
+            		contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
+            		ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
+            		//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
+            		frameIniciarSesion.setVisible(false);
+            		//FALTA abrir venatana de "MenuOpciones"
+            		
             	} catch (ExcepcionCamposVacios e) {
-            		System.out.println(e.getMessage());
-            	}
-            	//System.out.println(((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario() + " - " + ((JFrameIniciarSesion) frameIniciarSesion).getContrasena());
+            		((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
+            	} catch (ExcepcionUsuarioNoExiste e) {
+            		((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
+				} catch (ExcepcionContrasenaIncorrecta e) {
+					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
+				}
             }
         });
 	}
 
     
     private void pressSalir() {
-		//...
+		//FALTA: guardar en txt o no, dependera del valor cambiosParaBD
 		System.out.println("Salir pulsado");
 	}
 	
