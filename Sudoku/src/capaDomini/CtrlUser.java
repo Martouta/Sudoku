@@ -24,10 +24,10 @@ public class CtrlUser
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
-    private static String path = "src/domini/JocsProva/users.txt";
+    private static String path = "src/JocsProva/users.txt";
 	
 	// Carrega els usuaris de la BD
-	// si hi ha hagut error al carregar els usuaris llença una excepcio
+	// si hi ha hagut error al carregar els usuaris llenÃ§a una excepcio
 	protected static void carrega()
     {
         try {
@@ -70,11 +70,12 @@ public class CtrlUser
     }
 
 	// Si s'han modificat les dades carregades des de la BD, desar els canvis
-    // Aquest mètode s'ha de cridar quan es vulgin guardar els canvis a la BD
+    // Aquest mÃ¨tode s'ha de cridar quan es vulgin guardar els canvis a la BD
 	public static void end() {
         if (dirty) {
             try {
                 CtrlPersistencia.storeTable(path, codifica());
+                dirty = false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,7 +86,15 @@ public class CtrlUser
     public static ArrayList<User> getTaula() {
         return usuaris;
     }
-	
+
+    // Consulta la contrasenya de l'usuari amb username "nom"
+    public static boolean comprovaPwd(String nom, String pwd) {
+      boolean ret = false;
+      for (User usuari : usuaris) {
+        if (Objects.equals(usuari.getUsername(), nom)) ret = usuari.testPassword(pwd);
+      }
+      return ret;
+    }
 	// Retorna l'Usuari amb username igual a nom
 	// Retorna null si no el troba
 	public static User getUsuari(String nom)
@@ -97,7 +106,7 @@ public class CtrlUser
     }
 	
 	// Afegeix l'Usuari us a l'agregat
-	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
+	// Retorna fals si hi ha hagut cap error i llenÃ§a excepciÃ³ o bÃ© si l'usuari ja hi Ã©s i no es pot afegir
 	public static boolean afegeixUsuari(User us)
     {
         try {
@@ -114,7 +123,7 @@ public class CtrlUser
     }
 	
 	// Esborra l'Usuari amb username nom de l'agregat
-	// Retorna false si hi ha hagut cap error i llença excepció
+	// Retorna false si hi ha hagut cap error i llenÃ§a excepciÃ³
 	public static boolean esborraUsuari(String nom)
     {
         try {
