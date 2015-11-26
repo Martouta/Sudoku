@@ -7,28 +7,23 @@ public class CtrlVistas {
     private static JFrame frameIniciarSesion;
 
 	public static void main(String[] args) {
-		initComponents();
-		 mostrarMenuPrincipal();
-	     /*ocultarMenuPrincipal();
-	     mostrarIniciarSesion();
-	     ocultarIniciarSesion();*/
+		mostrarMenuPrincipal();
 	}
 	
-	private static void initComponents() {
+	public static void mostrarMensajeAviso(String mensaje) {
+        //
+    }
+	
+	public static void ocultarMensajeAviso() {
+        //
+    }
+
+	public static void mostrarMenuPrincipal() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frameMenuPrincipal = new JFrameMenuPrincipal();
         frameMenuPrincipal.setTitle("My First Swing Application");
         frameMenuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuPrincipal.pack();
-        
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frameIniciarSesion = new JFrameIniciarSesion();
-        frameIniciarSesion.setTitle("My First Swing Application");
-        frameIniciarSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameIniciarSesion.pack();
-	}
-
-	public static void mostrarMenuPrincipal() {
         frameMenuPrincipal.setVisible(true);
     }
     
@@ -37,6 +32,11 @@ public class CtrlVistas {
     }
     
     public static void mostrarIniciarSesion() {
+    	JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame frameIniciarSesion = new JFrameIniciarSesion();
+        frameIniciarSesion.setTitle("My First Swing Application");
+        frameIniciarSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameIniciarSesion.pack();
         frameIniciarSesion.setVisible(true);
     }
     

@@ -1,5 +1,6 @@
 package capaPresentacion;
 
+import java.awt.event.*;
 import javax.swing.*;
 
 
@@ -25,6 +26,14 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
         butRegistrarse.setText("Registrarse");
         butIniciarSesion.setText("Iniciar sesión");
         butSalir.setText("Salir");
+        
+        butSalir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+				ctrlCP.pressSalir();
+			}
+		});
 
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
