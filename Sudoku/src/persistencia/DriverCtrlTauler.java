@@ -19,10 +19,10 @@ public class DriverCtrlTauler {
 	    t.muestraTabla();
 	    
 		cts = new CtrlTauler();
-		CtrlTauler.afegeixTaulerSudoku(t);
+		CtrlTauler.afegeixTaulerSudoku(t,"pepito");
 		CtrlTauler.end();
 		
-		CtrlTauler.esborraUsuari("pepe"); //esborra tot el vector, per aixi carregarlo del txt
+		CtrlTauler.esborraTaulerSudoku("pepito"); //esborra tot el vector, per aixi carregarlo del txt
 		
 		CtrlTauler.carrega();
 		//CtrlTauler.getTaulerSudoku("pepe").muestraTabla(); //mes endavant caldra passar string idTauler per identificar quin agafa
