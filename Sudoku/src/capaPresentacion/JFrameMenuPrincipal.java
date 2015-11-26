@@ -5,6 +5,8 @@ import javax.swing.*;
 
 
 public class JFrameMenuPrincipal extends javax.swing.JFrame{
+	private static final long serialVersionUID = 1L;
+	
 	private javax.swing.JButton butRegistrarse;
     private javax.swing.JButton butIniciarSesion;
     private javax.swing.JButton butSalir;
@@ -16,24 +18,26 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
 	}
 	
 	private void initComponents() {
-        panPrincipal = new javax.swing.JPanel();
+		panPrincipal = new javax.swing.JPanel();
         labSelectFunc = new javax.swing.JLabel();
         butRegistrarse = new javax.swing.JButton();
         butIniciarSesion = new javax.swing.JButton();
         butSalir = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         labSelectFunc.setText("Seleccione una función:");
         butRegistrarse.setText("Registrarse");
         butIniciarSesion.setText("Iniciar sesión");
         butSalir.setText("Salir");
+        butSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
+                ctrlCP.pressSalir();
+            }
+        });
+
         
-        butSalir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-				ctrlCP.pressSalir();
-			}
-		});
 
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -72,5 +76,18 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
         butRegistrarse.getAccessibleContext().setAccessibleName("butRegistrarse");
         butIniciarSesion.getAccessibleContext().setAccessibleName("butIniciarSesion");
         butSalir.getAccessibleContext().setAccessibleName("butSalir");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
     }
 }

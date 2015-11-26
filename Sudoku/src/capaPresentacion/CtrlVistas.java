@@ -8,6 +8,7 @@ public class CtrlVistas {
 
 	public static void main(String[] args) {
 		mostrarMenuPrincipal();
+		//mostrarIniciarSesion();
 	}
 	
 	public static void mostrarMensajeAviso(String mensaje) {
@@ -20,7 +21,7 @@ public class CtrlVistas {
 
 	public static void mostrarMenuPrincipal() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frameMenuPrincipal = new JFrameMenuPrincipal();
+        frameMenuPrincipal = new JFrameMenuPrincipal();
         frameMenuPrincipal.setTitle("My First Swing Application");
         frameMenuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuPrincipal.pack();
@@ -33,7 +34,7 @@ public class CtrlVistas {
     
     public static void mostrarIniciarSesion() {
     	JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frameIniciarSesion = new JFrameIniciarSesion();
+        frameIniciarSesion = new JFrameIniciarSesion();
         frameIniciarSesion.setTitle("My First Swing Application");
         frameIniciarSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameIniciarSesion.pack();
