@@ -20,6 +20,7 @@ public class CtrlJocSudoku {
     public CtrlJocSudoku(TaulerSudoku ts, TaulerSudoku tssol) {
 		dirty = false;
 		try {
+			CtrlPersistencia.setSeparator(" ");
             jocs = new ArrayList<JocSudoku>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();

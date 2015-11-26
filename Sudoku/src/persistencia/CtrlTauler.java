@@ -83,6 +83,7 @@ public class CtrlTauler
 	public CtrlTauler() {
 		dirty = false;
 		try {
+			CtrlPersistencia.setSeparator(" ");
             taulersObj = new ArrayList<TaulerSudoku>();
             nombresTauler = new ArrayList<String>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
