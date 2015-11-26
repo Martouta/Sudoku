@@ -17,7 +17,7 @@ public class CtrlCapaPresentacion {
 
 	
 	public CtrlCapaPresentacion() {
-		FactoryCtrlCasosUso facCtrlCU = new FactoryCtrlCasosUso();
+		facCtrlCU = new FactoryCtrlCasosUso();
 		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
 		initComponents();
 		initListeners();
@@ -67,8 +67,7 @@ public class CtrlCapaPresentacion {
         });
 		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	//CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = facCtrlCU.getCtrlCasoUsoIniciarSesion();
-            	facCtrlCU.prueba();
+            	CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = facCtrlCU.getCtrlCasoUsoIniciarSesion();
             	try {
             		nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
             		if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
