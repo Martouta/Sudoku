@@ -5,7 +5,7 @@ import excepciones.*;
  
 public class Regio {
      
-    Regio (int tamano) {
+    public Regio (int tamano) {
     	try {
 			if (tamano < 1) throw (new ExcepcionTamanoIncorrecto());
 			tam = tamano;
@@ -20,7 +20,7 @@ public class Regio {
 		}
     }
      
-    Regio (int tamano, Vector<Cella> vc) {
+    public Regio (int tamano, Vector<Cella> vc) {
     	try {
 			if (tamano < 1) throw (new ExcepcionTamanoIncorrecto());
 			tam = tamano;

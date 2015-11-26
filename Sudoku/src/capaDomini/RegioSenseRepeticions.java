@@ -5,7 +5,7 @@ import excepciones.*;
  
 public class RegioSenseRepeticions extends Regio {
 	
-    RegioSenseRepeticions(int tamano) {
+    public RegioSenseRepeticions(int tamano) {
     	super(tamano);
     	try {
 			if (tamano < 0) throw (new ExcepcionTamanoIncorrecto());
@@ -18,7 +18,7 @@ public class RegioSenseRepeticions extends Regio {
 		}
     }
      
-    RegioSenseRepeticions(int tamano, Vector<Cella> vc) {
+    public RegioSenseRepeticions(int tamano, Vector<Cella> vc) {
         super(tamano, vc);
         try {
 			if (tamano < 1) throw (new ExcepcionTamanoIncorrecto());

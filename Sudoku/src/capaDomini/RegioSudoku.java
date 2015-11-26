@@ -4,12 +4,12 @@ import java.util.*;
  
 public class RegioSudoku extends RegioSenseRepeticions{
     
-	RegioSudoku(int n, tipoRegioSudoku tipo){
+	public RegioSudoku(int n, tipoRegioSudoku tipo){
         super(n*n);
         tipus = tipo;
     }
      
-    RegioSudoku(int n, Vector<Cella> vc, tipoRegioSudoku tipo){
+    public RegioSudoku(int n, Vector<Cella> vc, tipoRegioSudoku tipo){
         super(n*n, vc);
         tipus = tipo;
     }
