@@ -1,6 +1,6 @@
 package capaPresentacion;
 
-import java.awt.event.*;
+
 import javax.swing.*;
 
 
@@ -12,9 +12,21 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton butSalir;
     private javax.swing.JLabel labSelectFunc;
     private javax.swing.JPanel panPrincipal;
-	
+
 	public JFrameMenuPrincipal() {
 		initComponents();
+	}
+	
+	public javax.swing.JButton getButRegistrarse() {
+		return butRegistrarse;
+	}
+
+	public javax.swing.JButton getButIniciarSesion() {
+		return butIniciarSesion;
+	}
+
+	public javax.swing.JButton getButSalir() {
+		return butSalir;
 	}
 	
 	private void initComponents() {
@@ -30,26 +42,6 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
         butRegistrarse.setText("Registrarse");
         butIniciarSesion.setText("Iniciar sesión");
         butSalir.setText("Salir");
-        butSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-                ctrlCP.pressSalir();
-            }
-        });
-        butIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-                ctrlCP.pressVentanaIniciarSesion();
-            }
-        });
-        butRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-                ctrlCP.pressVentanaRegistrarse();
-            }
-        });
-
-        
 
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);

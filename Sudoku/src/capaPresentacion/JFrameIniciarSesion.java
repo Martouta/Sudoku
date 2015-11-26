@@ -20,7 +20,26 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
 		initComponents();
 	}
     
-    public JFrameIniciarSesion(String usuario, String contrasena) {
+       
+    public javax.swing.JButton getButIniciarSesion() {
+		return butIniciarSesion;
+	}
+
+	public javax.swing.JButton getButSalir() {
+		return butSalir;
+	}
+	
+	public String getNombreUsuario(){
+		return textfieldNombreUsuario.getText();
+	}
+	
+	public String getContrasena(){
+		return passwordfieldContrasena.getPassword().toString();
+	}
+
+
+
+	public JFrameIniciarSesion(String usuario, String contrasena) {
 		initComponents();
 		textfieldNombreUsuario.setText(usuario);
 		passwordfieldContrasena.setText(contrasena);
@@ -41,21 +60,6 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("hola");
-        
-        butIniciarSesion.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-                ctrlCP.pressIniciarSesion();
-			}
-		});
-        butSalir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-                CtrlCapaPresentacion ctrlCP = new CtrlCapaPresentacion();
-                ctrlCP.pressSalir();
-			}
-		});
 
         javax.swing.GroupLayout panIniciarSesionLayout = new javax.swing.GroupLayout(panIniciarSesion);
         panIniciarSesion.setLayout(panIniciarSesionLayout);

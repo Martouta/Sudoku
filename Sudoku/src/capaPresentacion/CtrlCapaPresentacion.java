@@ -1,104 +1,77 @@
 package capaPresentacion;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 public class CtrlCapaPresentacion {
 	private static JFrame frameMenuPrincipal;
     private static JFrame frameIniciarSesion;
+    
 	private static Boolean cambiosParaBD;
-	
-	public static void main(String[] args) {
-		mostrarMenuPrincipal();
-	}
+	private static String nombreUsuario;
+	private static String contrasena;
+
 	
 	public CtrlCapaPresentacion() {
 		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
+		initComponents();
+		initListeners();
+		frameMenuPrincipal.setVisible(true); //mostrarMenuPrincipal();
 	}
 	
-	public static void pressVentanaIniciarSesion(){
-		ocultarMenuPrincipal();
-		mostrarIniciarSesion();
-	}
-	
-	public static void pressVentanaRegistrarse(){
-		ocultarMenuPrincipal();
-		//mostrarRegistrarse();
-	}
-	
-	public static void pressSalir() {
-		//
-		System.out.println("Salir pulsado");
-	}
-	
-	public static void pressIniciarSesion(){
-		//
-	}
-	
-	public static void pressRegistrarse(){
-		//
-	}
-	
-	public static void pressVentanaMenuPrincipal(){
-		//
-	}
-	
-	public static void pressVentanaMenuOpciones(){
-		//
-	}
-	
-	public static void pressVentanaMenuSudoku(){
-		//
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	private static void ocultarTodo() {
-		ocultarMensajeAviso();
-		ocultarMenuPrincipal();
-		ocultarIniciarSesion();
-		//...
-	}
-	
-	private static void mostrarMensajeAviso(String mensaje) {
-        //
-    }
-	
-	private static void ocultarMensajeAviso() {
-        //
-    }
-
-	private static void mostrarMenuPrincipal() {
+	private void initComponents() {
+		//INIT MENU PRINCIPAL:
 		JFrame.setDefaultLookAndFeelDecorated(true);
         frameMenuPrincipal = new JFrameMenuPrincipal();
         frameMenuPrincipal.setTitle("My First Swing Application");
         frameMenuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuPrincipal.pack();
-        frameMenuPrincipal.setVisible(true);
-    }
-    
-    private static void ocultarMenuPrincipal() {
-        frameMenuPrincipal.setVisible(false);
-    }
-    
-    private static void mostrarIniciarSesion() {
-    	JFrame.setDefaultLookAndFeelDecorated(true);
+        
+        //INIT INICIAR SESIÓN:
+        JFrame.setDefaultLookAndFeelDecorated(true);
         frameIniciarSesion = new JFrameIniciarSesion();
         frameIniciarSesion.setTitle("My First Swing Application");
         frameIniciarSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameIniciarSesion.pack();
-        frameIniciarSesion.setVisible(true);
-    }
+	}
+	
+	private void initListeners() {
+		//LISTENERS DE MENU PRINCIPAL:
+		((JFrameMenuPrincipal) frameMenuPrincipal).getButSalir().addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pressSalir();
+            }
+        });
+		((JFrameMenuPrincipal) frameMenuPrincipal).getButIniciarSesion().addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	frameMenuPrincipal.setVisible(false);
+            	frameIniciarSesion.setVisible(true);
+            }
+        });
+		((JFrameMenuPrincipal) frameMenuPrincipal).getButRegistrarse().addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //ctrlCP.pressVentanaRegistrarse();
+            }
+        });
+		
+		//LISTENERS DE INICIAR SESIÓN:
+		((JFrameIniciarSesion) frameIniciarSesion).getButSalir().addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pressSalir();
+            }
+        });
+		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	//...
+            	System.out.println((((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario()) + " - " + ((JFrameIniciarSesion) frameIniciarSesion).getContrasena());
+            }
+        });
+	}
+
     
-    private static void ocultarIniciarSesion() {
-        frameIniciarSesion.setVisible(false);
-    }
+    private void pressSalir() {
+		//...
+		System.out.println("Salir pulsado");
+	}
 	
 }
