@@ -26,10 +26,11 @@ public class CtrlTauler
 	protected static void carrega()
     {
         try {
-        	int punt = 0;
+        	int punt;// = 0;
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
-                nombresTauler.add(fila.get(punt++));
+            	punt = 0;
+            	nombresTauler.add(fila.get(punt++));
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
@@ -88,7 +89,7 @@ public class CtrlTauler
             nombresTauler = new ArrayList<String>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
-            else carrega(); 
+            else carrega();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,6 +111,10 @@ public class CtrlTauler
     // Retorna la taula d'taulersObj
     public static ArrayList<TaulerSudoku> getTaula() {
         return taulersObj;
+    }
+    
+    public static ArrayList<String> getNoms() {
+    	return nombresTauler;
     }
 	
 	// Retorna l'Usuari amb username igual a nom

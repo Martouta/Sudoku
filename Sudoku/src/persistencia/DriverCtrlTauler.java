@@ -19,19 +19,31 @@ public class DriverCtrlTauler {
 	    t.muestraTabla();
 	    
 		cts = new CtrlTauler();
-		CtrlTauler.afegeixTaulerSudoku(t,"pepito");
+		CtrlTauler.afegeixTaulerSudoku(t,"aleix");
+		//CtrlTauler.afegeixTaulerSudoku(t,"pepe");
+		//CtrlTauler.afegeixTaulerSudoku(t,"pepito");
+		//CtrlTauler.afegeixTaulerSudoku(t,"holaprimo");
 		CtrlTauler.end();
 		
-		CtrlTauler.esborraTaulerSudoku("pepito"); 
+		ArrayList<String> noms = CtrlTauler.getNoms();
+		for (String s : noms) { //haurien de sortir els tres noms
+			System.out.println(s);
+		}
 		
-		CtrlTauler.carrega();
-		//CtrlTauler.getTaulerSudoku("pepe").muestraTabla(); //mes endavant caldra passar string idTauler per identificar quin agafa
+		//CtrlTauler.esborraTaulerSudoku("aleix"); 
+		
+		/*noms = CtrlTauler.getNoms();
+		for (String s : noms) { //haurien de sortir els noms mensy aleix
+			System.out.println(s);
+		}*/
+		
+		CtrlTauler.end();
 		if (CtrlTauler.getTaula().size() != 0) {
 			//guarda un sudoku pero no l'omple
 			ArrayList<TaulerSudoku> ats = CtrlTauler.getTaula();
-			System.out.println(ats.size());
+			//System.out.println(ats.size());
 			TaulerSudoku result = ats.get(0);
-			System.out.println(result.getN() + " " + result.getNN());
+			//System.out.println(result.getN() + " " + result.getNN());
 			result.muestraTabla();
 		}
 		
