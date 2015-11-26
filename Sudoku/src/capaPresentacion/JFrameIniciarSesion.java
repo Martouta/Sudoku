@@ -1,8 +1,6 @@
 package capaPresentacion;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.*;
 import javax.swing.*;
 
 
@@ -15,6 +13,7 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
     private javax.swing.JPanel panIniciarSesion;
     private javax.swing.JPasswordField passwordfieldContrasena;
     private javax.swing.JTextField textfieldNombreUsuario;
+    private javax.swing.JLabel labMensajeError;
     
     public JFrameIniciarSesion() {
 		initComponents();
@@ -34,21 +33,19 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
 	}
 	
 	public String getContrasena(){
-		return passwordfieldContrasena.getPassword().toString();
+		return new String(passwordfieldContrasena.getPassword());
+	}
+	
+	public void setMensajeError(String msj){
+		labMensajeError.setText(msj);
 	}
 
-
-
-	public JFrameIniciarSesion(String usuario, String contrasena) {
-		initComponents();
-		textfieldNombreUsuario.setText(usuario);
-		passwordfieldContrasena.setText(contrasena);
-	}
 	
 	private void initComponents() {
         panIniciarSesion = new javax.swing.JPanel();
         labNombreUsuario = new javax.swing.JLabel();
         labContrasena = new javax.swing.JLabel();
+        labMensajeError = new javax.swing.JLabel();
         butIniciarSesion = new javax.swing.JButton();
         butSalir = new javax.swing.JButton();
         textfieldNombreUsuario = new javax.swing.JTextField();
@@ -56,10 +53,14 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
 
         labNombreUsuario.setText("Nombre de usuario: ");
         labContrasena.setText("Contrasena: ");
+        labMensajeError.setText("");
         butIniciarSesion.setText("Iniciar Sesion");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("hola");
+        
+        textfieldNombreUsuario.setPreferredSize(new Dimension(50, 20));
+        passwordfieldContrasena.setPreferredSize(new Dimension(50, 20)); 
 
         javax.swing.GroupLayout panIniciarSesionLayout = new javax.swing.GroupLayout(panIniciarSesion);
         panIniciarSesion.setLayout(panIniciarSesionLayout);
@@ -68,22 +69,28 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
             .addGroup(panIniciarSesionLayout.createSequentialGroup()
                 .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                        .addGap(104, 104, 104)
                         .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                .addComponent(labContrasena)
-                                .addGap(45, 45, 45)
-                                .addComponent(passwordfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(104, 104, 104)
+                                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
+                                        .addComponent(labContrasena)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(passwordfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
+                                        .addComponent(labNombreUsuario)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(textfieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                .addComponent(labNombreUsuario)
-                                .addGap(58, 58, 58)
-                                .addComponent(textfieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(150, 150, 150)
+                                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(butSalir)
+                                    .addComponent(butIniciarSesion))))
+                        .addGap(0, 96, Short.MAX_VALUE))
                     .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(butSalir)
-                            .addComponent(butIniciarSesion))))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(labMensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panIniciarSesionLayout.setVerticalGroup(
             panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,11 +103,13 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
                 .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labContrasena)
                     .addComponent(passwordfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(31, 31, 31)
+                .addComponent(labMensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(butIniciarSesion)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(butSalir)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,5 +122,6 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        
     }
 }

@@ -2,10 +2,14 @@ package capaPresentacion;
 
 import javax.swing.*;
 import java.awt.event.*;
+import capaDomini.*;
+import excepciones.*;
 
 public class CtrlCapaPresentacion {
 	private static JFrame frameMenuPrincipal;
     private static JFrame frameIniciarSesion;
+    
+    private static FactoryCtrlCasosUso facCtrlCU;
     
 	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
@@ -13,6 +17,7 @@ public class CtrlCapaPresentacion {
 
 	
 	public CtrlCapaPresentacion() {
+		FactoryCtrlCasosUso facCtrlCU = new FactoryCtrlCasosUso();
 		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
 		initComponents();
 		initListeners();
@@ -62,8 +67,16 @@ public class CtrlCapaPresentacion {
         });
 		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	//...
-            	System.out.println((((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario()) + " - " + ((JFrameIniciarSesion) frameIniciarSesion).getContrasena());
+            	//CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = facCtrlCU.getCtrlCasoUsoIniciarSesion();
+            	facCtrlCU.prueba();
+            	try {
+            		nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
+            		if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
+            		System.out.println("llega01: -" + nombreUsuario + "-");
+            	} catch (ExcepcionCamposVacios e) {
+            		System.out.println(e.getMessage());
+            	}
+            	//System.out.println(((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario() + " - " + ((JFrameIniciarSesion) frameIniciarSesion).getContrasena());
             }
         });
 	}
