@@ -132,8 +132,7 @@ public class CtrlTauler
 	
 	// Esborra l'Usuari amb username nom de l'agregat
 	// Retorna false si hi ha hagut cap error i llença excepció
-	public static boolean esborraTaulerSudoku(String nom) ////////////////////////////////////////////////////////////////////provisional
-    {
+	public static boolean esborraTaulerSudoku(String nom) {
         try {
             for (int i = nombresTauler.size() - 1; i >= 0; i--) {
                 String s = nombresTauler.get(i);
