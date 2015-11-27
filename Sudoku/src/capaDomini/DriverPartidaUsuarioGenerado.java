@@ -111,7 +111,7 @@ public class DriverPartidaUsuarioGenerado {
     	    	p.mostrarMarcasPosicion(x,y);
             	break;
             case 11:
-            	ts.resetearTableroSudoku();
+            	ts.resetearTableroSudoku(); //nueva opcion
             	break;
             default:
             	System.out.println("Opcion no valida");

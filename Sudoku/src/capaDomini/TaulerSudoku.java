@@ -315,7 +315,7 @@ public class TaulerSudoku extends Tauler {
 		}
 	}
 	
-	public void resetearTableroSudoku() {
+	public void resetearTableroSudoku() { //nueva opcion
 		Cella aux = null;
 		for (int i = 0; i < n*n; ++i) {
 			for (int j = 0; j < n*n; ++j) {
