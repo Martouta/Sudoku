@@ -29,6 +29,7 @@ public class DriverTaulerSudoku {
             System.out.println("14: indica si la celda indicada esta vacia");
             System.out.println("15: indica si la celda indicada esta fijada");
             System.out.println("16: indica si la celda indicada esta bloqueada");
+            System.out.println("17: Resetea las celdas no fijas del tablero");
             System.out.println("0: Salir");
             opc = entrada.nextInt();
             switch(opc) {
