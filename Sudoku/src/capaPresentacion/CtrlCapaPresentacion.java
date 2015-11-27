@@ -15,7 +15,6 @@ public class CtrlCapaPresentacion {
     
 	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
-	private static String contrasena;
 
 	
 	public CtrlCapaPresentacion() {
@@ -73,7 +72,7 @@ public class CtrlCapaPresentacion {
             	try {
             		nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
             		if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-            		contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
+            		String contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
             		ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
             		//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
             		frameIniciarSesion.setVisible(false);
@@ -81,10 +80,13 @@ public class CtrlCapaPresentacion {
             		System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);
             		
             	} catch (ExcepcionCamposVacios e) {
+            		nombreUsuario = "";
             		((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
             	} catch (ExcepcionUsuarioNoExiste e) {
+            		nombreUsuario = "";
             		((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
 				} catch (ExcepcionContrasenaIncorrecta e) {
+					nombreUsuario = "";
 					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
 				}
             }
