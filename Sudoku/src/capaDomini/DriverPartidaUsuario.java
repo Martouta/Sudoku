@@ -47,6 +47,7 @@ public class DriverPartidaUsuario {
 				System.out.println("8: desmarcar numero");
 				System.out.println("9: esta marcado");
 				System.out.println("10: ver marcas de la casilla");
+				System.out.println("11: Resetear el tablero");
 				
 				System.out.println("0: Salir");
 	            opc = entrada.nextInt();
@@ -106,6 +107,9 @@ public class DriverPartidaUsuario {
 	    			x = entrada.nextInt();
 	    	    	y = entrada.nextInt();
 	    	    	p.mostrarMarcasPosicion(x,y);
+	            	break;
+	            case 11:
+	            	ts.resetearTableroSudoku();
 	            	break;
 	            default:
 	            	System.out.println("Opcion no valida");

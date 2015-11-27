@@ -314,6 +314,16 @@ public class TaulerSudoku extends Tauler {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void resetearTableroSudoku() {
+		Cella aux = null;
+		for (int i = 0; i < n*n; ++i) {
+			for (int j = 0; j < n*n; ++j) {
+				aux = super.getCella(i, j);
+				if (!aux.estaFija()) aux.borra();
+			}
+		}
+	}
 
 	private RegioSudoku[] rs;
 	private int n;
