@@ -8,25 +8,25 @@ import javax.swing.*;
 public class JFrameIniciarSesion extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	private javax.swing.JButton butIniciarSesion;
-    private javax.swing.JButton butSalir;
-    private javax.swing.JLabel labNombreUsuario;
-    private javax.swing.JLabel labContrasena;
-    private javax.swing.JPanel panIniciarSesion;
-    private javax.swing.JPasswordField passwordfieldContrasena;
-    private javax.swing.JTextField textfieldNombreUsuario;
-    private javax.swing.JLabel labMensajeError;
+	private JButton butIniciarSesion;
+    private JButton butSalir;
+    private JLabel labNombreUsuario;
+    private JLabel labContrasena;
+    private JPanel panIniciarSesion;
+    private JPasswordField passwordfieldContrasena;
+    private JTextField textfieldNombreUsuario;
+    private JLabel labMensajeError;
     
     public JFrameIniciarSesion() {
 		initComponents();
 	}
     
        
-    public javax.swing.JButton getButIniciarSesion() {
+    public JButton getButIniciarSesion() {
 		return butIniciarSesion;
 	}
 
-	public javax.swing.JButton getButSalir() {
+	public JButton getButSalir() {
 		return butSalir;
 	}
 	
@@ -44,88 +44,60 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
 
 	
 	private void initComponents() {
-        panIniciarSesion = new javax.swing.JPanel();
-        labNombreUsuario = new javax.swing.JLabel();
-        labContrasena = new javax.swing.JLabel();
-        labMensajeError = new javax.swing.JLabel();
-        butIniciarSesion = new javax.swing.JButton();
-        butSalir = new javax.swing.JButton();
-        textfieldNombreUsuario = new javax.swing.JTextField();
-        passwordfieldContrasena = new javax.swing.JPasswordField();
+		setTitle("Iniciar Sesion");
+		setSize(400,400);
+		setMinimumSize(new Dimension(275, 275));
+		setResizable(true);
+		
+		panIniciarSesion = new JPanel();
+		labNombreUsuario = new JLabel();
+        labContrasena = new JLabel();
+        labMensajeError = new JLabel();
+        butIniciarSesion = new JButton();
+        butSalir = new JButton();
+        textfieldNombreUsuario = new JTextField();
+        passwordfieldContrasena = new JPasswordField();
 
         labNombreUsuario.setText("Nombre de usuario: ");
         labContrasena.setText("Contrasena: ");
-        labMensajeError.setText("");
+        labMensajeError.setText("ERROR INESPERADO [PARA HACER PRUEBAS]");
         butIniciarSesion.setText("Iniciar Sesion");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("");
         
-        textfieldNombreUsuario.setPreferredSize(new Dimension(50, 20));
-        passwordfieldContrasena.setPreferredSize(new Dimension(50, 20)); 
-        labNombreUsuario.setPreferredSize(new Dimension(150, 20));
-        labContrasena.setPreferredSize(new Dimension(150, 20));
+        textfieldNombreUsuario.setPreferredSize(new Dimension(100, 20));
+        passwordfieldContrasena.setPreferredSize(new Dimension(100, 20)); 
+        labNombreUsuario.setPreferredSize(new Dimension(120, 20));
+        labContrasena.setPreferredSize(new Dimension(120, 20));
 
-        javax.swing.GroupLayout panIniciarSesionLayout = new javax.swing.GroupLayout(panIniciarSesion);
-        panIniciarSesion.setLayout(panIniciarSesionLayout);
-        panIniciarSesionLayout.setHorizontalGroup(
-            panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                        .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                        .addComponent(labContrasena)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(passwordfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                        .addComponent(labNombreUsuario)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(textfieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(butSalir)
-                                    .addComponent(butIniciarSesion))))
-                        .addGap(0, 96, Short.MAX_VALUE))
-                    .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labMensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panIniciarSesionLayout.setVerticalGroup(
-            panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panIniciarSesionLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labNombreUsuario)
-                    .addComponent(textfieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(panIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labContrasena)
-                    .addComponent(passwordfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(labMensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(butIniciarSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(butSalir)
-                .addContainerGap())
-        );
+        panIniciarSesion.setLayout(new GridLayout(5,1,0,1));
+		JPanel panNameUser = new JPanel();
+		panNameUser.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panNameUser.add(labNombreUsuario);
+		panNameUser.add(textfieldNombreUsuario);
+		JPanel panPassword = new JPanel();
+		panPassword.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panPassword.add(labContrasena);
+		panPassword.add(passwordfieldContrasena);
+		JPanel panMensError = new JPanel();
+		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panMensError.add(labMensajeError);
+		JPanel panButIniciarSesion = new JPanel();
+		panButIniciarSesion.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panButIniciarSesion.setBackground(new Color(0,0,0));
+		//panButIniciarSesion.setPreferredSize(butIniciarSesion.getSize());//VOY POR AQUI
+		panButIniciarSesion.add(butIniciarSesion);
+		JPanel panButSalir = new JPanel();
+		panButSalir.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panButSalir.add(butSalir);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+		panIniciarSesion.add(panNameUser);
+		panIniciarSesion.add(panPassword);
+		panIniciarSesion.add(panMensError);
+		panIniciarSesion.add(panButIniciarSesion);
+		panIniciarSesion.add(panButSalir);
+		add(panIniciarSesion);
         
     }
 }

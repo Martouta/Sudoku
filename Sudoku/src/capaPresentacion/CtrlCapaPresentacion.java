@@ -11,14 +11,11 @@ public class CtrlCapaPresentacion {
 	private static JFrame frameMenuPrincipal;
     private static JFrame frameIniciarSesion;
     
-    private static FactoryCtrlCasosUso facCtrlCU;
-    
 	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
 
 	
 	public CtrlCapaPresentacion() {
-		facCtrlCU = new FactoryCtrlCasosUso();
 		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
 		initComponents();
 		initListeners();
@@ -29,14 +26,12 @@ public class CtrlCapaPresentacion {
 		//INIT MENU PRINCIPAL:
 		JFrame.setDefaultLookAndFeelDecorated(true);
         frameMenuPrincipal = new JFrameMenuPrincipal();
-        frameMenuPrincipal.setTitle("My First Swing Application");
         frameMenuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuPrincipal.pack();
         
         //INIT INICIAR SESIÓN:
         JFrame.setDefaultLookAndFeelDecorated(true);
         frameIniciarSesion = new JFrameIniciarSesion();
-        frameIniciarSesion.setTitle("My First Swing Application");
         frameIniciarSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameIniciarSesion.pack();
 	}
@@ -68,7 +63,7 @@ public class CtrlCapaPresentacion {
         });
 		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = facCtrlCU.getCtrlCasoUsoIniciarSesion();
+            	CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = new CtrlCasoUsoIniciarSesion();
             	try {
             		nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
             		if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
