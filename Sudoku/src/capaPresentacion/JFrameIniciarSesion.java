@@ -3,9 +3,9 @@ package capaPresentacion;
 import java.awt.*;
 import javax.swing.*;
 
+//FALTA CAMBIAR EL ERROR INESPERADO, EL TAMANO Y HACERLO TODO MÁS BONITO
 
-
-public class JFrameIniciarSesion extends javax.swing.JFrame{
+public class JFrameIniciarSesion extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton butIniciarSesion;
@@ -98,6 +98,6 @@ public class JFrameIniciarSesion extends javax.swing.JFrame{
 		panIniciarSesion.add(panButIniciarSesion);
 		panIniciarSesion.add(panButSalir);
 		add(panIniciarSesion);
-        
     }
+	
 }

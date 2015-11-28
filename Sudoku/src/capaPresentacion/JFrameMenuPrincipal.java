@@ -1,17 +1,17 @@
 package capaPresentacion;
 
+//FALTA REFINARLO ENTEROOOOOOOOOOO PERO FUNCIONA!
 
 import javax.swing.*;
 
 
-public class JFrameMenuPrincipal extends javax.swing.JFrame{
-	private static final long serialVersionUID = 1L;
+public class JFrameMenuPrincipal extends JFrame{
 	
-	private javax.swing.JButton butRegistrarse;
-    private javax.swing.JButton butIniciarSesion;
-    private javax.swing.JButton butSalir;
-    private javax.swing.JLabel labSelectFunc;
-    private javax.swing.JPanel panPrincipal;
+	private JButton butRegistrarse;
+    private JButton butIniciarSesion;
+    private JButton butSalir;
+    private JLabel labSelectFunc;
+    private JPanel panPrincipal;
 
 	public JFrameMenuPrincipal() {
 		initComponents();
@@ -30,11 +30,11 @@ public class JFrameMenuPrincipal extends javax.swing.JFrame{
 	}
 	
 	private void initComponents() {
-		panPrincipal = new javax.swing.JPanel();
-        labSelectFunc = new javax.swing.JLabel();
-        butRegistrarse = new javax.swing.JButton();
-        butIniciarSesion = new javax.swing.JButton();
-        butSalir = new javax.swing.JButton();
+		panPrincipal = new JPanel();
+        labSelectFunc = new JLabel();
+        butRegistrarse = new JButton();
+        butIniciarSesion = new JButton();
+        butSalir = new JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
