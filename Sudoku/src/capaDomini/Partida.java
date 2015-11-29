@@ -169,4 +169,8 @@ public class Partida {
 	public JocSudoku getJocSudoku() {
 		return sudoku;
 	}
+	
+	public User getUsuario() {
+		return usuario;
+	}
 }
