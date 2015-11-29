@@ -154,4 +154,23 @@ public class Partida {
 		}
 	}
 	
+	public void setDataIni(Date d) {	// para cargar partidas
+		dataIni = d;
+	}
+	
+	public void setSegundos(int s) {	// idem
+		tiempoSegundos = s;
+	}
+	
+	public void setNPistas(int n) {		// idem
+		nPistas = n;
+	}
+	
+	public JocSudoku getJocSudoku() {
+		return sudoku;
+	}
+	
+	public User getUsuario() {
+		return usuario;
+	}
 }
