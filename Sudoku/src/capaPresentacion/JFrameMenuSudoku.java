@@ -6,6 +6,8 @@ import javax.swing.*;
 //FALTA MUCHO, EMPEZANDO POR LOS STRINGS Y LAS FUNCIONES "AUXILIARES"
 
 public class JFrameMenuSudoku extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel panMenuSudoku;
 	private JLabel labSeleccioneFuncion;
 	private JLabel labTamanoSudoku;
@@ -32,6 +34,7 @@ public class JFrameMenuSudoku extends JFrame{
 	
 	private void initComponents() {
 		setTitle("Menu Sudoku");
+		//ESTOS TAMANOS?????
 		setSize(400,800); //ancho por alto
 		setMinimumSize(new Dimension(400, 550));
 		setResizable(true);
