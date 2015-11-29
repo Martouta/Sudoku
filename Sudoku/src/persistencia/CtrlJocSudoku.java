@@ -14,7 +14,7 @@ public class CtrlJocSudoku {
 
 	private static boolean dirty;             // true si s'ha modificat la llista de jocs
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
-    private static String path = "src/domini/JocsProva/jocs.txt";
+    private static String path = "src/domini/data/jocs.txt";
     
     //antes de llamar a CtrlJocSudoku, se debe llamar a CtrlTauler para obtener los tableros original y resuelto y pasarlos como parametros
     public CtrlJocSudoku(TaulerSudoku ts, TaulerSudoku tssol) {

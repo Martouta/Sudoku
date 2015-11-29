@@ -19,7 +19,7 @@ public class CtrlTauler
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<TaulerSudoku> taulersObj; // ordenats per nom
 	protected static ArrayList<String> nombresTauler;
-    private static String path = "src/domini/JocsProva/taulers.txt";
+    private static String path = "src/domini/data/taulers.txt";
 	
 	// Carrega els taulersObj de la BD
 	// si hi ha hagut error al carregar els taulersObj llença una excepcio

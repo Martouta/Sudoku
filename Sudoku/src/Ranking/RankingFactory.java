@@ -7,7 +7,6 @@ public class RankingFactory {
 	
 	public RankingFactory() {
 		CtrlPersistencia.setSeparator(" ");
-		System.out.println("---");
 		CtrlUser CU = new CtrlUser();
 	}
 	
