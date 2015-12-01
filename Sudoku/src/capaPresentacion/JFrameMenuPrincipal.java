@@ -6,6 +6,7 @@ import javax.swing.*;
 
 
 public class JFrameMenuPrincipal extends JFrame{
+	private static final long serialVersionUID = 1L;
 	
 	private JButton butRegistrarse;
     private JButton butIniciarSesion;
