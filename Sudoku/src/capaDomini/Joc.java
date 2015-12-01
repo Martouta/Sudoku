@@ -54,4 +54,8 @@ public abstract class Joc {
 	public Tauler getTauler() {
 		return tauler;
 	}
+	
+	public void setTauler(Tauler t) {
+		tauler = t;
+	}
 }

@@ -67,4 +67,8 @@ public class JocSudoku extends Joc {
 		
 		return t;
 	}
+	
+	public void setTauler(Tauler t) {
+		super.setTauler(t);
+	}
 }

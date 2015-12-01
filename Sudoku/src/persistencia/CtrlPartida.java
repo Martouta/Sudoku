@@ -26,7 +26,8 @@ public class CtrlPartida {
 	protected static ArrayList<String> usuariosPartidas;		// los username, evidentemente
     private static String path = "src/domini/JocsProva/partidas.txt";
     
-    public CtrlPartida(User usuario, JocSudoku sudoku) {
+    // se necesita crear antes CtrlUsuario y CtrlJocSudoku
+    public CtrlPartida() {
     	dirty = false;
     	try {
     		CtrlPersistencia.setSeparator(" ");
@@ -52,24 +53,21 @@ public class CtrlPartida {
             	nombresPartidas.add(fila.get(punt++));
             	usuariosPartidas.add(fila.get(punt++));
             	String nombretauler = fila.get(punt++);
-            	//JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
+            	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
-                TaulerSudoku ts2 = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
                 	for(int j=0;j<n*n;j++){
                 		int num = Integer.parseInt(fila.get(punt++));
                 		if(num!=0)
                 			ts.setNumCelda(i, j, num, false);
                 		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
-                		if(basaur) {
+                		if(basaur)
                 			ts.getCella(i, j).fijar();
-                			ts2.setNumCelda(i, j, num, true);
-                		}
+
                 	}
                 }
-                TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(ts2);
-                JocSudoku js = new JocSudoku(nombretauler,ts,tsol);
+                js.setTauler(ts);
                 User usuario = CtrlUser.getUsuari(usuariosPartidas.get(usuariosPartidas.size()-1));
                 Partida p = new Partida(usuario,js);
                 p.pauseTiempo();
