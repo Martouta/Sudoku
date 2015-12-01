@@ -2,7 +2,7 @@ package Ranking;
 
 import java.util.*;
 import Dificultat.*;
-import capaDomini.CtrlUser;
+import persistencia.CtrlUser;
 import excepciones.excUsuario.*;
 
 public class DriverRankingPersonal {

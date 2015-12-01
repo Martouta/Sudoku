@@ -1,10 +1,12 @@
-package capaDomini;
+package persistencia;
 
 import persistencia.CtrlPersistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+
+import capaDomini.User;
 
 //////////////////////////////
 //

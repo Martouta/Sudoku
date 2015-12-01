@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-import capaDomini.CtrlUser;
+import persistencia.CtrlUser;
 import capaDomini.JocSudoku;
 import capaDomini.Partida;
 import capaDomini.TaulerSudoku;
-import capaDomini.ResolvedorSudoku;
 import capaDomini.Tauler;
 //import capaDomini.tipoDificultad;
 import capaDomini.User;
