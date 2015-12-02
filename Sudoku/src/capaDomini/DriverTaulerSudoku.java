@@ -116,9 +116,9 @@ public class DriverTaulerSudoku {
             	y = entrada.nextInt();
             	System.out.println(ts.estaBloqueada(x,y));
             	break;
-            case 17:
+            /*case 17:
             	ts.resetearTableroSudoku();
-            	break;
+            	break;*/
             default:
             	System.out.println("Opcion no valida");
             }

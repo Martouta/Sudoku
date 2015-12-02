@@ -315,6 +315,7 @@ public class TaulerSudoku extends Tauler {
 		}
 	}
 	
+	/*INCORRECTO, LO PODREMOS BIEN HECHO EN EL CTRL DE SU CASO DE USO
 	public void resetearTableroSudoku() { //nueva opcion
 		Cella aux = null;
 		for (int i = 0; i < n*n; ++i) {
@@ -323,7 +324,7 @@ public class TaulerSudoku extends Tauler {
 				if (!aux.estaFija()) aux.borra();
 			}
 		}
-	}
+	}*/
 
 	private RegioSudoku[] rs;
 	private int n;

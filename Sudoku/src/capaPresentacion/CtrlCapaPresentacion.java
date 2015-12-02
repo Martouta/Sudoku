@@ -215,7 +215,9 @@ public class CtrlCapaPresentacion {
 				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
 				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
 				try{
-					//
+					if (tipoSudoku == "") {
+						//VOY POR AQUI
+					}
 				} catch (Exception e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
 				}

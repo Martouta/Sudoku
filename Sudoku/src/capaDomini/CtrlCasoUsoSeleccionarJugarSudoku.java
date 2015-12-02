@@ -4,7 +4,9 @@ import java.util.*;
 import DataTransferObjects.*;
 import excepciones.*;
 
-public class CtrlCasoUsoSeleccionarSudoku {
+public class CtrlCasoUsoSeleccionarJugarSudoku {
+	private Partida partida;
+	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		/*
 		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
@@ -31,13 +33,14 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		//PERO LO QUE ES SEGURO: Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales
 	}
 	
-	//PROBLEMAS PARA ESTA FUNCION
-	public void proponerNuevoSudoku(String nombreUsuario, Vector<DTOCeldaFija> celdasFijas){
+	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas) throws ExcepcionSudokuYaExiste{
 		/*
-		Problema: en la ventana aun no hay ningun campo de texto para incluir un nuevo nombre al sudoku, creo que deberia anadirlo
-		y en ese caso tendre que anadir bastantes cosas por lo que aun no se podra implementar esta funcion
+		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
+		 Si ya existe un Sudoku con el nombre "nombreSudoku", se activa la excepcion ExcepcionSudokuYaExiste, si no:
+		 Crea un Sudoku con el nombre "nombreSudoku", que tenga de autor "nombreUuario"
+		 el tablero y las regiones se crean a partir de las celdas de "celdasFijas" (todo eso se hace desde su TaulerSudoku y te puedes orientar con la clase DriverPartidaUsuario que hacia algo parecido)
+		 crea la partida con el usuario "nombreUsuario" y el sudoku recien creado y la guarda como variable local en "partida"
 		 */
-		//AUN NO HE PUESTO NI LOS PARAMETROS CORRECTOS NI LAS EXCEPCIONES, PORQUE PRIMERO HAY QUE ACLARAR EL PROBLEMA
 	}
 	
 	
