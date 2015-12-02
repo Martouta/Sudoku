@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import capaDomini.*;
 import excepciones.*;
-import excepciones.excUsuario.ExcepcionContrasenaIncorrecta;
-import excepciones.excUsuario.ExcepcionUsuarioNoExiste;
+import excepciones.excUsuario.*;
 
 public class CtrlCapaPresentacion {
 	private static JFrame frameMenuPrincipal;
@@ -19,7 +18,7 @@ public class CtrlCapaPresentacion {
 		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
 		initComponents();
 		initListeners();
-		frameMenuPrincipal.setVisible(true); //mostrarMenuPrincipal();
+		frameMenuPrincipal.setVisible(true);
 	}
 	
 	private void initComponents() {
