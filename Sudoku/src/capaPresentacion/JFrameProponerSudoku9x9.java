@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
-public class JFrameProponerSudoku extends JFrame{
+public class JFrameProponerSudoku9x9 extends JFrame{
 	private int nn;
 	private Vector<JTextField> vCeldas;
 	
@@ -15,7 +15,7 @@ public class JFrameProponerSudoku extends JFrame{
 	private JButton butSalir;
 	private JLabel labMensError;
 	
-	public JFrameProponerSudoku() {
+	public JFrameProponerSudoku9x9() {
 		initComponents();
 	}
 	
@@ -27,25 +27,25 @@ public class JFrameProponerSudoku extends JFrame{
 		//panSudoku.setLayout(new GridLayout(nn, nn));
 		//panSudoku.setBorder(new MatteBorder(2, 2, 2, 2, Color.BLACK) );
 		
-		int espacioRegiones = 3;
-		int espacioJ = 0;
-		int espacioI = 0;
+		int espReg = 3;
 		vCeldas = new Vector<JTextField>();
 		for (int i = 0; i < nn; ++i){
 			for (int j = 0; j < nn; ++j){
 				int valTemp = (i*nn)+j+1;
-				JTextField tfAux = new JTextField(i + "" + j); //deberia estar vacio!!!!!
+				JTextField tfAux = new JTextField(i + "" + j); //deberia estar vacio!!!!! //i + "" + j
 				tfAux.setName("tf"+i+j);
 				tfAux.setSize(40, 40);
 				tfAux.setFont(new Font("Tahoma", 0, 24));
-				tfAux.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+				tfAux.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 				tfAux.setHorizontalAlignment(JTextField.CENTER);
 				
-				if (j%n == 0) espacioJ=espacioRegiones;
-				else espacioJ=0;
+				int espacioJ = 0;
+				int espacioI = 0;
 				
-				if (i%n == 0) espacioI=espacioRegiones;
-				else espacioI=0;
+				
+				espacioJ = espReg * (j/n+1);
+
+				espacioI = espReg * (i/n+1);
 				
 				tfAux.setLocation(j*40+espacioJ, i*40+espacioI);
 				
