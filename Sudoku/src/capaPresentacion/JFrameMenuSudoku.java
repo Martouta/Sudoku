@@ -1,6 +1,8 @@
 package capaPresentacion;
 
 import java.awt.*;
+import java.util.Enumeration;
+
 import javax.swing.*;
 
 //FALTA MUCHO, EMPEZANDO POR LOS STRINGS Y LAS FUNCIONES "AUXILIARES"
@@ -31,6 +33,66 @@ public class JFrameMenuSudoku extends JFrame{
 	public JFrameMenuSudoku(){
 		initComponents();
 	}
+
+	public String tipoSudokuElegido(){
+		String tipoSudoku = "";
+		for (Enumeration<AbstractButton> buttons = bgOpcSudoku.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+            	tipoSudoku = button.getName();
+            }
+        }
+		return tipoSudoku;
+	}
+	
+	public JRadioButton getRbBD() {
+		return rbBD;
+	}
+
+	public JRadioButton getRbGenerado() {
+		return rbGenerado;
+	}
+
+	public JRadioButton getRbProponer() {
+		return rbProponer;
+	}
+
+	public JRadioButton getRbReanudarPartida() {
+		return rbReanudarPartida;
+	}
+
+	public String tamanoElegido(){
+		return (String) spinnerTamanosPosibles.getValue();
+	}
+	
+	public String dificultadElegida(){
+		return (String) spinnerDificultadesPosibles.getValue();
+	}
+	
+	public JButton getButSelectsudoku() {
+		return butSelectsudoku;
+	}
+
+	public JButton getButVolverMenuOpciones() {
+		return butVolverMenuOpciones;
+	}
+
+	public JButton getButSalir() {
+		return butSalir;
+	}
+	
+	public void activarSeleccionarSudoku() {
+		butSelectsudoku.setEnabled(true);
+	}
+	
+	public void desactivarSeleccionarSudoku() {
+		butSelectsudoku.setEnabled(false);
+	}
+
+	public void setMensaje(String msj){
+		labInfo.setText(msj);
+	}
+	
 	
 	private void initComponents() {
 		setTitle("Menu Sudoku");
@@ -50,9 +112,13 @@ public class JFrameMenuSudoku extends JFrame{
         
     	bgOpcSudoku = new ButtonGroup();
     	rbBD = new JRadioButton("De la base de datos", true);
+    	rbBD.setName("tsBD");
     	rbGenerado = new JRadioButton("Generado por la maquina", false);
+    	rbGenerado.setName("tsGenerado");
     	rbProponer = new JRadioButton("Proponer nuevo", false);
+    	rbProponer.setName("tsProponer");
     	rbReanudarPartida = new JRadioButton("Reanudar partida", false);
+    	rbReanudarPartida.setName("tsReanudarPartida");
     	bgOpcSudoku.add(rbBD);
     	bgOpcSudoku.add(rbGenerado);
     	bgOpcSudoku.add(rbProponer);

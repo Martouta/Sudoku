@@ -22,10 +22,36 @@ public class JFrameMenuOpciones extends JFrame{
 		initComponents();
 	}
 	
+	
+	public JButton getButGestionPerfilUsu() {
+		return butGestionPerfilUsu;
+	}
+
+	public JButton getButSelectSudoku() {
+		return butSelectSudoku;
+	}
+	
+	public JButton getButConsultarRankingLocal() {
+		return butConsultarRankingLocal;
+	}
+	
+	public JButton getButConsultarRankingGlobal() {
+		return butConsultarRankingGlobal;
+	}
+	
+	public JButton getButConsultarEstadisticasGenerales() {
+		return butConsultarEstadisticasGenerales;
+	}
+	
+	public JButton getButCerrarSesion() {
+		return butCerrarSesion;
+	}
+	
 	public JButton getButSalir() {
 		return butSalir;
 	}
-	
+
+
 	private void initComponents(){
 		JLabel labEspacioBlanco = new JLabel();
 		labEspacioBlanco.setText("");

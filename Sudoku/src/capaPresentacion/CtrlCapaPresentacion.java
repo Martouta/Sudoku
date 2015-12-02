@@ -1,5 +1,6 @@
 package capaPresentacion;
 
+import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
 import capaDomini.*;
@@ -53,7 +54,7 @@ public class CtrlCapaPresentacion {
         
         //INIT MENU SUDOKU:
         JFrame.setDefaultLookAndFeelDecorated(true);
-        frameMenuSudoku = new JFrameRegistrarse();
+        frameMenuSudoku = new JFrameMenuSudoku();
         frameMenuSudoku.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuSudoku.pack();
 	}
@@ -62,23 +63,25 @@ public class CtrlCapaPresentacion {
 		initListenersMenuPrincipal();
 		initListenersIniciarSesion();
 		initListenersRegistrarse();
+		initListenersMenuOpciones();
+		initListenersMenuSudoku();
 	}
 	
 	private void initListenersMenuPrincipal() {
 		//LISTENERS DE MENU PRINCIPAL:
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButSalir().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
 		    }
 		});
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButIniciarSesion().addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent evt) {
+				public void actionPerformed(ActionEvent evt) {
 					frameMenuPrincipal.setVisible(false);
 					frameIniciarSesion.setVisible(true);
 				}
 		});
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButRegistrarse().addActionListener(new ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent evt) {
+				public void actionPerformed(ActionEvent evt) {
 					frameMenuPrincipal.setVisible(false);
 					frameRegistrarse.setVisible(true);
 				}
@@ -88,12 +91,12 @@ public class CtrlCapaPresentacion {
 	private void initListenersIniciarSesion() {
 		//LISTENERS DE INICIAR SESIÓN:
 		((JFrameIniciarSesion) frameIniciarSesion).getButSalir().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
 			}
 		});
 		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = new CtrlCasoUsoIniciarSesion();
 				try {
 					nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
@@ -102,7 +105,7 @@ public class CtrlCapaPresentacion {
 					ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameIniciarSesion.setVisible(false);
-					//FALTA abrir ventana de "MenuOpciones"
+					frameMenuOpciones.setVisible(true);
 					System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionCamposVacios e) {
 					nombreUsuario = "";
@@ -121,12 +124,12 @@ public class CtrlCapaPresentacion {
 	private void initListenersRegistrarse() {
 		//LISTENERS DE REGISTRARSE:
 		((JFrameRegistrarse) frameRegistrarse).getButSalir().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
 			}
 		});
 		((JFrameRegistrarse) frameRegistrarse).getButRegistrarse().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				CtrlCasoUsoRegistrarse ctrlCURegistrarse = new CtrlCasoUsoRegistrarse();
 				try {
 					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
@@ -138,7 +141,7 @@ public class CtrlCapaPresentacion {
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameRegistrarse.setVisible(false);
 					cambiosParaBD = true;
-					//FALTA abrir ventana de "MenuOpciones"
+					frameMenuOpciones.setVisible(true);
 					System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionCamposVacios e) {
 					nombreUsuario = "";
@@ -150,6 +153,94 @@ public class CtrlCapaPresentacion {
 					nombreUsuario = "";
 					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
 				}
+			}
+		});
+	}
+	
+	private void initListenersMenuOpciones() {
+		//LISTENERS DE MENU OPCIONES:
+		((JFrameMenuOpciones) frameMenuOpciones).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER //PUEDE QUE YA SEA POSIBLE
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButGestionPerfilUsu().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER //AUN NO ES POSIBLE
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButSelectSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameMenuOpciones.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingLocal().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER //AUN NO ES POSIBLE
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingGlobal().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER //AUN NO POSIBLE
+			}
+		});
+		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarEstadisticasGenerales().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+	}
+	
+	private void initListenersMenuSudoku() {
+		//LISTENERS DE MENU SUDOKU:
+		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getButSelectsudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				String tipoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tipoSudokuElegido();
+				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
+				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
+				try{
+					//
+				} catch (Exception e) {
+					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+				}
+			}
+		});
+		
+		//LISTENERS DE LOS RADIOBUTTONS DE MENU SUDOKU:
+		((JFrameMenuSudoku) frameMenuSudoku).getRbBD().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("");
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getRbGenerado().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("");
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getRbReanudarPartida().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("");
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getRbProponer().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("Para el Sudoku propuesto, se ignorará la dificultad seleccionada");
 			}
 		});
 	}
