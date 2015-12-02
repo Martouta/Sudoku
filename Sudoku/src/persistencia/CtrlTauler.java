@@ -20,6 +20,37 @@ public class CtrlTauler
 	protected static ArrayList<TaulerSudoku> taulersObj; // ordenats per nom
 	protected static ArrayList<String> nombresTauler;
     private static String path = "src/domini/data/taulers.txt";
+    
+    
+ 	/*public CtrlTauler() {
+ 		dirty = false;
+ 		try {
+ 			CtrlPersistencia.setSeparator(" ");
+             taulersObj = new ArrayList<TaulerSudoku>();
+             nombresTauler = new ArrayList<String>();
+             File file = new File(Paths.get(path).toAbsolutePath().toString());
+             if(!file.exists()) file.getParentFile().mkdirs();
+             else carrega();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }*/
+    
+    //inicialitza els atributs igual que la creadora
+    static {
+    	dirty = false;
+ 		try {
+ 			 CtrlPersistencia.setSeparator(" ");
+             taulersObj = new ArrayList<TaulerSudoku>();
+             nombresTauler = new ArrayList<String>();
+             File file = new File(Paths.get(path).toAbsolutePath().toString());
+             if(!file.exists()) file.getParentFile().mkdirs();
+             else carrega();
+             //System.out.println("Inicialitzo");
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+    }
 	
 	// Carrega els taulersObj de la BD
 	// si hi ha hagut error al carregar els taulersObj llença una excepcio
@@ -77,22 +108,6 @@ public class CtrlTauler
             e.printStackTrace();
         }
         return taulersPers;
-    }
-
-	// Constructor per defecte
-	// Inicialitza l'agregacio
-	public CtrlTauler() {
-		dirty = false;
-		try {
-			CtrlPersistencia.setSeparator(" ");
-            taulersObj = new ArrayList<TaulerSudoku>();
-            nombresTauler = new ArrayList<String>();
-            File file = new File(Paths.get(path).toAbsolutePath().toString());
-            if(!file.exists()) file.getParentFile().mkdirs();
-            else carrega();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 	// Si s'han modificat les dades carregades des de la BD, desar els canvis
