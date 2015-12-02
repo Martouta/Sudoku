@@ -18,11 +18,11 @@ public class DriverCtrlTauler {
         t=GeneradorSudoku.generaSudoku2(n, tipoDificultad.dificil);
 	    t.muestraTabla();
 	    
-		cts = new CtrlTauler();
-		CtrlTauler.afegeixTaulerSudoku(t,"aleix");
-		//CtrlTauler.afegeixTaulerSudoku(t,"pepe");
-		//CtrlTauler.afegeixTaulerSudoku(t,"pepito");
-		//CtrlTauler.afegeixTaulerSudoku(t,"holaprimo");
+		//cts = new CtrlTauler();
+		if (!CtrlTauler.afegeixTaulerSudoku(t,"aleix")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		//if (!CtrlTauler.afegeixTaulerSudoku(t,"pepe")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		//if (!CtrlTauler.afegeixTaulerSudoku(t,"pepito")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		//if (!CtrlTauler.afegeixTaulerSudoku(t,"holaprimo")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		CtrlTauler.end();
 		
 		ArrayList<String> noms = CtrlTauler.getNoms();
@@ -30,7 +30,7 @@ public class DriverCtrlTauler {
 			System.out.println(s);
 		}
 		
-		//CtrlTauler.esborraTaulerSudoku("aleix"); 
+		//if (!CtrlTauler.esborraTaulerSudoku("aleix")) System.out.println("No hi ha cap tauler amb aquest id a la BD"); 
 		
 		/*noms = CtrlTauler.getNoms();
 		for (String s : noms) { //haurien de sortir els noms mensy aleix
@@ -63,5 +63,5 @@ public class DriverCtrlTauler {
 		entrada.close();
 	}
 
-	private static CtrlTauler cts;
+	//private static CtrlTauler cts;
 }
