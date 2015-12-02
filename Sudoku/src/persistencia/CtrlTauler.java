@@ -21,8 +21,7 @@ public class CtrlTauler
 	protected static ArrayList<String> nombresTauler;
     private static String path = "src/domini/data/taulers.txt";
     
-    // Constructor per defecte
- 	// Inicialitza l'agregacio
+    
  	/*public CtrlTauler() {
  		dirty = false;
  		try {

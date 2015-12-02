@@ -1,0 +1,4 @@
+pepe 2 3 true 0 false 1 true 0 false 0 false 0 false 0 false 0 false 0 false 1 true 0 false 4 true 0 false 0 false 0 false 1 true 
+pepito 2 3 true 0 false 1 true 0 false 0 false 0 false 0 false 0 false 0 false 1 true 0 false 4 true 0 false 0 false 0 false 1 true 
+holaprimo 2 1 true 2 true 0 false 0 false 4 true 0 false 2 true 1 true 2 true 0 false 4 true 0 false 3 true 4 true 1 true 2 true 
+aleix 2 0 false 0 false 2 true 4 true 0 false 0 false 3 true 0 false 0 false 0 false 4 true 0 false 3 true 0 false 1 true 2 true 

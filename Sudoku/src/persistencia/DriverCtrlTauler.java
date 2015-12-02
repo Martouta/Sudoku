@@ -20,7 +20,7 @@ public class DriverCtrlTauler {
 	    
 		//cts = new CtrlTauler();
 		if (!CtrlTauler.afegeixTaulerSudoku(t,"aleix")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
-		//if (!CtrlTauler.afegeixTaulerSudoku(t,"pepe")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		if (!CtrlTauler.afegeixTaulerSudoku(t,"pepe")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		//if (!CtrlTauler.afegeixTaulerSudoku(t,"pepito")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		//if (!CtrlTauler.afegeixTaulerSudoku(t,"holaprimo")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		CtrlTauler.end();
