@@ -15,7 +15,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return new Vector<DTOPartidaAMedias>(); //Esta linea esta solo para que no pete por faltar un return
 	}
 
-	public Vector<DTOSudokuDeLaBD> obtenerSudokuDeLaBD(tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
+	public Vector<DTOSudokuDeLaBD> obtenerSudokusDeLaBD(tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		/*
 		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
 		 crear un vector de tipo Vector<DTOSudokuDeLaBD>,
@@ -24,4 +24,23 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 */
 		return new Vector<DTOSudokuDeLaBD>(); //Esta linea esta solo para que no pete por faltar un return
 	}
+	
+	//AUN NO SE QUE TENDRA QUE HACER Y DEVOLVER ESTA FUNCION EXACTAMENTE
+	public void obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales{
+		//AUN NO SE QUE TENDRA QUE HACER Y DEVOLVER ESTA FUNCION EXACTAMENTE
+		//PERO LO QUE ES SEGURO: Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales
+	}
+	
+	//PROBLEMAS PARA ESTA FUNCION
+	public void proponerNuevoSudoku(String nombreUsuario, Vector<DTOCeldaFija> celdasFijas){
+		/*
+		Problema: en la ventana aun no hay ningun campo de texto para incluir un nuevo nombre al sudoku, creo que deberia anadirlo
+		y en ese caso tendre que anadir bastantes cosas por lo que aun no se podra implementar esta funcion
+		 */
+		//AUN NO HE PUESTO NI LOS PARAMETROS CORRECTOS NI LAS EXCEPCIONES, PORQUE PRIMERO HAY QUE ACLARAR EL PROBLEMA
+	}
+	
+	
+	
+	
 }
