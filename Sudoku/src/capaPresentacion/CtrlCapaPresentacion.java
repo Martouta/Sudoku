@@ -61,6 +61,7 @@ public class CtrlCapaPresentacion {
 	private void initListeners() {
 		initListenersMenuPrincipal();
 		initListenersIniciarSesion();
+		initListenersRegistrarse();
 	}
 	
 	private void initListenersMenuPrincipal() {
@@ -101,7 +102,7 @@ public class CtrlCapaPresentacion {
 					ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameIniciarSesion.setVisible(false);
-					//FALTA abrir venatana de "MenuOpciones"
+					//FALTA abrir ventana de "MenuOpciones"
 					System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionCamposVacios e) {
 					nombreUsuario = "";
@@ -112,6 +113,42 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionContrasenaIncorrecta e) {
 					nombreUsuario = "";
 					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
+				}
+			}
+		});
+	}
+	
+	private void initListenersRegistrarse() {
+		//LISTENERS DE REGISTRARSE:
+		((JFrameRegistrarse) frameRegistrarse).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		((JFrameRegistrarse) frameRegistrarse).getButRegistrarse().addActionListener(new ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				CtrlCasoUsoRegistrarse ctrlCURegistrarse = new CtrlCasoUsoRegistrarse();
+				try {
+					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
+					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
+					String contrasena = ((JFrameRegistrarse) frameRegistrarse).getContrasena();
+					String confirmContrasena = ((JFrameRegistrarse) frameRegistrarse).getConfirmContrasena();
+					if (! contrasena.equals(confirmContrasena)) throw (new ExcepcionContrasenasNoCoinciden());
+					ctrlCURegistrarse.registrarse(nombreUsuario, contrasena);
+					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
+					frameRegistrarse.setVisible(false);
+					cambiosParaBD = true;
+					//FALTA abrir ventana de "MenuOpciones"
+					System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
+				} catch (ExcepcionCamposVacios e) {
+					nombreUsuario = "";
+					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
+				} catch (ExcepcionUsuarioYaExiste e) {
+					nombreUsuario = "";
+					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
+				} catch (ExcepcionContrasenasNoCoinciden e) {
+					nombreUsuario = "";
+					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
 				}
 			}
 		});

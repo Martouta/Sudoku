@@ -71,7 +71,7 @@ public class JFrameRegistrarse extends JFrame{
         labContrasena.setText("Contrasena: ");
         labConfirmContrasena.setText("Confirma la contrasena: ");
         labMensajeError.setText("ERROR INESPERADO [PARA HACER PRUEBAS]");
-        butRegistrarse.setText("Iniciar Sesion");
+        butRegistrarse.setText("Registrarse");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("");
