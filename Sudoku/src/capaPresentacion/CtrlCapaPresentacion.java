@@ -249,10 +249,9 @@ public class CtrlCapaPresentacion {
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
-						ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
-					} else if (tipoSudoku == "tsProponer") { //FALTA LO DEL NOMBRE DE SUDOKU
+						Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+					} else if (tipoSudoku == "tsProponer") { //FALTA LO DEL NOMBRE DE SUDOKU + abrir la vista nueva y ocultar esta
 						ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas
-						//FALTA BASTANTE
 					} else { //tipo tsReanudarPartida
 						Vector<DTOPartidaAMedias> infoPartidasAMedias = ctrlCUSeleccionarJugarSudoku.obtenerPartidas(nombreUsuario, dificultad, n);
 						//INIT SELECCIONAR PARTIDA A REANUDAR:
