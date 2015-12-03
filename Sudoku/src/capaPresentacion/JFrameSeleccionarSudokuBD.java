@@ -5,6 +5,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import DataTransferObjects.DTOSudokuDeLaBD;
+
 public class JFrameSeleccionarSudokuBD extends JFrame{
 	private int numSudokus;
 	private Vector<String> datosARellenar;
@@ -20,12 +22,13 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 	private JButton butSalir;
 	private JLabel labMensError;
 	
-	public JFrameSeleccionarSudokuBD() {
+	public JFrameSeleccionarSudokuBD(Vector<DTOSudokuDeLaBD> infoSudokusDeLaBD) {
+		rellenaDatos(infoSudokusDeLaBD);
 		initComponents();
 	}
 	
 	private void initComponents() {
-numSudokus = 3; //70?
+		numSudokus = 3; //70?
 		
 		setTitle("Seleccionar sudoku de la base de datos");
 		setSize(700,480); //ancho por alto
@@ -109,8 +112,8 @@ numSudokus = 3; //70?
 		add(panSelectSudokuBD);
 	}
 	
-	private void rellenaDatos() {
-		datosARellenar = new Vector<String>();
+	private void rellenaDatos(Vector<DTOSudokuDeLaBD> infoSudokusDeLaBD) {
+		/*datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
 		datosARellenar.addElement("1, id01, numero de casillas rellenas: 30");
 		datosARellenar.addElement("2, id02, numero de casillas rellenas: 30");
@@ -123,14 +126,20 @@ numSudokus = 3; //70?
 		nombresSudokus.addElement("id01");
 		nombresSudokus.addElement("id02");
 		nombresSudokus.addElement("id03");
-		nombresSudokus.addElement("id06");
+		nombresSudokus.addElement("id06");*/
+		datosARellenar = new Vector<String>();
+		nombresSudokus = new Vector<String>();
+		int cont = 1;
+		for (DTOSudokuDeLaBD infoSudokuBD : infoSudokusDeLaBD) {
+			String rellena = cont + ", " + infoSudokuBD.getNombreSudoku() + ", numero de casillas rellenas: " + infoSudokuBD.getNumeroCasillasRellenas();
+			datosARellenar.addElement(rellena);
+			nombresSudokus.addElement(infoSudokuBD.getNombreSudoku());
+			++cont;
+		}
 	}
 
 	private void rellenarPanelMenu() {
-rellenaDatos();
-		
         listSudokus = new JList(demoList);
-
         scrollPane.setViewportView(listSudokus);
         
         listSudokus.addListSelectionListener(new ListSelectionListener() {

@@ -6,8 +6,7 @@ import java.util.*;
 import DataTransferObjects.*;
 import excepciones.*;
 
-public class CtrlCasoUsoSeleccionarJugarSudoku {
-	private Partida partida;
+public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		/*
@@ -41,11 +40,7 @@ public class CtrlCasoUsoSeleccionarJugarSudoku {
 		 Si ya existe un Sudoku con el nombre "nombreSudoku", se activa la excepcion ExcepcionSudokuYaExiste, si no:
 		 Crea un Sudoku con el nombre "nombreSudoku", que tenga de autor "nombreUuario"
 		 el tablero y las regiones se crean a partir de las celdas de "celdasFijas" (todo eso se hace desde su TaulerSudoku y te puedes orientar con la clase DriverPartidaUsuario que hacia algo parecido)
-		 crea la partida con el usuario "nombreUsuario" y el sudoku recien creado y la guarda como variable local en "partida"
 		 */
 	}
-	
-	
-	
 	
 }
