@@ -42,6 +42,22 @@ public class CtrlPartida {
     	}
     }
     
+    public static void init() {
+    	dirty = false;
+    	try {
+    		CtrlPersistencia.setSeparator(" ");
+    		partidas = new ArrayList<Partida>();
+    		nombresPartidas = new ArrayList<String>();
+    		usuariosPartidas = new ArrayList<String>();
+    		File file = new File(Paths.get(path).toAbsolutePath().toString());
+    		if(!file.exists()) file.getParentFile().mkdirs();
+    		else
+    			carrega();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
     protected static void carrega()
     {
         try {
