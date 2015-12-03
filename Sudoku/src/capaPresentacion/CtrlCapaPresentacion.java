@@ -21,6 +21,9 @@ public class CtrlCapaPresentacion {
     private static JFrame frameMenuSudoku;
     private static JFrame frameSeleccionarSudokuBD;
     private static JFrame frameSeleccionarPartidaReanudar;
+    private static JFrame frameProponerSudoku4x4;
+    private static JFrame frameProponerSudoku9x9;
+    private static JFrame frameProponerSudoku16x16;
     
     
 	private static Boolean cambiosParaBD;
@@ -250,8 +253,36 @@ public class CtrlCapaPresentacion {
 				        frameSeleccionarSudokuBD.setVisible(true);
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
 						Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
-					} else if (tipoSudoku == "tsProponer") { //FALTA LO DEL NOMBRE DE SUDOKU + abrir la vista nueva y ocultar esta
-						ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas
+					} else if (tipoSudoku == "tsProponer") { 
+						if (n == 2) {
+							//INIT SELECCIONAR SUDOKU DE LA BD:
+					        JFrame.setDefaultLookAndFeelDecorated(true);
+					        frameProponerSudoku4x4 = new JFrameProponerSudoku4x4();
+					        frameProponerSudoku4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					        frameProponerSudoku4x4.pack();
+					        //Ocultar vista actual y mostrar la siguiente:
+					        frameMenuSudoku.setVisible(false);
+					        frameProponerSudoku4x4.setVisible(true);
+						} else if (n == 3) {
+							//INIT SELECCIONAR SUDOKU DE LA BD:
+					        JFrame.setDefaultLookAndFeelDecorated(true);
+					        frameProponerSudoku9x9 = new JFrameProponerSudoku9x9();
+					        frameProponerSudoku9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					        frameProponerSudoku9x9.pack();
+					        //Ocultar vista actual y mostrar la siguiente:
+					        frameMenuSudoku.setVisible(false);
+					        frameProponerSudoku9x9.setVisible(true);
+						} else { //n == 4
+							//INIT SELECCIONAR SUDOKU DE LA BD:
+					        JFrame.setDefaultLookAndFeelDecorated(true);
+					        frameProponerSudoku16x16 = new JFrameProponerSudoku16x16();
+					        frameProponerSudoku16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					        frameProponerSudoku16x16.pack();
+					        //Ocultar vista actual y mostrar la siguiente:
+					        frameMenuSudoku.setVisible(false);
+					        frameProponerSudoku16x16.setVisible(true);
+						}
+						//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas //FALTA LO DEL NOMBRE DE SUDOKU + abrir la vista nueva y ocultar esta
 					} else { //tipo tsReanudarPartida
 						Vector<DTOPartidaAMedias> infoPartidasAMedias = ctrlCUSeleccionarJugarSudoku.obtenerPartidas(nombreUsuario, dificultad, n);
 						//INIT SELECCIONAR PARTIDA A REANUDAR:
@@ -265,9 +296,11 @@ public class CtrlCapaPresentacion {
 					}
 				} catch (ExcepcionNoHaySudokuConCaracteristicasSeleccionadas e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
-				} catch (ExcepcionSudokuYaExiste e) {
+				} 
+				/* catch (ExcepcionSudokuYaExiste e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
-				} catch (ExcepcionMaquinaNoGeneraTriviales e) {
+				}*/
+				catch (ExcepcionMaquinaNoGeneraTriviales e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
 				}
 			}
