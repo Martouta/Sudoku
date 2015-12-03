@@ -37,6 +37,7 @@ public class CtrlTauler
      }*/
     
     //inicialitza els atributs igual que la creadora
+    /*
     static {
     	dirty = false;
  		try {
@@ -50,6 +51,20 @@ public class CtrlTauler
          } catch (Exception e) {
              e.printStackTrace();
          }
+    }*/
+    // prefiero hacerlo así, garantizamos un orden
+    public static void init() {
+    	try {
+			 CtrlPersistencia.setSeparator(" ");
+            taulersObj = new ArrayList<TaulerSudoku>();
+            nombresTauler = new ArrayList<String>();
+            File file = new File(Paths.get(path).toAbsolutePath().toString());
+            if(!file.exists()) file.getParentFile().mkdirs();
+            else carrega();
+            //System.out.println("Inicialitzo");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 	
 	// Carrega els taulersObj de la BD

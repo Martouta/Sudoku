@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import capaDomini.JocSudoku;
+import capaDomini.ResolvedorSudoku;
 import capaDomini.TaulerSudoku;
 //import capaDomini.tipoDificultad;
 
@@ -29,6 +30,34 @@ public class CtrlJocSudoku {
             e.printStackTrace();
         }
     }
+    
+    public static void init() {
+    	dirty = false;
+		try {
+			CtrlPersistencia.setSeparator(" ");
+            jocs = new ArrayList<JocSudoku>();
+            File file = new File(Paths.get(path).toAbsolutePath().toString());
+            if(!file.exists()) file.getParentFile().mkdirs();
+            else carrega();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    protected static void carrega() {
+    	try {
+            ArrayList<TaulerSudoku> m = CtrlTauler.getTaula();
+            ArrayList<String> nombres = CtrlTauler.getNoms();
+            for(int i=0;i<m.size();i++) {
+            	TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(m.get(i));
+            	jocs.add(new JocSudoku(nombres.get(i),m.get(i),tsol));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     //carreguem els jocsSudoku al ArrayList jocs des del fitxer path utilitzant el CtrlPersistencia
     protected static void carrega(TaulerSudoku ts, TaulerSudoku tssol)

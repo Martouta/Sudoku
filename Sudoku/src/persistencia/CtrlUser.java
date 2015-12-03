@@ -61,7 +61,7 @@ public class CtrlUser
 
 	// Constructor per defecte
 	// Inicialitza l'agregacio
-	public CtrlUser() {
+	/*public CtrlUser() {
 		dirty = false;
 		try {
             usuaris = new ArrayList<User>();
@@ -69,8 +69,18 @@ public class CtrlUser
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+    }*/
+	
+	public static void init() {
+		dirty = false;
+		try {
+            usuaris = new ArrayList<User>();
+            carrega();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
 	// Si s'han modificat les dades carregades des de la BD, desar els canvis
     // Aquest mètode s'ha de cridar quan es vulgin guardar els canvis a la BD
 	public static void end() {
