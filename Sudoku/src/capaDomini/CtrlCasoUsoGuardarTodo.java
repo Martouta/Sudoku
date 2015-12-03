@@ -1,5 +1,5 @@
 package capaDomini;
 
-public class CtrlCasoUsoCargarTodo {
+public class CtrlCasoUsoGuardarTodo {
 	//NI IDEA DE COMO HACERLO
 }
