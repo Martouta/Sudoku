@@ -28,7 +28,6 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 	}
 	
 	private void initComponents() {
-		numSudokus = 3; //70?
 		
 		setTitle("Seleccionar sudoku de la base de datos");
 		setSize(700,480); //ancho por alto
@@ -127,6 +126,8 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 		nombresSudokus.addElement("id02");
 		nombresSudokus.addElement("id03");
 		nombresSudokus.addElement("id06");*/
+		
+		numSudokus = infoSudokusDeLaBD.size(); //NECESITAMOS ESTA VARIABLE???!!!
 		datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
 		int cont = 1;

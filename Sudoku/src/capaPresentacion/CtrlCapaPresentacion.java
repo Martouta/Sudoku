@@ -20,6 +20,7 @@ public class CtrlCapaPresentacion {
     private static JFrame frameMenuOpciones;
     private static JFrame frameMenuSudoku;
     private static JFrame frameSeleccionarSudokuBD;
+    private static JFrame frameSeleccionarPartidaReanudar;
     
     
 	private static Boolean cambiosParaBD;
@@ -249,10 +250,19 @@ public class CtrlCapaPresentacion {
 				        frameSeleccionarSudokuBD.setVisible(true);
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
 						ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
-					} else if (tipoSudoku == "tsProponer") {
+					} else if (tipoSudoku == "tsProponer") { //FALTA LO DEL NOMBRE DE SUDOKU
 						ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas
+						//FALTA BASTANTE
 					} else { //tipo tsReanudarPartida
 						Vector<DTOPartidaAMedias> infoPartidasAMedias = ctrlCUSeleccionarJugarSudoku.obtenerPartidas(nombreUsuario, dificultad, n);
+						//INIT SELECCIONAR PARTIDA A REANUDAR:
+				        JFrame.setDefaultLookAndFeelDecorated(true);
+				        frameSeleccionarPartidaReanudar = new JFrameSeleccionarPartidaReanudar(infoPartidasAMedias);
+				        frameSeleccionarPartidaReanudar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				        frameSeleccionarPartidaReanudar.pack();
+				        //Ocultar vista actual y mostrar la siguiente:
+				        frameMenuSudoku.setVisible(false);
+				        frameSeleccionarPartidaReanudar.setVisible(true);
 					}
 				} catch (ExcepcionNoHaySudokuConCaracteristicasSeleccionadas e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());

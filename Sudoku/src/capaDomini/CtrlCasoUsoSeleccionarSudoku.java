@@ -1,6 +1,6 @@
 package capaDomini;
 
-//NO ESTA PREPARADO PARA SER PROGRAMADO
+//LISTO PARA PROGRAMARLO
 
 import java.util.*;
 import DataTransferObjects.*;
@@ -28,10 +28,14 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return new Vector<DTOSudokuDeLaBD>(); //Esta linea esta solo para que no pete por faltar un return
 	}
 	
-	//AUN NO SE QUE TENDRA QUE HACER Y DEVOLVER ESTA FUNCION EXACTAMENTE
-	public void obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales{
-		//AUN NO SE QUE TENDRA QUE HACER Y DEVOLVER ESTA FUNCION EXACTAMENTE
-		//PERO LO QUE ES SEGURO: Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales
+	public Vector<DTOCeldaFija> obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales{
+		/*
+		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
+		 Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales, si no:
+		 Genera un Sudoku nuevo con la dificultad "dificultad", la n "n", y la partida con este sudoku y el usuario "nombreUsuario".
+		 Devuelve las celdas fijas de este sudoku.
+		 */
+		return new Vector<DTOCeldaFija>(); //Esta linea esta solo para que no pete por faltar un return
 	}
 	
 	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas) throws ExcepcionSudokuYaExiste{

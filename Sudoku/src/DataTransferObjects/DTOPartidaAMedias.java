@@ -23,8 +23,14 @@ public class DTOPartidaAMedias {
 		return fechaIni;
 	}
 
-	public DTOTiempo getTiempoEjecutandose() {
-		return tiempoEjecutandose;
+	public int getSegundos() {
+		return tiempoEjecutandose.getSegundos();
+	}
+	public int getMinutos() {
+		return tiempoEjecutandose.getMinutos();
+	}
+	public int getHoras() {
+		return tiempoEjecutandose.getHoras();
 	}
 
 	public int getNumeroPistas() {
