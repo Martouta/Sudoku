@@ -1,6 +1,6 @@
 package persistencia;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 import DataTransferObjects.tipoDificultad;
@@ -20,7 +20,7 @@ public class DriverCtrlJocSudoku {
         
         TaulerSudoku t;
         TaulerSudoku tsol;
-        JocSudoku js;
+        JocSudoku js, js1;
         do {
 	        if(n<4)	t=GeneradorSudoku.generaSudoku(n, tipoDificultad.dificil);
 	        else 	t=GeneradorSudoku.generaSudoku2(n, tipoDificultad.dificil);
@@ -28,20 +28,21 @@ public class DriverCtrlJocSudoku {
 		    t.muestraTabla();
 		    tsol.muestraTabla();
 			js = new JocSudoku("pepito",t,tsol);
-			//js = new JocSudoku("aleix",t,tsol);
-			if(n==4 && js.getDificultad()!=tipoDificultad.trivial //&& js.getDificultad()!=tipoDificultad.facil)
-				)break;
+			js1 = new JocSudoku("aleix",t,tsol);
+			if(n==4 && js.getDificultad()!=tipoDificultad.trivial) break;
         } while(js.getDificultad()!=tipoDificultad.dificil);
-		System.out.println(js.getDificultad());
-
-		cjs = new CtrlJocSudoku(t,tsol);
-		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
-		CtrlJocSudoku.end();
-		
-		js = new JocSudoku("pepe",t,tsol);
 		//System.out.println(js.getDificultad());
 
+		CtrlJocSudoku.init();
 		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
+		if (!CtrlJocSudoku.afegeixJocSudoku(js1)) System.out.println("Aquest id ja esta a la BD");
+		CtrlJocSudoku.end();
+		
+		CtrlJocSudoku.renombraJocSudoku("pepito", "pepe");
+		
+		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD"); //hauria de donar error ja que hem canviat el nom,
+																								  //aixi que ja esta a la BD
+		
 		CtrlJocSudoku.end();
 		
 		//provem si esborran el vector de jocs i carregantlo del txt funciona
@@ -65,6 +66,4 @@ public class DriverCtrlJocSudoku {
 		System.out.println("Termino");
 		entrada.close();
 	}
-
-	private static CtrlJocSudoku cjs;
 }

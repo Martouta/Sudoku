@@ -21,37 +21,6 @@ public class CtrlTauler
 	protected static ArrayList<String> nombresTauler;
     private static String path = "src/domini/data/taulers.txt";
     
-    
- 	/*public CtrlTauler() {
- 		dirty = false;
- 		try {
- 			CtrlPersistencia.setSeparator(" ");
-             taulersObj = new ArrayList<TaulerSudoku>();
-             nombresTauler = new ArrayList<String>();
-             File file = new File(Paths.get(path).toAbsolutePath().toString());
-             if(!file.exists()) file.getParentFile().mkdirs();
-             else carrega();
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-     }*/
-    
-    //inicialitza els atributs igual que la creadora
-    /*
-    static {
-    	dirty = false;
- 		try {
- 			 CtrlPersistencia.setSeparator(" ");
-             taulersObj = new ArrayList<TaulerSudoku>();
-             nombresTauler = new ArrayList<String>();
-             File file = new File(Paths.get(path).toAbsolutePath().toString());
-             if(!file.exists()) file.getParentFile().mkdirs();
-             else carrega();
-             //System.out.println("Inicialitzo");
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-    }*/
     // prefiero hacerlo así, garantizamos un orden
     public static void init() {
     	try {

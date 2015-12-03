@@ -10,27 +10,13 @@ import capaDomini.JocSudoku;
 import capaDomini.ResolvedorSudoku;
 import capaDomini.Tauler;
 import capaDomini.TaulerSudoku;
-//import capaDomini.tipoDificultad;
+
 
 public class CtrlJocSudoku {
 
 	private static boolean dirty;             // true si s'ha modificat la llista de jocs
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
     private static String path = "src/domini/data/jocs.txt";
-    
-    //antes de llamar a CtrlJocSudoku, se debe llamar a CtrlTauler para obtener los tableros original y resuelto y pasarlos como parametros
-    public CtrlJocSudoku(TaulerSudoku ts, TaulerSudoku tssol) {
-		dirty = false;
-		try {
-			CtrlPersistencia.setSeparator(" ");
-            jocs = new ArrayList<JocSudoku>();
-            File file = new File(Paths.get(path).toAbsolutePath().toString());
-            if(!file.exists()) file.getParentFile().mkdirs();
-            else carrega(ts,tssol);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
     public static void init() {
     	dirty = false;
@@ -67,20 +53,6 @@ public class CtrlJocSudoku {
                 	}
                 }
                 jocs.add(new JocSudoku(id,ts,ResolvedorSudoku.resuelveSudoku3(ts)));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    //carreguem els jocsSudoku al ArrayList jocs des del fitxer path utilitzant el CtrlPersistencia
-    protected static void carrega(TaulerSudoku ts, TaulerSudoku tssol)
-    {
-        try {
-            ArrayList<ArrayList<String>> joc = CtrlPersistencia.loadTable(path);
-            for (ArrayList<String> fila : joc) {
-                jocs.add(new JocSudoku(fila.get(0), ts, tssol));
             }
         } catch (Exception e) {
             e.printStackTrace();
