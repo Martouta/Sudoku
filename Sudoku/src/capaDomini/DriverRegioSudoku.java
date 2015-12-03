@@ -2,6 +2,8 @@ package capaDomini;
 
 import java.util.Scanner;
 
+import DataTransferObjects.tipoRegioSudoku;
+
 public class DriverRegioSudoku {
 
 	public static void main(String[] args) {

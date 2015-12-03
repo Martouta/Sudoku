@@ -2,6 +2,8 @@ package capaDomini;
 
 import java.util.Scanner;
 
+import DataTransferObjects.tipoDificultad;
+
 public class DriverJocSudoku {
 
 	public static void main(String[] args) {

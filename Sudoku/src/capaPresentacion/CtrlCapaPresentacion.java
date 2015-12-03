@@ -2,6 +2,9 @@ package capaPresentacion;
 
 import java.util.*;
 import javax.swing.*;
+
+import DataTransferObjects.tipoDificultad;
+
 import java.awt.event.*;
 import capaDomini.*;
 import excepciones.*;
@@ -214,8 +217,19 @@ public class CtrlCapaPresentacion {
 				String tipoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tipoSudokuElegido();
 				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
 				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
+				CtrlCasoUsoSeleccionarJugarSudoku ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarJugarSudoku();
+				int nn = Integer.parseInt(tamanoSudoku.substring(0, 1));
+				int n = (int) Math.sqrt(nn);
+				tipoDificultad dificultad;
+				if (dificultadSudoku == "trivial")
 				try{
-					if (tipoSudoku == "") {
+					if (tipoSudoku == "tsBD") {
+						ctrlCUSeleccionarJugarSudoku.obtenerSudokusDeLaBD(dificultad, n);
+					} else if (tipoSudoku == "tsGenerado") {
+						//VOY POR AQUI
+					} else if (tipoSudoku == "tsProponer") {
+						//VOY POR AQUI
+					} else { //tipo tsReanudarPartida
 						//VOY POR AQUI
 					}
 				} catch (Exception e) {

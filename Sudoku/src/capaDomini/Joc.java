@@ -1,6 +1,8 @@
 package capaDomini;
 //import java.util.*;
 
+import DataTransferObjects.tipoDificultad;
+
 public abstract class Joc {
 	private tipoDificultad dificultad;
 	private String id;

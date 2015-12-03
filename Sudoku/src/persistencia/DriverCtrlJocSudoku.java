@@ -3,11 +3,11 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import DataTransferObjects.tipoDificultad;
 import capaDomini.GeneradorSudoku;
 import capaDomini.JocSudoku;
 import capaDomini.ResolvedorSudoku;
 import capaDomini.TaulerSudoku;
-import capaDomini.tipoDificultad;
 
 public class DriverCtrlJocSudoku {
 

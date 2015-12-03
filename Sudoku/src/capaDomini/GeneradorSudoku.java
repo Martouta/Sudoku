@@ -2,6 +2,7 @@ package capaDomini;
 
 import java.util.*;
 
+import DataTransferObjects.tipoDificultad;
 import excepciones.*;
 
 /* Esta clase genera Sudokus con cuatro algoritmos distintos. Están dos de prueba:

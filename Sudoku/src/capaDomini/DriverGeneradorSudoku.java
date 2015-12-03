@@ -2,6 +2,8 @@ package capaDomini;
 
 import java.util.Scanner;
 
+import DataTransferObjects.tipoDificultad;
+
 /*
  * Este driver permite testear los cuatro algoritmos de generación de sudokus,
  * tanto los de prueba como los definitivos. Tras escoger el algorimo, genera el

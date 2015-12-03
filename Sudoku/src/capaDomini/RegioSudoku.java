@@ -1,6 +1,8 @@
 package capaDomini;
  
 import java.util.*;
+
+import DataTransferObjects.tipoRegioSudoku;
  
 public class RegioSudoku extends RegioSenseRepeticions{
     

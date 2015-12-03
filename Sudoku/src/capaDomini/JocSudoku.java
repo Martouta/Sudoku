@@ -2,6 +2,8 @@ package capaDomini;
 
 import java.util.*;
 
+import DataTransferObjects.tipoDificultad;
+
 public class JocSudoku extends Joc {
 	
 	//private static String idmarca; //que os parece hacer un idstatic para ir assignando ids a los diferentes juegos? o mejor en Joc?

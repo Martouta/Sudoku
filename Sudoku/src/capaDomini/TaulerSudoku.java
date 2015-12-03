@@ -1,6 +1,8 @@
 package capaDomini;
 
 import java.util.Vector;
+
+import DataTransferObjects.tipoRegioSudoku;
 import excepciones.*;
 
 public class TaulerSudoku extends Tauler {

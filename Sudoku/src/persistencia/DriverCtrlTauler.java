@@ -3,6 +3,7 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import DataTransferObjects.tipoDificultad;
 import capaDomini.*;
 
 public class DriverCtrlTauler {
