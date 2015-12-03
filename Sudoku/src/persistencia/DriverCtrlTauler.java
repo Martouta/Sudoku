@@ -22,8 +22,8 @@ public class DriverCtrlTauler {
 	    CtrlTauler.init();
 		if (!CtrlTauler.afegeixTaulerSudoku(t,"aleix")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		if (!CtrlTauler.afegeixTaulerSudoku(t,"pepe")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
-		//if (!CtrlTauler.afegeixTaulerSudoku(t,"pepito")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
-		//if (!CtrlTauler.afegeixTaulerSudoku(t,"holaprimo")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		if (!CtrlTauler.afegeixTaulerSudoku(t,"pepito")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
+		if (!CtrlTauler.afegeixTaulerSudoku(t,"holaprimo")) System.out.println("Ja hi ha un tauler amb aquest id a la BD");
 		CtrlTauler.end();
 		
 		ArrayList<String> noms = CtrlTauler.getNoms();
@@ -31,7 +31,7 @@ public class DriverCtrlTauler {
 			System.out.println(s);
 		}
 		
-		//if (!CtrlTauler.esborraTaulerSudoku("aleix")) System.out.println("No hi ha cap tauler amb aquest id a la BD"); 
+		if (!CtrlTauler.esborraTaulerSudoku("aleix")) System.out.println("No hi ha cap tauler amb aquest id a la BD"); 
 		
 		/*noms = CtrlTauler.getNoms();
 		for (String s : noms) { //haurien de sortir els noms mensy aleix

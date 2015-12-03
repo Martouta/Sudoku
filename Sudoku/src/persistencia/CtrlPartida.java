@@ -65,21 +65,24 @@ public class CtrlPartida {
             ArrayList<ArrayList<String>> partidasPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : partidasPers) {
             	punt = 0;
-            	nombresPartidas.add(fila.get(punt++));
             	usuariosPartidas.add(fila.get(punt++));
             	String nombretauler = fila.get(punt++);
+            	punt++;
+            	int nsegundos = Integer.parseInt(fila.get(punt++));
+            	int npistas = Integer.parseInt(fila.get(punt++));
+            	nombresPartidas.add(fila.get(punt++));
             	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
                 	for(int j=0;j<n*n;j++){
                 		int num = Integer.parseInt(fila.get(punt++));
-                		if(num!=0)
+                		if(num!=0) {
                 			ts.setNumCelda(i, j, num, false);
-                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
-                		if(basaur)
-                			ts.getCella(i, j).fijar();
-
+	                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
+	                		if(basaur)
+	                			ts.getCella(i, j).fijar();
+                		}
                 	}
                 }
                 js.setTauler(ts);
@@ -89,14 +92,14 @@ public class CtrlPartida {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
                 String s = fila.get(punt++);
                 p.setDataIni(df.parse(s));
-                p.setSegundos(Integer.parseInt(fila.get(punt++)));
-                p.setNPistas(Integer.parseInt(fila.get(punt++)));
+                p.setSegundos(nsegundos);
+                p.setNPistas(npistas);
                 int nmarcas = Integer.parseInt(fila.get(punt++));
                 for(int i=0;i<nmarcas;i++) {
                 	p.marcarNumero(Integer.parseInt(fila.get(punt++)), Integer.parseInt(fila.get(punt++)),
                 			Integer.parseInt(fila.get(punt++)));
                 }
-                partidas.add(new Partida(usuario,js));
+                partidas.add(p);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,10 +113,13 @@ public class CtrlPartida {
             for (int ii=0;ii<partidas.size();ii++) {
             	Partida p = partidas.get(ii);
             	ArrayList<String> fila = new ArrayList<String>();
-            	fila.add(nombresPartidas.get(ii));
             	fila.add(usuariosPartidas.get(ii));
             	JocSudoku js = p.getJocSudoku();
             	fila.add(js.getId());
+            	fila.add(js.getDificultad().toString());
+            	fila.add(Integer.toString(p.getSegundosTotales()));
+                fila.add(Integer.toString(p.getNumPistas()));
+            	fila.add(nombresPartidas.get(ii));
             	Tauler ts = js.getTauler();
             	int nn = ts.getAlto();
                 fila.add(Integer.toString((int)Math.sqrt(nn))); //guardem la n del tauler ----------> get(0)
@@ -121,16 +127,15 @@ public class CtrlPartida {
                 	for(int j=0;j<nn;j++) {
                 		if(ts.estaVacia(i, j))
                 			fila.add(Integer.toString(0));
-                		else
+                		else {
                 			fila.add(Integer.toString(ts.getNumero(i, j)));
-                		fila.add(Boolean.toString(ts.estaFija(i, j)));
+                			fila.add(Boolean.toString(ts.estaFija(i, j)));
+                		}
                 	}
                 }
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
                 Date d = p.getDataIni();
                 fila.add(df.format(d));
-                fila.add(Integer.toString(p.getSegundosTotales()));
-                fila.add(Integer.toString(p.getNumPistas()));
                 int nmarcas = 0;
                 for(int i=0;i<nn;i++) {
                 	for(int j=0;j<nn;j++) {
