@@ -2,7 +2,9 @@ package persistencia;
 
 import persistencia.CtrlPersistencia;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -75,7 +77,9 @@ public class CtrlUser
 		dirty = false;
 		try {
             usuaris = new ArrayList<User>();
-            carrega();
+            File file = new File(Paths.get(path).toAbsolutePath().toString());
+            if(!file.exists()) file.getParentFile().mkdirs();
+            else carrega();
         } catch (Exception e) {
             e.printStackTrace();
         }
