@@ -3,6 +3,7 @@ package capaPresentacion;
 import java.util.*;
 import javax.swing.*;
 
+import DataTransferObjects.DTOCeldaFija;
 import DataTransferObjects.tipoDificultad;
 
 import java.awt.event.*;
@@ -200,6 +201,18 @@ public class CtrlCapaPresentacion {
 		});
 	}
 	
+	private int NfromTamanoSudoku(String tamanoSudoku){
+		int nn = Integer.parseInt(tamanoSudoku.substring(0, 1));
+		return (int) Math.sqrt(nn);
+	}
+	
+	private tipoDificultad tipoDificultadFromStringDificultad(String dificultadSudoku){
+		if (dificultadSudoku == "trivial") return tipoDificultad.trivial;
+		if (dificultadSudoku == "facil") return tipoDificultad.facil;
+		if (dificultadSudoku == "medio") return tipoDificultad.medio;
+		return tipoDificultad.dificil; //else
+	}
+	
 	private void initListenersMenuSudoku() {
 		//LISTENERS DE MENU SUDOKU:
 		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
@@ -218,17 +231,15 @@ public class CtrlCapaPresentacion {
 				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
 				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
 				CtrlCasoUsoSeleccionarJugarSudoku ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarJugarSudoku();
-				int nn = Integer.parseInt(tamanoSudoku.substring(0, 1));
-				int n = (int) Math.sqrt(nn);
-				tipoDificultad dificultad;
-				if (dificultadSudoku == "trivial")
+				int n = NfromTamanoSudoku(tamanoSudoku);
+				tipoDificultad dificultad = tipoDificultadFromStringDificultad(dificultadSudoku);
 				try{
 					if (tipoSudoku == "tsBD") {
 						ctrlCUSeleccionarJugarSudoku.obtenerSudokusDeLaBD(dificultad, n);
 					} else if (tipoSudoku == "tsGenerado") {
 						//VOY POR AQUI
 					} else if (tipoSudoku == "tsProponer") {
-						//VOY POR AQUI
+						ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas
 					} else { //tipo tsReanudarPartida
 						//VOY POR AQUI
 					}
@@ -262,11 +273,15 @@ public class CtrlCapaPresentacion {
 	}
     
     private void pressSalir() {
-		//FALTA: guardar en txt o no, dependera del valor cambiosParaBD
+		if (cambiosParaBD) guardarTodo(); 
 		System.out.println("Salir pulsado");
 	}
     
     private void cargarTodo() {
+		//POR HACER
+	}
+    
+    private void guardarTodo() {
 		//POR HACER
 	}
 	
