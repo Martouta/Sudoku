@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import capaDomini.JocSudoku;
 import capaDomini.ResolvedorSudoku;
+import capaDomini.Tauler;
 import capaDomini.TaulerSudoku;
 //import capaDomini.tipoDificultad;
 
@@ -47,11 +48,25 @@ public class CtrlJocSudoku {
     
     protected static void carrega() {
     	try {
-            ArrayList<TaulerSudoku> m = CtrlTauler.getTaula();
-            ArrayList<String> nombres = CtrlTauler.getNoms();
-            for(int i=0;i<m.size();i++) {
-            	TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(m.get(i));
-            	jocs.add(new JocSudoku(nombres.get(i),m.get(i),tsol));
+    		int punt;// = 0;
+            ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
+            for (ArrayList<String> fila : taulersPers) {
+            	punt = 0;
+            	String id = fila.get(punt++);
+                int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
+                TaulerSudoku ts = new TaulerSudoku(n);
+                for(int i=0;i<n*n;i++) {
+                	for(int j=0;j<n*n;j++){
+                		int num = Integer.parseInt(fila.get(punt++));
+                		if(num!=0) {
+	                		ts.setNumCelda(i, j, num, false);
+	                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
+	                		if(basaur)
+	                			ts.getCella(i, j).fijar();
+                		}
+                	}
+                }
+                jocs.add(new JocSudoku(id,ts,ResolvedorSudoku.resuelveSudoku3(ts)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,18 +89,32 @@ public class CtrlJocSudoku {
     
     protected static ArrayList<ArrayList<String>> codifica()
     {
-        ArrayList<ArrayList<String>> joc = new ArrayList<ArrayList<String>>();
+    	ArrayList<ArrayList<String>> tjocs = new ArrayList<ArrayList<String>>();
         try {
-            for (JocSudoku js : jocs) {
-                ArrayList<String> fila = new ArrayList<String>();
-                fila.add(js.getId());
-                fila.add(js.getDificultad().toString());                
-                joc.add(fila);
+            for (int ii=0;ii<jocs.size();ii++) {
+            	JocSudoku js = jocs.get(ii);
+            	ArrayList<String> fila = new ArrayList<String>();
+            	fila.add(js.getId());
+            	Tauler t = js.getTauler();
+            	int nn = t.getAncho();
+                fila.add(Integer.toString((int)Math.sqrt(nn))); //guardem la n del tauler ----------> get(0)
+                
+                for(int i=0;i<nn;i++) {
+                	for(int j=0;j<nn;j++) {
+                		if(t.estaVacia(i, j))
+                			fila.add(Integer.toString(0));
+                		else {
+                			fila.add(Integer.toString(t.getNumero(i, j)));
+                			fila.add(Boolean.toString(t.estaFija(i, j)));
+                		}
+                	}
+                }
+                tjocs.add(fila);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return joc;
+        return tjocs;
     }
     
     public static void end() {
@@ -146,4 +175,19 @@ public class CtrlJocSudoku {
          }
          return dirty;
      }
+ 	
+ 	// dudo que la usemos, pero venga
+ 	public static boolean renombraJocSudoku(String idAntes, String idDespues) {
+ 		try {
+            for (int i = jocs.size() - 1; i >= 0; i--) {
+                if (Objects.equals(jocs.get(i).getId(), idAntes)) {
+                	jocs.get(i).setId(idDespues);
+                	dirty = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dirty;
+ 	}
 }
