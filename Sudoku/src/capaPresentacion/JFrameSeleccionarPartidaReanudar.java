@@ -5,6 +5,9 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import DataTransferObjects.DTOPartidaAMedias;
+import DataTransferObjects.DTOSudokuDeLaBD;
+
 public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
@@ -22,13 +25,12 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private JButton butSalir;
 	private JLabel labMensError;
 	
-	public JFrameSeleccionarPartidaReanudar() {
+	public JFrameSeleccionarPartidaReanudar(Vector<DTOPartidaAMedias> infoPartidasAMedias) {
+		rellenaDatos(infoPartidasAMedias);
 		initComponents();
 	}
 	
 	private void initComponents() {
-		numSudokus = 3; //70?
-		
 		setTitle("Seleccionar partida a reanudar");
 		setSize(700,480); //ancho por alto
 		setMinimumSize(new Dimension(700, 480));
@@ -111,8 +113,8 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		add(panSelectPartidaRanudar);
 	}
 	
-	private void rellenaDatos() {
-		datosARellenar = new Vector<String>();
+	private void rellenaDatos(Vector<DTOPartidaAMedias> infoPartidasAMedias) {
+		/*datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
 		datosARellenar.addElement("1, sudo01, empezado el 24/11/2015, tiempo ejecutandose: 02:30:26, numero de pistas: 4");
 		datosARellenar.addElement("2, sudo02, empezado el 24/11/2015, tiempo ejecutandose: 02:30:02, numero de pistas: 0");
@@ -125,16 +127,27 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		nombresSudokus.addElement("sudo01");
 		nombresSudokus.addElement("sudo02");
 		nombresSudokus.addElement("sudo05");
-		nombresSudokus.addElement("sudo06");
+		nombresSudokus.addElement("sudo06");*/
+		
+		numSudokus = infoPartidasAMedias.size(); //NECESITAMOS ESTA VARIABLE???!!!
+		datosARellenar = new Vector<String>();
+		nombresSudokus = new Vector<String>();
+		int cont = 1;
+		for (DTOPartidaAMedias infoPartida : infoPartidasAMedias) {
+			String rellena = cont + ", " + infoPartida.getNombreSudoku() + ", empezado el ";
+			rellena = rellena + infoPartida.getHoras() + infoPartida.getMinutos() + infoPartida.getSegundos();
+			rellena = rellena + ", numero de pistas: ";
+			rellena = rellena + infoPartida.getNumeroPistas();
+			
+			datosARellenar.addElement(rellena);
+			nombresSudokus.addElement(infoPartida.getNombreSudoku());
+			++cont;
+		}
 	}
 
 	private void rellenarPanelMenu() {
-		rellenaDatos();
-		
         listPartidas = new JList(demoList);
-
         scrollPane.setViewportView(listPartidas);
-        
         listPartidas.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {

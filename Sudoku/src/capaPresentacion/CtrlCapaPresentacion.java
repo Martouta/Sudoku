@@ -4,6 +4,8 @@ import java.util.*;
 import javax.swing.*;
 
 import DataTransferObjects.DTOCeldaFija;
+import DataTransferObjects.DTOPartidaAMedias;
+import DataTransferObjects.DTOSudokuDeLaBD;
 import DataTransferObjects.tipoDificultad;
 
 import java.awt.event.*;
@@ -17,6 +19,8 @@ public class CtrlCapaPresentacion {
     private static JFrame frameRegistrarse;
     private static JFrame frameMenuOpciones;
     private static JFrame frameMenuSudoku;
+    private static JFrame frameSeleccionarSudokuBD;
+    private static JFrame frameSeleccionarPartidaReanudar;
     
     
 	private static Boolean cambiosParaBD;
@@ -170,7 +174,7 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER //PUEDE QUE YA SEA POSIBLE
+				if (cambiosParaBD) guardarTodo();
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButGestionPerfilUsu().addActionListener(new ActionListener() {
@@ -230,20 +234,41 @@ public class CtrlCapaPresentacion {
 				String tipoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tipoSudokuElegido();
 				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
 				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
-				CtrlCasoUsoSeleccionarJugarSudoku ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarJugarSudoku();
+				CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarSudoku();
 				int n = NfromTamanoSudoku(tamanoSudoku);
 				tipoDificultad dificultad = tipoDificultadFromStringDificultad(dificultadSudoku);
 				try{
 					if (tipoSudoku == "tsBD") {
-						ctrlCUSeleccionarJugarSudoku.obtenerSudokusDeLaBD(dificultad, n);
-					} else if (tipoSudoku == "tsGenerado") {
-						//VOY POR AQUI
-					} else if (tipoSudoku == "tsProponer") {
+						Vector<DTOSudokuDeLaBD> infoSudokusDeLaBD = ctrlCUSeleccionarJugarSudoku.obtenerSudokusDeLaBD(dificultad, n);
+						//INIT SELECCIONAR SUDOKU DE LA BD:
+				        JFrame.setDefaultLookAndFeelDecorated(true);
+				        frameSeleccionarSudokuBD = new JFrameSeleccionarSudokuBD(infoSudokusDeLaBD);
+				        frameSeleccionarSudokuBD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				        frameSeleccionarSudokuBD.pack();
+				        //Ocultar vista actual y mostrar la siguiente:
+				        frameMenuSudoku.setVisible(false);
+				        frameSeleccionarSudokuBD.setVisible(true);
+					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
+						ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+					} else if (tipoSudoku == "tsProponer") { //FALTA LO DEL NOMBRE DE SUDOKU
 						ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas
+						//FALTA BASTANTE
 					} else { //tipo tsReanudarPartida
-						//VOY POR AQUI
+						Vector<DTOPartidaAMedias> infoPartidasAMedias = ctrlCUSeleccionarJugarSudoku.obtenerPartidas(nombreUsuario, dificultad, n);
+						//INIT SELECCIONAR PARTIDA A REANUDAR:
+				        JFrame.setDefaultLookAndFeelDecorated(true);
+				        frameSeleccionarPartidaReanudar = new JFrameSeleccionarPartidaReanudar(infoPartidasAMedias);
+				        frameSeleccionarPartidaReanudar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				        frameSeleccionarPartidaReanudar.pack();
+				        //Ocultar vista actual y mostrar la siguiente:
+				        frameMenuSudoku.setVisible(false);
+				        frameSeleccionarPartidaReanudar.setVisible(true);
 					}
-				} catch (Exception e) {
+				} catch (ExcepcionNoHaySudokuConCaracteristicasSeleccionadas e) {
+					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuYaExiste e) {
+					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+				} catch (ExcepcionMaquinaNoGeneraTriviales e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
 				}
 			}
