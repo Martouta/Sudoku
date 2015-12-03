@@ -82,11 +82,12 @@ public class CtrlTauler
                 for(int i=0;i<n*n;i++) {
                 	for(int j=0;j<n*n;j++){
                 		int num = Integer.parseInt(fila.get(punt++));
-                		if(num!=0)
-                			ts.setNumCelda(i, j, num, false);
-                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
-                		if(basaur)
-                			ts.getCella(i, j).fijar();
+                		if(num!=0) {
+	                		ts.setNumCelda(i, j, num, false);
+	                		boolean basaur = Boolean.parseBoolean(fila.get(punt++));
+	                		if(basaur)
+	                			ts.getCella(i, j).fijar();
+                		}
                 	}
                 }
                 taulersObj.add(ts);
@@ -112,9 +113,10 @@ public class CtrlTauler
                 	for(int j=0;j<n*n;j++) {
                 		if(ts.estaVacia(i, j))
                 			fila.add(Integer.toString(0));
-                		else
+                		else {
                 			fila.add(Integer.toString(ts.getNumero(i, j)));
-                		fila.add(Boolean.toString(ts.estaFija(i, j)));
+                			fila.add(Boolean.toString(ts.estaFija(i, j)));
+                		}
                 	}
                 }
                 taulersPers.add(fila);

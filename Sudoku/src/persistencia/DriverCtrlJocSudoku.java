@@ -35,13 +35,13 @@ public class DriverCtrlJocSudoku {
 		System.out.println(js.getDificultad());
 
 		cjs = new CtrlJocSudoku(t,tsol);
-		CtrlJocSudoku.afegeixJocSudoku(js);
+		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
 		CtrlJocSudoku.end();
 		
 		js = new JocSudoku("pepe",t,tsol);
 		//System.out.println(js.getDificultad());
 
-		CtrlJocSudoku.afegeixJocSudoku(js);
+		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
 		CtrlJocSudoku.end();
 		
 		//provem si esborran el vector de jocs i carregantlo del txt funciona
