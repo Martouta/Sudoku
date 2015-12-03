@@ -40,7 +40,8 @@ public class DriverCtrlJocSudoku {
 		
 		CtrlJocSudoku.renombraJocSudoku("pepito", "pepe");
 		
-		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
+		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD"); //hauria de donar error ja que hem canviat el nom,
+																								  //aixi que ja esta a la BD
 		
 		CtrlJocSudoku.end();
 		

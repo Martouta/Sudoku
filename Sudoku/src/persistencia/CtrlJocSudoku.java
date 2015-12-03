@@ -10,7 +10,7 @@ import capaDomini.JocSudoku;
 import capaDomini.ResolvedorSudoku;
 import capaDomini.Tauler;
 import capaDomini.TaulerSudoku;
-//import capaDomini.tipoDificultad;
+
 
 public class CtrlJocSudoku {
 
