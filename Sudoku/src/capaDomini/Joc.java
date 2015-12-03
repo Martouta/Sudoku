@@ -60,4 +60,8 @@ public abstract class Joc {
 	public void setTauler(Tauler t) {
 		tauler = t;
 	}
+	
+	public void setId(String s) {
+		id = s;
+	}
 }

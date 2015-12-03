@@ -73,4 +73,8 @@ public class JocSudoku extends Joc {
 	public void setTauler(Tauler t) {
 		super.setTauler(t);
 	}
+	
+	public void setId(String s) {
+		super.setId(s);
+	}
 }
