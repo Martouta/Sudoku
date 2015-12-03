@@ -1,6 +1,6 @@
 package capaDomini;
 
-//NO ACABADO
+//NO ESTA PREPARADO PARA SER PROGRAMADO
 
 import java.util.*;
 import DataTransferObjects.*;

@@ -1,5 +1,7 @@
 package capaDomini;
 
+//LISTO PARA PROGRAMARLO
+
 import excepciones.excUsuario.*;
 
 public class CtrlCasoUsoRegistrarse {
