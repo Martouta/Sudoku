@@ -77,15 +77,20 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		//String id = nombreUsuario; //("Your number is " + theNumber + "!");
 		
-		JocSudoku j = new JocSudoku("NOSEQUEIDPONER", t, tsol); 
+		Date date = new Date();
+		String idSudoku = nombreUsuario + date.toString();
+		
+		JocSudoku j = new JocSudoku(idSudoku, t, tsol); 
 		//el ID como se genera? podríamos hacer algun contador o algo, para cada usuario, o para los juegos?
 		
 		User u = CtrlUser.getUsuari(nombreUsuario);
 		Partida p = new Partida(u,j);
 		
+		CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(j); //afegir sudoku
 		
-		CtrlPartida.afegeixPartida(p,"NOSEQUEIDPONER"); //afegir partida. Ha de ser el mateix id oi?
+		CtrlPartida.init();
+		CtrlPartida.afegeixPartida(p,idSudoku); //afegir partida. Ha de ser el mateix id oi?
 		
 		Vector<DTOCeldaFija> V = new Vector<DTOCeldaFija>();
 		
