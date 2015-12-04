@@ -42,12 +42,25 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
         
         sb = new StringBuilder(64);
         sb.append("<html>¿También quiere eliminar de la")
-        		.append("<br/>base de datos los sudokus</html>")
+        		.append("<br/>base de datos los sudokus")
         		.append("<br/>de los cuáles es autor?</html>");
         
-		labConfirmacionSudokus.setText("¿También quiere eliminar de la base de datos los sudokus de los cuáles es autor?");
-		butEliminarPerfSud.setText("Eliminar Perfil y Sudokus");
-		butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");
+		//labConfirmacionSudokus.setText("¿También quiere eliminar de la base de datos los sudokus de los cuáles es autor?");
+        labConfirmacionSudokus.setText(sb.toString());
+        
+        sb = new StringBuilder(64);
+        sb.append("<html>Eliminar Perfil")
+        		.append("<br/>y Sudokus</html>");
+        
+		//butEliminarPerfSud.setText("Eliminar Perfil y Sudokus");
+        butEliminarPerfSud.setText(sb.toString());
+        
+        sb = new StringBuilder(64);
+        sb.append("<html>Eliminar Perfil")
+        		.append("<br/>pero no Sudokus</html>");
+        
+		//butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");
+        butEliminarPerfil.setText(sb.toString());
 		butNoEliminar.setText("No eliminar mi perfil");
 		
 		panConfirmacionBorrarPerfil = new JPanel();

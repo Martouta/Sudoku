@@ -54,7 +54,10 @@ public class JFrameGestionPerfiles extends JFrame {
     	labSeleccioneFuncion.setText("Selecione una funcion:");
     	butBorrarPerfil.setText("Borrar Perfil");
     	butResetearEstadisticasPerfil.setText("Resetear Estadisticas del Perfil");
-    	butVolverMenuPrincipal.setText("Volver al menu opciones");
+    	StringBuilder sb = new StringBuilder(64);
+        sb.append("<html>Volver al")
+        		.append("<br/>menu opciones</html>");
+    	butVolverMenuPrincipal.setText(sb.toString());
     	butSalir.setText("Salir");
     	
     	panGestionPerfil = new JPanel();

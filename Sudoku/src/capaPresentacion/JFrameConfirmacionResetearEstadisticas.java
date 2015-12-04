@@ -32,8 +32,8 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		//PROBAR PARA VER COMO QUEDA MEJOR
 		StringBuilder sb = new StringBuilder(128);
         sb.append("<html>¿Está seguro de que desea")
-        		.append("<br/>eliminar sus estadísticas?</html>")
-        		.append("<br/>También se recalcularán las estadísticas</html>")
+        		.append("<br/>eliminar sus estadísticas?")
+        		.append("<br/>También se recalcularán las estadísticas")
         		.append("<br/>globales y los rankings</html>");
 
 		//labConfirmacionResetearEstadisticas.setText("¿Está seguro de que desea eliminar sus estadísticas? También se recalcularán las estadísticas globales y los rankings");
