@@ -28,7 +28,7 @@ public class CtrlUser
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
-    private static String path = "src/domini/data/users.txt";
+    private static String path = "src/domini/data/users.txt"; //Canvi del path 
 	
 	// Carrega els usuaris de la BD
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
