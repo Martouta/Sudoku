@@ -65,6 +65,6 @@ public class JFrameGestionPerfiles extends JFrame {
     	panGestionPerfil.add(labEspacioBlanco);
     	panGestionPerfil.add(butVolverMenuPrincipal);
     	panGestionPerfil.add(butSalir);
-    	
+    	add(panGestionPerfil);
     }
 }

@@ -47,6 +47,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		panConfirmacionBorrarPerfil.add(butEliminarPerfSud);
 		panConfirmacionBorrarPerfil.add(butEliminarPerfil);
 		panConfirmacionBorrarPerfil.add(butNoEliminar);
+		add(panConfirmacionBorrarPerfil);
 	}
 	
 	public JButton getButEliminarPerfEst() {
