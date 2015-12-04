@@ -12,6 +12,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		Vector<DTOPartidaAMedias> V = new Vector<DTOPartidaAMedias>();
+		CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
 		
 		for(Partida p : A ){
@@ -45,6 +46,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	public Vector<DTOSudokuDeLaBD> obtenerSudokusDeLaBD(tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		
 		Vector<DTOSudokuDeLaBD> V = new Vector<DTOSudokuDeLaBD>();
+		CtrlJocSudoku.init();
 		ArrayList<JocSudoku> A = CtrlJocSudoku.getTaula();
 		for(JocSudoku j : A){
 			if(j.getDificultad()==dificultad && j.getTauler().getAncho()==n){ //jocs de dificultad dificultad i n n
