@@ -33,7 +33,18 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		butEliminarPerfil = new JButton();
 		butNoEliminar = new JButton();
 		
-		labConfirmacionPerfil.setText("¿Está seguro de que desea eliminar el perfil?");
+		StringBuilder sb = new StringBuilder(64);
+        sb.append("<html>¿Está seguro de que desea")
+        		.append("<br/>eliminar el perfil?</html>");
+        
+		//labConfirmacionPerfil.setText("¿Está seguro de que desea eliminar el perfil?");
+        labConfirmacionPerfil.setText(sb.toString());
+        
+        sb = new StringBuilder(64);
+        sb.append("<html>¿También quiere eliminar de la")
+        		.append("<br/>base de datos los sudokus</html>")
+        		.append("<br/>de los cuáles es autor?</html>");
+        
 		labConfirmacionSudokus.setText("¿También quiere eliminar de la base de datos los sudokus de los cuáles es autor?");
 		butEliminarPerfSud.setText("Eliminar Perfil y Sudokus");
 		butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");

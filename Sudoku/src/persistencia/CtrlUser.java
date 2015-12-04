@@ -76,6 +76,7 @@ public class CtrlUser
 	public static void init() {
 		dirty = false;
 		try {
+			CtrlPersistencia.setSeparator(" ");
             usuaris = new ArrayList<User>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
