@@ -3,10 +3,7 @@ package capaPresentacion;
 import java.util.*;
 import javax.swing.*;
 
-import DataTransferObjects.DTOCeldaFija;
-import DataTransferObjects.DTOPartidaAMedias;
-import DataTransferObjects.DTOSudokuDeLaBD;
-import DataTransferObjects.tipoDificultad;
+import DataTransferObjects.*;
 
 import java.awt.event.*;
 import capaDomini.*;

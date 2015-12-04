@@ -70,7 +70,7 @@ public class JFrameRegistrarse extends JFrame{
         labNombreUsuario.setText("Nombre de usuario: ");
         labContrasena.setText("Contrasena: ");
         labConfirmContrasena.setText("Confirma la contrasena: ");
-        labMensajeError.setText("ERROR INESPERADO [PARA HACER PRUEBAS]");
+        labMensajeError.setText("");
         butRegistrarse.setText("Registrarse");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
@@ -110,8 +110,7 @@ public class JFrameRegistrarse extends JFrame{
 		panMensError.add(labMensajeError);
 		JPanel panButRegistrarse = new JPanel();
 		panButRegistrarse.setLayout(new FlowLayout(FlowLayout.CENTER));
-		panButRegistrarse.setBackground(new Color(0,0,0));
-		//panButRegistrarse.setPreferredSize(butRegistrarse.getSize());//VOY POR AQUI
+		//panButRegistrarse.setBackground(new Color(0,0,0));
 		panButRegistrarse.add(butRegistrarse);
 		JPanel panButSalir = new JPanel();
 		panButSalir.setLayout(new FlowLayout(FlowLayout.CENTER));
