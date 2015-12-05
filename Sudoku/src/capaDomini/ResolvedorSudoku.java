@@ -1,5 +1,14 @@
 package capaDomini;
 
+import excepciones.ExcepcionCasillaBloqueada;
+import excepciones.ExcepcionCasillaVaciaNoFijable;
+import excepciones.ExcepcionNumCeldasDiferenteTamano;
+import excepciones.ExcepcionNumeroFijo;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionTamanoIncorrecto;
+import excepciones.ExcepcionValorFueraRango;
+import excepciones.ExcepcionValorYaPuesto;
+
 /*
  * Esta clase provee tres algoritmos para resolver sudokus: las funciones que acaban
  * en 1 utilizan un algoritmo de backtracking básico. Las funciones que acaban en 2
@@ -16,7 +25,7 @@ package capaDomini;
 
 public class ResolvedorSudoku {
 	
-	public static int resuelveSudoku1(TaulerSudoku s, TaulerSudoku sol) {
+	public static int resuelveSudoku1(TaulerSudoku s, TaulerSudoku sol) throws ExcepcionPosicionFueraRango, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		rec();
 		guarda(sol);
@@ -24,14 +33,14 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static int sols1(TaulerSudoku s) {
+	public static int sols1(TaulerSudoku s) throws ExcepcionPosicionFueraRango {
 		carga(s);
 		rec();
 		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
-	public static TaulerSudoku resuelveSudoku1(TaulerSudoku s) {
+	public static TaulerSudoku resuelveSudoku1(TaulerSudoku s) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		rec();
@@ -40,7 +49,7 @@ public class ResolvedorSudoku {
 		return sol;
 	}
 	
-	public static int resuelveSudoku2(TaulerSudoku s, TaulerSudoku sol) {
+	public static int resuelveSudoku2(TaulerSudoku s, TaulerSudoku sol) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		siso();
 		if(!flag)
@@ -50,7 +59,7 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static int sols2(TaulerSudoku s) {
+	public static int sols2(TaulerSudoku s) throws ExcepcionPosicionFueraRango {
 		carga(s);
 		siso();
 		if(!flag)
@@ -59,7 +68,7 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static TaulerSudoku resuelveSudoku2(TaulerSudoku s) {
+	public static TaulerSudoku resuelveSudoku2(TaulerSudoku s) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
@@ -70,7 +79,7 @@ public class ResolvedorSudoku {
 		return sol;
 	}
 	
-	public static int resuelveSudoku3(TaulerSudoku s, TaulerSudoku sol) {
+	public static int resuelveSudoku3(TaulerSudoku s, TaulerSudoku sol) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		siso();
 		if(!flag) {
@@ -82,7 +91,7 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static int sols3(TaulerSudoku s) {
+	public static int sols3(TaulerSudoku s) throws ExcepcionPosicionFueraRango {
 		carga(s);
 		siso();
 		if(!flag) {
@@ -93,7 +102,7 @@ public class ResolvedorSudoku {
 		return nsols;
 	}
 	
-	public static TaulerSudoku resuelveSudoku3(TaulerSudoku s) {
+	public static TaulerSudoku resuelveSudoku3(TaulerSudoku s) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		carga(s);
 		TaulerSudoku sol = new TaulerSudoku(n);
 		siso();
@@ -106,7 +115,7 @@ public class ResolvedorSudoku {
 		return sol;
 	}
 	
-	private static void carga(TaulerSudoku s) { // inicializar
+	private static void carga(TaulerSudoku s) throws ExcepcionPosicionFueraRango { // inicializar
 		n = s.getN();
 		nn = s.getNN();
 		ncr = 0;
@@ -273,7 +282,7 @@ public class ResolvedorSudoku {
 		}
 	}
 	
-	private static void guarda(TaulerSudoku sol) {	
+	private static void guarda(TaulerSudoku sol) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {	
 		if(nsols<1)
 			return;
 		for(int i=0;i<nn;i++) {

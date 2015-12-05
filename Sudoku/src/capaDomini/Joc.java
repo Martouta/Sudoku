@@ -2,6 +2,8 @@ package capaDomini;
 //import java.util.*;
 
 import DataTransferObjects.tipoDificultad;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionTamanoIncorrecto;
 
 public abstract class Joc {
 	private tipoDificultad dificultad;
@@ -13,7 +15,7 @@ public abstract class Joc {
 		id = null;
 	}
 	
-	public Joc(int m, int n, tipoDificultad dif, String idJoc) {
+	public Joc(int m, int n, tipoDificultad dif, String idJoc) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango {
 		dificultad = dif;
 		id = idJoc;
 		tauler = new Tauler(m,n);
