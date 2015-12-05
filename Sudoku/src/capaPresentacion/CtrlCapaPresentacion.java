@@ -249,7 +249,27 @@ public class CtrlCapaPresentacion {
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
-						Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+						try {
+							Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+						} catch (ExcepcionTimerYaEnEjecucion e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionTamanoIncorrecto e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionPosicionFueraRango e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionNumCeldasDiferenteTamano e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionCasillaBloqueada e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionValorFueraRango e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionNumeroFijo e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionValorYaPuesto e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						} catch (ExcepcionCasillaVaciaNoFijable e) {
+							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
+						}
 					} else if (tipoSudoku == "tsProponer") { 
 						if (n == 2) {
 							//INIT SELECCIONAR SUDOKU DE LA BD:
