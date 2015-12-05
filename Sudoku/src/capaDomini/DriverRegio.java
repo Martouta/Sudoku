@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DriverRegio { //Falta comprobar el constructor que le paso las celdas creadas
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		Scanner entrada = new Scanner(System.in);
 	    int opc = -1;
 	    System.out.println("Escribe el tamano de la region");

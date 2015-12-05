@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DriverRegioSenseRepeticions {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		Scanner entrada = new Scanner(System.in);
 	    int opc = -1;
 	    System.out.println("Escribe el tamano de la region sin repeticion");

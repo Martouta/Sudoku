@@ -5,7 +5,7 @@ import java.util.*;
 import DataTransferObjects.tipoDificultad;
 
 public class DriverPartidaUsuarioGenerado {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		Scanner entrada = new Scanner(System.in);
         
         System.out.println("Escribe las medidas n del tablero");

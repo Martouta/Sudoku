@@ -73,19 +73,23 @@ public class JocSudoku extends Joc implements Cloneable {
 		
 		return t;
 	}
-	@Override
 	public JocSudoku clone() {
-		String id = new String(super.getId());
-		TaulerSudoku t = new TaulerSudoku(tauler_sol.getN());
-		TaulerSudoku tsol = new TaulerSudoku(tauler_sol.getN());
-		for(int i=0;i<t.getAlto();i++) {
-			for(int j=0;j<t.getAncho();j++) {
-				if(!this.getTauler().estaVacia(i, j))
-					t.setNumCelda(i, j, this.getTauler().getNumero(i, j), this.getTauler().estaFija(i, j));
-				tsol.setNumCelda(i, j, tauler_sol.getNumero(i, j), tauler_sol.estaFija(i, j));
+		try {
+			String id = new String(super.getId());
+			TaulerSudoku t = new TaulerSudoku(tauler_sol.getN());
+			TaulerSudoku tsol = new TaulerSudoku(tauler_sol.getN());
+			for(int i=0;i<t.getAlto();i++) {
+				for(int j=0;j<t.getAncho();j++) {
+					if(!this.getTauler().estaVacia(i, j))
+						t.setNumCelda(i, j, this.getTauler().getNumero(i, j), this.getTauler().estaFija(i, j));
+					tsol.setNumCelda(i, j, tauler_sol.getNumero(i, j), tauler_sol.estaFija(i, j));
+				}
 			}
+			return new JocSudoku(id,t,tsol);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return new JocSudoku(id,t,tsol);
+		return null;
 	}
 	public void setTauler(Tauler t) {
 		super.setTauler(t);
