@@ -4,7 +4,7 @@ import java.util.*;
 
 import DataTransferObjects.tipoDificultad;
 
-public class JocSudoku extends Joc {
+public class JocSudoku extends Joc implements Cloneable {
 	
 	//private static String idmarca; //que os parece hacer un idstatic para ir assignando ids a los diferentes juegos? o mejor en Joc?
 	
@@ -69,7 +69,20 @@ public class JocSudoku extends Joc {
 		
 		return t;
 	}
-	
+	@Override
+	public JocSudoku clone() {
+		String id = new String(super.getId());
+		TaulerSudoku t = new TaulerSudoku(tauler_sol.getN());
+		TaulerSudoku tsol = new TaulerSudoku(tauler_sol.getN());
+		for(int i=0;i<t.getAlto();i++) {
+			for(int j=0;j<t.getAncho();j++) {
+				if(!this.getTauler().estaVacia(i, j))
+					t.setNumCelda(i, j, this.getTauler().getNumero(i, j), this.getTauler().estaFija(i, j));
+				tsol.setNumCelda(i, j, tauler_sol.getNumero(i, j), tauler_sol.estaFija(i, j));
+			}
+		}
+		return new JocSudoku(id,t,tsol);
+	}
 	public void setTauler(Tauler t) {
 		super.setTauler(t);
 	}

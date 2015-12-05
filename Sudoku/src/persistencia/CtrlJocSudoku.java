@@ -125,7 +125,7 @@ public class CtrlJocSudoku {
     public static JocSudoku getJocSudoku(String id)
     {
         for (JocSudoku joc : jocs) {
-            if (Objects.equals(joc.getId(), id)) return joc;
+            if (Objects.equals(joc.getId(), id)) return joc.clone();
         }
         return null;
     }
