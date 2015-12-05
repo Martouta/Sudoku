@@ -22,6 +22,8 @@ public class CtrlCapaPresentacion {
     private static JFrame frameProponerSudoku9x9;
     private static JFrame frameProponerSudoku16x16;
     
+    private CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku;
+    
     
 	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
@@ -234,7 +236,7 @@ public class CtrlCapaPresentacion {
 				String tipoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tipoSudokuElegido();
 				String tamanoSudoku = ((JFrameMenuSudoku) frameMenuSudoku).tamanoElegido();
 				String dificultadSudoku = ((JFrameMenuSudoku) frameMenuSudoku).dificultadElegida();
-				CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarSudoku();
+				ctrlCUSeleccionarJugarSudoku = new CtrlCasoUsoSeleccionarSudoku();
 				int n = NfromTamanoSudoku(tamanoSudoku);
 				tipoDificultad dificultad = tipoDificultadFromStringDificultad(dificultadSudoku);
 				try{
@@ -301,7 +303,6 @@ public class CtrlCapaPresentacion {
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku16x16.setVisible(true);
 						}
-						//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "TEMPORAL-NOMBRESUDOKU", new Vector<DTOCeldaFija>());//Vector celdas fijas //FALTA LO DEL NOMBRE DE SUDOKU + abrir la vista nueva y ocultar esta
 					} else { //tipo tsReanudarPartida
 						Vector<DTOPartidaAMedias> infoPartidasAMedias = ctrlCUSeleccionarJugarSudoku.obtenerPartidas(nombreUsuario, dificultad, n);
 						//INIT SELECCIONAR PARTIDA A REANUDAR:
@@ -365,14 +366,18 @@ public class CtrlCapaPresentacion {
 						for (int j = 0; j < nn; ++j) {	
 							//valor 0 significa vacio
 							int valor = frameProponerSudoku4x4.getValorCelda(i, j);
-							vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
-							//System.out.println("hola01: " +  valor);
+							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
+					//FALTAN LAS 2 SIGUIENTES LINEAS
+					//frameProponerSudoku4x4.setVisible(false);
+					//MOSTRAR SUDOKU EN SÍ
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "NOMBRE-TEMPORAL-PORQUE-ME-FALTA-EL-LABEL", vCeldasFijas);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}
-				//System.out.println("--------------------------------");
 			}
 		});
 	}

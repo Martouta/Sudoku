@@ -3,7 +3,6 @@ package capaPresentacion;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-import DataTransferObjects.DTOCeldaFija;
 import excepciones.ExcepcionValorFueraRango;
 
 public class JFrameProponerSudoku4x4 extends JFrame{

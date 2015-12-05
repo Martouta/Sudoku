@@ -9,6 +9,7 @@ import excepciones.*;
 import capaDomini.Partida;
 
 public class CtrlCasoUsoSeleccionarSudoku {
+	private Partida p;
 	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		Vector<DTOPartidaAMedias> V = new Vector<DTOPartidaAMedias>();
@@ -86,7 +87,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		//el ID como se genera? podríamos hacer algun contador o algo, para cada usuario, o para los juegos?
 		
 		User u = CtrlUser.getUsuari(nombreUsuario);
-		Partida p = new Partida(u,j);
+		p = new Partida(u,j);
 		
 		CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
@@ -112,6 +113,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales, si no:
 		 Genera un Sudoku nuevo con la dificultad "dificultad", la n "n", y la partida con este sudoku y el usuario "nombreUsuario".
 		 Devuelve las celdas fijas de este sudoku.
+		 La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
 		 */
 		
 		//
@@ -130,6 +132,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 Si ya existe un Sudoku con el nombre "nombreSudoku", se activa la excepcion ExcepcionSudokuYaExiste, si no:
 		 Crea un Sudoku con el nombre "nombreSudoku", que tenga de autor "nombreUuario"
 		 el tablero y las regiones se crean a partir de las celdas de "celdasFijas" (todo eso se hace desde su TaulerSudoku y te puedes orientar con la clase DriverPartidaUsuario que hacia algo parecido)
+		 La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
 		 */
 	}
 	
