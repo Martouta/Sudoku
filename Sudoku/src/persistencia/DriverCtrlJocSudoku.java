@@ -8,10 +8,18 @@ import capaDomini.GeneradorSudoku;
 import capaDomini.JocSudoku;
 import capaDomini.ResolvedorSudoku;
 import capaDomini.TaulerSudoku;
+import excepciones.ExcepcionCasillaBloqueada;
+import excepciones.ExcepcionCasillaVaciaNoFijable;
+import excepciones.ExcepcionNumCeldasDiferenteTamano;
+import excepciones.ExcepcionNumeroFijo;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionTamanoIncorrecto;
+import excepciones.ExcepcionValorFueraRango;
+import excepciones.ExcepcionValorYaPuesto;
 
 public class DriverCtrlJocSudoku {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		Scanner entrada = new Scanner(System.in);
 	    //int opc = -1;
 	    System.out.println("Escribe la n del sudoku");
@@ -34,13 +42,13 @@ public class DriverCtrlJocSudoku {
 		//System.out.println(js.getDificultad());
 
 		CtrlJocSudoku.init();
-		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD");
-		if (!CtrlJocSudoku.afegeixJocSudoku(js1)) System.out.println("Aquest id ja esta a la BD");
+		if (!CtrlJocSudoku.afegeixJocSudoku(js,"pepe")) System.out.println("Aquest id ja esta a la BD");
+		if (!CtrlJocSudoku.afegeixJocSudoku(js1,"pepe")) System.out.println("Aquest id ja esta a la BD");
 		CtrlJocSudoku.end();
 		
 		CtrlJocSudoku.renombraJocSudoku("pepito", "pepe");
 		
-		if (!CtrlJocSudoku.afegeixJocSudoku(js)) System.out.println("Aquest id ja esta a la BD"); //hauria de donar error ja que hem canviat el nom,
+		if (!CtrlJocSudoku.afegeixJocSudoku(js,"pepe")) System.out.println("Aquest id ja esta a la BD"); //hauria de donar error ja que hem canviat el nom,
 																								  //aixi que ja esta a la BD
 		
 		CtrlJocSudoku.end();
