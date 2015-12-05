@@ -28,7 +28,7 @@ public class CtrlUser
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
-    private static String path = "src/domini/data/users.txt"; //Canvi del path 
+    private static String path = "src/data/users.txt"; //Canvi del path 
 	
 	// Carrega els usuaris de la BD
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
@@ -55,9 +55,10 @@ public class CtrlUser
             for (User us : usuaris) {
                 ArrayList<String> fila = new ArrayList<String>();
                 fila.add(us.getUsername());
-                if (us.getPassword() != null) { //FALLA SI NO ES MODIFICA JFrameRegistrarse i CtrlCapaPresentacion i el mateix a carrega()
+                String passwd = us.getPassword();
+                if (!passwd.isEmpty()) {
                 	fila.add(Boolean.toString(true)); //afegim un boolea per controlar si te contrasenya o no
-                	fila.add(us.getPassword());
+                	fila.add(passwd);
                 }
                 else fila.add(Boolean.toString(false)); //igual que a dalt
                 users.add(fila);

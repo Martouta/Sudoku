@@ -54,7 +54,11 @@ public class User {
     // Retorna fals en cas contrari
     // Retorna fals si l'usuari es buit
     public final boolean testPassword(String pwd) {
-        return username != null && password.equals(pwd);
+    	if (pwd.isEmpty()) {
+    		return username != null && password == null;
+    	}
+    	else if (password == null) return false; //ja que si no entra al primer cas vol dir que l'usuari no te passwd (es null) pero pwd no es empty
+    	return username != null && password.equals(pwd);
     }
 
     // Retorna cert si l'usuari te password diferent a null 
