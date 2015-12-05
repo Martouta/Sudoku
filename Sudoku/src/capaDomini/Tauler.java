@@ -9,26 +9,11 @@ public class Tauler {
 		//
 	}
 	
-	public Tauler(int m, int n) {
-		try {
-			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
-			ancho = m; alto = n;
-			creaCeldasConPosicion();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+	public Tauler(int m, int n) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango {
+		if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
+		ancho = m; alto = n;
+		creaCeldasConPosicion();
 	}
-	
-	/*public Tauler(int idTauler, int m, int n) {
-		try {
-			if (m <= 0 || n <= 0) throw (new ExcepcionTamanoIncorrecto());
-			ancho = m; alto = n;
-			//this.idTauler = idTauler;
-			creaCeldasConPosicion();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}*/
 	
 	public int getAncho() {
 		return ancho;
@@ -51,99 +36,47 @@ public class Tauler {
 	}
 	
 	
-	public Cella getCella(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y);
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
+	public Cella getCella(int x, int y) throws ExcepcionPosicionFueraRango {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		return vCellas.get(x*ancho + y);
 	}
 	
-	public int getNumero(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y).getNumero();
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return -1;
-		}
+	public int getNumero(int x, int y) throws ExcepcionPosicionFueraRango {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		return vCellas.get(x*ancho + y).getNumero();
 	}
 	
-	public boolean estaVacia(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y).estaVacia();
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
+	public boolean estaVacia(int x, int y) throws ExcepcionPosicionFueraRango {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		return vCellas.get(x*ancho + y).estaVacia();
 	}
 	
-	public boolean estaFija(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y).estaFija();
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
+	public boolean estaFija(int x, int y) throws ExcepcionPosicionFueraRango {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		return vCellas.get(x*ancho + y).estaFija();
 	}
 	
-	public boolean estaBloqueada(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			return vCellas.get(x*ancho + y).estaBloqueada();
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
+	public boolean estaBloqueada(int x, int y) throws ExcepcionPosicionFueraRango {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		return vCellas.get(x*ancho + y).estaBloqueada();
 	}
 	
-	public void setNumero(int x, int y, int val) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			if (val < 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar valor por arriba
-			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
-			if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
-			vCellas.get(x*ancho + y).setNumero(val);
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-		} catch (ExcepcionValorFueraRango e) {
-			System.out.println(e.getMessage());
-		} catch (ExcepcionNumeroFijo e) {
-			System.out.println(e.getMessage());
-		} catch (ExcepcionCasillaBloqueada e) {
-			System.out.println(e.getMessage());
-		}
+	public void setNumero(int x, int y, int val) throws ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		if (val < 0) throw (new ExcepcionValorFueraRango()); //FALTA: mirar valor por arriba
+		if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
+		if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
+		vCellas.get(x*ancho + y).setNumero(val);
 	}
 	
-	public void borra(int x, int y) {
-		try {
-			if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
-			if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
-			if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
-			vCellas.get(x*ancho + y).borra();
-		} catch (ExcepcionPosicionFueraRango e) {
-			System.out.println(e.getMessage());
-		} catch (ExcepcionNumeroFijo e) {
-			System.out.println(e.getMessage());
-		} catch (ExcepcionCasillaBloqueada e) {
-			System.out.println(e.getMessage());
-		}
+	public void borra(int x, int y) throws ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada {
+		if ((x < 0 || x >= alto) || (y < 0 || y >= ancho)) throw (new ExcepcionPosicionFueraRango());
+		if (vCellas.get(x*ancho + y).estaFija()) throw (new ExcepcionNumeroFijo());
+		if (vCellas.get(x*ancho + y).estaBloqueada()) throw (new ExcepcionCasillaBloqueada());
+		vCellas.get(x*ancho + y).borra();
 	}
 
-	/*private void creaCeldasVacias() {
-    	vCellas = new Vector<Cella>();
-        Cella cellaAux = null;
-        for (int i = 0; i < ancho * alto; ++i) {
-            cellaAux = new Cella();
-            vCellas.addElement(cellaAux);
-        }
-    }*/
-	
-	private void creaCeldasConPosicion() {
+	private void creaCeldasConPosicion() throws ExcepcionPosicionFueraRango {
     	vCellas = new Vector<Cella>();
         Cella cellaAux = null;
         for (int i = 0; i < alto; ++i) {

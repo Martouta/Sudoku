@@ -5,6 +5,6 @@ public class ExcepcionTamanoIncorrecto extends Exception{
 
 	@Override
 	public String getMessage() {
-		return "Este tamano no es valido";
+		return "El tamano no es valido";
 	}
 }

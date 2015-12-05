@@ -70,7 +70,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		//fet, no provat
 	}
 	
-	public Vector<DTOCeldaFija> obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales{
+	public Vector<DTOCeldaFija> obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
 		
 		if(dificultad==tipoDificultad.trivial) throw new ExcepcionMaquinaNoGeneraTriviales();
 		
@@ -89,7 +89,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		Partida p = new Partida(u,j);
 		
 		CtrlJocSudoku.init();
-		CtrlJocSudoku.afegeixJocSudoku(j); //afegir sudoku
+		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
 		
 		CtrlPartida.init();
 		CtrlPartida.afegeixPartida(p,idSudoku); //afegir partida. Ha de ser el mateix id oi?

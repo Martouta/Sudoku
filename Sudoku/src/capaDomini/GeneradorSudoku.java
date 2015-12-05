@@ -17,7 +17,7 @@ import excepciones.*;
 
 public class GeneradorSudoku {
 	
-	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) {
+	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		TaulerSudoku ts = new TaulerSudoku(n);
 		init(n);
 		try {
@@ -78,7 +78,7 @@ public class GeneradorSudoku {
 	 * Esta función ahorra tiempo generando solamente unas pocas casillas aleatorias,
 	 * y cogiendo uno de los sudokus posibles con esa disposición, rellena el tablero
 	 */
-	public static TaulerSudoku generaSudoku2(int n, tipoDificultad dif) {
+	public static TaulerSudoku generaSudoku2(int n, tipoDificultad dif) throws ExcepcionPosicionFueraRango, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTamanoIncorrecto, ExcepcionNumCeldasDiferenteTamano {
 		TaulerSudoku ts = new TaulerSudoku(n);
 		init(n);
 		try {
@@ -135,7 +135,7 @@ public class GeneradorSudoku {
 		return ts;
 	}
 	
-	public static TaulerSudoku generaSudokuprueba(int n) {
+	public static TaulerSudoku generaSudokuprueba(int n) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTamanoIncorrecto, ExcepcionNumCeldasDiferenteTamano {
 		rand = new Random();
 		TaulerSudoku ts = new TaulerSudoku(n);
 		init(n);
@@ -160,7 +160,7 @@ public class GeneradorSudoku {
 	}
 	
 	// este no mola, salen muchos valores muy juntos
-	public static TaulerSudoku generaSudokuprueba2(int n) {
+	public static TaulerSudoku generaSudokuprueba2(int n) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTamanoIncorrecto, ExcepcionNumCeldasDiferenteTamano {
 		rand = new Random();
 		TaulerSudoku ts = new TaulerSudoku(n);
 		init(n);

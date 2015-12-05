@@ -5,6 +5,6 @@ public class ExcepcionValorFueraRango extends Exception {
 
 	@Override
 	public String getMessage() {
-		return "El valor esta fuera del rango permitido";
+		return "Hay un valor fuera del rango permitido";
 	}
 }

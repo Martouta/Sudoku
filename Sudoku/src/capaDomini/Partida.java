@@ -25,7 +25,7 @@ public class Partida {
 	private Date dataFi; //para saber si está resuelto o no y para que no se pueda solapar 2 veces el mismo sudoku por la misma persona cuando aun no lo ha acabado de antes
 	private Date dataIni;
 	
-	public Partida () {//CONSTRUCTOR TEMPORAL PARA EL DRIVER
+	public Partida () throws ExcepcionTimerYaEnEjecucion {//CONSTRUCTOR TEMPORAL PARA EL DRIVER
 		nPistas = 0;
 		dataFi = null;
 		tiempoSegundos = 0; //para hacer pruebas he puesto 4200 y ha ido bien
@@ -35,7 +35,7 @@ public class Partida {
 		startTiempo();
 	}
 	
-	public Partida (User usuario, JocSudoku sudoku) {
+	public Partida (User usuario, JocSudoku sudoku) throws ExcepcionTimerYaEnEjecucion {
 		this.usuario = usuario;
 		this.sudoku = sudoku;
 		
@@ -55,29 +55,21 @@ public class Partida {
 		startTiempo();
 	}
 	
-	public void startTiempo() {
-		try {
-			if (enEjecucion) throw (new ExcepcionTimerYaEnEjecucion());
-			timer = new Timer();
-			timer.schedule(new TimerTask() {
-				public void run() {
-					tiempoSegundos++;
-				}
-			}, 0, 1000);
-			enEjecucion = true;
-		} catch (ExcepcionTimerYaEnEjecucion e) {
-			System.out.println(e.getMessage());
-		}
+	public void startTiempo() throws ExcepcionTimerYaEnEjecucion {
+		if (enEjecucion) throw (new ExcepcionTimerYaEnEjecucion());
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			public void run() {
+				tiempoSegundos++;
+			}
+		}, 0, 1000);
+		enEjecucion = true;
 	}
 	
-	public void pauseTiempo() {
-		try {
-			if (!enEjecucion) throw (new ExcepcionTimerYaEstaParado());
-			timer.cancel();
-			enEjecucion = false;
-		} catch (ExcepcionTimerYaEstaParado e) {
-			System.out.println(e.getMessage());
-		}
+	public void pauseTiempo() throws ExcepcionTimerYaEstaParado {
+		if (!enEjecucion) throw (new ExcepcionTimerYaEstaParado());
+		timer.cancel();
+		enEjecucion = false;
 	}
 	
 	public boolean getEstadoTimer() {
@@ -113,15 +105,9 @@ public class Partida {
 		return (dataFi == null);
 	}
 	
-	public Date getDataFi() {
-		try {
-			if(dataFi == null) throw (new ExcepcionJuegoAunNoResuelto());
-			return dataFi;
-		}
-		catch (ExcepcionJuegoAunNoResuelto e) {
-			System.out.println(e.getMessage());
-		}
-		return getFechaActual();
+	public Date getDataFi() throws ExcepcionJuegoAunNoResuelto {
+		if(dataFi == null) throw (new ExcepcionJuegoAunNoResuelto());
+		return dataFi;
 	}
 
 	public void yaResuelto() {
@@ -136,19 +122,19 @@ public class Partida {
 		return dataIni;
 	}
 	
-	public void marcarNumero(int x, int y, int val) {
+	public void marcarNumero(int x, int y, int val) throws ExcepcionValorFueraRango {
 		vCjtoMarcas.get(x*nn + y).marcarNumero(val);
 	}
 	
-	public void desmarcarNumero(int x, int y, int val) {
+	public void desmarcarNumero(int x, int y, int val) throws ExcepcionValorFueraRango {
 		vCjtoMarcas.get(x*nn + y).desmarcarNumero(val);
 	}
 	
-	public boolean estaMarcado(int x, int y, int val){
+	public boolean estaMarcado(int x, int y, int val) throws ExcepcionValorFueraRango{
 		return vCjtoMarcas.get(x*nn + y).estaMarcado(val);
 	}
 	
-	public void mostrarMarcasPosicion(int x, int y){
+	public void mostrarMarcasPosicion(int x, int y) throws ExcepcionValorFueraRango{
 		for (int i = 1; i <= nn; ++i) {
 			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) System.out.println(i + " ");
 		}
