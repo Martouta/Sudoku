@@ -28,7 +28,7 @@ public class CtrlUser
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
-    private static String path = "src/data/users.txt";
+    private static String path = "src/domini/data/users.txt"; //Canvi del path 
 	
 	// Carrega els usuaris de la BD
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
@@ -37,7 +37,10 @@ public class CtrlUser
         try {
             ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : users) {
-                usuaris.add(new User(fila.get(0), fila.get(1)));
+            	String username = fila.get(0);
+            	if (Boolean.parseBoolean(fila.get(1))) 
+            		usuaris.add(new User(username, fila.get(2)));
+            	else usuaris.add(new User(username,null));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +55,11 @@ public class CtrlUser
             for (User us : usuaris) {
                 ArrayList<String> fila = new ArrayList<String>();
                 fila.add(us.getUsername());
-                fila.add(us.getPassword());
+                if (us.getPassword() != null) { //FALLA SI NO ES MODIFICA JFrameRegistrarse i CtrlCapaPresentacion i el mateix a carrega()
+                	fila.add(Boolean.toString(true)); //afegim un boolea per controlar si te contrasenya o no
+                	fila.add(us.getPassword());
+                }
+                else fila.add(Boolean.toString(false)); //igual que a dalt
                 users.add(fila);
             }
         } catch (Exception e) {
@@ -76,6 +83,7 @@ public class CtrlUser
 	public static void init() {
 		dirty = false;
 		try {
+			CtrlPersistencia.setSeparator(" ");
             usuaris = new ArrayList<User>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
