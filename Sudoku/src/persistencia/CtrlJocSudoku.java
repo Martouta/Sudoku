@@ -16,13 +16,18 @@ public class CtrlJocSudoku {
 
 	private static boolean dirty;             // true si s'ha modificat la llista de jocs
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
+	protected static ArrayList<String> autores;
     private static String path = "src/domini/data/jocs.txt";
+    private static final String sinUsuario = "VXN1YXJpb19hbm9uaW1v";
+    // es "Usuario_anonimo" en base64. No podemos no poner nada, así que hay que poner algo
+    // que nadie nunca pillará.
     
     public static void init() {
     	dirty = false;
 		try {
 			CtrlPersistencia.setSeparator(" ");
             jocs = new ArrayList<JocSudoku>();
+            autores = new ArrayList<String>();
             File file = new File(Paths.get(path).toAbsolutePath().toString());
             if(!file.exists()) file.getParentFile().mkdirs();
             else carrega();
@@ -30,7 +35,7 @@ public class CtrlJocSudoku {
             e.printStackTrace();
         }
     }
-    
+    // hasta aqui actualizada
     
     protected static void carrega() {
     	try {
@@ -38,6 +43,11 @@ public class CtrlJocSudoku {
             ArrayList<ArrayList<String>> taulersPers = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : taulersPers) {
             	punt = 0;
+            	String autor = fila.get(punt++);
+            	if(Objects.equals(autor,sinUsuario))
+            		autores.add("");
+            	else
+            		autores.add(autor);
             	String id = fila.get(punt++);
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
@@ -66,6 +76,10 @@ public class CtrlJocSudoku {
             for (int ii=0;ii<jocs.size();ii++) {
             	JocSudoku js = jocs.get(ii);
             	ArrayList<String> fila = new ArrayList<String>();
+            	if(Objects.equals(autores.get(ii),""))
+            		fila.add(sinUsuario);
+            	else
+            		fila.add(autores.get(ii));
             	fila.add(js.getId());
             	Tauler t = js.getTauler();
             	int nn = t.getAncho();
@@ -104,6 +118,10 @@ public class CtrlJocSudoku {
         return jocs;
     }
     
+    public static ArrayList<String> getAutores() {
+    	return autores;
+    }
+    
     public static JocSudoku getJocSudoku(String id)
     {
         for (JocSudoku joc : jocs) {
@@ -114,7 +132,8 @@ public class CtrlJocSudoku {
     
     // Afegeix el JocSudoku js a l'agregat
  	// Retorna fals si hi ha hagut cap error i llença excepció o bé si el joc ja hi és i no es pot afegir
- 	public static boolean afegeixJocSudoku(JocSudoku js)
+    // si se quiere añadir uno anonimo, usad autor=""; (no null, vacía)
+ 	public static boolean afegeixJocSudoku(JocSudoku js, String autor)
      {
          try {
              for (JocSudoku aux : jocs) {
@@ -123,6 +142,7 @@ public class CtrlJocSudoku {
                  }
              }
              dirty = jocs.add(js);
+             autores.add(autor);
          } catch (Exception e) {
              e.printStackTrace();
          }
@@ -139,6 +159,7 @@ public class CtrlJocSudoku {
                  if (Objects.equals(js.getId(), id)) {
                 	 //System.out.println("Elimino el " + js.getId());
                 	 jocs.remove(i);
+                	 autores.remove(i);
                 	 dirty = true;
                  }
              }
@@ -161,5 +182,49 @@ public class CtrlJocSudoku {
             e.printStackTrace();
         }
         return dirty;
+ 	}
+ 	
+ 	// devuelve null si no lo encuentra
+ 	public static String getAutorJoc(String id) {
+ 		try {
+            for (int i = jocs.size() - 1; i >= 0; i--) {
+                if (Objects.equals(jocs.get(i).getId(), id)) {
+                	return autores.get(i);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+ 		return null;
+ 	}
+ 	
+ 	public static boolean pasaAAnonimo(String autor) {
+ 		try {
+            for (int i = autores.size() - 1; i >= 0; i--) {
+                if (Objects.equals(autores.get(i), autor)) {
+                	autores.set(i, "");
+                	dirty = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+ 		return dirty;
+ 	}
+ 	
+ 	// borra todos los JocSudoku con este autor
+ 	// si lo llamas con autor="" borras los anónimos
+ 	public static boolean borraJocs(String autor) {
+ 		try {
+            for (int i = autores.size() - 1; i >= 0; i--) {
+                if (Objects.equals(autores.get(i), autor)) {
+                	autores.remove(i);
+                	jocs.remove(i);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+ 		return dirty;
  	}
 }
