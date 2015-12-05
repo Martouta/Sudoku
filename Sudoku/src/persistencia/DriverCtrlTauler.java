@@ -5,10 +5,18 @@ import java.util.Scanner;
 
 import DataTransferObjects.tipoDificultad;
 import capaDomini.*;
+import excepciones.ExcepcionCasillaBloqueada;
+import excepciones.ExcepcionCasillaVaciaNoFijable;
+import excepciones.ExcepcionNumCeldasDiferenteTamano;
+import excepciones.ExcepcionNumeroFijo;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionTamanoIncorrecto;
+import excepciones.ExcepcionValorFueraRango;
+import excepciones.ExcepcionValorYaPuesto;
 
 public class DriverCtrlTauler {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcepcionPosicionFueraRango, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTamanoIncorrecto, ExcepcionNumCeldasDiferenteTamano {
 		Scanner entrada = new Scanner(System.in);
 	    
 	    System.out.println("Escribe la n del sudoku");
