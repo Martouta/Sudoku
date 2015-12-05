@@ -379,11 +379,16 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					//FALTAN LAS SIGUIENTES LINEAS
-					//frameProponerSudoku4x4.setVisible(false);
-					//MOSTRAR SUDOKU EN SÍ
 					String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
 					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					frameProponerSudoku4x4.setVisible(false);
+					
+					//METODO TEMPORAL:
+					JFrame.setDefaultLookAndFeelDecorated(true);
+					JFrameJuego4x4 frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas);
+					frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frameJuego4x4.pack();
+					frameJuego4x4.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}/* catch (ExcepcionSudokuYaExiste e) {
