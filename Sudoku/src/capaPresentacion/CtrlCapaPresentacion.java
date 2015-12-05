@@ -290,6 +290,8 @@ public class CtrlCapaPresentacion {
 					        frameProponerSudoku9x9 = new JFrameProponerSudoku9x9();
 					        frameProponerSudoku9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					        frameProponerSudoku9x9.pack();
+					        //activar listeners de la vista:
+					        initListenersJFrameProponerSudoku9x9((JFrameProponerSudoku9x9) frameProponerSudoku9x9);
 					        //Ocultar vista actual y mostrar la siguiente:
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku9x9.setVisible(true);
@@ -299,6 +301,8 @@ public class CtrlCapaPresentacion {
 					        frameProponerSudoku16x16 = new JFrameProponerSudoku16x16();
 					        frameProponerSudoku16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					        frameProponerSudoku16x16.pack();
+					        //activar listeners de la vista:
+					        initListenersJFrameProponerSudoku16x16((JFrameProponerSudoku16x16) frameProponerSudoku16x16);
 					        //Ocultar vista actual y mostrar la siguiente:
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku16x16.setVisible(true);
@@ -378,11 +382,92 @@ public class CtrlCapaPresentacion {
 					//FALTAN LAS SIGUIENTES LINEAS
 					//frameProponerSudoku4x4.setVisible(false);
 					//MOSTRAR SUDOKU EN SÍ
-					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "NOMBRE-TEMPORAL-PORQUE-ME-FALTA-EL-LABEL", vCeldasFijas);
+					String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
+					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}/* catch (ExcepcionSudokuYaExiste e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				}*/
+			}
+		});
+	}
+	
+	private void initListenersJFrameProponerSudoku9x9(JFrameProponerSudoku9x9 frameProponerSudoku9x9) {
+		//LISTENERS DE PROPONER SUDOKU 9x9:
+		frameProponerSudoku9x9.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		frameProponerSudoku9x9.getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameProponerSudoku9x9.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		frameProponerSudoku9x9.getButJugarSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				int nn = frameProponerSudoku9x9.getNN();
+				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+				try {
+					frameProponerSudoku9x9.setMensaje("");
+					for (int i = 0; i < nn; ++i) { 
+						for (int j = 0; j < nn; ++j) {	
+							//valor 0 significa vacio
+							int valor = frameProponerSudoku9x9.getValorCelda(i, j);
+							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
+						}
+					}
+					//FALTAN LAS SIGUIENTES LINEAS
+					//frameProponerSudoku9x9.setVisible(false);
+					//MOSTRAR SUDOKU EN SÍ
+					String nombreSudoku = frameProponerSudoku9x9.getNombreSudoku();
+					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+				} catch (ExcepcionValorFueraRango e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				}/* catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				}*/
+			}
+		});
+	}
+	
+	private void initListenersJFrameProponerSudoku16x16(JFrameProponerSudoku16x16 frameProponerSudoku16x16) {
+		//LISTENERS DE PROPONER SUDOKU 16x16:
+		frameProponerSudoku16x16.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		frameProponerSudoku16x16.getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameProponerSudoku16x16.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		frameProponerSudoku16x16.getButJugarSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				int nn = frameProponerSudoku16x16.getNN();
+				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+				try {
+					frameProponerSudoku16x16.setMensaje("");
+					for (int i = 0; i < nn; ++i) { 
+						for (int j = 0; j < nn; ++j) {	
+							//valor 0 significa vacio
+							int valor = frameProponerSudoku16x16.getValorCelda(i, j);
+							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
+						}
+					}
+					//FALTAN LAS SIGUIENTES LINEAS
+					//frameProponerSudoku16x16.setVisible(false);
+					//MOSTRAR SUDOKU EN SÍ
+					String nombreSudoku = frameProponerSudoku16x16.getNombreSudoku();
+					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+				} catch (ExcepcionValorFueraRango e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				}/* catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				}*/
 			}
 		});

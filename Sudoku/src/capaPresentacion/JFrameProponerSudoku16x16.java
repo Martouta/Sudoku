@@ -26,6 +26,10 @@ private static final long serialVersionUID = 1L;
 	public JFrameProponerSudoku16x16() {
 		initComponents();
 	}
+	
+	public String getNombreSudoku(){
+		return tfNombreSudoku.getText();
+	}
 
 	//fila y columna van de 0 a nn-1
 	//valor 0 significa vacio
@@ -129,7 +133,7 @@ private static final long serialVersionUID = 1L;
 		panProponerSudoku = new JPanel();
 		panNombreSudoku = new JPanel();
         panSudoku = new JPanel();
-        labMensError = new JLabel("1234");
+        labMensError = new JLabel("");
         butJugarSudoku = new JButton("Jugar Sudoku");
         butVolverMenuSudoku = new JButton("<html>Volver al<br>menu Sudoku</html>");
         butSalir = new JButton("Salir");

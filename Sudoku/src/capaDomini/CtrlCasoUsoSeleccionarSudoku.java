@@ -134,6 +134,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 el tablero y las regiones se crean a partir de las celdas de "celdasFijas" (todo eso se hace desde su TaulerSudoku y te puedes orientar con la clase DriverPartidaUsuario que hacia algo parecido)
 		 La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
 		 */
-	}
+	} //REDACTAR Y AVISAR A ALEIX DE LA FUNCION: Se activaran excepciones si las celdas que he pasado no cumplen las normas o si el sudoku no tiene solucion o si tiene mas de una
 	
 }

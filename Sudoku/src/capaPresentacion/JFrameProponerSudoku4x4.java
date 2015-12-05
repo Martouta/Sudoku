@@ -26,6 +26,10 @@ public class JFrameProponerSudoku4x4 extends JFrame{
 		initComponents();
 	}
 	
+	public String getNombreSudoku(){
+		return tfNombreSudoku.getText();
+	}
+	
 	//fila y columna van de 0 a nn-1
 	//valor 0 significa vacio
 	public int getValorCelda(int fila, int columna) throws ExcepcionValorFueraRango{
