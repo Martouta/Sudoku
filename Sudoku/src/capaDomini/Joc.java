@@ -14,14 +14,9 @@ public abstract class Joc {
 	}
 	
 	public Joc(int m, int n, tipoDificultad dif, String idJoc) {
-		try {
-			dificultad = dif;
-			id = idJoc;
-			tauler = new Tauler(m,n);
-		}
-		catch (IllegalArgumentException e) {
-			System.out.println("No hay ningún valor de dificultad que coincida con el introducido");
-		}
+		dificultad = dif;
+		id = idJoc;
+		tauler = new Tauler(m,n);
 	}
 	
 	public Joc(String idJoc, Tauler t) {
@@ -31,14 +26,9 @@ public abstract class Joc {
 	}
 	
 	public Joc(String idJoc, Tauler t, tipoDificultad td) {
-		try {
-			dificultad = td;
-			id = idJoc;
-			tauler = t;
-		}
-		catch (IllegalArgumentException e) {
-			System.out.println("No hay ningún valor de dificultad que coincida con el introducido");
-		}
+		dificultad = td;
+		id = idJoc;
+		tauler = t;
 	}
 	
 	public String getId() {

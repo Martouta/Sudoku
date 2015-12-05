@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
+import excepciones.ExcepcionValorFueraRango;
+
 public class JFrameProponerSudoku16x16 extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +22,43 @@ public class JFrameProponerSudoku16x16 extends JFrame{
 	public JFrameProponerSudoku16x16() {
 		initComponents();
 	}
+
+	//fila y columna van de 0 a nn-1
+		//valor 0 significa vacio
+		public int getValorCelda(int fila, int columna) throws ExcepcionValorFueraRango{
+			int valor = -1;
+			try{
+				JTextField tfCelda = vCeldas.get((fila*nn)+columna);
+				String strValor = tfCelda.getText();
+				if (!strValor.isEmpty()) valor = Integer.parseInt(strValor);
+				else valor = 0;
+		        if ((!strValor.isEmpty()) && (valor < 1 || valor >= nn)) throw (new ExcepcionValorFueraRango());
+		    }catch(NumberFormatException e){
+		        throw (new ExcepcionValorFueraRango());
+		    }
+			return valor;
+		}
+
+	public JButton getButJugarSudoku() {
+		return butJugarSudoku;
+	}
+
+	public JButton getButVolverMenuSudoku() {
+		return butVolverMenuSudoku;
+	}
+
+	public JButton getButSalir() {
+		return butSalir;
+	}
+		
+	public int getNN() {
+		return nn;
+	}
+
+	public void setMensaje(String msj){
+		labMensError.setText(msj);
+	}
+	
 	
 	private void rellenaPanelSudoku() {
 		int n  = 4;
@@ -33,8 +72,8 @@ public class JFrameProponerSudoku16x16 extends JFrame{
 		vCeldas = new Vector<JTextField>();
 		for (int i = 0; i < nn; ++i){
 			for (int j = 0; j < nn; ++j){
-				int valTemp = (i*nn)+j+1;
-				JTextField tfAux = new JTextField(i + "" + j); //deberia estar vacio!!!!! //i + "" + j
+				int valTemp = (i*nn)+j+1; //i + "" + j
+				JTextField tfAux = new JTextField("");
 				tfAux.setName("tf"+i+j);
 				tfAux.setSize(40, 40);
 				tfAux.setFont(new Font("Tahoma", 0, 24));
@@ -67,7 +106,7 @@ public class JFrameProponerSudoku16x16 extends JFrame{
 			
 		panProponerSudoku = new JPanel();
         panSudoku = new JPanel();
-        labMensError = new JLabel("123");
+        labMensError = new JLabel("");
         butJugarSudoku = new JButton("Jugar Sudoku");
         butVolverMenuSudoku = new JButton("Volver al menu Sudoku");
         butSalir = new JButton("Salir");

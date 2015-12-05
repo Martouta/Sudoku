@@ -3,6 +3,10 @@ package capaDomini;
 import java.util.*;
 
 import DataTransferObjects.tipoDificultad;
+import excepciones.ExcepcionCasillaBloqueada;
+import excepciones.ExcepcionNumeroFijo;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionValorFueraRango;
 
 public class JocSudoku extends Joc {
 	
@@ -20,7 +24,7 @@ public class JocSudoku extends Joc {
 		tauler_sol = tSol;
 	}
 
-	public void Pista() {
+	public void Pista() throws ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada {
 	    int ncellas=super.getTauler().getNumCeldas();
 	    if(super.getTauler().getNumCeldasRellenas() < ncellas){
             boolean found=false;

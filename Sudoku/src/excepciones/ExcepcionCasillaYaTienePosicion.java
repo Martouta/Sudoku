@@ -5,6 +5,6 @@ public class ExcepcionCasillaYaTienePosicion extends Exception{
 
 	@Override
 	public String getMessage() {
-		return "esta casilla ya tiene posicion y no se puede modificar";
+		return "La posicion de una casilla que ya tiene una posicion valida no puede ser modificada";
 	}
 }

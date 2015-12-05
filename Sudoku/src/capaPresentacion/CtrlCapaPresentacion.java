@@ -257,6 +257,8 @@ public class CtrlCapaPresentacion {
 					        frameProponerSudoku4x4 = new JFrameProponerSudoku4x4();
 					        frameProponerSudoku4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					        frameProponerSudoku4x4.pack();
+					        //activar listeners de la vista:
+					        initListenersJFrameProponerSudoku4x4((JFrameProponerSudoku4x4) frameProponerSudoku4x4);
 					        //Ocultar vista actual y mostrar la siguiente:
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku4x4.setVisible(true);
@@ -322,6 +324,35 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuSudoku) frameMenuSudoku).getRbProponer().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("Para el Sudoku propuesto, se ignorará la dificultad seleccionada");
+			}
+		});
+	}
+	
+	private void initListenersJFrameProponerSudoku4x4(JFrameProponerSudoku4x4 frameProponerSudoku4x4) {
+		//LISTENERS DE PROPONER SUDOKU 4X4:
+		frameProponerSudoku4x4.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		frameProponerSudoku4x4.getButJugarSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				int nn = frameProponerSudoku4x4.getNN();
+				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+				try {
+					frameProponerSudoku4x4.setMensaje("");
+					for (int i = 0; i < nn; ++i) { 
+						for (int j = 0; j < nn; ++j) {	
+							//valor 0 significa vacio
+							int valor = frameProponerSudoku4x4.getValorCelda(i, j);
+							vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
+							//System.out.println("hola01: " +  valor);
+						}
+					}
+				} catch (ExcepcionValorFueraRango e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				}
+				//System.out.println("--------------------------------");
 			}
 		});
 	}
