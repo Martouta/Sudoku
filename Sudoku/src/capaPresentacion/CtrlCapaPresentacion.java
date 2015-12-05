@@ -356,6 +356,12 @@ public class CtrlCapaPresentacion {
 				pressSalir();
 			}
 		});
+		frameProponerSudoku4x4.getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameProponerSudoku4x4.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
 		frameProponerSudoku4x4.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku4x4.getNN();
@@ -369,15 +375,15 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					//FALTAN LAS 2 SIGUIENTES LINEAS
+					//FALTAN LAS SIGUIENTES LINEAS
 					//frameProponerSudoku4x4.setVisible(false);
 					//MOSTRAR SUDOKU EN SÍ
-					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "NOMBRE-TEMPORAL-PORQUE-ME-FALTA-EL-LABEL", vCeldasFijas);
+					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, "NOMBRE-TEMPORAL-PORQUE-ME-FALTA-EL-LABEL", vCeldasFijas);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
-				} catch (ExcepcionSudokuYaExiste e) {
+				}/* catch (ExcepcionSudokuYaExiste e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
-				}
+				}*/
 			}
 		});
 	}
