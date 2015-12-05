@@ -34,13 +34,13 @@ public class CtrlUser
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
 	protected static void carrega()
     {
-        try {
+		try {
             ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : users) {
             	String username = fila.get(0);
             	if (Boolean.parseBoolean(fila.get(1))) 
             		usuaris.add(new User(username, fila.get(2)));
-            	else usuaris.add(new User(username,null));
+            	else usuaris.add(new User(username,""));
             }
         } catch (Exception e) {
             e.printStackTrace();

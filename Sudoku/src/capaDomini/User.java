@@ -65,6 +65,6 @@ public class User {
     // Retorna fals en cas contrari
     public final boolean tePassword()
     {
-        return password != null;
+    	return (password != null && !password.isEmpty()); //modificat
     }
 }
