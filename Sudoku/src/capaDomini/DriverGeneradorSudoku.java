@@ -16,7 +16,7 @@ import DataTransferObjects.tipoDificultad;
 
 public class DriverGeneradorSudoku {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		Scanner entrada = new Scanner(System.in);
 		while(true) {
 			System.out.println("Escribe 0 para version de prueba, 1 para la definitiva, otro valor para salir");

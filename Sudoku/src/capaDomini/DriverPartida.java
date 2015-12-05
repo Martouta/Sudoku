@@ -4,7 +4,7 @@ import java.util.*;
 
 public class DriverPartida {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		Scanner entrada = new Scanner(System.in);
         int opc = -1;
         p = new Partida();

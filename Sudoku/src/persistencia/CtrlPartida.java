@@ -211,7 +211,7 @@ public class CtrlPartida {
      }
 
     // necesitas tener el usuario que toca, si no, no te la encuentra
- 	public static boolean esborraPartida(String id, User usuario)
+ 	 public static boolean esborraPartida(String id, User usuario)
      {
          try {
              for(int i=0;i<partidas.size();i++) {

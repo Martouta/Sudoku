@@ -2,13 +2,17 @@ package capaDomini;
 
 import java.util.Scanner;
 
+import excepciones.ExcepcionNumCeldasDiferenteTamano;
+import excepciones.ExcepcionPosicionFueraRango;
+import excepciones.ExcepcionTamanoIncorrecto;
+
 /*
  * Este driver permite testear los tres algoritmos de resolución de sudokus.
  */
 
 public class DriverResolvedorSudoku {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner entrada = new Scanner(System.in);
 		while(true) {
 			System.out.println("Escribe las medidas n del tablero (0 para salir)");
