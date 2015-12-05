@@ -54,13 +54,13 @@ public class User {
     // Retorna fals en cas contrari
     // Retorna fals si l'usuari es buit
     public final boolean testPassword(String pwd) {
-        return username != null && password.equals(pwd);
+    	return username != null && password.equals(pwd);
     }
 
     // Retorna cert si l'usuari te password diferent a null 
     // Retorna fals en cas contrari
     public final boolean tePassword()
     {
-        return password != null;
+    	return (password != null && !password.isEmpty()); //modificat
     }
 }
