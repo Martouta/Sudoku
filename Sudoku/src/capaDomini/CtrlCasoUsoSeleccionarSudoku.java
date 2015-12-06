@@ -140,10 +140,10 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		CtrlJocSudoku.afegeixJocSudoku(js, nombreUsuario);//guardar
 		
 		User u = CtrlUser.getUsuari(nombreUsuario);
-		Partida P = new Partida(u,js); //Crear Partida
+		p = new Partida(u,js); //Crear Partida
 		Date date = new Date();
 		String idSudoku = nombreUsuario + date.toString();
-		CtrlPartida.afegeixPartida(P,idSudoku); //Guardar Partida
+		CtrlPartida.afegeixPartida(p,idSudoku); //Guardar Partida
 		
 		//fet, no provat
 		 /*
