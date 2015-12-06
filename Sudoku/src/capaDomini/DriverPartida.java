@@ -46,7 +46,7 @@ public class DriverPartida {
             	System.out.println(p.getNumPistas());
             	break;
             case 7:
-            	p.incrementaPista();
+            	//p.incrementaPista();
             	break;
             case 8:
             	System.out.println(p.getResuelto());

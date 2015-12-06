@@ -1,6 +1,6 @@
 package capaDomini;
 
-//LISTO PARA PROGRAMARLO
+//LISTO PARA SER PROGRAMADO
 
 import persistencia.*;
 import java.util.*;
@@ -113,13 +113,13 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales, si no:
 		 Genera un Sudoku nuevo con la dificultad "dificultad", la n "n", y la partida con este sudoku y el usuario "nombreUsuario".
 		 Devuelve las celdas fijas de este sudoku.
-		 La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
+		 NUEVO: La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
 		 */
 		
 		//
 	}
 	
-	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas) throws ExcepcionSudokuYaExiste{
+	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas) throws ExcepcionSudokuYaExiste, ExcepcionSudokuSinSolucion, ExcepcionSudokuConMasDe1Solucion{
 		
 		CtrlJocSudoku.init();
 		JocSudoku j = CtrlJocSudoku.getJocSudoku(nombreSudoku);
@@ -133,8 +133,15 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 Si ya existe un Sudoku con el nombre "nombreSudoku", se activa la excepcion ExcepcionSudokuYaExiste, si no:
 		 Crea un Sudoku con el nombre "nombreSudoku", que tenga de autor "nombreUuario"
 		 el tablero y las regiones se crean a partir de las celdas de "celdasFijas" (todo eso se hace desde su TaulerSudoku y te puedes orientar con la clase DriverPartidaUsuario que hacia algo parecido)
-		 La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
+		 NUEVO: La partida se guarda tambien en memoria en el atributo "p" privado de esta clase
+		 NUEVO: con "int nSols = ResolvedorSudoku.sols3(TaulerSudoku);" puedes saber cuántas soluciones tiene,
+		 	si tiene 0: Activa excepcion "ExcepcionSudokuSinSolucion",
+		 	si tiene >1: Activa excepcion "ExcepcionSudokuConMasDe1Solucion".
+		 NUEVO: cuando programes este codigo, te irán saliendo "errores de compilacion" que se arreglan haciendo click encima y clicando en "add throws declaration" (para encargarme de esas excepciones en la capa de presentacion)
 		 */
-	} //REDACTAR Y AVISAR A ALEIX DE LA FUNCION: Se activaran excepciones si las celdas que he pasado no cumplen las normas o si el sudoku no tiene solucion o si tiene mas de una
-	//empezar la partida?
+	}
+	
+	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
+		return p.pedirPista();
+	}
 }
