@@ -204,7 +204,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	public void anadirMarca(int i, int j, int val) throws ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango{
 		p.marcarNumero(i, j, val);
 		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
-		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);;
+		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);
 	}
 	
 	public void quitarMarca(int i, int j, int val) throws ExcepcionValorFueraRango{

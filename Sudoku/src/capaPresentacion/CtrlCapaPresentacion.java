@@ -668,7 +668,6 @@ public class CtrlCapaPresentacion {
 					int i = frameJuego4x4.getFilaActiva();
 					int j = frameJuego4x4.getColumnaActiva();
 					boolean modoActivo = frameJuego4x4.getModoActivo();
-					System.out.println("modo activo: " + modoActivo);
 					try {
 						if (!modoActivo) { //modo activo = introducir valor a casilla
 							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
