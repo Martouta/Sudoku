@@ -531,7 +531,9 @@ public class CtrlCapaPresentacion {
 					DTOCeldaFija celdaPista = new DTOCeldaFija(1, 1, 4); //TEMPORAL
 					//DTOCeldaFija celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
-				/*} catch (ExcepcionNoQuedanCeldasVacias e) {
+				} catch (Exception e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				}/* catch (ExcepcionNoQuedanCeldasVacias e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionPosicionFueraRango e) {
 					frameJuego4x4.setMensaje(e.getMessage());
@@ -546,6 +548,31 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				}*/
+			}
+		});
+		frameJuego4x4.getButVaciarTablero().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameJuego4x4.getButActivarDesModoEdicion().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameJuego4x4.cambiarModoActivo();
+			}
+		});
+		frameJuego4x4.getButResuelveSistema().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameJuego4x4.getButMostrarTiempos().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameJuego4x4.getButGuardarPartida().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
 			}
 		});
 	}

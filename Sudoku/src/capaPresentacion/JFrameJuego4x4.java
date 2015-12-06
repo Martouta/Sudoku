@@ -60,7 +60,7 @@ public class JFrameJuego4x4 extends JFrame{
 		return numeroPistas;
 	}
 
-	public boolean esModoActivo() {
+	public boolean getModoActivo() {
 		return modoActivo;
 	}
 
