@@ -190,7 +190,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return new Date();
 	}
 	
-	public void anadirValorCelda(int i, int j, int val) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
+	public void anadirValorCelda(int i, int j, int val) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEstaParado{
 		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
 		ts.setNumCelda(i,j,val,false);
 		for (int f = 0; f < ts.getNN(); ++f) {
@@ -198,6 +198,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 				p.desmarcarNumero(f, c, val);
 			}
 		}
+		if (ts.getNumCeldas() == ts.getNumCeldasRellenas()) acabarPartida();
 	}
 	
 	public void anadirMarca(int i, int j, int val) throws ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango{

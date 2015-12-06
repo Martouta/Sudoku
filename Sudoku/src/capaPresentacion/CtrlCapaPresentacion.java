@@ -678,7 +678,7 @@ public class CtrlCapaPresentacion {
 						if (!modoActivo) { //modo activo = introducir valor a casilla
 							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
 							frameJuego4x4.ponerValorCasilla(i,j,valor);
-							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto! :)");
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)");
 						}
 						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
@@ -690,6 +690,8 @@ public class CtrlCapaPresentacion {
 							}
 						}
 						frameJuego4x4.descolorearCasilla(i,j);
+					} catch (ExcepcionTimerYaEstaParado e) {
+						frameJuego4x4.setMensaje(e.getMessage());
 					} catch (ExcepcionValorFueraRango e) {
 						frameJuego4x4.setMensaje(e.getMessage());
 					} catch (ExcepcionPosicionFueraRango e) {
