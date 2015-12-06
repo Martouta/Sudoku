@@ -100,7 +100,7 @@ public class Partida {
 	}
 
 	public boolean getResuelto() {
-		return (dataFi == null);
+		return (dataFi != null);
 	}
 	
 	public Date getDataFi() throws ExcepcionJuegoAunNoResuelto {

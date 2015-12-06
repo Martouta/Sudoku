@@ -91,9 +91,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
 		
-		CtrlPartida.init();
-		CtrlPartida.afegeixPartida(p,idSudoku); //afegir partida. Ha de ser el mateix id oi?
-		
 		Vector<DTOCeldaFija> V = new Vector<DTOCeldaFija>();
 		
 		for(int i=0; i < t.getNN(); ++i){
@@ -119,7 +116,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	}
 	
 	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas, int n) throws ExcepcionSudokuYaExiste, ExcepcionSudokuSinSolucion, ExcepcionSudokuConMasDe1Solucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEnEjecucion{
-		
 		CtrlJocSudoku.init();
 		JocSudoku j = CtrlJocSudoku.getJocSudoku(nombreSudoku);
 		if (!(j == null)) throw new ExcepcionSudokuYaExiste();
@@ -140,10 +136,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		CtrlJocSudoku.afegeixJocSudoku(js, nombreUsuario);//guardar
 		
 		User u = CtrlUser.getUsuari(nombreUsuario);
-		p = new Partida(u,js); //Crear Partida
-		Date date = new Date();
-		String idSudoku = nombreUsuario + date.toString();
-		CtrlPartida.afegeixPartida(p,idSudoku); //Guardar Partida
+		p = new Partida(u,js); //Crear Partida		
 		
 		//fet, no provat
 		 /*
@@ -159,7 +152,65 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 */
 	}
 	
-	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
-		return p.pedirPista();
+	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEstaParado, ExcepcionPartidaYaAcabada{
+		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+		DTOCeldaFija celdaNueva = p.pedirPista();
+		if (p.getJocSudoku().getTauler().getNumCeldasRellenas() == p.getJocSudoku().getTauler().getNumCeldas()) acabarPartida();
+		return celdaNueva;
+	}
+	
+	public Vector<DTOCeldaFija> resuelveSistema(int nn) throws ExcepcionPosicionFueraRango, ExcepcionTimerYaEstaParado, ExcepcionPartidaYaAcabada{
+		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+		TaulerSudoku ts = p.getJocSudoku().getTaulerResuelto();
+		Vector<DTOCeldaFija> vCeldasSudoku = new Vector<DTOCeldaFija>();
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				DTOCeldaFija celdaSudoku;
+				celdaSudoku = new DTOCeldaFija(i,j,ts.getNumero(i, j));
+				vCeldasSudoku.addElement(celdaSudoku);
+			}
+		}
+		acabarPartida();
+		return vCeldasSudoku;
+	}
+	
+	public boolean partidaAcabada() {
+		return p.getResuelto();
+	}
+	
+	public void acabarPartida() throws ExcepcionTimerYaEstaParado {
+		p.pauseTiempo();
+		p.yaResuelto();
+	}
+	
+	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
+		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+		CtrlPartida.init();
+		//CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
+		return new Date();
+	}
+	
+	public void anadirValorCelda(int i, int j, int val) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		ts.setNumCelda(i,j,val,false);
+		for (int f = 0; f < ts.getNN(); ++f) {
+			for (int c = 0; c < ts.getNN(); ++c) {
+				p.desmarcarNumero(f, c, val);
+			}
+		}
+	}
+	
+	public void anadirMarca(int i, int j, int val) throws ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango{
+		p.marcarNumero(i, j, val);
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		ts.borraNumCelda(i,j);
+	}
+	
+	public void quitarMarca(int i, int j, int val) throws ExcepcionValorFueraRango{
+		p.desmarcarNumero(i, j, val);
+	}
+	
+	public boolean estaMarca(int i, int j, int val) throws ExcepcionValorFueraRango {
+		return p.estaMarcado(i, j, val);
 	}
 }

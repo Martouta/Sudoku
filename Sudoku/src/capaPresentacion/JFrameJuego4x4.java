@@ -128,7 +128,7 @@ public class JFrameJuego4x4 extends JFrame{
         butVaciarTablero = new JButton("Vaciar tablero");
         butResuelveSistema = new JButton("Resuelve sistema");
         butGuardarPartida = new JButton("Guardar partida");
-        labMensError = new JLabel("PRUEBAS");
+        labMensError = new JLabel("");
         labNumeroPistas = new JLabel("Numero de pistas: " + numeroPistas);
         labModoEdicion = new JLabel("Modo activo: Edicion de casillas");
         butVolverMenuSudoku = new JButton("<html>Volver al<br>Menu Sudoku<br>(No se guardaran<br>los cambios)</html>");
@@ -370,6 +370,12 @@ public class JFrameJuego4x4 extends JFrame{
 		vPanCelVM[i][j][1].setVisible(true); //muestra panel marcas
 	}
 	
+	public void quitarMarcaCasilla(int i, int j, int val){
+		vPanCelVM[i][j][0].setVisible(false); //oculta panel valor
+		vLabMarcas[i][j][val-1].setText("  ");
+		vPanCelVM[i][j][1].setVisible(true); //muestra panel marcas
+	}
+	
 	private void quitarMarcasCasilla(int i, int j){
 		vPanCelVM[i][j][1].setVisible(false);
 		for (int z = 0; z < nn; ++z) {
@@ -404,7 +410,7 @@ public class JFrameJuego4x4 extends JFrame{
 	}
 	
 	public boolean estaVacia(int i, int j) {
-		return (vLabValores[i][j].getText() == "  ");
+		return (vLabValores[i][j].getText() == "");
 	}
 	
 	private void colorearInterno(int i, int j, Color color) {
@@ -425,7 +431,16 @@ public class JFrameJuego4x4 extends JFrame{
 		}
 	}
 	
+	private void descolorearTodo() {
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				descolorearCasilla(i,j);
+			}
+		}
+	}
+	
 	public void colorearCasillaActiva(int i, int j) {
+		descolorearTodo();
 		Color color = new Color(98, 255, 151);
 		colorearInterno(i,j,color);
 	}
@@ -436,6 +451,7 @@ public class JFrameJuego4x4 extends JFrame{
 	}
 	
 	public void colorearCasillaInvalida(int i, int j) {
+		descolorearTodo();
 		Color color = new Color(255, 98, 98);
 		colorearInterno(i,j,color);
 	}

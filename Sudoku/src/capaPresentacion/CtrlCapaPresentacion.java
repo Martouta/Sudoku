@@ -584,13 +584,16 @@ public class CtrlCapaPresentacion {
 		frameJuego4x4.getButPedirPista().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
-					DTOCeldaFija celdaPista = new DTOCeldaFija(1, 1, 4); //TEMPORAL
-					//DTOCeldaFija celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
+					DTOCeldaFija celdaPista;
+					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
+					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
 					++numCeldasRellenas;
-				} catch (Exception e) {
+				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
-				}/* catch (ExcepcionNoQuedanCeldasVacias e) {
+				} catch (ExcepcionTimerYaEstaParado e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNoQuedanCeldasVacias e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionPosicionFueraRango e) {
 					frameJuego4x4.setMensaje(e.getMessage());
@@ -604,7 +607,7 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego4x4.setMensaje(e.getMessage());
-				}*/
+				}
 			}
 		});
 		frameJuego4x4.getButVaciarTablero().addActionListener(new ActionListener() {
@@ -620,9 +623,25 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButResuelveSistema().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				int nn = frameJuego4x4.getNN();
-				numCeldasRellenas = nn*nn;
-				//POR HACER
+				try {
+					int nn = frameJuego4x4.getNN();
+					numCeldasRellenas = nn*nn;
+					Vector<DTOCeldaFija> vCeldasSudoku = ctrlCUSeleccionarJugarSudoku.resuelveSistema(nn);
+					for (DTOCeldaFija celdaSudoku : vCeldasSudoku) {
+						int i = celdaSudoku.getFila();
+						int j = celdaSudoku.getColumna();
+						int val = celdaSudoku.getValor();
+						//System.out.println(i + " - " + j + " = " + val + " / " + frameJuego4x4.estaVacia(i, j));
+						if (frameJuego4x4.estaVacia(i, j)) frameJuego4x4.ponerValorCasilla(i, j, val);
+					}
+					frameJuego4x4.setMensaje("Sudoku resuelto por el sistema");
+				} catch (ExcepcionPartidaYaAcabada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionTimerYaEstaParado e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				}
 			}
 		});
 		frameJuego4x4.getButMostrarTiempos().addActionListener(new ActionListener() {
@@ -632,7 +651,16 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				try {
+					Date fechaGuardado;
+					fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
+					Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+					calendar.setTime(fechaGuardado);   // assigns calendar to given date 
+					frameJuego4x4.setMensaje("Partida guardada por ultima vez a las: " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+				} catch (ExcepcionPartidaYaAcabada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				}
+				
 			}
 		});
 		
@@ -644,8 +672,36 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.desactivarPanelOpciones();
 					int i = frameJuego4x4.getFilaActiva();
 					int j = frameJuego4x4.getColumnaActiva();
-					frameJuego4x4.ponerValorCasilla(i,j,valor);
-					frameJuego4x4.descolorearCasilla(i,j);
+					boolean modoActivo = frameJuego4x4.getModoActivo();
+					try {
+						if (!modoActivo) {
+							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
+							frameJuego4x4.ponerValorCasilla(i,j,valor);
+						}
+						else {
+							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
+								ctrlCUSeleccionarJugarSudoku.quitarMarca(i, j, valor);
+								frameJuego4x4.quitarMarcaCasilla(i,j,valor);
+							} else { //poner marca
+								ctrlCUSeleccionarJugarSudoku.anadirMarca(i, j, valor);
+								frameJuego4x4.ponerMarcaCasilla(i,j,valor);
+							}
+						}
+						frameJuego4x4.descolorearCasilla(i,j);
+					} catch (ExcepcionValorFueraRango e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					} catch (ExcepcionPosicionFueraRango e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					} catch (ExcepcionNumeroFijo e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					} catch (ExcepcionCasillaBloqueada e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					} catch (ExcepcionValorYaPuesto e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+						frameJuego4x4.colorearCasillaInvalida(i, j);
+					} catch (ExcepcionCasillaVaciaNoFijable e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					}
 				}
 			});
 		}
@@ -667,14 +723,10 @@ public class CtrlCapaPresentacion {
 					String strColu = nombreCelda.substring(9, 10);
 					int i = Integer.parseInt(strFila);
 					int j = Integer.parseInt(strColu);
-					
 					frameJuego4x4.colorearCasillaActiva(i,j);
-					boolean modoActivo = frameJuego4x4.getModoActivo();
-					if (!modoActivo && !frameJuego4x4.esCeldaFija(i,j)) {
+					if (!frameJuego4x4.esCeldaFija(i,j) && !ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {
 						frameJuego4x4.guardarCoordenadasActivas(i,j);
 						frameJuego4x4.activarPanelOpciones();
-					} else {
-						//FALTA ESTO
 					}
 				}
 			});
