@@ -396,6 +396,10 @@ public class CtrlCapaPresentacion {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionCamposVacios e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuSinSolucion e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuConMasDe1Solucion e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}
 			}
 		});
@@ -417,8 +421,10 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku9x9.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku9x9.getNN();
+				String nombreSudoku = frameProponerSudoku9x9.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
+					if (nombreSudoku.isEmpty()) throw new ExcepcionCamposVacios();
 					frameProponerSudoku9x9.setMensaje("");
 					for (int i = 0; i < nn; ++i) { 
 						for (int j = 0; j < nn; ++j) {	
@@ -427,14 +433,24 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					//FALTAN LAS SIGUIENTES LINEAS
-					//frameProponerSudoku9x9.setVisible(false);
-					//MOSTRAR SUDOKU EN SÍ
-					String nombreSudoku = frameProponerSudoku9x9.getNombreSudoku();
 					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					frameProponerSudoku9x9.setVisible(false);
+					
+					//Mostrar juego:
+					JFrame.setDefaultLookAndFeelDecorated(true);
+					//JFrameJuego9x9 frameJuego9x9 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
+					//frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//frameJuego9x9.pack();
+					//frameJuego9x9.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionCamposVacios e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuSinSolucion e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuConMasDe1Solucion e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				}
 			}
@@ -457,8 +473,10 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku16x16.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku16x16.getNN();
+				String nombreSudoku = frameProponerSudoku16x16.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
+					if (nombreSudoku.isEmpty()) throw new ExcepcionCamposVacios();
 					frameProponerSudoku16x16.setMensaje("");
 					for (int i = 0; i < nn; ++i) { 
 						for (int j = 0; j < nn; ++j) {	
@@ -467,14 +485,24 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					//FALTAN LAS SIGUIENTES LINEAS
-					//frameProponerSudoku16x16.setVisible(false);
-					//MOSTRAR SUDOKU EN SÍ
-					String nombreSudoku = frameProponerSudoku16x16.getNombreSudoku();
 					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					frameProponerSudoku16x16.setVisible(false);
+					
+					//Mostrar juego:
+					JFrame.setDefaultLookAndFeelDecorated(true);
+					//JFrameJuego16x16 frameJuego16x16 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
+					//frameJuego16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//frameJuego16x16.pack();
+					//frameJuego16x16.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionCamposVacios e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuSinSolucion e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionSudokuConMasDe1Solucion e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				}
 			}
