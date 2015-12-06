@@ -18,7 +18,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		for(Partida p : A ){
 			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==n){
-				//partidas del usuario nombreUsuario dificultad dificultar y n n
+				//partidas del usuario nombreUsuario dificultad dificultad y n n
 			}
 				int s=p.getSegundos();
 				int m=p.getMinutos();
@@ -40,7 +40,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 que contiene todas las partidas a medias del usuario "nombreUsuario" con dificultad "dificultad" y con la n "n".
 		 Si al final de la funcion, antes del return, el vector no contiene ningun elemento, hay que activar la excepcion ExcepcionNoHaySudokuConCaracteristicasSeleccionada
 		 
-		 fet, no provat
 		 */ 
 	}
 
@@ -68,7 +67,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 que contiene todos los sudokus de la base de datos (que no son partidas a medias) con dificultad "dificultad" y con la n "n".
 		 Si al final de la funcion, antes del return, el vector no contiene ningun elemento, hay que activar la excepcion ExcepcionNoHaySudokuConCaracteristicasSeleccionadas
 		 */
-		//fet, no provat
+		
 	}
 	
 	public Vector<DTOCeldaFija> obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
@@ -107,7 +106,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		}
 		return V;
 		
-		//feta, no probada
+		
 		/*
 		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
 		 Si "dificultad" es del tipo "trivial", activa la excepcion ExcepcionMaquinaNoGeneraTriviales, si no:
@@ -119,16 +118,35 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		//
 	}
 	
-	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas) throws ExcepcionSudokuYaExiste, ExcepcionSudokuSinSolucion, ExcepcionSudokuConMasDe1Solucion{
+	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas, int n) throws ExcepcionSudokuYaExiste, ExcepcionSudokuSinSolucion, ExcepcionSudokuConMasDe1Solucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEnEjecucion{
 		
 		CtrlJocSudoku.init();
 		JocSudoku j = CtrlJocSudoku.getJocSudoku(nombreSudoku);
 		if (!(j == null)) throw new ExcepcionSudokuYaExiste();
 		
-		//sudoku = JocSudoku?   dónde asigno el autor?
 		
+		TaulerSudoku t = new TaulerSudoku(n);
+		for(DTOCeldaFija c : celdasFijas){ //introducimos las celdas fijas al sudoku
+			t.setNumCelda(c.getFila(), c.getColumna(), c.getValor(), true);
+		}
 		
-		/*
+		int nSols = ResolvedorSudoku.sols3(t);
+		if(nSols<1) throw new ExcepcionSudokuSinSolucion();
+		if(nSols>1) throw new ExcepcionSudokuConMasDe1Solucion();
+		
+		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t);
+		
+		JocSudoku js = new JocSudoku(nombreSudoku,t,tsol); //crear JocSudoku
+		CtrlJocSudoku.afegeixJocSudoku(js, nombreUsuario);//guardar
+		
+		User u = CtrlUser.getUsuari(nombreUsuario);
+		Partida P = new Partida(u,js); //Crear Partida
+		Date date = new Date();
+		String idSudoku = nombreUsuario + date.toString();
+		CtrlPartida.afegeixPartida(P,idSudoku); //Guardar Partida
+		
+		//fet, no provat
+		 /*
 		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
 		 Si ya existe un Sudoku con el nombre "nombreSudoku", se activa la excepcion ExcepcionSudokuYaExiste, si no:
 		 Crea un Sudoku con el nombre "nombreSudoku", que tenga de autor "nombreUuario"
