@@ -139,7 +139,7 @@ public class CtrlPartida {
                 int nmarcas = 0;
                 for(int i=0;i<nn;i++) {
                 	for(int j=0;j<nn;j++) {
-                		for(int k=0;k<nn;k++) {
+                		for(int k=1;k<=nn;k++) {
                 			if(p.estaMarcado(i, j, k))
                 				nmarcas++;
                 		}
@@ -148,7 +148,7 @@ public class CtrlPartida {
                 fila.add(Integer.toString(nmarcas));
                 for(int i=0;i<nn;i++) {
                 	for(int j=0;j<nn;j++) {
-                		for(int k=0;k<nn;k++) {
+                		for(int k=1;k<=nn;k++) {
                 			if(p.estaMarcado(i, j, k)) {
                 				fila.add(Integer.toString(i));
                 				fila.add(Integer.toString(j));
