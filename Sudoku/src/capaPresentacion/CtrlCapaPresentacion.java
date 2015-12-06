@@ -584,7 +584,7 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto! :)");
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)");
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -614,6 +614,7 @@ public class CtrlCapaPresentacion {
 		frameJuego4x4.getButActivarDesModoEdicion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameJuego4x4.cambiarModoActivo();
+				frameJuego4x4.setMensaje("");
 			}
 		});
 		frameJuego4x4.getButResuelveSistema().addActionListener(new ActionListener() {
@@ -667,6 +668,7 @@ public class CtrlCapaPresentacion {
 					int i = frameJuego4x4.getFilaActiva();
 					int j = frameJuego4x4.getColumnaActiva();
 					boolean modoActivo = frameJuego4x4.getModoActivo();
+					System.out.println("modo activo: " + modoActivo);
 					try {
 						if (!modoActivo) { //modo activo = introducir valor a casilla
 							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
@@ -683,6 +685,7 @@ public class CtrlCapaPresentacion {
 							}
 						}
 						frameJuego4x4.descolorearCasilla(i,j);
+						frameJuego4x4.setMensaje("");
 					} catch (ExcepcionTimerYaEstaParado e) {
 						frameJuego4x4.setMensaje(e.getMessage());
 					} catch (ExcepcionValorFueraRango e) {
@@ -724,7 +727,8 @@ public class CtrlCapaPresentacion {
 					if (!frameJuego4x4.esCeldaFija(i,j) && !ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {
 						frameJuego4x4.guardarCoordenadasActivas(i,j);
 						frameJuego4x4.activarPanelOpciones();
-					}
+					} else frameJuego4x4.desactivarPanelOpciones();
+					frameJuego4x4.setMensaje("");
 				}
 			});
 		}

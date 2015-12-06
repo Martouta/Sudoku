@@ -394,8 +394,8 @@ public class JFrameJuego4x4 extends JFrame{
 	}
 	
 	public void cambiarModoActivo() {
-		if (modoActivo) {modoActivo = false; labModoEdicion.setText("Modo activo: Edicion de marcas"); butActivarDesModoEdicion.setText("Activar modo edicion de casillas");}
-		else {modoActivo = true; labModoEdicion.setText("Modo activo: Edicion de casillas"); butActivarDesModoEdicion.setText("Activar modo edicion de marcas");};
+		if (modoActivo) {modoActivo = false; labModoEdicion.setText("Modo activo: Edicion de casillas"); butActivarDesModoEdicion.setText("Activar modo edicion de marcas");}
+		else {modoActivo = true; labModoEdicion.setText("Modo activo: Edicion de marcas"); butActivarDesModoEdicion.setText("Activar modo edicion de casillas");}
 	}
 	
 	public void nuevaPista(int i, int j, int val) { //DUDA: esta casilla la marco como fija? de momento la pongo no fija (hay que ser consistentes con como esta guardada esta casilla en Cella.java)
