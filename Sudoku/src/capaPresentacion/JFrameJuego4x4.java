@@ -12,6 +12,7 @@ public class JFrameJuego4x4 extends JFrame{
 	private int n;
 	private int nn;
 	private Vector<DTOCeldaFija> vCeldasFijas;
+	private boolean modoActivo = false; //false (0) = valor / true (1) = marcas
 	
 	private JPanel panPrincipal;
     private JPanel panSudoku;
@@ -23,6 +24,7 @@ public class JFrameJuego4x4 extends JFrame{
 	public JFrameJuego4x4(Vector<DTOCeldaFija> vCeldasFijas) {
 		this.vCeldasFijas = vCeldasFijas;
 		initComponents();
+		quitarMarcas(1,2);
 	}
 	
 	private void initComponents() {
@@ -132,6 +134,7 @@ public class JFrameJuego4x4 extends JFrame{
 		panAux.add(panValor);
 		panValor.setVisible(false);
 		panAux.add(panMarcas);
+		panAux.setName("panCelda" + i + "" + j);
 		
 		JLabel labValor = new JLabel("");
 		labValor.setSize(new Dimension(40, 40));
@@ -156,4 +159,53 @@ public class JFrameJuego4x4 extends JFrame{
 			panMarcas.add(labAux);
 		}
 	}
+	
+	private void ponerValor(int i, int j, int val) {
+		//
+	}
+	
+	private void ponerMarca(int i, int j, int val) {
+		//
+	}
+	
+	private void quitarMarcas(int i, int j){
+		//JPanel panMarcas = new JPanel();
+		//panMarcas.setSize(new Dimension(40, 40));
+			//panMarcas.setLayout(new GridLayout(n, n));
+		//vPanCelVM[i][j][1] = panMarcas;
+		JPanel panAux = (JPanel) panSudoku.getComponent(i*nn + j);
+		System.out.println(panAux.getName());
+	}
+	
+	private void ponerCeldasFijas(){
+		//
+	}
+	
+	private void muestraPanelValor(){
+		//-------mostrar en el label/boton
+		modoActivo = false; //modo valor
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				vPanCelVM[i][j][0].setVisible(true);
+				vPanCelVM[i][j][1].setVisible(false);
+			}
+		}
+	}
+	
+	private void muestraPanelMarcas(){
+		//-------mostrar en el label/boton
+		modoActivo = true; //modo marcas
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				vPanCelVM[i][j][0].setVisible(false);
+				vPanCelVM[i][j][1].setVisible(true);
+			}
+		}
+	}
+	
+	private void cambiarModoActivo() {
+		if (modoActivo) muestraPanelValor();
+		else muestraPanelMarcas();
+	}
+	
 }

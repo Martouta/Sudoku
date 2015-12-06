@@ -380,10 +380,10 @@ public class CtrlCapaPresentacion {
 						}
 					}
 					String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
-					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
 					frameProponerSudoku4x4.setVisible(false);
 					
-					//METODO TEMPORAL:
+					//Mostrar juego:
 					JFrame.setDefaultLookAndFeelDecorated(true);
 					JFrameJuego4x4 frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas);
 					frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -391,9 +391,9 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
-				}/* catch (ExcepcionSudokuYaExiste e) {
+				} catch (ExcepcionSudokuYaExiste e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
-				}*/
+				}
 			}
 		});
 	}
@@ -428,12 +428,12 @@ public class CtrlCapaPresentacion {
 					//frameProponerSudoku9x9.setVisible(false);
 					//MOSTRAR SUDOKU EN SÍ
 					String nombreSudoku = frameProponerSudoku9x9.getNombreSudoku();
-					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
-				}/* catch (ExcepcionSudokuYaExiste e) {
+				} catch (ExcepcionSudokuYaExiste e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
-				}*/
+				}
 			}
 		});
 	}
@@ -468,12 +468,12 @@ public class CtrlCapaPresentacion {
 					//frameProponerSudoku16x16.setVisible(false);
 					//MOSTRAR SUDOKU EN SÍ
 					String nombreSudoku = frameProponerSudoku16x16.getNombreSudoku();
-					//ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
-				}/* catch (ExcepcionSudokuYaExiste e) {
+				} catch (ExcepcionSudokuYaExiste e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
-				}*/
+				}
 			}
 		});
 	}
