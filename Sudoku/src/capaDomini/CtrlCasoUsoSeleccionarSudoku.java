@@ -192,6 +192,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public void anadirValorCelda(int i, int j, int val) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEstaParado{
 		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);
 		ts.setNumCelda(i,j,val,false);
 		for (int f = 0; f < ts.getNN(); ++f) {
 			for (int c = 0; c < ts.getNN(); ++c) {
@@ -215,7 +216,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return p.estaMarcado(i, j, val);
 	}
 	
-	public Vector<DTOCeldaFija> vaciarTablero() { //POR HACER
+	public Vector<DTOCeldaFija> vaciarTablero() { //POR HACER!!!!!!!!!!!!!!
 		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 		return vCeldasFijas;
 	}
