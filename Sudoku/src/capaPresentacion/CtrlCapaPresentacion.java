@@ -527,7 +527,25 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButPedirPista().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//
+				try {
+					DTOCeldaFija celdaPista = new DTOCeldaFija(1, 1, 4); //TEMPORAL
+					//DTOCeldaFija celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
+					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
+				/*} catch (ExcepcionNoQuedanCeldasVacias e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				}*/
 			}
 		});
 	}

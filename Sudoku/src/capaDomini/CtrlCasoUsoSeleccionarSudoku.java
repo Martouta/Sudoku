@@ -1,6 +1,6 @@
 package capaDomini;
 
-//NO LISTO PARA SER PROGRAMADO
+//LISTO PARA SER PROGRAMADO
 
 import persistencia.*;
 import java.util.*;
