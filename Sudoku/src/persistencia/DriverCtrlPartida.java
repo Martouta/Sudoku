@@ -80,8 +80,7 @@ public class DriverCtrlPartida {
 		    		int opt = entrada.nextInt();
 		    		while(opt!=-1) {
 		    			if(opt==2) {
-		    				p.getJocSudoku().Pista();
-		    				p.incrementaPista();
+		    				p.pedirPista();
 		    				display(t,p);
 			    			opt = entrada.nextInt();
 		    				continue;
@@ -127,8 +126,7 @@ public class DriverCtrlPartida {
 		    		int opt = entrada.nextInt();
 		    		while(opt!=-1) {
 		    			if(opt==2) {
-		    				p.getJocSudoku().Pista();
-		    				p.incrementaPista();
+		    				p.pedirPista();
 		    				display(t,p);
 			    			opt = entrada.nextInt();
 		    				continue;
