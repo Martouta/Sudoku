@@ -30,7 +30,6 @@ public class CtrlCapaPresentacion {
     
 	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
-	private int numCeldasRellenas;
 
 	
 	public CtrlCapaPresentacion() {
@@ -395,7 +394,6 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
 					frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frameJuego4x4.pack();
-					numCeldasRellenas = vCeldasFijas.size();
 					initListenersJFrameJuego4x4();
 					frameJuego4x4.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
@@ -463,7 +461,6 @@ public class CtrlCapaPresentacion {
 					
 					//Mostrar juego:
 					JFrame.setDefaultLookAndFeelDecorated(true);
-					numCeldasRellenas = vCeldasFijas.size();
 					//JFrameJuego9x9 frameJuego9x9 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
 					//frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					//frameJuego9x9.pack();
@@ -533,7 +530,6 @@ public class CtrlCapaPresentacion {
 					
 					//Mostrar juego:
 					JFrame.setDefaultLookAndFeelDecorated(true);
-					numCeldasRellenas = vCeldasFijas.size();
 					//JFrameJuego16x16 frameJuego16x16 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
 					//frameJuego16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					//frameJuego16x16.pack();
@@ -588,7 +584,6 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					++numCeldasRellenas;
 					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto! :)");
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
@@ -613,7 +608,6 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButVaciarTablero().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				numCeldasRellenas = frameJuego4x4.getNumeroCeldasFijas();
 				//POR HACER
 			}
 		});
@@ -626,7 +620,6 @@ public class CtrlCapaPresentacion {
 			public void actionPerformed(ActionEvent evt) {
 				try {
 					int nn = frameJuego4x4.getNN();
-					numCeldasRellenas = nn*nn;
 					Vector<DTOCeldaFija> vCeldasSudoku = ctrlCUSeleccionarJugarSudoku.resuelveSistema(nn);
 					for (DTOCeldaFija celdaSudoku : vCeldasSudoku) {
 						int i = celdaSudoku.getFila();

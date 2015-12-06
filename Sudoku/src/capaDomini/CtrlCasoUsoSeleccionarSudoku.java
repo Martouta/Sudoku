@@ -1,6 +1,6 @@
 package capaDomini;
 
-//LISTO PARA SER PROGRAMADO
+//NO LISTO PARA SER PROGRAMADO
 
 import persistencia.*;
 import java.util.*;
@@ -213,5 +213,10 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public boolean estaMarca(int i, int j, int val) throws ExcepcionValorFueraRango {
 		return p.estaMarcado(i, j, val);
+	}
+	
+	public Vector<DTOCeldaFija> vaciarTablero() { //POR HACER
+		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+		return vCeldasFijas;
 	}
 }
