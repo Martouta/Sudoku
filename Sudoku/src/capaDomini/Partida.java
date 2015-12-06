@@ -1,6 +1,8 @@
 package capaDomini;
 
 import java.util.*;
+
+import DataTransferObjects.DTOCeldaFija;
 import excepciones.*;
 
 public class Partida { 
@@ -96,10 +98,6 @@ public class Partida {
 	public int getNumPistas() {
 		return nPistas;
 	}
-	
-	public void incrementaPista() {
-		++nPistas;
-	}
 
 	public boolean getResuelto() {
 		return (dataFi == null);
@@ -158,5 +156,10 @@ public class Partida {
 	
 	public User getUsuario() {
 		return usuario;
+	}
+	
+	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
+		++nPistas;
+		return sudoku.pedirPista();
 	}
 }

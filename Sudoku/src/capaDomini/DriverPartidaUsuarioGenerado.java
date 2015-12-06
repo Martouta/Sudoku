@@ -79,8 +79,8 @@ public class DriverPartidaUsuarioGenerado {
             	tSol.muestraTabla();
             	break;
             case 5:
-            	sudoku.Pista();
-            	p.incrementaPista();
+            	//sudoku.Pista();
+            	//p.incrementaPista();
             	break;
             case 6:
             	System.out.println("numero de pistas: " + p.getNumPistas());

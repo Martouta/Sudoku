@@ -21,6 +21,9 @@ public class CtrlCapaPresentacion {
     private static JFrame frameProponerSudoku4x4;
     private static JFrame frameProponerSudoku9x9;
     private static JFrame frameProponerSudoku16x16;
+    private static JFrameJuego4x4 frameJuego4x4;
+    //private static JFrameJuego9x9 frameJuego9x9;
+    //private static JFrameJuego16x16 frameJuego16x16;
     
     private CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku;
     
@@ -386,9 +389,10 @@ public class CtrlCapaPresentacion {
 					
 					//Mostrar juego:
 					JFrame.setDefaultLookAndFeelDecorated(true);
-					JFrameJuego4x4 frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
+					frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
 					frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frameJuego4x4.pack();
+					initListenersJFrameJuego4x4();
 					frameJuego4x4.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
@@ -505,6 +509,25 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionSudokuConMasDe1Solucion e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				}
+			}
+		});
+	}
+	
+	private void initListenersJFrameJuego4x4(){
+		frameJuego4x4.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		frameJuego4x4.getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameJuego4x4.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		frameJuego4x4.getButPedirPista().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//
 			}
 		});
 	}

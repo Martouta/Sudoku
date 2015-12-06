@@ -11,6 +11,7 @@ public class JFrameJuego4x4 extends JFrame{
 	
 	private int n;
 	private int nn;
+	private int numeroPistas;
 	private Vector<DTOCeldaFija> vCeldasFijas;
 	private boolean modoActivo = false; //false (0) = valor / true (1) = marcas
 	
@@ -21,14 +22,80 @@ public class JFrameJuego4x4 extends JFrame{
     private JLabel[][][] vLabMarcas;
     private JLabel[][] vLabValores;
     private JPanel[][][] vPanCelVM;
+    private Vector<JButton> vButOpciones;
+    
+    private JButton butActivarDesModoEdicion;
+    private JButton butGuardarPartida;
+    private JButton butMostrarTiempos;
+    private JButton butPedirPista;
+    private JButton butResuelveSistema;
+    private JButton butSalir;
+    private JButton butVaciarTablero;
+    private JButton butVolverMenuSudoku;
+    private JLabel labMensError;
+    private JLabel labModoEdicion;
+    private JLabel labNumeroPistas;
+    private JPanel panOpciones;
 	
 	public JFrameJuego4x4(Vector<DTOCeldaFija> vCeldasFijas, String nombreSudoku) {
+		numeroPistas = 0;
 		this.vCeldasFijas = vCeldasFijas;
 		initComponents(nombreSudoku);
 		ponerCeldasFijas();
-		ponerValorCasilla(1,1,4); //haciendo pruebas
 	}
 	
+	public void setMensaje(String msj){
+		labMensError.setText(msj);
+	}
+	
+	public int getN() {
+		return n;
+	}
+
+	public int getNN() {
+		return nn;
+	}
+
+	public int getNumeroPistas() {
+		return numeroPistas;
+	}
+
+	public boolean esModoActivo() {
+		return modoActivo;
+	}
+
+	public JButton getButActivarDesModoEdicion() {
+		return butActivarDesModoEdicion;
+	}
+
+	public JButton getButGuardarPartida() {
+		return butGuardarPartida;
+	}
+
+	public JButton getButMostrarTiempos() {
+		return butMostrarTiempos;
+	}
+
+	public JButton getButPedirPista() {
+		return butPedirPista;
+	}
+
+	public JButton getButResuelveSistema() {
+		return butResuelveSistema;
+	}
+
+	public JButton getButSalir() {
+		return butSalir;
+	}
+
+	public JButton getButVaciarTablero() {
+		return butVaciarTablero;
+	}
+
+	public JButton getButVolverMenuSudoku() {
+		return butVolverMenuSudoku;
+	}
+
 	private void initComponents(String nombreSudoku) {
 		nn = 4;
 		n = 2;
@@ -39,6 +106,20 @@ public class JFrameJuego4x4 extends JFrame{
 		
         panPrincipal = new JPanel();
         panSudoku = new JPanel();
+        panOpciones = new JPanel();
+        butPedirPista = new JButton("Pedir pista");
+        butActivarDesModoEdicion = new JButton("Activar modo edicion de marcas");
+        butMostrarTiempos = new JButton("Mostrar tiempos");
+        butVaciarTablero = new JButton("Vaciar tablero");
+        butResuelveSistema = new JButton("Resuelve sistema");
+        butGuardarPartida = new JButton("Guardar partida");
+        labMensError = new JLabel("PRUEBAS");
+        labNumeroPistas = new JLabel("Numero de pistas: " + numeroPistas);
+        labModoEdicion = new JLabel("Modo activo: Edicion de casillas");
+        butVolverMenuSudoku = new JButton("<html>Volver al<br>Menu Sudoku<br>(No se guardaran<br>los cambios)</html>");
+        butSalir = new JButton("<html>Salir<br>(No se guardaran<br>los cambios)</html>");
+        
+        labMensError.setHorizontalAlignment(SwingConstants.CENTER);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,8 +137,37 @@ public class JFrameJuego4x4 extends JFrame{
         );
         panSudokuLayout.setVerticalGroup(
             panSudokuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panOpciones.setMaximumSize(new java.awt.Dimension(40, 169));
+        panOpciones.setMinimumSize(new java.awt.Dimension(40, 169));
+
+        GroupLayout panOpcionesLayout = new GroupLayout(panOpciones);
+        panOpciones.setLayout(panOpcionesLayout);
+        panOpcionesLayout.setHorizontalGroup(
+            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+        panOpcionesLayout.setVerticalGroup(
+            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 169, Short.MAX_VALUE)
         );
+        
+        labMensError.setMaximumSize(new java.awt.Dimension(357, 60));
+        labMensError.setMinimumSize(new java.awt.Dimension(357, 60));
+
+        labNumeroPistas.setMaximumSize(new java.awt.Dimension(227, 30));
+        labNumeroPistas.setMinimumSize(new java.awt.Dimension(227, 30));
+
+        labModoEdicion.setMaximumSize(new java.awt.Dimension(227, 30));
+        labModoEdicion.setMinimumSize(new java.awt.Dimension(227, 30));
+
+        butVolverMenuSudoku.setMaximumSize(new java.awt.Dimension(140, 80));
+        butVolverMenuSudoku.setMinimumSize(new java.awt.Dimension(140, 80));
+
+        butSalir.setMaximumSize(new java.awt.Dimension(140, 80));
+        butSalir.setMinimumSize(new java.awt.Dimension(140, 80));
 
         GroupLayout panPrincipalLayout = new GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -65,15 +175,70 @@ public class JFrameJuego4x4 extends JFrame{
             panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(labModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.LEADING, panPrincipalLayout.createSequentialGroup()
+                        .addComponent(panSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panOpciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labNumeroPistas, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(panPrincipalLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panPrincipalLayout.createSequentialGroup()
+                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                    .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(36, 36, 36)
+                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(labMensError, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, panPrincipalLayout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(GroupLayout.Alignment.TRAILING, panPrincipalLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panPrincipalLayout.setVerticalGroup(
             panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(panPrincipalLayout.createSequentialGroup()
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                            .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labMensError, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panPrincipalLayout.createSequentialGroup()
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panOpciones, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -87,9 +252,25 @@ public class JFrameJuego4x4 extends JFrame{
             .addComponent(panPrincipal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         
+        rellenarPanelOpciones();
         rellenarPanelSudoku();
-        
 		add(panPrincipal);
+	}
+	
+	private void rellenarPanelOpciones() {
+		vButOpciones = new Vector<JButton>();
+		panOpciones.setVisible(false);
+		int locI = 3;
+		for (int i = 0; i < nn; ++i) {
+			JButton butAux = new JButton((i+1) + "");
+			butAux.setFont(new Font("Tahoma", Font.PLAIN, 10));
+			butAux.setName("butOpc" + i);
+			butAux.setSize(40, 40);
+			butAux.setLocation(0, locI);
+			locI += 40;
+			vButOpciones.addElement(butAux);
+			panOpciones.add(butAux);
+		}
 	}
 
 	private void rellenarPanelSudoku() {
@@ -123,7 +304,7 @@ public class JFrameJuego4x4 extends JFrame{
 		}
 	}
 
-	private void rellenarLabelsPanel(JPanel panAux, int i, int j) { //SE TENDRA QUE MODIFICAR PORQUE AUN SE VEN LOS NUMEROS DE LAS MARCAS
+	private void rellenarLabelsPanel(JPanel panAux, int i, int j) {
 		esCeldaFija[i][j] = false;
 		JPanel panValor = new JPanel();
 		JPanel panMarcas = new JPanel();
@@ -156,19 +337,20 @@ public class JFrameJuego4x4 extends JFrame{
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
 			labAux.setOpaque(true);
-			labAux.setText(z + " "); //labAux.setText("  ");
+			labAux.setText("  "); //labAux.setText((z+1) + " ");
 			vLabMarcas[i][j][z] = labAux;
 			panMarcas.add(labAux);
 		}
 	}
 	
-	private void ponerValorCasilla(int i, int j, int val) {
+	public void ponerValorCasilla(int i, int j, int val) {
 		quitarMarcasCasilla(i, j); //oculta panel marcas + quita el valor a los labels de las marcas
 		vLabValores[i][j].setText(val + ""); //pone valor al label
 		vPanCelVM[i][j][0].setVisible(true); //muestra panel valor
 	}
 	
-	private void ponerMarcaCasilla(int i, int j, int val) {
+	public void ponerMarcaCasilla(int i, int j, int val) {
+		vLabValores[i][j].setText("");
 		vPanCelVM[i][j][0].setVisible(false); //oculta panel valor
 		vLabMarcas[i][j][val-1].setText(val + " ");
 		vPanCelVM[i][j][1].setVisible(true); //muestra panel marcas
@@ -177,26 +359,34 @@ public class JFrameJuego4x4 extends JFrame{
 	private void quitarMarcasCasilla(int i, int j){
 		vPanCelVM[i][j][1].setVisible(false);
 		for (int z = 0; z < nn; ++z) {
-			vLabMarcas[i][j][z].setText("");
+			vLabMarcas[i][j][z].setText("  ");
 		}
 	}
 	
 	private void ponerCeldasFijas(){
-		//guardarme algo para saber que no es editable (ni el valor ni las marcas)
 		for (DTOCeldaFija celdaFija : vCeldasFijas) {
 			int i = celdaFija.getFila();
 			int j = celdaFija.getColumna();
 			esCeldaFija[i][j] = true;
 			ponerValorCasilla(i,j,celdaFija.getValor());
 			vLabValores[i][j].setForeground(new Color(160, 160, 60));
-			//vPanCelVM[i][j][0].setBackground(new Color(230, 230, 230));
-			//vPanCelVM[i][j][0].setOpaque(true);
 		}
 	}
 	
-	private void cambiarModoActivo() {
-		if (modoActivo) {modoActivo = false; /*---mostrar en el label/boton;*/}
-		else {modoActivo = true; /*---mostrar en el label/boton;*/};
+	public void cambiarModoActivo() {
+		if (modoActivo) {modoActivo = false; labModoEdicion.setText("Modo activo: Edicion de marcas"); butActivarDesModoEdicion.setText("Activar modo edicion de casillas");}
+		else {modoActivo = true; labModoEdicion.setText("Modo activo: Edicion de casillas"); butActivarDesModoEdicion.setText("Activar modo edicion de marcas");};
+	}
+	
+	public void nuevaPista(int i, int j, int val) { //DUDA: esta casilla la marco como fija? de momento la pongo no fija (hay que ser consistentes con como esta guardada esta casilla en Cella.java)
+		ponerValorCasilla(i,j,val);
+		++numeroPistas;
+		labNumeroPistas.setText("Numero de pistas: " + numeroPistas);
+		//Calcular tiempo penalizacion? o que lo haga la otra ventana
+	}
+	
+	public boolean esCeldaFija(int i, int j){
+		return esCeldaFija[i][j];
 	}
 	
 }

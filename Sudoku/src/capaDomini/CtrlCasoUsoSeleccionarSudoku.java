@@ -140,4 +140,13 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 NUEVO: cuando programes este codigo, te irán saliendo "errores de compilacion" que se arreglan haciendo click encima y clicando en "add throws declaration" (para encargarme de esas excepciones en la capa de presentacion)
 		 */
 	}
+	
+	public void pedirPista(){
+		
+		/*
+		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
+		 sudoku.Pista();
+	     p.incrementaPista();
+		  */
+	}
 }

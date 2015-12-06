@@ -36,7 +36,7 @@ public class DriverJocSudoku {
 	    		case 0:
 	    			break;
 	    		case 1: //si el tauler està complet no fa res
-	    			js.Pista();
+	    			js.pedirPista();
 	    			//System.out.println("pista donada");
 	    			t.muestraTabla();
 	    			break;

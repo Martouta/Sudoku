@@ -2,11 +2,15 @@ package capaDomini;
 
 import java.util.*;
 
+import DataTransferObjects.DTOCeldaFija;
 import DataTransferObjects.tipoDificultad;
 import excepciones.ExcepcionCasillaBloqueada;
+import excepciones.ExcepcionCasillaVaciaNoFijable;
+import excepciones.ExcepcionNoQuedanCeldasVacias;
 import excepciones.ExcepcionNumeroFijo;
 import excepciones.ExcepcionPosicionFueraRango;
 import excepciones.ExcepcionValorFueraRango;
+import excepciones.ExcepcionValorYaPuesto;
 
 public class JocSudoku extends Joc implements Cloneable {
 	
@@ -24,31 +28,33 @@ public class JocSudoku extends Joc implements Cloneable {
 		tauler_sol = tSol;
 	}
 
-	public void Pista() throws ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada {
+	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 	    int ncellas=super.getTauler().getNumCeldas();
-	    if(super.getTauler().getNumCeldasRellenas() < ncellas){
-            boolean found=false;
-            Random gen1 = new Random();
-            int nn = (int) Math.pow(super.getTauler().getNumCeldas(),0.5);
-            int x = gen1.nextInt(nn);
-            Random gen2 = new Random();
-            int y = gen2.nextInt(nn);
-            int i=0;
-   	        while(i<ncellas && !found){
-   	        	//System.out.println("Pista " + x + " " + y); //
-   	        	if(!super.getTauler().estaVacia(x,y)){
-   	        		++x;
-   	        		if(x==nn){ ++y; x=0;}
-   	        		if(y==nn){ y=0; x=0;}
-                }
-			else found=true;
-   	        ++i;
-		}
-   	        if (found){
-   	        	System.out.println("Pista en la posicion " + x + " " + y); //
-   	        	super.getTauler().setNumero(x,y,tauler_sol.getNumero(x,y));
-   	        }
+	    DTOCeldaFija celdaPista = new DTOCeldaFija(1, 1, 1);
+	    
+	    if(super.getTauler().getNumCeldasRellenas() == ncellas) throw new ExcepcionNoQuedanCeldasVacias();
+	    
+	    boolean found=false;
+        Random gen1 = new Random();
+        int nn = (int) Math.pow(super.getTauler().getNumCeldas(),0.5);
+        int x = gen1.nextInt(nn);
+        Random gen2 = new Random();
+        int y = gen2.nextInt(nn);
+        int i=0;
+	    while(i<ncellas && !found){
+	    	if(!super.getTauler().estaVacia(x,y)){
+		        ++x;
+		        if(x==nn){ ++y; x=0;}
+		        if(y==nn){ y=0; x=0;}
+	    	}
+	    	else found=true;
+	    	++i;
 	    }
+	    int valor = tauler_sol.getNumero(x,y);
+	    TaulerSudoku taulerSudoku = (TaulerSudoku) super.getTauler();
+	    taulerSudoku.setNumCelda(x, y, valor, false);
+	    celdaPista = new DTOCeldaFija(x,y,valor);
+	    return celdaPista;
 	}
 	
 	private tipoDificultad calcularDificultad(TaulerSudoku ts) {
