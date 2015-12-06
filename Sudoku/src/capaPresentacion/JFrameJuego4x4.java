@@ -351,7 +351,7 @@ public class JFrameJuego4x4 extends JFrame{
 			labAux.setFont(new Font("Tahoma", 0, 12));
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
-			/*labAux.setText("  ");*/labAux.setText((z+1) + " ");
+			labAux.setText("  ");//labAux.setText((z+1) + " ");
 			vLabMarcas[i][j][z] = labAux;
 			panMarcas.add(labAux);
 		}
@@ -444,5 +444,23 @@ public class JFrameJuego4x4 extends JFrame{
 		fActiva = i;
 		cActiva = j;
 	}
+	
+	public void activarPanelOpciones(){
+		panOpciones.setVisible(true);
+	}
+	
+	public void desactivarPanelOpciones(){
+		panOpciones.setVisible(false);
+	}
+	
+	public int getFilaActiva(){
+		return fActiva;
+	}
+	
+	public int getColumnaActiva(){
+		return cActiva;
+	}
+	
+	//FALTA VACIAR CELDA CON VALOR PARA QUE PUEDA VOLVER A PONER MARCAS
 	
 }

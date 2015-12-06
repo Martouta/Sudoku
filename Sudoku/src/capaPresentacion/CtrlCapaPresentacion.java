@@ -588,8 +588,12 @@ public class CtrlCapaPresentacion {
 		for (JButton butOpcion : vButOpciones) {
 			butOpcion.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					int valor = Integer.getInteger(butOpcion.getText());
-					//POR HACER
+					int valor = Integer.parseInt(butOpcion.getText());
+					frameJuego4x4.desactivarPanelOpciones();
+					int i = frameJuego4x4.getFilaActiva();
+					int j = frameJuego4x4.getColumnaActiva();
+					frameJuego4x4.ponerValorCasilla(i,j,valor);
+					frameJuego4x4.descolorearCasilla(i,j);
 				}
 			});
 		}
@@ -611,9 +615,15 @@ public class CtrlCapaPresentacion {
 					String strColu = nombreCelda.substring(9, 10);
 					int i = Integer.parseInt(strFila);
 					int j = Integer.parseInt(strColu);
-					frameJuego4x4.guardarCoordenadasActivas(i,j);
+					
 					frameJuego4x4.colorearCasillaActiva(i,j);
-					//frameJuego4x4.colorearCasillaInvalida(panCelda);
+					boolean modoActivo = frameJuego4x4.getModoActivo();
+					if (!modoActivo && !frameJuego4x4.esCeldaFija(i,j)) {
+						frameJuego4x4.guardarCoordenadasActivas(i,j);
+						frameJuego4x4.activarPanelOpciones();
+					} else {
+						//FALTA ESTO
+					}
 				}
 			});
 		}
