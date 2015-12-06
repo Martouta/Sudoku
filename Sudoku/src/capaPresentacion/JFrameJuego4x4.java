@@ -14,6 +14,8 @@ public class JFrameJuego4x4 extends JFrame{
 	private int numeroPistas;
 	private Vector<DTOCeldaFija> vCeldasFijas;
 	private boolean modoActivo = false; //false (0) = valor / true (1) = marcas
+	private int fActiva;
+	private int cActiva;
 	
 	private JPanel panPrincipal;
     private JPanel panSudoku;
@@ -38,10 +40,19 @@ public class JFrameJuego4x4 extends JFrame{
     private JPanel panOpciones;
 	
 	public JFrameJuego4x4(Vector<DTOCeldaFija> vCeldasFijas, String nombreSudoku) {
-		numeroPistas = 0;
+		numeroPistas = fActiva = cActiva = 0;
 		this.vCeldasFijas = vCeldasFijas;
 		initComponents(nombreSudoku);
 		ponerCeldasFijas();
+	}
+	
+	
+	public Vector<JButton> getVButOpciones() {
+		return vButOpciones;
+	}
+	
+	public Vector<JPanel> getVPanCeldas() {
+		return vPanCeldas;
 	}
 	
 	public void setMensaje(String msj){
@@ -58,6 +69,10 @@ public class JFrameJuego4x4 extends JFrame{
 
 	public int getNumeroPistas() {
 		return numeroPistas;
+	}
+	
+	public int getNumeroCeldasFijas() {
+		return vCeldasFijas.size();
 	}
 
 	public boolean getModoActivo() {
@@ -292,8 +307,9 @@ public class JFrameJuego4x4 extends JFrame{
 				if (j < 10) strColumna = "0" + j;
 				else strColumna = j + "";
 				panAux.setName("panCella" + strFila + strColumna);
+				panAux.setBorder(BorderFactory.createLineBorder(Color.black));
 				panAux.setSize(new Dimension(40, 40));
-
+				panAux.setName("panCelda" + i + "" + j);
 				rellenarLabelsPanel(panAux,i,j);
 				int espacioJ = espReg * (j/n+1);
 				int espacioI = espReg * (i/n+1);
@@ -315,14 +331,13 @@ public class JFrameJuego4x4 extends JFrame{
 		panAux.add(panValor);
 		panValor.setVisible(false);
 		panAux.add(panMarcas);
-		panAux.setName("panCelda" + i + "" + j);
 		panMarcas.setName("panMarcas" + i + "" + j);
 		panValor.setName("panValor" + i + "" + j);
 		
 		JLabel labValor = new JLabel("");
-		labValor.setSize(new Dimension(40, 40));
+		labValor.setSize(new Dimension(20, 20));//40,40
 		labValor.setLocation(0,0);
-		labValor.setFont(new Font("Tahoma", 0, 24));
+		labValor.setFont(new Font("Tahoma", 0, 19));//24
 		vLabValores[i][j] = labValor;
 		panValor.add(labValor);
 		//int zf = 0;
@@ -336,8 +351,7 @@ public class JFrameJuego4x4 extends JFrame{
 			labAux.setFont(new Font("Tahoma", 0, 12));
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
-			labAux.setOpaque(true);
-			labAux.setText("  "); //labAux.setText((z+1) + " ");
+			/*labAux.setText("  ");*/labAux.setText((z+1) + " ");
 			vLabMarcas[i][j][z] = labAux;
 			panMarcas.add(labAux);
 		}
@@ -387,6 +401,48 @@ public class JFrameJuego4x4 extends JFrame{
 	
 	public boolean esCeldaFija(int i, int j){
 		return esCeldaFija[i][j];
+	}
+	
+	public boolean estaVacia(int i, int j) {
+		return (vLabValores[i][j].getText() == "  ");
+	}
+	
+	private void colorearInterno(int i, int j, Color color) {
+		JPanel panCelda = vPanCeldas.get(i*nn + j);
+		panCelda.setBackground(color);
+		panCelda.setOpaque(true);
+		
+		vPanCelVM[i][j][0].setOpaque(true);
+		vPanCelVM[i][j][0].setBackground(color);
+		vPanCelVM[i][j][1].setOpaque(true);
+		vPanCelVM[i][j][1].setBackground(color);
+		
+		vLabValores[i][j].setOpaque(true);
+		vLabValores[i][j].setBackground(color);
+		for (int z = 0; z < nn; ++z) {
+			vLabMarcas[i][j][z].setOpaque(true);
+			vLabMarcas[i][j][z].setBackground(color);
+		}
+	}
+	
+	public void colorearCasillaActiva(int i, int j) {
+		Color color = new Color(98, 255, 151);
+		colorearInterno(i,j,color);
+	}
+	
+	public void descolorearCasilla(int i, int j) {
+		Color color = new Color(238, 238, 238);
+		colorearInterno(i,j,color);
+	}
+	
+	public void colorearCasillaInvalida(int i, int j) {
+		Color color = new Color(255, 98, 98);
+		colorearInterno(i,j,color);
+	}
+	
+	public void guardarCoordenadasActivas(int i, int j) {
+		fActiva = i;
+		cActiva = j;
 	}
 	
 }
