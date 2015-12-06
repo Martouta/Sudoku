@@ -17,7 +17,7 @@ public class CtrlJocSudoku {
 	private static boolean dirty;             // true si s'ha modificat la llista de jocs
 	protected static ArrayList<JocSudoku> jocs; // ordenats per id
 	protected static ArrayList<String> autores;
-    private static String path = "src/domini/data/jocs.txt";
+    private static String path = "src/data/jocs.txt";
     private static final String sinUsuario = "VXN1YXJpb19hbm9uaW1v";
     // es "Usuario_anonimo" en base64. No podemos no poner nada, así que hay que poner algo
     // que nadie nunca pillará.

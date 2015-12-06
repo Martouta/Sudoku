@@ -23,7 +23,7 @@ public class CtrlPartida {
 	protected static ArrayList<Partida> partidas; // ordenats per id
 	protected static ArrayList<String> nombresPartidas;
 	protected static ArrayList<String> usuariosPartidas;		// los username, evidentemente
-    private static String path = "src/domini/data/partidas.txt";
+    private static String path = "src/data/partidas.txt";
     
     // se necesita crear antes CtrlUsuario y CtrlJocSudoku
     public CtrlPartida() {

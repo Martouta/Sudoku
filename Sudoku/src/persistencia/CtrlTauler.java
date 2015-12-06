@@ -19,7 +19,7 @@ public class CtrlTauler
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<TaulerSudoku> taulersObj; // ordenats per nom
 	protected static ArrayList<String> nombresTauler;
-    private static String path = "src/domini/data/taulers.txt";
+    private static String path = "src/data/taulers.txt";
     
     // prefiero hacerlo así, garantizamos un orden
     public static void init() {
