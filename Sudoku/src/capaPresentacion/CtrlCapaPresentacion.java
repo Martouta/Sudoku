@@ -369,8 +369,10 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku4x4.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku4x4.getNN();
+				String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
+					if (nombreSudoku.isEmpty()) throw new ExcepcionCamposVacios();
 					frameProponerSudoku4x4.setMensaje("");
 					for (int i = 0; i < nn; ++i) { 
 						for (int j = 0; j < nn; ++j) {	
@@ -379,19 +381,20 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
 					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
 					frameProponerSudoku4x4.setVisible(false);
 					
 					//Mostrar juego:
 					JFrame.setDefaultLookAndFeelDecorated(true);
-					JFrameJuego4x4 frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas);
+					JFrameJuego4x4 frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nombreSudoku);
 					frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frameJuego4x4.pack();
 					frameJuego4x4.setVisible(true);
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuYaExiste e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCamposVacios e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}
 			}
