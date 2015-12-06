@@ -589,6 +589,7 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
 					++numCeldasRellenas;
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto! :)");
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -674,11 +675,12 @@ public class CtrlCapaPresentacion {
 					int j = frameJuego4x4.getColumnaActiva();
 					boolean modoActivo = frameJuego4x4.getModoActivo();
 					try {
-						if (!modoActivo) {
+						if (!modoActivo) { //modo activo = introducir valor a casilla
 							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
 							frameJuego4x4.ponerValorCasilla(i,j,valor);
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto! :)");
 						}
-						else {
+						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
 								ctrlCUSeleccionarJugarSudoku.quitarMarca(i, j, valor);
 								frameJuego4x4.quitarMarcaCasilla(i,j,valor);
