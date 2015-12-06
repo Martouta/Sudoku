@@ -373,6 +373,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku4x4.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku4x4.getNN();
+				int n = (int) Math.sqrt(nn);
 				String nombreSudoku = frameProponerSudoku4x4.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
@@ -385,7 +386,8 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas, n);
+					
 					frameProponerSudoku4x4.setVisible(false);
 					
 					//Mostrar juego:
@@ -405,6 +407,22 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionSudokuSinSolucion e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuConMasDe1Solucion e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionTamanoIncorrecto e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNumCeldasDiferenteTamano e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionTimerYaEnEjecucion e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				}
 			}
@@ -427,6 +445,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku9x9.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku9x9.getNN();
+				int n = (int) Math.sqrt(nn);
 				String nombreSudoku = frameProponerSudoku9x9.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
@@ -439,7 +458,7 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas, n);
 					frameProponerSudoku9x9.setVisible(false);
 					
 					//Mostrar juego:
@@ -458,6 +477,22 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionSudokuSinSolucion e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuConMasDe1Solucion e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionTamanoIncorrecto e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionNumCeldasDiferenteTamano e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionTimerYaEnEjecucion e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				}
 			}
@@ -480,6 +515,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku16x16.getButJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				int nn = frameProponerSudoku16x16.getNN();
+				int n = (int) Math.sqrt(nn);
 				String nombreSudoku = frameProponerSudoku16x16.getNombreSudoku();
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
@@ -492,7 +528,7 @@ public class CtrlCapaPresentacion {
 							if (valor != 0) vCeldasFijas.addElement(new DTOCeldaFija(i, j, valor));
 						}
 					}
-					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas);
+					ctrlCUSeleccionarJugarSudoku.proponerNuevoSudoku(nombreUsuario, nombreSudoku, vCeldasFijas, n);
 					frameProponerSudoku16x16.setVisible(false);
 					
 					//Mostrar juego:
@@ -511,6 +547,22 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionSudokuSinSolucion e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuConMasDe1Solucion e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionTamanoIncorrecto e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionNumCeldasDiferenteTamano e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
+					frameProponerSudoku16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionTimerYaEnEjecucion e) {
 					frameProponerSudoku16x16.setMensaje(e.getMessage());
 				}
 			}
