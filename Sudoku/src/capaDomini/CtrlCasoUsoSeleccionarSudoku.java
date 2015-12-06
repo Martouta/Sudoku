@@ -141,12 +141,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 */
 	}
 	
-	public void pedirPista(){
-		
-		/*
-		 FALTA HACER ESTA FUNCION, LO QUE HACE ES:
-		 sudoku.Pista();
-	     p.incrementaPista();
-		  */
+	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
+		return p.pedirPista();
 	}
 }
