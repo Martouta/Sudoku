@@ -27,6 +27,10 @@ public class JocSudoku extends Joc implements Cloneable {
 		setDificultad(calcularDificultad(t));
 		tauler_sol = tSol;
 	}
+	
+	public TaulerSudoku getTaulerResuelto(){
+		return tauler_sol;
+	}
 
 	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 	    int ncellas=super.getTauler().getNumCeldas();
