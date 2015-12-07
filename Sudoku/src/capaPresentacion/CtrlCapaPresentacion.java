@@ -777,7 +777,7 @@ public class CtrlCapaPresentacion {
 						
 						if (frameJuego9x9.estaVacia(i, j)) frameJuego9x9.ponerValorCasilla(i, j, val);
 					}
-					mostrarTiempos4x4();
+					mostrarTiempos9x9();
 					frameJuego9x9.setMensaje("Sudoku resuelto por el sistema");
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego9x9.setMensaje(e.getMessage());
@@ -790,7 +790,7 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego9x9.getButMostrarTiempos().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				mostrarTiempos4x4();
+				mostrarTiempos9x9();
 			}
 		});
 		frameJuego9x9.getButGuardarPartida().addActionListener(new ActionListener() {
