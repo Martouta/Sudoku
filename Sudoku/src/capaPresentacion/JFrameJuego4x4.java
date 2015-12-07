@@ -561,7 +561,13 @@ public class JFrameJuego4x4 extends JFrame{
 	    Date date = new Date();
 	    Calendar calendar = GregorianCalendar.getInstance();
 		calendar.setTime(date);
-		String strTiemposMostradoHora = "<li>Tiempos reales actualizados<br>por ultima vez a las: "+ calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) +"</li>";
+		int intHoraActual = calendar.get(Calendar.HOUR_OF_DAY);
+		String strHoraActual = intHoraActual + "";
+		if (intHoraActual <= 9) strHoraActual = "0" + strHoraActual;
+		int intMinutoActual = calendar.get(Calendar.MINUTE);
+		String strMinutoActual = intMinutoActual + "";
+		if (intMinutoActual <= 9) strMinutoActual = "0" + strMinutoActual;
+		String strTiemposMostradoHora = "<li>Tiempos reales actualizados<br>por ultima vez a las: "+ strHoraActual + ":" + strMinutoActual +"</li>";
 		
 		strHtmlTiempos = strHtmlTiempos + strTiemposMostradoHora + "</ul></html>";
 		labTiempos.setText(strHtmlTiempos);
