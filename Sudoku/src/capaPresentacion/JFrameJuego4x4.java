@@ -532,7 +532,7 @@ public class JFrameJuego4x4 extends JFrame{
 		String strTiempoResolMinutos = intTiempoResolMinutos + "";
 		if (intTiempoResolMinutos <= 9) strTiempoResolMinutos = "0" + intTiempoResolMinutos;
 		String strTiempoResolSegundos = intTiempoResolSegundos + "";
-		if (intTiempoResolMinutos <= 9) strTiempoResolMinutos = "0" + intTiempoResolMinutos;
+		if (intTiempoResolSegundos <= 9) strTiempoResolSegundos = "0" + intTiempoResolSegundos;
 		//---
 		int intTiempoPenalHoras = tiempoPenalizaciones.getHoras();
 		int intTiempoPenalMinutos = tiempoPenalizaciones.getMinutos();
@@ -542,17 +542,17 @@ public class JFrameJuego4x4 extends JFrame{
 		String strTiempoPenalMinutos = intTiempoPenalMinutos + "";
 		if (intTiempoPenalMinutos <= 9) strTiempoPenalMinutos = "0" + intTiempoPenalMinutos;
 		String strTiempoPenalSegundos = intTiempoPenalSegundos + "";
-		if (intTiempoPenalMinutos <= 9) strTiempoPenalMinutos = "0" + intTiempoPenalMinutos;
+		if (intTiempoPenalSegundos <= 9) strTiempoPenalSegundos = "0" + intTiempoPenalSegundos;
 		//---
 		int intTiempoTotalHoras = tiempoTotal.getHoras();
 		int intTiempoTotalMinutos = tiempoTotal.getMinutos();
 		int intTiempoTotalSegundos = tiempoTotal.getSegundos();
 		String strTiempoTotalHoras = intTiempoTotalHoras + "";
-		if (intTiempoTotalHoras <= 9) strTiempoTotalHoras = "0" + intTiempoResolHoras;
+		if (intTiempoTotalHoras <= 9) strTiempoTotalHoras = "0" + intTiempoTotalHoras;
 		String strTiempoTotalMinutos = intTiempoTotalMinutos + "";
-		if (intTiempoTotalMinutos <= 9) strTiempoTotalMinutos = "0" + intTiempoResolMinutos;
+		if (intTiempoTotalMinutos <= 9) strTiempoTotalMinutos = "0" + intTiempoTotalMinutos;
 		String strTiempoTotalSegundos = intTiempoTotalSegundos + "";
-		if (intTiempoTotalMinutos <= 9) strTiempoTotalMinutos = "0" + intTiempoResolMinutos;
+		if (intTiempoTotalSegundos <= 9) strTiempoTotalSegundos = "0" + intTiempoTotalSegundos;
 		
 		String strHtmlTiempos = "<html><ul><li>Tiempo resolviendo: " + strTiempoResolHoras + ":" + strTiempoResolMinutos + ":" + strTiempoResolSegundos + "</li>";
 		strHtmlTiempos = strHtmlTiempos + "<li>Tiempo de penalización: "  + strTiempoPenalHoras + ":" + strTiempoPenalMinutos + ":" + strTiempoPenalSegundos + "</li>";
