@@ -670,6 +670,7 @@ public class CtrlCapaPresentacion {
 					boolean modoActivo = frameJuego4x4.getModoActivo();
 					try {
 						if (!modoActivo) { //modo activo = introducir valor a casilla
+							ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j);
 							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
 							frameJuego4x4.ponerValorCasilla(i,j,valor);
 							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)");
@@ -698,6 +699,7 @@ public class CtrlCapaPresentacion {
 					} catch (ExcepcionValorYaPuesto e) {
 						frameJuego4x4.setMensaje(e.getMessage());
 						frameJuego4x4.colorearCasillaInvalida(i, j);
+						frameJuego4x4.quitarValorCasilla(i, j);
 					} catch (ExcepcionCasillaVaciaNoFijable e) {
 						frameJuego4x4.setMensaje(e.getMessage());
 					}

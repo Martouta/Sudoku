@@ -456,6 +456,12 @@ public class JFrameJuego4x4 extends JFrame{
 		colorearInterno(i,j,color);
 	}
 	
+	public void quitarValorCasilla(int i, int j) {
+		quitarMarcasCasilla(i, j); //oculta panel marcas + quita el valor a los labels de las marcas
+		vLabValores[i][j].setText(""); //pone valor al label
+		vPanCelVM[i][j][0].setVisible(true); //muestra panel valor
+	}
+	
 	public void guardarCoordenadasActivas(int i, int j) {
 		fActiva = i;
 		cActiva = j;

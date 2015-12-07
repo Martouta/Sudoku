@@ -194,12 +194,18 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
 		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);
 		ts.setNumCelda(i,j,val,false);
-		for (int f = 0; f < ts.getNN(); ++f) {
-			for (int c = 0; c < ts.getNN(); ++c) {
-				p.desmarcarNumero(f, c, val);
-			}
+		for (int z = 1; z <= ts.getNN(); ++z) {
+			p.desmarcarNumero(i, j, z);
 		}
 		if (ts.getNumCeldas() == ts.getNumCeldasRellenas()) acabarPartida();
+	}
+	
+	public void quitarValorCelda(int i, int j) throws ExcepcionValorFueraRango, ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada {
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);
+		for (int z = 1; z <= ts.getNN(); ++z) {
+			p.desmarcarNumero(i, j, z);
+		}
 	}
 	
 	public void anadirMarca(int i, int j, int val) throws ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango{
