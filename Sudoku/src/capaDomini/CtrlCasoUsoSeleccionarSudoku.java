@@ -238,4 +238,32 @@ public class CtrlCasoUsoSeleccionarSudoku {
 			}
 		}
 	}
+	
+	public DTOTiempo tiempoResolviendo() {
+		return new DTOTiempo(p.getSegundos(), p.getMinutos(), p.getHoras());
+	}
+	
+	public DTOTiempo tiempoPenalizaciones() {
+		int nPistas = p.getNumPistas();
+		int minutos = nPistas*10;
+		int horas = 0;
+		if (minutos >= 60) {
+			minutos = 0;
+			++horas;
+			if (horas >= 24) {horas = 0;} //No contamos dias porque suponemos que siempre sera menor a 1 dia, pero mejor poner esto por si acaso, que por lo menos no muestre algo raro
+		}
+		return new DTOTiempo(0, minutos, horas);
+	}
+	
+	public DTOTiempo tiempoTotal(DTOTiempo tiempoResolviendo, DTOTiempo tiempoPenalizaciones) {
+		int segundos = tiempoResolviendo.getSegundos() + tiempoPenalizaciones.getSegundos();
+		int minutos = tiempoResolviendo.getMinutos() + tiempoPenalizaciones.getMinutos();
+		int horas = tiempoResolviendo.getHoras() + tiempoPenalizaciones.getHoras();
+		if (segundos >= 60) {segundos = 0; ++minutos;}
+		if (minutos >= 60) {minutos = 0; ++horas;}
+		if (horas >= 24) {horas = 0;} //No contamos dias porque suponemos que siempre sera menor a 1 dia, pero mejor poner esto por si acaso, que por lo menos no muestre algo raro
+		DTOTiempo tiempoTotal = new DTOTiempo(segundos, minutos, horas);
+		return tiempoTotal;
+	}
+	
 }

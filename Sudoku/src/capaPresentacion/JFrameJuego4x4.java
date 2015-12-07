@@ -5,6 +5,7 @@ import java.util.*;
 import javax.swing.*;
 
 import DataTransferObjects.DTOCeldaFija;
+import DataTransferObjects.DTOTiempo;
 
 public class JFrameJuego4x4 extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -25,6 +26,7 @@ public class JFrameJuego4x4 extends JFrame{
     private JLabel[][] vLabValores;
     private JPanel[][][] vPanCelVM;
     private Vector<JButton> vButOpciones;
+    private JLabel labTiempos;
     
     private JButton butActivarDesModoEdicion;
     private JButton butGuardarPartida;
@@ -38,6 +40,7 @@ public class JFrameJuego4x4 extends JFrame{
     private JLabel labModoEdicion;
     private JLabel labNumeroPistas;
     private JPanel panOpciones;
+    private JPanel panTiempos;
 	
 	public JFrameJuego4x4(Vector<DTOCeldaFija> vCeldasFijas, String nombreSudoku) {
 		numeroPistas = fActiva = cActiva = 0;
@@ -122,6 +125,7 @@ public class JFrameJuego4x4 extends JFrame{
         panPrincipal = new JPanel();
         panSudoku = new JPanel();
         panOpciones = new JPanel();
+        panTiempos = new JPanel();
         butPedirPista = new JButton("Pedir pista");
         butActivarDesModoEdicion = new JButton("Activar modo edicion de marcas");
         butMostrarTiempos = new JButton("Mostrar tiempos");
@@ -136,7 +140,8 @@ public class JFrameJuego4x4 extends JFrame{
         
         labMensError.setHorizontalAlignment(SwingConstants.CENTER);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panPrincipal.setMaximumSize(new java.awt.Dimension(650, 420));
         panPrincipal.setMinimumSize(new java.awt.Dimension(650, 420));
@@ -144,132 +149,158 @@ public class JFrameJuego4x4 extends JFrame{
         panSudoku.setMaximumSize(new java.awt.Dimension(169, 169));
         panSudoku.setMinimumSize(new java.awt.Dimension(169, 169));
 
-        GroupLayout panSudokuLayout = new GroupLayout(panSudoku);
+        javax.swing.GroupLayout panSudokuLayout = new javax.swing.GroupLayout(panSudoku);
         panSudoku.setLayout(panSudokuLayout);
         panSudokuLayout.setHorizontalGroup(
-            panSudokuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panSudokuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 169, Short.MAX_VALUE)
         );
         panSudokuLayout.setVerticalGroup(
-            panSudokuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panSudokuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panOpciones.setMaximumSize(new java.awt.Dimension(40, 169));
         panOpciones.setMinimumSize(new java.awt.Dimension(40, 169));
 
-        GroupLayout panOpcionesLayout = new GroupLayout(panOpciones);
+        javax.swing.GroupLayout panOpcionesLayout = new javax.swing.GroupLayout(panOpciones);
         panOpciones.setLayout(panOpcionesLayout);
         panOpcionesLayout.setHorizontalGroup(
-            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
         panOpcionesLayout.setVerticalGroup(
-            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 169, Short.MAX_VALUE)
         );
         
         labMensError.setMaximumSize(new java.awt.Dimension(357, 60));
         labMensError.setMinimumSize(new java.awt.Dimension(357, 60));
-
+        
         labNumeroPistas.setMaximumSize(new java.awt.Dimension(227, 30));
         labNumeroPistas.setMinimumSize(new java.awt.Dimension(227, 30));
-
+        
         labModoEdicion.setMaximumSize(new java.awt.Dimension(227, 30));
         labModoEdicion.setMinimumSize(new java.awt.Dimension(227, 30));
-
+        
         butVolverMenuSudoku.setMaximumSize(new java.awt.Dimension(140, 80));
         butVolverMenuSudoku.setMinimumSize(new java.awt.Dimension(140, 80));
-
+        
         butSalir.setMaximumSize(new java.awt.Dimension(140, 80));
         butSalir.setMinimumSize(new java.awt.Dimension(140, 80));
-
-        GroupLayout panPrincipalLayout = new GroupLayout(panPrincipal);
+        
+        javax.swing.GroupLayout panTiemposLayout = new javax.swing.GroupLayout(panTiempos);
+        panTiempos.setLayout(panTiemposLayout);
+        panTiemposLayout.setHorizontalGroup(
+            panTiemposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 261, Short.MAX_VALUE)
+        );
+        panTiemposLayout.setVerticalGroup(
+            panTiemposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        
+        javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
         panPrincipalLayout.setHorizontalGroup(
-            panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.LEADING, panPrincipalLayout.createSequentialGroup()
-                        .addComponent(panSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(labModoEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panPrincipalLayout.createSequentialGroup()
+                        .addComponent(panSudoku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(panOpciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labNumeroPistas, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labNumeroPistas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panTiempos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGap(1, 1, 1)
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panPrincipalLayout.createSequentialGroup()
-                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butPedirPista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butActivarDesModoEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                    .addComponent(butMostrarTiempos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(36, 36, 36)
-                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                    .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(labMensError, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butVaciarTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butResuelveSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(butGuardarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(labMensError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(21, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panPrincipalLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(butVolverMenuSudoku, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(butSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
-            .addGroup(GroupLayout.Alignment.TRAILING, panPrincipalLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         panPrincipalLayout.setVerticalGroup(
-            panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                            .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                            .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labMensError, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butVaciarTablero, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(butPedirPista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butResuelveSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                            .addComponent(butActivarDesModoEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butMostrarTiempos, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(butGuardarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labMensError, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panOpciones, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panSudoku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labNumeroPistas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panPrincipalLayout.createSequentialGroup()
+                        .addComponent(butVolverMenuSudoku, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(butSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panPrincipalLayout.createSequentialGroup()
+                        .addComponent(labModoEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panTiempos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panPrincipal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panPrincipal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
         
+        rellenarPanelTiempos();
         rellenarPanelOpciones();
         rellenarPanelSudoku();
 		add(panPrincipal);
+	}
+	
+	
+	private void rellenarPanelTiempos() {
+		labTiempos = new JLabel("");
+		
+	    panTiempos.add(labTiempos);
+		
+	    //panTiempos.setBackground(new Color(248, 255, 172));
+	    //panTiempos.setOpaque(true);
 	}
 	
 	private void rellenarPanelOpciones() {
@@ -492,6 +523,51 @@ public class JFrameJuego4x4 extends JFrame{
 		}
 	}
 	
-	//FALTA VACIAR CELDA CON VALOR PARA QUE PUEDA VOLVER A PONER MARCAS
+	public void mostrarTiempos(DTOTiempo tiempoResolviendo, DTOTiempo tiempoPenalizaciones, DTOTiempo tiempoTotal) {
+		int intTiempoResolHoras = tiempoResolviendo.getHoras();
+		int intTiempoResolMinutos = tiempoResolviendo.getMinutos();
+		int intTiempoResolSegundos = tiempoResolviendo.getSegundos();
+		String strTiempoResolHoras = intTiempoResolHoras + "";
+		if (intTiempoResolHoras <= 9) strTiempoResolHoras = "0" + intTiempoResolHoras;
+		String strTiempoResolMinutos = intTiempoResolMinutos + "";
+		if (intTiempoResolMinutos <= 9) strTiempoResolMinutos = "0" + intTiempoResolMinutos;
+		String strTiempoResolSegundos = intTiempoResolSegundos + "";
+		if (intTiempoResolMinutos <= 9) strTiempoResolMinutos = "0" + intTiempoResolMinutos;
+		//---
+		int intTiempoPenalHoras = tiempoPenalizaciones.getHoras();
+		int intTiempoPenalMinutos = tiempoPenalizaciones.getMinutos();
+		int intTiempoPenalSegundos = tiempoPenalizaciones.getSegundos();
+		String strTiempoPenalHoras = intTiempoPenalHoras + "";
+		if (intTiempoPenalHoras <= 9) strTiempoPenalHoras = "0" + intTiempoPenalHoras;
+		String strTiempoPenalMinutos = intTiempoPenalMinutos + "";
+		if (intTiempoPenalMinutos <= 9) strTiempoPenalMinutos = "0" + intTiempoPenalMinutos;
+		String strTiempoPenalSegundos = intTiempoPenalSegundos + "";
+		if (intTiempoPenalMinutos <= 9) strTiempoPenalMinutos = "0" + intTiempoPenalMinutos;
+		//---
+		int intTiempoTotalHoras = tiempoTotal.getHoras();
+		int intTiempoTotalMinutos = tiempoTotal.getMinutos();
+		int intTiempoTotalSegundos = tiempoTotal.getSegundos();
+		String strTiempoTotalHoras = intTiempoTotalHoras + "";
+		if (intTiempoTotalHoras <= 9) strTiempoTotalHoras = "0" + intTiempoResolHoras;
+		String strTiempoTotalMinutos = intTiempoTotalMinutos + "";
+		if (intTiempoTotalMinutos <= 9) strTiempoTotalMinutos = "0" + intTiempoResolMinutos;
+		String strTiempoTotalSegundos = intTiempoTotalSegundos + "";
+		if (intTiempoTotalMinutos <= 9) strTiempoTotalMinutos = "0" + intTiempoResolMinutos;
+		
+		String strHtmlTiempos = "<html><ul><li>Tiempo resolviendo: " + strTiempoResolHoras + ":" + strTiempoResolMinutos + ":" + strTiempoResolSegundos + "</li>";
+		strHtmlTiempos = strHtmlTiempos + "<li>Tiempo de penalización: "  + strTiempoPenalHoras + ":" + strTiempoPenalMinutos + ":" + strTiempoPenalSegundos + "</li>";
+		strHtmlTiempos = strHtmlTiempos + "<li>Tiempo total: "  + strTiempoTotalHoras + ":" + strTiempoTotalMinutos + ":" + strTiempoTotalSegundos + "</li>";
+		
+	    Date date = new Date();
+	    Calendar calendar = GregorianCalendar.getInstance();
+		calendar.setTime(date);
+		String strTiemposMostradoHora = "<li>Tiempos reales actualizados<br>por ultima vez a las: "+ calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) +"</li>";
+		
+		strHtmlTiempos = strHtmlTiempos + strTiemposMostradoHora + "</ul></html>";
+		labTiempos.setText(strHtmlTiempos);
+		
+		labTiempos.setSize(labTiempos.getPreferredSize());
+		labTiempos.setLocation(0, 20);
+	}
 	
 }

@@ -584,7 +584,7 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)");
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos4x4(frameJuego4x4);}
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -642,6 +642,7 @@ public class CtrlCapaPresentacion {
 						//System.out.println(i + " - " + j + " = " + val + " / " + frameJuego4x4.estaVacia(i, j));
 						if (frameJuego4x4.estaVacia(i, j)) frameJuego4x4.ponerValorCasilla(i, j, val);
 					}
+					mostrarTiempos4x4(frameJuego4x4);
 					frameJuego4x4.setMensaje("Sudoku resuelto por el sistema");
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
@@ -654,7 +655,7 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButMostrarTiempos().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				mostrarTiempos4x4(frameJuego4x4);
 			}
 		});
 		frameJuego4x4.getButGuardarPartida().addActionListener(new ActionListener() {
@@ -692,7 +693,7 @@ public class CtrlCapaPresentacion {
 								frameJuego4x4.quitarValorCasilla(i, j);
 							}
 							frameJuego4x4.setMensaje("");
-							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)");}
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos4x4(frameJuego4x4);}
 						}
 						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
@@ -755,6 +756,25 @@ public class CtrlCapaPresentacion {
 		}
 		
 	}
+	
+	private void mostrarTiempos4x4(JFrameJuego4x4 frameJuego4x4){
+		DTOTiempo tiempoResolviendo = ctrlCUSeleccionarJugarSudoku.tiempoResolviendo();
+		DTOTiempo tiempoPenalizaciones = ctrlCUSeleccionarJugarSudoku.tiempoPenalizaciones();
+		DTOTiempo tiempoTotal = ctrlCUSeleccionarJugarSudoku.tiempoTotal(tiempoResolviendo, tiempoPenalizaciones);
+		frameJuego4x4.mostrarTiempos(tiempoResolviendo, tiempoPenalizaciones, tiempoTotal);
+	}
+	
+	/*private void mostrarTiempos9x9(JFrameJuego9x9 frameJuego9x9){
+		DTOTiempo tiempoResolviendo = ctrlCUSeleccionarJugarSudoku.tiempoResolviendo();
+		DTOTiempo tiempoPenalizaciones = ctrlCUSeleccionarJugarSudoku.tiempoPenalizaciones();
+		frameJuego9x9.mostrarTiempos(tiempoResolviendo, tiempoPenalizaciones);
+	}
+	
+	private void mostrarTiempos16x16(JFrameJuego16x16 frameJuego16x16){
+		DTOTiempo tiempoResolviendo = ctrlCUSeleccionarJugarSudoku.tiempoResolviendo();
+		DTOTiempo tiempoPenalizaciones = ctrlCUSeleccionarJugarSudoku.tiempoPenalizaciones();
+		frameJuego16x16.mostrarTiempos(tiempoResolviendo, tiempoPenalizaciones);
+	}*/
     
     private void pressSalir() {
 		if (cambiosParaBD) guardarTodo(); 
