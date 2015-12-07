@@ -118,7 +118,7 @@ public class JFrameJuego9x9 extends JFrame{
 		nn = 9;
 		n = 3;
 		setTitle("Jugar Sudoku: " + nombreSudoku);
-		setSize(840,450); //ancho por alto
+		setSize(880,450); //ancho por alto
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -392,7 +392,7 @@ public class JFrameJuego9x9 extends JFrame{
 			//zc = z % n;
 			JLabel labAux = new JLabel("");
 			labAux.setSize(new Dimension(dim, dim));
-			labAux.setFont(new Font("Tahoma", 0, 12));
+			labAux.setFont(new Font("Tahoma", 0, 9));
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
 			labAux.setText("  ");//labAux.setText((z+1) + " ");
