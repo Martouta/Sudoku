@@ -138,7 +138,7 @@ public class JFrameMenuSudoku extends JFrame{
     	labSeleccioneFuncion.setText("Selecione una funcion:");
 		labTamanoSudoku.setText("Tamano del Sudoku: ");
 		labDificultad.setText("Dificultad: ");
-		labInfo.setText("[ERROR INESPERADO] <-- para hacer pruebas"); //MENSAJE TEMPORAL
+		labInfo.setText("");
 		butSelectsudoku.setText("Selecciona Sudoku");
         butSalir.setText("Salir");
         StringBuilder sb = new StringBuilder(64);
