@@ -665,7 +665,13 @@ public class CtrlCapaPresentacion {
 					fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
 					Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
 					calendar.setTime(fechaGuardado);   // assigns calendar to given date 
-					frameJuego4x4.setMensaje("Partida guardada por ultima vez a las: " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+					int intHoraGuardado = calendar.get(Calendar.HOUR_OF_DAY);
+					String strHoraGuardado = intHoraGuardado + "";
+					if (intHoraGuardado <= 9) strHoraGuardado = "0" + strHoraGuardado;
+					int intMinutoGuardado = calendar.get(Calendar.MINUTE);
+					String strMinutoGuardado = intMinutoGuardado + "";
+					if (intMinutoGuardado <= 9) strMinutoGuardado = "0" + strMinutoGuardado;
+					frameJuego4x4.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				}
