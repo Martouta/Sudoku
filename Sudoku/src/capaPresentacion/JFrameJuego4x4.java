@@ -400,6 +400,7 @@ public class JFrameJuego4x4 extends JFrame{
 	
 	public void nuevaPista(int i, int j, int val) { //DUDA: esta casilla la marco como fija? de momento la pongo no fija (hay que ser consistentes con como esta guardada esta casilla en Cella.java)
 		ponerValorCasilla(i,j,val);
+		vLabValores[i][j].setForeground(new Color(100, 40, 160));
 		++numeroPistas;
 		labNumeroPistas.setText("Numero de pistas: " + numeroPistas);
 		//Calcular tiempo penalizacion? o que lo haga la otra ventana
@@ -481,6 +482,14 @@ public class JFrameJuego4x4 extends JFrame{
 	
 	public int getColumnaActiva(){
 		return cActiva;
+	}
+	
+	public void vaciarTablero() {
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				if (!esCeldaFija[i][j]) quitarValorCasilla(i,j);
+			}
+		}
 	}
 	
 	//FALTA VACIAR CELDA CON VALOR PARA QUE PUEDA VOLVER A PONER MARCAS

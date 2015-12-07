@@ -190,6 +190,12 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return new Date();
 	}
 	
+	public boolean esValorCelda(int i, int j, int val) throws ExcepcionPosicionFueraRango {
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		if (ts.estaVacia(i, j)) return false;
+		return (ts.getNumero(i, j) == val);
+	}
+	
 	public void anadirValorCelda(int i, int j, int val) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEstaParado{
 		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
 		if (!ts.estaVacia(i, j)) ts.borraNumCelda(i,j);
@@ -222,8 +228,14 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return p.estaMarcado(i, j, val);
 	}
 	
-	public Vector<DTOCeldaFija> vaciarTablero() { //POR HACER!!!!!!!!!!!!!!
-		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
-		return vCeldasFijas;
+	public void vaciarTablero() throws ExcepcionValorFueraRango, ExcepcionPosicionFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionPartidaYaAcabada {
+		if (partidaAcabada()) throw new ExcepcionPartidaYaAcabada();
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		int nn = ts.getNN();
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				if (!ts.estaFija(i, j)) {quitarValorCelda(i, j);}
+			}
+		}
 	}
 }

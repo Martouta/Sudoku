@@ -608,7 +608,20 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButVaciarTablero().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				try {
+					ctrlCUSeleccionarJugarSudoku.vaciarTablero();
+					frameJuego4x4.vaciarTablero();
+				} catch (ExcepcionPartidaYaAcabada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				}
 			}
 		});
 		frameJuego4x4.getButActivarDesModoEdicion().addActionListener(new ActionListener() {
@@ -670,9 +683,14 @@ public class CtrlCapaPresentacion {
 					boolean modoActivo = frameJuego4x4.getModoActivo();
 					try {
 						if (!modoActivo) { //modo activo = introducir valor a casilla
-							ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j); //por si la funcio siguiente salta excepcion, que se haya borrado lo que habia
-							ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
-							frameJuego4x4.ponerValorCasilla(i,j,valor);
+							if (!ctrlCUSeleccionarJugarSudoku.esValorCelda(i, j, valor)) { //si no es el valor que ya esta puesto, lo anade
+								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j); //tiene que estar, por si en la funcion siguiente salta excepcion, que se haya borrado lo que habia
+								ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
+								frameJuego4x4.ponerValorCasilla(i,j,valor);
+							} else {
+								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j);
+								frameJuego4x4.quitarValorCasilla(i, j);
+							}
 							frameJuego4x4.setMensaje("");
 							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)");}
 						}
@@ -711,15 +729,16 @@ public class CtrlCapaPresentacion {
 		for (JPanel panCelda : vPanCeldas) {
 			panCelda.addMouseListener(new MouseListener() {
 				@Override
-				public void mouseReleased(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {/*System.out.println("pruebas: mouseReleased");*/}
 				@Override
-				public void mousePressed(MouseEvent e) {}
+				public void mousePressed(MouseEvent e) {/*System.out.println("pruebas: mousePressed");*/}
 				@Override
-				public void mouseExited(MouseEvent e) {}
+				public void mouseExited(MouseEvent e) {/*System.out.println("pruebas: mouseExited");*/}
 				@Override
-				public void mouseEntered(MouseEvent e) {}
+				public void mouseEntered(MouseEvent e) {/*System.out.println("pruebas: mouseEntered");*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					/*System.out.println("pruebas: mouseClicked");*/
 					String nombreCelda = panCelda.getName();
 					String strFila = nombreCelda.substring(8, 9);
 					String strColu = nombreCelda.substring(9, 10);
