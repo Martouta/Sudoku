@@ -28,12 +28,10 @@ public class CtrlCapaPresentacion {
     private CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku;
     
     
-	private static Boolean cambiosParaBD;
 	private static String nombreUsuario;
 
 	
 	public CtrlCapaPresentacion() {
-		cambiosParaBD = false; //el boleano es porque si no ha hecho cambios, no hace falta que lo guarde todo en la base de datos
 		initComponents();
 		initListeners();
 		frameMenuPrincipal.setVisible(true);
@@ -153,7 +151,6 @@ public class CtrlCapaPresentacion {
 					ctrlCURegistrarse.registrarse(nombreUsuario, contrasena);
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameRegistrarse.setVisible(false);
-					cambiosParaBD = true;
 					frameMenuOpciones.setVisible(true);
 					System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionCamposVacios e) {
@@ -179,7 +176,7 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				if (cambiosParaBD) guardarTodo();
+				guardarTodo();
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButGestionPerfilUsu().addActionListener(new ActionListener() {
@@ -921,7 +918,7 @@ public class CtrlCapaPresentacion {
 	}
     
     private void pressSalir() {
-		if (cambiosParaBD) guardarTodo(); 
+		guardarTodo(); 
 		System.out.println("Salir pulsado");
 	}
     
