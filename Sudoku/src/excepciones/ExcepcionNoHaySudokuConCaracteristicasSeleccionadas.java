@@ -5,6 +5,6 @@ public class ExcepcionNoHaySudokuConCaracteristicasSeleccionadas extends Excepti
 
 	@Override
 	public String getMessage() {
-		return "No hay ningun sudoku guardado del tipo, dificultad y tamano seleccionados.";
+		return "<html>No hay ningun sudoku guardado del tipo,<br>dificultad y tamano seleccionados.</html>";
 	}
 }
