@@ -79,7 +79,7 @@ public class JFrameGestionPerfiles extends JFrame {
     	JPanel panMensError = new JPanel(); //
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
-		panGestionPerfil.add(panMensError);
+		panGestionPerfil.add(panMensError); //
     	add(panGestionPerfil);
     }
 }
