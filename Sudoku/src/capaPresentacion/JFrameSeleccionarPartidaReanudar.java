@@ -140,6 +140,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			rellena = rellena + infoPartida.getNumeroPistas();
 			
 			datosARellenar.addElement(rellena);
+			demoList.addElement(rellena);
 			nombresSudokus.addElement(infoPartida.getNombreSudoku());
 			++cont;
 		}
