@@ -68,6 +68,8 @@ public class JFrameGestionPerfiles extends JFrame {
     	butSalir.setText("Salir");
     	labMensajeError.setText("");
     	
+    	//butBorrarPerfil.setBounds(100, 150, 200, 30);
+    	
     	panGestionPerfil = new JPanel();
     	panGestionPerfil.setLayout(new GridLayout(9,1));
     	panGestionPerfil.add(labSeleccioneFuncion);
@@ -80,6 +82,7 @@ public class JFrameGestionPerfiles extends JFrame {
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panGestionPerfil.add(panMensError); //
+		//panGestionPerfil.setLayout(null);
     	add(panGestionPerfil);
     }
 }
