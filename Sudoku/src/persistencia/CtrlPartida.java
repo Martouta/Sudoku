@@ -180,6 +180,10 @@ public class CtrlPartida {
         return partidas;
     }
     
+    public static ArrayList<String> getNombresPartidas() {
+    	return nombresPartidas;
+    }
+    
     // solo puedes conseguir la partida si eres el mismo usuario
     public static Partida getPartida(String id, User usuario)
     {

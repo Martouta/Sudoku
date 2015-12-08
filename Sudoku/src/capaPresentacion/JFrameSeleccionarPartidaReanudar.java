@@ -149,7 +149,6 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			rellena = rellena + strHoras + ":" + strMinutos + ":" + strSegundos;
 			rellena = rellena + ", numero de pistas: ";
 			rellena = rellena + infoPartida.getNumeroPistas();
-			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
 			nombresSudokus.addElement(infoPartida.getNombreSudoku());
