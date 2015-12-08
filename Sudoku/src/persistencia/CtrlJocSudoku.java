@@ -115,7 +115,10 @@ public class CtrlJocSudoku {
 	}
     
     public static ArrayList<JocSudoku> getTaula() {
-        return jocs;
+        ArrayList<JocSudoku> res = new ArrayList<JocSudoku>();
+        for(int i=0;i<jocs.size();i++)
+        	res.add(jocs.get(i).clone());
+    	return res;
     }
     
     public static ArrayList<String> getAutores() {
