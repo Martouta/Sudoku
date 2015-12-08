@@ -134,7 +134,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		JocSudoku js = new JocSudoku(nombreSudoku,t,tsol); //crear JocSudoku
 		CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(js, nombreUsuario);//guardar
-		
+		CtrlJocSudoku.end();
 		User u = CtrlUser.getUsuari(nombreUsuario);
 		p = new Partida(u,js); //Crear Partida		
 		
@@ -185,6 +185,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+		//CtrlJocSudoku.init();
 		CtrlPartida.init();
 		CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
 		CtrlPartida.end();
