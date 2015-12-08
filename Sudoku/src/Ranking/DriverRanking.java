@@ -9,7 +9,7 @@ public class DriverRanking {
 		Scanner entrada = new Scanner(System.in);
 		DriverRankingGeneral.mostraRankingGeneral();
 		DriverRankingPerTipus.mostraRankingPerTipus(entrada);
-		 
+		DriverRankingPersonal.mostraRankingPersonal(entrada);
 	}
 
 }
