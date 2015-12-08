@@ -3,7 +3,6 @@ package capaDomini;
 //ACABADO PERO NO TESTEADO
 
 import persistencia.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
