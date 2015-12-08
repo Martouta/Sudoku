@@ -317,6 +317,7 @@ public class CtrlCapaPresentacion {
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarPartidaReanudar.setVisible(true);
+				        ((JFrameMenuSudoku) frameMenuSudoku).setMensaje("Hay " + infoPartidasAMedias.size() + " sudokus con estas caracteristicas");
 					}
 				} catch (ExcepcionNoHaySudokuConCaracteristicasSeleccionadas e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
