@@ -186,7 +186,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 					System.out.println(nomsudoku);
 				}
 			}
-		});
+		}); 
         
         panSelectPartidaRanudar.add(panMenu);
 	}
