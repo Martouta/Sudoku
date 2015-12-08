@@ -29,7 +29,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 				String id=p.getJocSudoku().getId();
 				Date d=p.getDataIni();
 				DTOPartidaAMedias aux = new DTOPartidaAMedias(id,d, t, p.getNumPistas());
-				if(p.getResuelto()) V.add(aux); //if(no resuelto) V.add
+				if(!p.getResuelto()) V.add(aux); //if(no resuelto) V.add
 			}
 		}
 		
