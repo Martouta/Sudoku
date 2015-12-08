@@ -274,7 +274,7 @@ public class CtrlCapaPresentacion {
 						}
 					} else if (tipoSudoku == "tsProponer") { 
 						if (n == 2) {
-							//INIT SELECCIONAR SUDOKU DE LA BD:
+							//INIT SELECCIONAR SUDOKU PROPUESTO:
 					        JFrame.setDefaultLookAndFeelDecorated(true);
 					        frameProponerSudoku4x4 = new JFrameProponerSudoku4x4();
 					        frameProponerSudoku4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -285,7 +285,7 @@ public class CtrlCapaPresentacion {
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku4x4.setVisible(true);
 						} else if (n == 3) {
-							//INIT SELECCIONAR SUDOKU DE LA BD:
+							//INIT SELECCIONAR SUDOKU PROPUESTO:
 					        JFrame.setDefaultLookAndFeelDecorated(true);
 					        frameProponerSudoku9x9 = new JFrameProponerSudoku9x9();
 					        frameProponerSudoku9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -296,7 +296,7 @@ public class CtrlCapaPresentacion {
 					        frameMenuSudoku.setVisible(false);
 					        frameProponerSudoku9x9.setVisible(true);
 						} else { //n == 4
-							//INIT SELECCIONAR SUDOKU DE LA BD:
+							//INIT SELECCIONAR SUDOKU PROPUESTO:
 					        JFrame.setDefaultLookAndFeelDecorated(true);
 					        frameProponerSudoku16x16 = new JFrameProponerSudoku16x16();
 					        frameProponerSudoku16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
