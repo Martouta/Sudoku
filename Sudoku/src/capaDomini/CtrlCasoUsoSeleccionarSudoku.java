@@ -23,7 +23,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		System.out.println(A.size());
 		int nn=n*n;
 		for(Partida p : A ){
-			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
+			if(Objects.equals(p.getUsuario().getUsername(),nombreUsuario) && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
 				//partidas del usuario nombreUsuario dificultad dificultad y n n
 			
 				int s=p.getSegundos();
