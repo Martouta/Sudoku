@@ -1,6 +1,7 @@
 package capaPresentacion;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -15,10 +16,15 @@ public class JFrameGestionPerfiles extends JFrame {
     private JButton butSalir;
     private JButton butResetearEstadisticasPerfil;
     private JButton butBorrarPerfil;
+    private JLabel labMensajeError;
     
     public JFrameGestionPerfiles() {
     	initComponents();
     }
+    
+    public void setMensajeError(String msj){
+		labMensajeError.setText(msj);
+	}
     
     public JButton getButSalir() {
     	return butSalir;
@@ -50,6 +56,7 @@ public class JFrameGestionPerfiles extends JFrame {
     	butResetearEstadisticasPerfil = new JButton();
     	butVolverMenuPrincipal = new JButton();
     	butSalir = new JButton();
+    	labMensajeError = new JLabel();
     	
     	labSeleccioneFuncion.setText("Selecione una funcion:");
     	butBorrarPerfil.setText("Borrar Perfil");
@@ -59,6 +66,7 @@ public class JFrameGestionPerfiles extends JFrame {
         		.append("<br/>menu opciones</html>");
     	butVolverMenuPrincipal.setText(sb.toString());
     	butSalir.setText("Salir");
+    	labMensajeError.setText("");
     	
     	panGestionPerfil = new JPanel();
     	panGestionPerfil.setLayout(new GridLayout(9,1));
@@ -68,6 +76,10 @@ public class JFrameGestionPerfiles extends JFrame {
     	panGestionPerfil.add(labEspacioBlanco);
     	panGestionPerfil.add(butVolverMenuPrincipal);
     	panGestionPerfil.add(butSalir);
+    	JPanel panMensError = new JPanel(); //
+		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panMensError.add(labMensajeError);
+		panGestionPerfil.add(panMensError);
     	add(panGestionPerfil);
     }
 }

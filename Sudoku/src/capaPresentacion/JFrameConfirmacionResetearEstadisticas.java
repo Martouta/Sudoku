@@ -11,9 +11,14 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 	private JLabel labConfirmacionResetearEstadisticas;
 	private JButton butResetear;
 	private JButton butNoResetear;
+	private JLabel labMensajeError;
 	
 	public JFrameConfirmacionResetearEstadisticas() {
 		initComponents();
+	}
+	
+	public void setMensajeError(String msj){
+		labMensajeError.setText(msj);
 	}
 	
 	private void initComponents() {
@@ -28,6 +33,7 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		labConfirmacionResetearEstadisticas = new JLabel();
 		butResetear = new JButton();
 		butNoResetear = new JButton();
+		labMensajeError = new JLabel();
 		
 		//PROBAR PARA VER COMO QUEDA MEJOR
 		StringBuilder sb = new StringBuilder(128);
@@ -40,6 +46,7 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
         labConfirmacionResetearEstadisticas.setText(sb.toString());
         butResetear.setText("Sí, resetear");
 		butNoResetear.setText("No resetear");
+		labMensajeError.setText("");
 		
 		panConfirmacionResetearEstadisticas = new JPanel();
 		panConfirmacionResetearEstadisticas.setLayout(new GridLayout(9,1));
@@ -47,6 +54,10 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		panConfirmacionResetearEstadisticas.add(labEspacioBlanco);
 		panConfirmacionResetearEstadisticas.add(butResetear);
 		panConfirmacionResetearEstadisticas.add(butNoResetear);
+		JPanel panMensError = new JPanel(); //
+		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panMensError.add(labMensajeError);
+		panConfirmacionResetearEstadisticas.add(panMensError);
 		add(panConfirmacionResetearEstadisticas);
 	}
 	
