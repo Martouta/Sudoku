@@ -71,6 +71,7 @@ public class CtrlPartida {
             	punt++;
             	int nsegundos = Integer.parseInt(fila.get(punt++));
             	int npistas = Integer.parseInt(fila.get(punt++));
+            	punt++;
             	nombresPartidas.add(fila.get(punt++));
             	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
             	int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
@@ -123,6 +124,7 @@ public class CtrlPartida {
             	fila.add(js.getDificultad().toString());
             	fila.add(Integer.toString(p.getSegundosTotales()));
                 fila.add(Integer.toString(p.getNumPistas()));
+                fila.add(Boolean.toString(p.getResuelto()));
             	fila.add(nombresPartidas.get(ii));
             	Tauler ts = js.getTauler();
             	int nn = ts.getAlto();
