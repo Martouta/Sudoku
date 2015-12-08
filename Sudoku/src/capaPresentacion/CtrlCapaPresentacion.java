@@ -356,7 +356,6 @@ public class CtrlCapaPresentacion {
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
-				        System.out.println("Hay " + infoSudokusDeLaBD.size() + " sudokus con estas caracteristicas");
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
 						try {
 							Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
@@ -426,7 +425,6 @@ public class CtrlCapaPresentacion {
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarPartidaReanudar.setVisible(true);
-				        System.out.println("Hay " + infoPartidasAMedias.size() + " sudokus con estas caracteristicas");
 					}
 				} catch (ExcepcionNoHaySudokuConCaracteristicasSeleccionadas e) {
 					((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());

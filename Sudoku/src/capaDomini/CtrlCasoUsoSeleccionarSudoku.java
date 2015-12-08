@@ -25,7 +25,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		//CtrlJocSudoku.init(); //aqui
 		//CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
-		System.out.println(A.size());
 		int nn=n*n;
 		for(Partida p : A ){
 			if(Objects.equals(p.getUsuario().getUsername(),nombreUsuario) && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
@@ -61,7 +60,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		//CtrlJocSudoku.init();
 		ArrayList<JocSudoku> A = CtrlJocSudoku.getTaula();
-		System.out.println(A.size());
 		int nn=n*n;
 		for(JocSudoku j : A){
 			if(j.getDificultad()==dificultad && j.getTauler().getAncho()==nn){ //jocs de dificultad dificultad i n n
@@ -184,6 +182,11 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		}
 		
 		return vCeldasFijas;
+	}
+	
+	public Vector<DTOInfoCelda> obtenerDatosPartida(String nomSudoku, String nomUsuari) {
+		//POR HACER
+		return new Vector<DTOInfoCelda>();
 	}
 	
 	public int getNSudoku(String nomSudoku){
