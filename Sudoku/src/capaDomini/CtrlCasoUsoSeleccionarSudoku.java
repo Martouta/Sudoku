@@ -14,7 +14,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		Vector<DTOPartidaAMedias> V = new Vector<DTOPartidaAMedias>();
 		
-		CtrlJocSudoku.init();
+		CtrlJocSudoku.init(); //aqui
 		CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
 		
