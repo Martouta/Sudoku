@@ -109,6 +109,9 @@ public class CtrlCapaPresentacion {
 		initListenersRegistrarse();
 		initListenersMenuOpciones();
 		initListenersMenuSudoku();
+		initListenersGestionPerfiles();
+		initListenersConfirmacionResetearEstadisticas();
+		initListenersConfirmacionBorrarPerfil();
 	}
 	
 	private void initListenersMenuPrincipal() {
@@ -255,12 +258,56 @@ public class CtrlCapaPresentacion {
 	
 	private void initListenersGestionPerfiles() {
 		//LISTENERS DE GESTION PERFILES:
-		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
+		frameGestionPerfiles.getButSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
 			}
 		});
-		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addActionListener(new ActionListener() {
+		/*frameGestionPerfiles.getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameGestionPerfiles.setVisible(false);
+				frameMenuOpciones.setVisible(true);
+			}
+		});*/
+		frameGestionPerfiles.getButResetearEstadisticasPerfil().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameGestionPerfiles.setVisible(false);
+				frameConfirmacionResetearEstadisticas.setVisible(true);
+			}
+		});
+		frameGestionPerfiles.getButBorrarPerfil().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameGestionPerfiles.setVisible(false);
+				frameConfirmacionBorrarPerfil.setVisible(true);
+			}
+		});
+	}
+	
+	private void initListenersConfirmacionResetearEstadisticas() {
+		frameConfirmacionResetearEstadisticas.getButResetear().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameConfirmacionResetearEstadisticas.getButNoResetear().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+	}
+	
+	private void initListenersConfirmacionBorrarPerfil() {
+		frameConfirmacionBorrarPerfil.getButEliminarPerfEst().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameConfirmacionBorrarPerfil.getButEliminarPerfil().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+		frameConfirmacionBorrarPerfil.getButNoEliminar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//POR HACER
 			}
