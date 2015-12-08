@@ -67,14 +67,12 @@ public class CtrlPartida {
             	punt = 0;
             	usuariosPartidas.add(fila.get(punt++));
             	String nombretauler = fila.get(punt++);
-            	System.out.println(nombretauler + " AQUI");
             	punt++;
             	int nsegundos = Integer.parseInt(fila.get(punt++));
             	int npistas = Integer.parseInt(fila.get(punt++));
             	nombresPartidas.add(fila.get(punt++));
             	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
-            	if (js == null) System.out.println("ESNULL");
-                int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
+            	int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
                 	for(int j=0;j<n*n;j++){
