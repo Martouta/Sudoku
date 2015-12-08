@@ -17,9 +17,9 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		CtrlJocSudoku.init(); //aqui
 		CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
-		
+		int nn=n*n;
 		for(Partida p : A ){
-			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==n){
+			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
 				//partidas del usuario nombreUsuario dificultad dificultad y n n
 			}
 				int s=p.getSegundos();
@@ -51,8 +51,9 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		CtrlJocSudoku.init();
 		ArrayList<JocSudoku> A = CtrlJocSudoku.getTaula();
+		int nn=n*n;
 		for(JocSudoku j : A){
-			if(j.getDificultad()==dificultad && j.getTauler().getAncho()==n){ //jocs de dificultad dificultad i n n
+			if(j.getDificultad()==dificultad && j.getTauler().getAncho()==nn){ //jocs de dificultad dificultad i n n
 				String nom = j.getId();
 				int c=j.getTauler().getNumCeldasRellenas();
 				DTOSudokuDeLaBD aux = new DTOSudokuDeLaBD(nom,c); 
