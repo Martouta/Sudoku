@@ -3,6 +3,9 @@ package capaDomini;
 //ACABADO PERO NO TESTEADO
 
 import persistencia.*;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import DataTransferObjects.*;
 import excepciones.*;
@@ -17,6 +20,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		CtrlJocSudoku.init(); //aqui
 		CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
+		System.out.println(A.size());
 		int nn=n*n;
 		for(Partida p : A ){
 			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
@@ -52,6 +56,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		CtrlJocSudoku.init();
 		ArrayList<JocSudoku> A = CtrlJocSudoku.getTaula();
+		System.out.println(A.size());
 		int nn=n*n;
 		for(JocSudoku j : A){
 			if(j.getDificultad()==dificultad && j.getTauler().getAncho()==nn){ //jocs de dificultad dificultad i n n
@@ -83,7 +88,8 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		
 		Date date = new Date();
-		String idSudoku = nombreUsuario + date.toString();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
+		String idSudoku = nombreUsuario + df.format(date).toString();
 		
 		JocSudoku j = new JocSudoku(idSudoku, t, tsol); 
 		

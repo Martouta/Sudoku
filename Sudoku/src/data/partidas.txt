@@ -1,0 +1,2 @@
+12 123 trivial 4 1 123 2 1 true 3 true 2 true 0 0 2 true 3 true 1 true 3 true 4 true 1 false 2 true 0 1 true 0 3 true 08/12/2015,13:44:35 0 
+12 aaaaa dificil 3 1 aaaaa 3 0 6 false 3 true 0 0 0 0 0 0 9 true 5 true 0 4 true 3 true 0 0 0 0 0 0 0 0 6 true 7 true 4 true 0 0 0 9 true 0 0 4 true 2 true 3 true 8 true 0 3 true 0 0 0 0 0 0 0 0 0 0 0 8 true 0 0 2 true 7 true 0 0 4 true 0 0 0 0 5 true 0 8 true 2 true 0 6 true 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 true 08/12/2015,13:54:29 0 
