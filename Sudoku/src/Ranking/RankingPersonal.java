@@ -15,6 +15,8 @@ public class RankingPersonal extends Ranking {
 		this.bestTime = new HashMap<String,Double>();
 		for (int i=0; i<Info.size(); ++i) {
 			ArrayList<String> s = Info.get(i);
+			if(s.get(5)=="false")
+				continue;
 			String user = new String(s.get(0));
 			String dif = (Dificultat.esValida(s.get(2))) ? s.get(2) : null;
 			double time = Double.parseDouble(s.get(3));

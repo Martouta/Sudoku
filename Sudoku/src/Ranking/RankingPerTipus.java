@@ -18,7 +18,7 @@ public class RankingPerTipus extends Ranking{
 		CTRLRanking.carregar(this, "partidas");
 		for (int j=0; j<Info.size(); j++){ //Per cada linia d'info
 			ArrayList<String> s = Info.get(j);
-			if (s.get(2).equals(d)){ //Selecciona la linia de la dificultat seleccionada per l'usuari
+			if (s.get(2).equals(d) && s.get(5).equals("true")){ //Selecciona la linia de la dificultat seleccionada per l'usuari
 				String user = new String(s.get(0)); //Agafa l'user
 				double time = Double.parseDouble(s.get(3));
 				String id = new String(s.get(1));
