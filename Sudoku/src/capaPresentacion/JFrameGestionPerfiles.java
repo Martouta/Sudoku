@@ -12,7 +12,7 @@ public class JFrameGestionPerfiles extends JFrame {
 	
 	private JPanel panGestionPerfil;
 	private JLabel labSeleccioneFuncion;
-	private JButton butVolverMenuPrincipal;
+	private JButton butVolverMenuOpciones;
     private JButton butSalir;
     private JButton butResetearEstadisticasPerfil;
     private JButton butBorrarPerfil;
@@ -30,8 +30,8 @@ public class JFrameGestionPerfiles extends JFrame {
     	return butSalir;
     }
     
-    public JButton getButVolverMenuPrincipal() {
-    	return butVolverMenuPrincipal;
+    public JButton getButVolverMenuOpciones() {
+    	return butVolverMenuOpciones;
     }
     
     public JButton getButResetearEstadisticasPerfil() {
@@ -54,7 +54,7 @@ public class JFrameGestionPerfiles extends JFrame {
 		labSeleccioneFuncion = new JLabel();
     	butBorrarPerfil = new JButton();
     	butResetearEstadisticasPerfil = new JButton();
-    	butVolverMenuPrincipal = new JButton();
+    	butVolverMenuOpciones = new JButton();
     	butSalir = new JButton();
     	labMensajeError = new JLabel();
     	
@@ -64,7 +64,7 @@ public class JFrameGestionPerfiles extends JFrame {
     	StringBuilder sb = new StringBuilder(64);
         sb.append("<html>Volver al")
         		.append("<br/>menu opciones</html>");
-    	butVolverMenuPrincipal.setText(sb.toString());
+    	butVolverMenuOpciones.setText(sb.toString());
     	butSalir.setText("Salir");
     	labMensajeError.setText("");
     	
@@ -74,12 +74,12 @@ public class JFrameGestionPerfiles extends JFrame {
     	panGestionPerfil.add(butBorrarPerfil);
     	panGestionPerfil.add(butResetearEstadisticasPerfil);
     	panGestionPerfil.add(labEspacioBlanco);
-    	panGestionPerfil.add(butVolverMenuPrincipal);
+    	panGestionPerfil.add(butVolverMenuOpciones);
     	panGestionPerfil.add(butSalir);
     	JPanel panMensError = new JPanel(); //
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
-		panGestionPerfil.add(panMensError);
+		panGestionPerfil.add(panMensError); //
     	add(panGestionPerfil);
     }
 }
