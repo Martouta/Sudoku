@@ -24,6 +24,7 @@ public class CtrlPartida {
 	protected static ArrayList<String> nombresPartidas;
 	protected static ArrayList<String> usuariosPartidas;		// los username, evidentemente
     private static String path = "src/data/partidas.txt";
+    private static final String fechaNula = "ZXCV";
     
     // se necesita crear antes CtrlUsuario y CtrlJocSudoku
     public CtrlPartida() {
@@ -92,6 +93,9 @@ public class CtrlPartida {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
                 String s = fila.get(punt++);
                 p.setDataIni(df.parse(s));
+                s = fila.get(punt++);
+                if(!Objects.equals(s, fechaNula))
+                	p.setDataFi(df.parse(s));
                 p.setSegundos(nsegundos);
                 p.setNPistas(npistas);
                 int nmarcas = Integer.parseInt(fila.get(punt++));
@@ -136,6 +140,10 @@ public class CtrlPartida {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
                 Date d = p.getDataIni();
                 fila.add(df.format(d));
+                if(!p.getResuelto())
+                	fila.add(fechaNula);
+                else
+                	fila.add(df.format(p.getDataFi()));
                 int nmarcas = 0;
                 for(int i=0;i<nn;i++) {
                 	for(int j=0;j<nn;j++) {
