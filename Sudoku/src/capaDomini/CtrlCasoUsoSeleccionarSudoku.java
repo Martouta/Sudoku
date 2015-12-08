@@ -14,11 +14,17 @@ import capaDomini.Partida;
 public class CtrlCasoUsoSeleccionarSudoku {
 	private Partida p;
 	
+	public CtrlCasoUsoSeleccionarSudoku() {
+		CtrlUser.init();
+		CtrlJocSudoku.init();
+		CtrlPartida.init();
+	}
+	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
 		Vector<DTOPartidaAMedias> V = new Vector<DTOPartidaAMedias>();
 		
-		CtrlJocSudoku.init(); //aqui
-		CtrlPartida.init();
+		//CtrlJocSudoku.init(); //aqui
+		//CtrlPartida.init();
 		ArrayList<Partida> A = CtrlPartida.getTaula();
 		System.out.println(A.size());
 		int nn=n*n;
@@ -54,7 +60,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		Vector<DTOSudokuDeLaBD> V = new Vector<DTOSudokuDeLaBD>();
 		
-		CtrlJocSudoku.init();
+		//CtrlJocSudoku.init();
 		ArrayList<JocSudoku> A = CtrlJocSudoku.getTaula();
 		System.out.println(A.size());
 		int nn=n*n;
@@ -96,7 +102,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		User u = CtrlUser.getUsuari(nombreUsuario);
 		p = new Partida(u,j);
 		
-		CtrlJocSudoku.init();
+		//CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
 		CtrlJocSudoku.end();
 		
@@ -125,7 +131,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	}
 	
 	public void proponerNuevoSudoku(String nombreUsuario, String nombreSudoku, Vector<DTOCeldaFija> celdasFijas, int n) throws ExcepcionSudokuYaExiste, ExcepcionSudokuSinSolucion, ExcepcionSudokuConMasDe1Solucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEnEjecucion{
-		CtrlJocSudoku.init();
+		//CtrlJocSudoku.init();
 		JocSudoku j = CtrlJocSudoku.getJocSudoku(nombreSudoku);
 		if (!(j == null)) throw new ExcepcionSudokuYaExiste();
 		
@@ -142,7 +148,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t);
 		
 		JocSudoku js = new JocSudoku(nombreSudoku,t,tsol); //crear JocSudoku
-		CtrlJocSudoku.init();
+		//CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(js, nombreUsuario);//guardar
 		CtrlJocSudoku.end();
 		User u = CtrlUser.getUsuari(nombreUsuario);
@@ -195,7 +201,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
-		CtrlPartida.init();
+		//CtrlPartida.init();
 		CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
 		CtrlPartida.end();
 		return new Date();
