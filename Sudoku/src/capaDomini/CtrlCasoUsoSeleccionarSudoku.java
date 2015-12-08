@@ -21,7 +21,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		for(Partida p : A ){
 			if(p.getUsuario().getUsername()==nombreUsuario && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
 				//partidas del usuario nombreUsuario dificultad dificultad y n n
-			}
+			
 				int s=p.getSegundos();
 				int m=p.getMinutos();
 				int h=p.getHoras();		
@@ -30,6 +30,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 				Date d=p.getDataIni();
 				DTOPartidaAMedias aux = new DTOPartidaAMedias(id,d, t, p.getNumPistas());
 				if(p.getResuelto()) V.add(aux); //if(no resuelto) V.add
+			}
 		}
 		
 		if(V.size()==0) throw new ExcepcionNoHaySudokuConCaracteristicasSeleccionadas();
