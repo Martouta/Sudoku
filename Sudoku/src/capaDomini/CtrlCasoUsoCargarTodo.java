@@ -1,5 +1,13 @@
 package capaDomini;
 
+import persistencia.CtrlUser;
+import persistencia.CtrlJocSudoku;
+import persistencia.CtrlPartida;
+
 public class CtrlCasoUsoCargarTodo {
-	//NI IDEA DE COMO HACERLO
+	public CtrlCasoUsoCargarTodo() {
+		CtrlUser.init();
+		CtrlJocSudoku.init();
+		CtrlPartida.init();
+	}
 }
