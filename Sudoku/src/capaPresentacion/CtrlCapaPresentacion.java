@@ -11,6 +11,9 @@ import excepciones.*;
 import excepciones.excUsuario.*;
 
 public class CtrlCapaPresentacion {
+	private static JFrameGestionPerfiles frameGestionPerfiles;
+	private static JFrameConfirmacionBorrarPerfil frameConfirmacionBorrarPerfil;
+	private static JFrameConfirmacionResetearEstadisticas frameConfirmacionResetearEstadisticas;
 	private static JFrame frameMenuPrincipal;
     private static JFrame frameIniciarSesion;
     private static JFrame frameRegistrarse;
@@ -68,6 +71,36 @@ public class CtrlCapaPresentacion {
         frameMenuSudoku = new JFrameMenuSudoku();
         frameMenuSudoku.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenuSudoku.pack();
+        
+        //INIT GESTION PERFILES:
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameGestionPerfiles = new JFrameGestionPerfiles();
+        frameGestionPerfiles.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameGestionPerfiles.pack();
+        
+        //INIT GESTION PERFILES:
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameGestionPerfiles = new JFrameGestionPerfiles();
+        frameGestionPerfiles.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameGestionPerfiles.pack();
+        
+        //INIT GESTION PERFILES:
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameGestionPerfiles = new JFrameGestionPerfiles();
+        frameGestionPerfiles.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameGestionPerfiles.pack();
+        
+        //INIT CONFIRMACION BORRAR PERFIL:
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameConfirmacionBorrarPerfil = new JFrameConfirmacionBorrarPerfil();
+        frameConfirmacionBorrarPerfil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameConfirmacionBorrarPerfil.pack();
+        
+        //INIT CONFIRMACION RESETEAR ESTADISTICAS:
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameConfirmacionResetearEstadisticas = new JFrameConfirmacionResetearEstadisticas();
+        frameConfirmacionResetearEstadisticas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameConfirmacionResetearEstadisticas.pack();
 	}
 	
 	private void initListeners() {
@@ -176,12 +209,13 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				guardarTodo();
+				//POR HACER
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButGestionPerfilUsu().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER //AUN NO ES POSIBLE
+				frameMenuOpciones.setVisible(false);
+				frameGestionPerfiles.setVisible(true);
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButSelectSudoku().addActionListener(new ActionListener() {
@@ -217,6 +251,20 @@ public class CtrlCapaPresentacion {
 		if (dificultadSudoku == "facil") return tipoDificultad.facil;
 		if (dificultadSudoku == "medio") return tipoDificultad.medio;
 		return tipoDificultad.dificil; //else
+	}
+	
+	private void initListenersGestionPerfiles() {
+		//LISTENERS DE GESTION PERFILES:
+		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
 	}
 	
 	private void initListenersMenuSudoku() {
@@ -920,8 +968,14 @@ public class CtrlCapaPresentacion {
 	}
     
     private void pressSalir() {
+    	//POR HACER
 		guardarTodo(); 
 		System.out.println("Salir pulsado");
+	}
+    
+    private void pressCerrarSesion() {
+		//POR HACER
+		System.out.println("Cerrar sesion pulsado");
 	}
     
     private void cargarTodo() {
