@@ -89,6 +89,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		CtrlJocSudoku.init();
 		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
+		CtrlJocSudoku.end();
 		
 		Vector<DTOCeldaFija> V = new Vector<DTOCeldaFija>();
 		
