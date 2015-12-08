@@ -1,6 +1,6 @@
 package capaDomini;
 
-//NO LISTO PARA SER PROGRAMADO
+//ACABADO PERO NO TESTEADO
 
 import persistencia.*;
 import java.util.*;
@@ -77,13 +77,11 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		TaulerSudoku t = GeneradorSudoku.generaSudoku2(n,dificultad);
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t); //espero que resuelveSudoku3 no machaque t
 		
-		//String id = nombreUsuario; //("Your number is " + theNumber + "!");
 		
 		Date date = new Date();
 		String idSudoku = nombreUsuario + date.toString();
 		
 		JocSudoku j = new JocSudoku(idSudoku, t, tsol); 
-		//el ID como se genera? podríamos hacer algun contador o algo, para cada usuario, o para los juegos?
 		
 		User u = CtrlUser.getUsuari(nombreUsuario);
 		p = new Partida(u,j);
@@ -186,7 +184,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
 		CtrlPartida.init();
-		//CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
+		CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
 		return new Date();
 	}
 	
