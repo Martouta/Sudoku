@@ -73,6 +73,7 @@ public class CtrlPartida {
             	int npistas = Integer.parseInt(fila.get(punt++));
             	nombresPartidas.add(fila.get(punt++));
             	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
+            	if (js == null) System.out.println("ESNULL");
                 int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
