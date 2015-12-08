@@ -185,7 +185,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
-		
 		CtrlPartida.init();
 		CtrlPartida.afegeixPartida(p,p.getJocSudoku().getId()); //Guarda partida en la bd
 		CtrlPartida.end();
