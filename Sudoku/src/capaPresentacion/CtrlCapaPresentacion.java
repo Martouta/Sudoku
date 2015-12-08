@@ -670,8 +670,7 @@ public class CtrlCapaPresentacion {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
 						int val = celdaSudoku.getValor();
-						//System.out.println(i + " - " + j + " = " + val + " / " + frameJuego4x4.estaVacia(i, j));
-						if (frameJuego4x4.estaVacia(i, j)) frameJuego4x4.ponerValorCasilla(i, j, val);
+						if (!frameJuego4x4.esCeldaFija(i, j)) frameJuego4x4.ponerValorCasilla(i, j, val);
 					}
 					mostrarTiempos4x4();
 					frameJuego4x4.setMensaje("Sudoku resuelto por el sistema");
@@ -868,8 +867,7 @@ public class CtrlCapaPresentacion {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
 						int val = celdaSudoku.getValor();
-						
-						if (frameJuego9x9.estaVacia(i, j)) frameJuego9x9.ponerValorCasilla(i, j, val);
+						if (!frameJuego9x9.esCeldaFija(i, j)) frameJuego9x9.ponerValorCasilla(i, j, val);
 					}
 					mostrarTiempos9x9();
 					frameJuego9x9.setMensaje("Sudoku resuelto por el sistema");
