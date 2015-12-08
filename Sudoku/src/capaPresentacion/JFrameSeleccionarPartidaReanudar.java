@@ -134,8 +134,19 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		nombresSudokus = new Vector<String>();
 		int cont = 1;
 		for (DTOPartidaAMedias infoPartida : infoPartidasAMedias) {
-			String rellena = cont + ", " + infoPartida.getNombreSudoku() + ", empezado el ";
-			rellena = rellena + infoPartida.getHoras() + infoPartida.getMinutos() + infoPartida.getSegundos();
+			String rellena = cont + ", " + infoPartida.getNombreSudoku() + ", tiempo de partida real: ";
+			
+			int intHoras = infoPartida.getHoras();
+			int intMinutos = infoPartida.getMinutos();
+			int intSegundos = infoPartida.getSegundos();
+			String strHoras = intHoras + "";
+			if (intHoras <= 9) strHoras = "0" + intHoras;
+			String strMinutos = intMinutos + "";
+			if (intMinutos <= 9) strMinutos = "0" + intMinutos;
+			String strSegundos = intSegundos + "";
+			if (intSegundos <= 9) strSegundos = "0" + intSegundos;
+			
+			rellena = rellena + strHoras + ":" + strMinutos + ":" + strSegundos;
 			rellena = rellena + ", numero de pistas: ";
 			rellena = rellena + infoPartida.getNumeroPistas();
 			
