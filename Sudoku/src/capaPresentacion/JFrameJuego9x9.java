@@ -319,7 +319,7 @@ public class JFrameJuego9x9 extends JFrame{
 	
 	private void rellenarPanelOpciones() {
 		vButOpciones = new Vector<JButton>();
-		panOpciones.setVisible(false);
+		panOpciones.setVisible(true);
 		int locI = 3;
 		for (int i = 0; i < nn; ++i) {
 			JButton butAux = new JButton((i+1) + "");
@@ -328,6 +328,7 @@ public class JFrameJuego9x9 extends JFrame{
 			butAux.setSize(40, 40);
 			butAux.setLocation(0, locI);
 			locI += 40;
+			butAux.setVisible(false);
 			vButOpciones.addElement(butAux);
 			panOpciones.add(butAux);
 		}
@@ -514,11 +515,17 @@ public class JFrameJuego9x9 extends JFrame{
 	}
 	
 	public void activarPanelOpciones(){
-		panOpciones.setVisible(true);
+		//panOpciones.setVisible(true);
+		for (JButton butAux : vButOpciones) {
+			butAux.setVisible(true);
+		}
 	}
 	
 	public void desactivarPanelOpciones(){
-		panOpciones.setVisible(false);
+		//panOpciones.setVisible(false);
+		for (JButton butAux : vButOpciones) {
+			butAux.setVisible(false);
+		}
 	}
 	
 	public int getFilaActiva(){

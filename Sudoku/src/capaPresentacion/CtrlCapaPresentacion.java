@@ -148,12 +148,16 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
+					if (nombreUsuario.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
 					ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameIniciarSesion.setVisible(false);
 					frameMenuOpciones.setVisible(true);
 					System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
+				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
+					nombreUsuario = "";
+					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
 				} catch (ExcepcionCamposVacios e) {
 					nombreUsuario = "";
 					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
@@ -181,6 +185,7 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
+					if (nombreUsuario.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String contrasena = ((JFrameRegistrarse) frameRegistrarse).getContrasena();
 					String confirmContrasena = ((JFrameRegistrarse) frameRegistrarse).getConfirmContrasena();
 					if (! contrasena.equals(confirmContrasena)) throw (new ExcepcionContrasenasNoCoinciden());
@@ -189,6 +194,9 @@ public class CtrlCapaPresentacion {
 					frameRegistrarse.setVisible(false);
 					frameMenuOpciones.setVisible(true);
 					System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
+				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
+					nombreUsuario = "";
+					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
 				} catch (ExcepcionCamposVacios e) {
 					nombreUsuario = "";
 					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
@@ -250,9 +258,9 @@ public class CtrlCapaPresentacion {
 	}
 	
 	private tipoDificultad tipoDificultadFromStringDificultad(String dificultadSudoku){
-		if (dificultadSudoku == "trivial") return tipoDificultad.trivial;
-		if (dificultadSudoku == "facil") return tipoDificultad.facil;
-		if (dificultadSudoku == "medio") return tipoDificultad.medio;
+		if (dificultadSudoku.equals("Trivial")) return tipoDificultad.trivial;
+		if (dificultadSudoku.equals("Facil")) return tipoDificultad.facil;
+		if (dificultadSudoku.equals("Medio")) return tipoDificultad.medio;
 		return tipoDificultad.dificil; //else
 	}
 	
@@ -557,6 +565,7 @@ public class CtrlCapaPresentacion {
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
 					if (nombreSudoku.isEmpty()) throw new ExcepcionCamposVacios();
+					if (nombreSudoku.contains(" ")) throw new ExcepcionNombreConEspaciosEnBlanco();
 					frameProponerSudoku4x4.setMensaje("");
 					for (int i = 0; i < nn; ++i) { 
 						for (int j = 0; j < nn; ++j) {	
@@ -576,6 +585,8 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.pack();
 					initListenersJFrameJuego4x4();
 					frameJuego4x4.setVisible(true);
+				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
+					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuYaExiste e) {
@@ -628,6 +639,7 @@ public class CtrlCapaPresentacion {
 				Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 				try {
 					if (nombreSudoku.isEmpty()) throw new ExcepcionCamposVacios();
+					if (nombreSudoku.contains(" ")) throw new ExcepcionNombreConEspaciosEnBlanco();
 					frameProponerSudoku9x9.setMensaje("");
 					for (int i = 0; i < nn; ++i) { 
 						for (int j = 0; j < nn; ++j) {	
@@ -647,6 +659,8 @@ public class CtrlCapaPresentacion {
 					frameJuego9x9.pack();
 					initListenersJFrameJuego9x9();
 					frameJuego9x9.setVisible(true);
+				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
+					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionValorFueraRango e) {
 					frameProponerSudoku9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionSudokuYaExiste e) {
