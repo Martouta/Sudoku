@@ -78,7 +78,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		panConfirmacionBorrarPerfil.add(butEliminarPerfSud);
 		panConfirmacionBorrarPerfil.add(butEliminarPerfil);
 		panConfirmacionBorrarPerfil.add(butNoEliminar);
-		JPanel panMensError = new JPanel();
+		JPanel panMensError = new JPanel(); //
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panConfirmacionBorrarPerfil.add(panMensError);

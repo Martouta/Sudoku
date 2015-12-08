@@ -76,7 +76,7 @@ public class JFrameGestionPerfiles extends JFrame {
     	panGestionPerfil.add(labEspacioBlanco);
     	panGestionPerfil.add(butVolverMenuPrincipal);
     	panGestionPerfil.add(butSalir);
-    	JPanel panMensError = new JPanel();
+    	JPanel panMensError = new JPanel(); //
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panGestionPerfil.add(panMensError);

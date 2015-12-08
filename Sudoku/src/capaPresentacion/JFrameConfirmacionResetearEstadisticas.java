@@ -54,7 +54,7 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		panConfirmacionResetearEstadisticas.add(labEspacioBlanco);
 		panConfirmacionResetearEstadisticas.add(butResetear);
 		panConfirmacionResetearEstadisticas.add(butNoResetear);
-		JPanel panMensError = new JPanel();
+		JPanel panMensError = new JPanel(); //
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panConfirmacionResetearEstadisticas.add(panMensError);
