@@ -134,6 +134,7 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 		for (DTOSudokuDeLaBD infoSudokuBD : infoSudokusDeLaBD) {
 			String rellena = cont + ", " + infoSudokuBD.getNombreSudoku() + ", numero de casillas rellenas: " + infoSudokuBD.getNumeroCasillasRellenas();
 			datosARellenar.addElement(rellena);
+			demoList.addElement(rellena);
 			nombresSudokus.addElement(infoSudokuBD.getNombreSudoku());
 			++cont;
 		}
