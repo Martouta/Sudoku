@@ -142,6 +142,10 @@ public class Partida {
 		dataIni = d;
 	}
 	
+	public void setDataFi(Date d) {	// para cargar partidas
+		dataFi = d;
+	}
+	
 	public void setSegundos(int s) {	// idem
 		tiempoSegundos = s;
 	}
