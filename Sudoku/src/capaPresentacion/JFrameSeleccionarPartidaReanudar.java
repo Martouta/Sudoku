@@ -149,6 +149,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			rellena = rellena + strHoras + ":" + strMinutos + ":" + strSegundos;
 			rellena = rellena + ", numero de pistas: ";
 			rellena = rellena + infoPartida.getNumeroPistas();
+			//rellena = rellena + infoPartida.getFechaIni(); //FALTA ESTO
 			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
