@@ -253,6 +253,20 @@ public class CtrlCapaPresentacion {
 		return tipoDificultad.dificil; //else
 	}
 	
+	private void initListenersGestionPerfiles() {
+		//LISTENERS DE GESTION PERFILES:
+		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//POR HACER
+			}
+		});
+	}
+	
 	private void initListenersMenuSudoku() {
 		//LISTENERS DE MENU SUDOKU:
 		((JFrameMenuSudoku) frameMenuSudoku).getButSalir().addActionListener(new ActionListener() {
