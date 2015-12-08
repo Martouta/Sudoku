@@ -67,6 +67,7 @@ public class CtrlPartida {
             	punt = 0;
             	usuariosPartidas.add(fila.get(punt++));
             	String nombretauler = fila.get(punt++);
+            	System.out.println(nombretauler + " AQUI");
             	punt++;
             	int nsegundos = Integer.parseInt(fila.get(punt++));
             	int npistas = Integer.parseInt(fila.get(punt++));

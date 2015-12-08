@@ -1,1 +1,1 @@
-12 12 dificil 33 1 12 3 0 0 3 true 0 0 0 0 0 0 9 true 5 true 0 4 true 3 true 0 0 0 0 0 0 0 0 6 true 7 true 4 true 0 0 0 9 true 0 0 4 true 2 true 3 true 8 true 0 3 true 0 0 0 0 0 0 0 0 0 0 0 8 true 0 0 2 true 7 true 0 0 4 true 0 0 0 0 5 true 3 false 8 true 2 true 0 6 true 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 true 08/12/2015,12:29:50 0 
+12 123456 trivial 7 1 12 2 1 true 3 true 4 false 2 true 4 true 2 true 0 3 true 0 4 true 3 true 0 3 true 1 true 0 0 08/12/2015,12:57:13 0 
