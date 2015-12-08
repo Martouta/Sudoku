@@ -250,6 +250,7 @@ public class CtrlCapaPresentacion {
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
+				        ((JFrameMenuSudoku) frameMenuSudoku).setMensaje("Hay " + infoSudokusDeLaBD.size() + " sudokus con estas caracteristicas");
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
 						try {
 							Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
