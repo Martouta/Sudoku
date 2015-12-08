@@ -15,7 +15,7 @@ public class RankingPerTipus extends Ranking{
 	public RankingPerTipus (String d, int nEntrades) {
 		RankingPerTipus.tempsJugador = new ArrayList<Tupla>();
 		this.nEntrades=nEntrades;
-		CTRLRanking.carregar(this, "Partides");
+		CTRLRanking.carregar(this, "partidas");
 		for (int j=0; j<Info.size(); j++){ //Per cada linia d'info
 			ArrayList<String> s = Info.get(j);
 			if (s.get(2).equals(d)){ //Selecciona la linia de la dificultat seleccionada per l'usuari
