@@ -496,7 +496,7 @@ public class CtrlCapaPresentacion {
 						frameJuego9x9 = new JFrameJuego9x9(vCeldasFijas,nomSudoku);
 						frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frameJuego9x9.pack();
-						initListenersJFrameJuego4x4();
+						initListenersJFrameJuego9x9();
 						frameJuego9x9.setVisible(true);
 					} else {
 						//Mostrar juego 16x16 FALTA POR HACER
@@ -531,7 +531,7 @@ public class CtrlCapaPresentacion {
 		
 		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//
+				//VOY POR AQUI
 			}
 		});
 	}
@@ -717,7 +717,7 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionCasillaBloqueada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionValorYaPuesto e) {
-					frameJuego4x4.setMensaje(e.getMessage());
+					frameJuego4x4.setMensaje("El valor de la pista ya esta puesto en una de sus regiones");
 				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				}
@@ -914,7 +914,7 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionCasillaBloqueada e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionValorYaPuesto e) {
-					frameJuego9x9.setMensaje(e.getMessage());
+					frameJuego4x4.setMensaje("El valor de la pista ya esta puesto en una de sus regiones");
 				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				}

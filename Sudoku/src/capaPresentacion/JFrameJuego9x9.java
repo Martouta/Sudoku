@@ -118,7 +118,7 @@ public class JFrameJuego9x9 extends JFrame{
 		nn = 9;
 		n = 3;
 		setTitle("Jugar Sudoku: " + nombreSudoku);
-		setSize(880,450); //ancho por alto
+		setSize(840,450); //ancho por alto
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -213,8 +213,8 @@ public class JFrameJuego9x9 extends JFrame{
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        butVolverMenuSudoku.setMaximumSize(new Dimension(250, 40));
-        butVolverMenuSudoku.setMinimumSize(new Dimension(250, 40));
+        butSalir.setMaximumSize(new Dimension(250, 40));
+        butSalir.setMinimumSize(new Dimension(250, 40));
 
         GroupLayout panPrincipalLayout = new GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -228,9 +228,9 @@ public class JFrameJuego9x9 extends JFrame{
                         .addGap(18, 18, 18)
                         .addComponent(panOpciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(butSalir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(butVolverMenuSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addGroup(panPrincipalLayout.createSequentialGroup()
@@ -281,8 +281,8 @@ public class JFrameJuego9x9 extends JFrame{
                             .addComponent(panSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butVolverMenuSudoku, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(butSalir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(butSalir, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(butVolverMenuSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
