@@ -13,9 +13,14 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 	private JButton butEliminarPerfSud;
 	private JButton butEliminarPerfil;
 	private JButton butNoEliminar;
+	private JLabel labMensajeError;
 	
 	public JFrameConfirmacionBorrarPerfil() {
 		initComponents();
+	}
+	
+	public void setMensajeError(String msj){
+		labMensajeError.setText(msj);
 	}
 	
 	private void initComponents() {
@@ -32,6 +37,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		butEliminarPerfSud = new JButton();
 		butEliminarPerfil = new JButton();
 		butNoEliminar = new JButton();
+		labMensajeError = new JLabel();
 		
 		StringBuilder sb = new StringBuilder(64);
         sb.append("<html>¿Está seguro de que desea")
@@ -62,6 +68,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		//butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");
         butEliminarPerfil.setText(sb.toString());
 		butNoEliminar.setText("No eliminar mi perfil");
+		labMensajeError.setText("");
 		
 		panConfirmacionBorrarPerfil = new JPanel();
 		panConfirmacionBorrarPerfil.setLayout(new GridLayout(9,1));
@@ -71,6 +78,10 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		panConfirmacionBorrarPerfil.add(butEliminarPerfSud);
 		panConfirmacionBorrarPerfil.add(butEliminarPerfil);
 		panConfirmacionBorrarPerfil.add(butNoEliminar);
+		JPanel panMensError = new JPanel();
+		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panMensError.add(labMensajeError);
+		panConfirmacionBorrarPerfil.add(panMensError);
 		add(panConfirmacionBorrarPerfil);
 	}
 	
