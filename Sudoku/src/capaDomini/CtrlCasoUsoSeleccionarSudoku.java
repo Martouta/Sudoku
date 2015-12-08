@@ -12,8 +12,8 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	private Partida p;
 	
 	public CtrlCasoUsoSeleccionarSudoku () {
-		CtrlPartida.init();
 		CtrlJocSudoku.init();
+		CtrlPartida.init();
 	}
 	
 	public Vector<DTOPartidaAMedias> obtenerPartidas(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionNoHaySudokuConCaracteristicasSeleccionadas{
