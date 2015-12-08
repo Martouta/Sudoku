@@ -167,6 +167,31 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		 */
 	}
 	
+	public Vector<DTOCeldaFija> obtenerSudoku(String nomSudoku, String nomUsuari) throws ExcepcionTimerYaEnEjecucion, ExcepcionPosicionFueraRango {
+		/*
+		 Obtiene el sudoku de la BD, empieza la partida y devuelve sus celdas fijas
+		 */
+		JocSudoku js = CtrlJocSudoku.getJocSudoku(nomSudoku);
+		User u = CtrlUser.getUsuari(nomUsuari);
+		p = new Partida(u, js);
+		
+		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+		TaulerSudoku ts = (TaulerSudoku) js.getTauler();
+		for (int i = 0; i < ts.alto; ++i) {
+			for (int j = 0; j < ts.ancho; ++j) {
+				if (ts.estaFija(i, j)) vCeldasFijas.addElement(new DTOCeldaFija(i, j, ts.getNumero(i, j)));
+			}
+		}
+		
+		return vCeldasFijas;
+	}
+	
+	public int getNSudoku(String nomSudoku){
+		JocSudoku js = CtrlJocSudoku.getJocSudoku(nomSudoku);
+		TaulerSudoku ts = (TaulerSudoku) js.getTauler();
+		return ts.getN();
+	}
+	
 	public DTOCeldaFija pedirPista() throws ExcepcionNoQuedanCeldasVacias, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable, ExcepcionTimerYaEstaParado, ExcepcionPartidaYaAcabada{
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
 		DTOCeldaFija celdaNueva = p.pedirPista();

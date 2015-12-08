@@ -323,7 +323,8 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				frameMenuSudoku.setVisible(false);
+				frameMenuOpciones.setVisible(true);
 			}
 		});
 		((JFrameMenuSudoku) frameMenuSudoku).getButSelectsudoku().addActionListener(new ActionListener() {
@@ -342,6 +343,8 @@ public class CtrlCapaPresentacion {
 				        frameSeleccionarSudokuBD = new JFrameSeleccionarSudokuBD(infoSudokusDeLaBD);
 				        frameSeleccionarSudokuBD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				        frameSeleccionarSudokuBD.pack();
+				        //activar listeners de la vista:
+				        initListenersJFrameSeleccionarSudokuBD();
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
@@ -410,6 +413,8 @@ public class CtrlCapaPresentacion {
 				        frameSeleccionarPartidaReanudar = new JFrameSeleccionarPartidaReanudar(infoPartidasAMedias);
 				        frameSeleccionarPartidaReanudar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				        frameSeleccionarPartidaReanudar.pack();
+				        //activar listeners de la vista:
+				        initListenersJFrameSeleccionarPartidaReanudar();
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarPartidaReanudar.setVisible(true);
@@ -446,6 +451,87 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuSudoku) frameMenuSudoku).getRbProponer().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((JFrameMenuSudoku) frameMenuSudoku).setMensaje("Para el Sudoku propuesto, se ignorará la dificultad seleccionada");
+			}
+		});
+	}
+	
+	private void initListenersJFrameSeleccionarSudokuBD() {
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameSeleccionarSudokuBD.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getJugarSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				try {
+					int nSelect = ((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getCuantosSeleccionados();
+					if (nSelect == 0) throw new ExcepcionNingunSudokuSeleccionado();
+					if (nSelect > 1) throw new ExcepcionMasDeUnSudokuSeleccionado();
+					
+					String nomSudoku = ((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getNombreSudokuSeleccionado();
+					
+					Vector<DTOCeldaFija> vCeldasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudoku(nomSudoku, nombreUsuario);
+					frameSeleccionarSudokuBD.setVisible(false);
+					
+					int n = ctrlCUSeleccionarJugarSudoku.getNSudoku(nomSudoku);
+					if (n==2) {
+						//Mostrar juego:
+						JFrame.setDefaultLookAndFeelDecorated(true);
+						frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nomSudoku);
+						frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frameJuego4x4.pack();
+						initListenersJFrameJuego4x4();
+						frameJuego4x4.setVisible(true);
+					} else if (n==3) {
+						//Mostrar juego:
+						JFrame.setDefaultLookAndFeelDecorated(true);
+						frameJuego9x9 = new JFrameJuego9x9(vCeldasFijas,nomSudoku);
+						frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frameJuego9x9.pack();
+						initListenersJFrameJuego4x4();
+						frameJuego9x9.setVisible(true);
+					} else {
+						//Mostrar juego 16x16 FALTA POR HACER
+					}
+				} catch (ExcepcionNingunSudokuSeleccionado e) {
+					((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).setMensaje(e.getMessage());
+				} catch (ExcepcionMasDeUnSudokuSeleccionado e) {
+					((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).setMensaje(e.getMessage());
+				} catch (ExcepcionTimerYaEnEjecucion e) {
+					((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).setMensaje(e.getMessage());
+				} catch (ExcepcionPosicionFueraRango e) {
+					((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).setMensaje(e.getMessage());
+				}
+			}
+		});
+		
+	}
+	
+	private void initListenersJFrameSeleccionarPartidaReanudar() {
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+			}
+		});
+		
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButVolverMenuSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameSeleccionarSudokuBD.setVisible(false);
+				frameMenuSudoku.setVisible(true);
+			}
+		});
+		
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getJugarSudoku().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//
 			}
 		});
 	}
@@ -670,7 +756,7 @@ public class CtrlCapaPresentacion {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
 						int val = celdaSudoku.getValor();
-						if (!frameJuego4x4.esCeldaFija(i, j)) frameJuego4x4.ponerValorCasilla(i, j, val);
+						if (!frameJuego4x4.esCeldaFija(i, j)) {frameJuego4x4.ponerValorCasilla(i, j, val); frameJuego4x4.descolorearCasilla(i, j);}
 					}
 					mostrarTiempos4x4();
 					frameJuego4x4.setMensaje("Sudoku resuelto por el sistema");
@@ -867,7 +953,7 @@ public class CtrlCapaPresentacion {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
 						int val = celdaSudoku.getValor();
-						if (!frameJuego9x9.esCeldaFija(i, j)) frameJuego9x9.ponerValorCasilla(i, j, val);
+						if (!frameJuego9x9.esCeldaFija(i, j)) {frameJuego9x9.ponerValorCasilla(i, j, val); frameJuego9x9.descolorearCasilla(i, j);}
 					}
 					mostrarTiempos9x9();
 					frameJuego9x9.setMensaje("Sudoku resuelto por el sistema");

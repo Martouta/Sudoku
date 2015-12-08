@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import DataTransferObjects.DTOPartidaAMedias;
-import DataTransferObjects.DTOSudokuDeLaBD;
 
 public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -32,6 +31,22 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	public JFrameSeleccionarPartidaReanudar(Vector<DTOPartidaAMedias> infoPartidasAMedias) {
 		rellenaDatos(infoPartidasAMedias);
 		initComponents();
+	}
+	
+	public JButton getButSalir() {
+		return butSalir;
+	}
+	
+	public JButton getButVolverMenuSudoku() {
+		return butVolverMenuSudoku;
+	}
+	
+	public JButton getJugarSudoku() {
+		return butJugarSudoku;
+	}
+	
+	public void setMensaje(String msj){
+		labMensError.setText(msj);
 	}
 	
 	private void initComponents() {
