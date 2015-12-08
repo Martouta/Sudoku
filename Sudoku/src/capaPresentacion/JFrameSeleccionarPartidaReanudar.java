@@ -1,6 +1,10 @@
 package capaPresentacion;
 
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -149,7 +153,14 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			rellena = rellena + strHoras + ":" + strMinutos + ":" + strSegundos;
 			rellena = rellena + ", numero de pistas: ";
 			rellena = rellena + infoPartida.getNumeroPistas();
-			//rellena = rellena + infoPartida.getFechaIni(); //FALTA ESTO
+			rellena = rellena + ", empezado el: ";
+			
+			
+			Date date = infoPartida.getFechaIni();
+			Calendar calendar = GregorianCalendar.getInstance();
+			calendar.setTime(date);
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+			rellena = rellena + sdf.format(calendar.getTime()); //FALTA ESTO
 			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
