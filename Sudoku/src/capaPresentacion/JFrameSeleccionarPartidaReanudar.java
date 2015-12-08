@@ -160,7 +160,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			Calendar calendar = GregorianCalendar.getInstance();
 			calendar.setTime(date);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-			rellena = rellena + sdf.format(calendar.getTime()); //FALTA ESTO
+			rellena = rellena + sdf.format(calendar.getTime());
 			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
