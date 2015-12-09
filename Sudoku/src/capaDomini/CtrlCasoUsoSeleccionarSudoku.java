@@ -86,6 +86,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		TaulerSudoku t = GeneradorSudoku.generaSudoku2(n,dificultad);
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t); //espero que resuelveSudoku3 no machaque t
+		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSize:" + t.getNumCeldas());
 		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSolSize:" + tsol.getNumCeldas());
 		
 		Date date = new Date();
