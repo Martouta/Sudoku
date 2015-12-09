@@ -148,8 +148,8 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameIniciarSesion) frameIniciarSesion).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-					if (nombreUsuario.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
+					if (nombreUsuario.contains(" ") || contrasena.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					ctrlCUIniciarSesion.iniciarSesion(nombreUsuario, contrasena);
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameIniciarSesion.setVisible(false);
@@ -185,8 +185,8 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-					if (nombreUsuario.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
-					String contrasena = ((JFrameRegistrarse) frameRegistrarse).getContrasena();
+					String contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
+					if (nombreUsuario.contains(" ") || contrasena.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String confirmContrasena = ((JFrameRegistrarse) frameRegistrarse).getConfirmContrasena();
 					if (! contrasena.equals(confirmContrasena)) throw (new ExcepcionContrasenasNoCoinciden());
 					ctrlCURegistrarse.registrarse(nombreUsuario, contrasena);

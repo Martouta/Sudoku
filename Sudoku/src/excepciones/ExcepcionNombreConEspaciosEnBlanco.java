@@ -5,7 +5,7 @@ public class ExcepcionNombreConEspaciosEnBlanco extends Exception {
 
 	@Override
 	public String getMessage() {
-		return "No pueden haber espacios en blanco en el nombre";
+		return "No pueden haber espacios en blanco en el nombre ni en la contrasena";
 	}
 	
 }
