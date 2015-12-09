@@ -86,7 +86,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		TaulerSudoku t = GeneradorSudoku.generaSudoku2(n,dificultad);
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t); //espero que resuelveSudoku3 no machaque t
-		
+		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSolSize:" + tsol.getNumCeldas());
 		
 		Date date = new Date();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
@@ -112,6 +112,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 			}
 		}
 		
+		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: VectorCeldasSize:" + V.size());
 		return new DTOSudokuGenerado(idSudoku, V);
 		
 		
@@ -168,18 +169,20 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		/*
 		 Obtiene el sudoku de la BD, empieza la partida y devuelve sus celdas fijas
 		 */
+		
 		JocSudoku js = CtrlJocSudoku.getJocSudoku(nomSudoku);
 		User u = CtrlUser.getUsuari(nomUsuari);
 		p = new Partida(u, js);
 		
 		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 		TaulerSudoku ts = (TaulerSudoku) js.getTauler();
+		System.out.println("Pruebas-CtrlDomini-obtenerSudoku01-: " + ts.getNumCeldas() + "-" + ts.getNumCeldasRellenas());
 		for (int i = 0; i < ts.alto; ++i) {
 			for (int j = 0; j < ts.ancho; ++j) {
 				if (ts.estaFija(i, j)) vCeldasFijas.addElement(new DTOCeldaFija(i, j, ts.getNumero(i, j)));
 			}
 		}
-		
+		System.out.println("Pruebas-CtrlDomini-obtenerSudoku02-: " + vCeldasFijas.size());
 		return vCeldasFijas;
 	}
 	

@@ -514,6 +514,7 @@ public class CtrlCapaPresentacion {
 					
 					Vector<DTOCeldaFija> vCeldasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudoku(nomSudoku, nombreUsuario);
 					frameSeleccionarSudokuBD.setVisible(false);
+					System.out.println("Pruebas-CtrlPres-SudokusDeLaBd-: " + vCeldasFijas.size());
 					
 					int n = ctrlCUSeleccionarJugarSudoku.getNSudoku(nomSudoku);
 					if (n==2) {
