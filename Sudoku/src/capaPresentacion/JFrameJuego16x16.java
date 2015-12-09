@@ -413,7 +413,7 @@ public class JFrameJuego16x16 extends JFrame{
 			labAux.setFont(new Font("Tahoma", 0, 9));
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
-			/*labAux.setText(panAux.getName());*//*labAux.setText("  ");*/labAux.setText((z+1) + " ");
+			labAux.setText("  ");/*labAux.setText(panAux.getName());*//*labAux.setText((z+1) + " ");*/
 			vLabMarcas[i][j][z] = labAux;
 			panMarcas.add(labAux);
 		}
