@@ -232,7 +232,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
 		Date data = p.getDataIni();
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss");
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
         String strData = formatter.format(data);
 		String idPartida = p.getJocSudoku().getId() + strData + p.getUsuario().getUsername();
 		CtrlPartida.afegeixPartida(p,idPartida); //Guarda partida en la bd
