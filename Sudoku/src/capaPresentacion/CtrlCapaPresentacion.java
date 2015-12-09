@@ -358,7 +358,29 @@ public class CtrlCapaPresentacion {
 				        frameSeleccionarSudokuBD.setVisible(true);
 					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
 						try {
-							Vector<DTOCeldaFija> celdasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+							DTOSudokuGenerado infoSudokuGenerado = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
+							frameMenuSudoku.setVisible(false);
+							Vector<DTOCeldaFija> vCeldasFijas = infoSudokuGenerado.getCeldasFijas();
+							String nomSudoku = infoSudokuGenerado.getNombreSudoku();
+							if (n==2) {
+								//Mostrar juego:
+								JFrame.setDefaultLookAndFeelDecorated(true);
+								frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nomSudoku);
+								frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								frameJuego4x4.pack();
+								initListenersJFrameJuego4x4();
+								frameJuego4x4.setVisible(true);
+							} else if (n==3) {
+								//Mostrar juego:
+								JFrame.setDefaultLookAndFeelDecorated(true);
+								frameJuego9x9 = new JFrameJuego9x9(vCeldasFijas,nomSudoku);
+								frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								frameJuego9x9.pack();
+								initListenersJFrameJuego9x9();
+								frameJuego9x9.setVisible(true);
+							} else {
+								//Mostrar juego 16x16 FALTA POR HACER
+							}
 						} catch (ExcepcionTimerYaEnEjecucion e) {
 							((JFrameMenuSudoku) frameMenuSudoku).setMensaje(e.getMessage());
 						} catch (ExcepcionTamanoIncorrecto e) {

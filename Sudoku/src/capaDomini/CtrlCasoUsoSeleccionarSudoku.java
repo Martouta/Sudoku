@@ -1,7 +1,5 @@
 package capaDomini;
 
-//ACABADO PERO NO TESTEADO
-
 import persistencia.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,7 +27,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		for(Partida p : A ){
 			if(Objects.equals(p.getUsuario().getUsername(),nombreUsuario) && p.getJocSudoku().getDificultad()==dificultad && p.getJocSudoku().getTauler().getAncho()==nn){
 				//partidas del usuario nombreUsuario dificultad dificultad y n n
-			
+				
 				int s=p.getSegundos();
 				int m=p.getMinutos();
 				int h=p.getHoras();		
@@ -83,7 +81,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 	}
 	
-	public Vector<DTOCeldaFija> obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
+	public DTOSudokuGenerado obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
 		if(dificultad==tipoDificultad.trivial) throw new ExcepcionMaquinaNoGeneraTriviales();
 		
 		TaulerSudoku t = GeneradorSudoku.generaSudoku2(n,dificultad);
@@ -113,7 +111,8 @@ public class CtrlCasoUsoSeleccionarSudoku {
 				}
 			}
 		}
-		return V;
+		
+		return new DTOSudokuGenerado(idSudoku, V);
 		
 		
 		/*
