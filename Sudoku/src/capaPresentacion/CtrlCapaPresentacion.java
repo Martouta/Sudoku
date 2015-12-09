@@ -544,20 +544,20 @@ public class CtrlCapaPresentacion {
 	}
 	
 	private void initListenersJFrameSeleccionarPartidaReanudar() {
-		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButSalir().addActionListener(new ActionListener() {
+		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getButSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
 			}
 		});
 		
-		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButVolverMenuSudoku().addActionListener(new ActionListener() {
+		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				frameSeleccionarSudokuBD.setVisible(false);
+				frameSeleccionarPartidaReanudar.setVisible(false);
 				frameMenuSudoku.setVisible(true);
 			}
 		});
 		
-		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getJugarSudoku().addActionListener(new ActionListener() {
+		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getJugarSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//VOY POR AQUI
 			}
