@@ -291,7 +291,7 @@ public class JFrameJuego16x16 extends JFrame{
 	
 	
 	private void rellenarPanelJugar() {
-		panJugar.setPreferredSize(new Dimension(1200, 1100));
+		panJugar.setPreferredSize(new Dimension(1055, 982));//panJugar.setPreferredSize(new Dimension(1200, 1100));
 		
 		panSudoku.setPreferredSize(new Dimension(975, 975)); //new Dimension(1100, 1200)
 		panSudoku.setLayout(null);
