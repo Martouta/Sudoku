@@ -49,9 +49,7 @@ public class JFrameJuego16x16 extends JFrame{
 		numeroPistas = fActiva = cActiva = 0;
 		this.vCeldasFijas = vCeldasFijas;
 		initComponents(nombreSudoku);
-		System.out.println("Prueba-Constructor-01");
 		ponerCeldasFijas();
-		System.out.println("Prueba-Constructor-02");
 	}
 	
 	
@@ -293,59 +291,45 @@ public class JFrameJuego16x16 extends JFrame{
 	
 	
 	private void rellenarPanelJugar() {
-		panJugar.setPreferredSize(new Dimension(1500, 1500));
+		panJugar.setPreferredSize(new Dimension(1200, 1100));
 		
-		panJugar.setBackground(new Color(141, 255, 233));
-		panJugar.setOpaque(true);
-		
-		panSudoku.setPreferredSize(new Dimension(1100, 1200));
-		panSudoku.setBackground(new Color(255, 237, 141));
-		panSudoku.setOpaque(true);
-		panOpciones.setPreferredSize(new Dimension(40, 1300));
-		panSudoku.setBackground(new Color(60, 255, 240));
-		panSudoku.setOpaque(true);
-		panJugar.setLayout(new FlowLayout());
-		panJugar.add(panSudoku);
-		panJugar.add(panOpciones);
-		
-		/*JPanel panPruebas = new JPanel();
-		panPruebas.setLocation(0, 0);
-		panPruebas.setPreferredSize(new Dimension(60, 60));
-		panPruebas.setBackground(new Color(0, 0, 0));
-		panPruebas.setOpaque(true);
-		panPruebas.setVisible(true);
-		panJugar.setLayout(new FlowLayout());
-		panJugar.add(panPruebas);*/
-		
-		//VOY POR AQUI!!!!!!
-		
-        
+		panSudoku.setPreferredSize(new Dimension(975, 975)); //new Dimension(1100, 1200)
+		panSudoku.setLayout(null);
+		panOpciones.setPreferredSize(new Dimension(75, 975));
+		panJugar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panSudoku.setLocation(0,0);
+		JPanel panProva = new JPanel();
+		panProva.setLayout(new BorderLayout());
+		panProva.add(panSudoku, BorderLayout.CENTER);
+		panProva.add(panOpciones, BorderLayout.EAST);
+		panJugar.add(panProva);
 	}
 	
 	private void rellenarPanelTiempos() {
 		labTiempos = new JLabel("");
-		
 	    panTiempos.add(labTiempos);
-		
-	    //panTiempos.setBackground(new Color(248, 255, 172));
-	    //panTiempos.setOpaque(true);
 	}
 	
 	private void rellenarPanelOpciones() {
 		vButOpciones = new Vector<JButton>();
 		panOpciones.setVisible(true);
-		int locI = 3;
+		panOpciones.setLayout(null);
+		Insets insets = panOpciones.getInsets();
+		int tam = 60;
+		int espReg = 3;
 		for (int i = 0; i < nn; ++i) {
 			JButton butAux = new JButton((i+1) + "");
-			butAux.setFont(new Font("Tahoma", Font.PLAIN, 9));
+			butAux.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			butAux.setName("butOpc" + i);
-			butAux.setPreferredSize(new Dimension(40, 60));
-			butAux.setLocation(0, locI);
+			//butAux.setPreferredSize(new Dimension(60, tam));
+			//butAux.setLocation(15, locI);
+			int espacioI = insets.top + espReg * (i/n+1);
+			butAux.setBounds(7 + insets.left, i*60+espacioI, 60, tam);
 			//butAux.setBounds(0,locI,40,60);
-			locI += 60;
 			butAux.setVisible(false);
 			vButOpciones.addElement(butAux);
 			panOpciones.add(butAux);
+			//VOY POR AQUI
 		}
 	}
 
@@ -357,6 +341,7 @@ public class JFrameJuego16x16 extends JFrame{
 		int espReg = 3;
 		panSudoku.setBackground(new Color(0, 0, 0));
 		panSudoku.setOpaque(true);
+		Insets insets = panSudoku.getInsets();
 		vPanCeldas = new Vector<JPanel>();
 		for (int i = 0; i < nn; ++i) {
 			String strFila;
@@ -369,12 +354,13 @@ public class JFrameJuego16x16 extends JFrame{
 				else strColumna = j + "";
 				panAux.setName("panCella" + strFila + strColumna);
 				panAux.setBorder(BorderFactory.createLineBorder(Color.black));
-				panAux.setPreferredSize(new Dimension(60, 60));
+				//panAux.setPreferredSize(new Dimension(60, 60));
 				panAux.setName("panCelda" + strFila + "" + strColumna);
 				rellenarLabelsPanel(panAux,i,j);
-				int espacioJ = espReg * (j/n+1);
-				int espacioI = espReg * (i/n+1);
-				panAux.setLocation(j*60+espacioJ, i*60+espacioI);
+				int espacioJ = insets.left + espReg * (j/n+1);
+				int espacioI = insets.top + espReg * (i/n+1);
+				//panAux.setLocation(j*60+espacioJ, i*60+espacioI);
+				panAux.setBounds(j*60+espacioJ, i*60+espacioI, 60, 60);
 				vPanCeldas.addElement(panAux);
 				panSudoku.add(panAux);
 			}
@@ -434,7 +420,6 @@ public class JFrameJuego16x16 extends JFrame{
 	}
 	
 	public void ponerValorCasilla(int i, int j, int val) {
-		System.out.println("Prueba-ponerValorCasilla-: " + i + " " + j + "val");
 		quitarMarcasCasilla(i, j); //oculta panel marcas + quita el valor a los labels de las marcas
 		vLabValores[i][j].setText(val + ""); //pone valor al label
 		vPanCelVM[i][j][0].setVisible(true); //muestra panel valor
@@ -458,16 +443,13 @@ public class JFrameJuego16x16 extends JFrame{
 		for (int z = 0; z < nn; ++z) {
 			vLabMarcas[i][j][z].setText("  ");
 		}
-		System.out.println("Prueba-quitarMarcasCasilla-: " + i + " " + j + ":" + vLabMarcas[i][j][1].getText());
 	}
 	
 	private void ponerCeldasFijas(){
-		System.out.println("Prueba-ponerCeldasFijas-01: " + vCeldasFijas.size());
 		for (DTOCeldaFija celdaFija : vCeldasFijas) {
 			int i = celdaFija.getFila();
 			int j = celdaFija.getColumna();
 			esCeldaFija[i][j] = true;
-			System.out.println("Prueba-ponerCeldasFijas-02: " + i + " " + j + ":" + celdaFija.getValor());
 			ponerValorCasilla(i,j,celdaFija.getValor());
 			vLabValores[i][j].setForeground(new Color(160, 160, 60));
 		}
