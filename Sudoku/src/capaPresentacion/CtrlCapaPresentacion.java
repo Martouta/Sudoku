@@ -254,6 +254,7 @@ public class CtrlCapaPresentacion {
 	
 	private int NfromTamanoSudoku(String tamanoSudoku){
 		int nn = Integer.parseInt(tamanoSudoku.substring(0, 1));
+		if (nn == 1) nn =  16;			// todo calculado
 		return (int) Math.sqrt(nn);
 	}
 	
