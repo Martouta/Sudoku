@@ -601,6 +601,7 @@ public class CtrlCapaPresentacion {
 					frameSeleccionarPartidaReanudar.setVisible(false);
 					Vector<DTOCeldaFija> vCeldasFijas = infoPartida.getCeldasFijas();
 					Vector<DTOCeldaFija> vCeldasNoFijas = infoPartida.getCeldasNoFijas();
+					Vector<DTOCeldaFija> vMarcas = infoPartida.getMarcas();
 					
 					int n = ctrlCUSeleccionarJugarSudoku.getNSudoku(nomSudoku);
 					if (n==2) {
@@ -609,6 +610,9 @@ public class CtrlCapaPresentacion {
 						frameJuego4x4 = new JFrameJuego4x4(vCeldasFijas,nomSudoku);
 						for (DTOCeldaFija celdaNoFija : vCeldasNoFijas) {
 							frameJuego4x4.ponerValorCasilla(celdaNoFija.getFila(), celdaNoFija.getColumna(), celdaNoFija.getValor());
+						}
+						for (DTOCeldaFija marca : vMarcas) {
+							frameJuego4x4.ponerMarcaCasilla(marca.getFila(), marca.getColumna(), marca.getValor());
 						}
 						frameJuego4x4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frameJuego4x4.pack();
@@ -621,6 +625,9 @@ public class CtrlCapaPresentacion {
 						for (DTOCeldaFija celdaNoFija : vCeldasNoFijas) {
 							frameJuego9x9.ponerValorCasilla(celdaNoFija.getFila(), celdaNoFija.getColumna(), celdaNoFija.getValor());
 						}
+						for (DTOCeldaFija marca : vMarcas) {
+							frameJuego9x9.ponerMarcaCasilla(marca.getFila(), marca.getColumna(), marca.getValor());
+						}
 						frameJuego9x9.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frameJuego9x9.pack();
 						initListenersJFrameJuego9x9();
@@ -632,11 +639,16 @@ public class CtrlCapaPresentacion {
 						for (DTOCeldaFija celdaNoFija : vCeldasNoFijas) {
 							frameJuego16x16.ponerValorCasilla(celdaNoFija.getFila(), celdaNoFija.getColumna(), celdaNoFija.getValor());
 						}
+						for (DTOCeldaFija marca : vMarcas) {
+							frameJuego16x16.ponerMarcaCasilla(marca.getFila(), marca.getColumna(), marca.getValor());
+						}
 						frameJuego16x16.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frameJuego16x16.pack();
 						initListenersJFrameJuego16x16();
 						frameJuego16x16.setVisible(true);
 					}
+				} catch (ExcepcionValorFueraRango e) {
+					((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).setMensaje(e.getMessage());
 				} catch (ExcepcionNingunSudokuSeleccionado e) {
 					((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).setMensaje(e.getMessage());
 				} catch (ExcepcionMasDeUnSudokuSeleccionado e) {
