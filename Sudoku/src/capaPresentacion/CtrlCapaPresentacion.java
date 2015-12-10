@@ -123,12 +123,14 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButIniciarSesion().addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					frameMenuPrincipal.setVisible(false);
+					frameIniciarSesion = new JFrameIniciarSesion();
 					frameIniciarSesion.setVisible(true);
 				}
 		});
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButRegistrarse().addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					frameMenuPrincipal.setVisible(false);
+					frameRegistrarse = new JFrameRegistrarse();
 					frameRegistrarse.setVisible(true);
 				}
 		});
