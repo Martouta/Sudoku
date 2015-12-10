@@ -239,6 +239,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
         String strData = formatter.format(data);
 		String idPartida = p.getJocSudoku().getId() + strData + p.getUsuario().getUsername();
+		System.out.println("PruebasPartidas: " + idPartida);
 		CtrlPartida.afegeixPartida(p,idPartida); //Guarda partida en la bd
 		CtrlPartida.end();
 		return new Date();
