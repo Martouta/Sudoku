@@ -236,34 +236,7 @@ public class CtrlPartida {
             		 nombresPartidas.remove(i);
             		 return dirty = true;
             	 }
-             }
-        	 
-        	 //Amb iteradors
-        	 /*Iterator<Partida> iterP = partidas.iterator();
-        	 int i = 0;
-        	 while (iterP.hasNext()) {
-        		 iterP.next();
-        		 if (Objects.equals(id, nombresPartidas.get(i)) &&
-            			 Objects.equals(usuario.getUsername(), usuariosPartidas.get(i))) {
-        			 iterP.remove();
-            		 usuariosPartidas.remove(i);
-            		 nombresPartidas.remove(i);
-            		 return dirty = true;
-        		 }
-        		 ++i;
-        	 }*/
-        	 
-        	 //Versio backwards
-        	 /*for(int i=partidas.size()-1; i >= 0; i--) {
-            	 if(Objects.equals(id, nombresPartidas.get(i)) &&
-            			 Objects.equals(usuario.getUsername(), usuariosPartidas.get(i))) {
-            		 partidas.remove(i);
-            		 usuariosPartidas.remove(i);
-            		 nombresPartidas.remove(i);
-            		 return dirty = true;
-            	 }
-        	 }*/
-        	 
+             } 
          } catch (Exception e) {
              e.printStackTrace();
          }
