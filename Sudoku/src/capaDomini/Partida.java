@@ -138,6 +138,21 @@ public class Partida {
 		}
 	}
 	
+	public boolean hayMarcaPosicion(int x, int y) throws ExcepcionValorFueraRango{
+		for (int i = 1; i <= nn; ++i) {
+			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) return true;
+		}
+		return false;
+	}
+	
+	public Vector<Integer> getMarcasPosicion(int x, int y) throws ExcepcionValorFueraRango{
+		Vector<Integer> vMarcasPos = new Vector<Integer>();
+		for (int i = 1; i <= nn; ++i) {
+			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) vMarcasPos.add(i);
+		}
+		return vMarcasPos;
+	}
+	
 	public void setDataIni(Date d) {	// para cargar partidas
 		dataIni = d;
 	}

@@ -27,6 +27,22 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 		initComponents();
 	}
 	
+	public JButton getButSalir() {
+		return butSalir;
+	}
+	
+	public JButton getButVolverMenuSudoku() {
+		return butVolverMenuSudoku;
+	}
+	
+	public JButton getJugarSudoku() {
+		return butJugarSudoku;
+	}
+	
+	public void setMensaje(String msj){
+		labMensError.setText(msj);
+	}
+	
 	private void initComponents() {
 		
 		setTitle("Seleccionar sudoku de la base de datos");
@@ -144,22 +160,18 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
         listSudokus = new JList(demoList);
         scrollPane.setViewportView(listSudokus);
         
-        listSudokus.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting()) return;
-				
-				if (listSudokus.getSelectedValuesList().size() > 1) System.out.println("más de uno");
-				else {
-					String seleccion = (String) listSudokus.getSelectedValue();
-					int pos = Integer.parseInt(seleccion.substring(0, 1));
-					--pos;
-					String nomsudoku = nombresSudokus.get(pos);
-					System.out.println(nomsudoku);
-				}
-			}
-		});
-        
         panSelectSudokuBD.add(panMenu);
+	}
+	
+	public int getCuantosSeleccionados() {
+		return listSudokus.getSelectedValuesList().size();
+	}
+	
+	public String getNombreSudokuSeleccionado() {
+		String seleccion = (String) listSudokus.getSelectedValue();
+		int pos = Integer.parseInt(seleccion.substring(0, 1));
+		--pos;
+		String nomsudoku = nombresSudokus.get(pos);
+		return nomsudoku;
 	}
 }

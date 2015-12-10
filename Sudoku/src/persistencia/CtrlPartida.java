@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 import persistencia.CtrlUser;
 import capaDomini.JocSudoku;
@@ -74,6 +72,8 @@ public class CtrlPartida {
             	punt++;
             	nombresPartidas.add(fila.get(punt++));
             	JocSudoku js = CtrlJocSudoku.getJocSudoku(nombretauler);
+            	if(js==null)
+            		continue;
             	int n = Integer.parseInt(fila.get(punt++)); //agafem la n del tauler---> 0
                 TaulerSudoku ts = new TaulerSudoku(n);
                 for(int i=0;i<n*n;i++) {
@@ -207,13 +207,17 @@ public class CtrlPartida {
     
  	// Retorna fals si hi ha hagut cap error i llença excepció o bé si el joc ja hi és i no es pot afegir
  	// id es el identificador de la partida
+    // lo modifica si le das algo que sí está
     public static boolean afegeixPartida(Partida p, String id)
      {
          try {
-             for (String s : nombresPartidas) {
-                 if (Objects.equals(s, id)) {
-                     return false;
+             for(int i=0;i<nombresPartidas.size();i++) {
+            	 if (Objects.equals(nombresPartidas.get(i), id)) {
+                     dirty = true;
+                     partidas.set(i, p);
+                     return dirty;
                  }
+            	 
              }
              nombresPartidas.add(id);
              usuariosPartidas.add(p.getUsuario().getUsername());
@@ -236,7 +240,7 @@ public class CtrlPartida {
             		 nombresPartidas.remove(i);
             		 return dirty = true;
             	 }
-             }
+             } 
          } catch (Exception e) {
              e.printStackTrace();
          }

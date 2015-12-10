@@ -115,6 +115,43 @@ public class ResolvedorSudoku {
 		return sol;
 	}
 	
+
+	public static int resuelveSudoku4(TaulerSudoku s, TaulerSudoku sol) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
+		carga(s);
+		siso();
+		if(!flag) {
+			prepara();
+			rec3(0);
+		}
+		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		return nsols;
+	}
+	
+	public static int sols4(TaulerSudoku s) throws ExcepcionPosicionFueraRango {
+		carga(s);
+		siso();
+		if(!flag) {
+			prepara();
+			rec3(0);
+		}
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		return nsols;
+	}
+	
+	public static TaulerSudoku resuelveSudoku4(TaulerSudoku s) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
+		carga(s);
+		TaulerSudoku sol = new TaulerSudoku(n);
+		siso();
+		if(!flag) {
+			prepara();
+			rec3(0);
+		}
+		guarda(sol);
+		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		return sol;
+	}
+	
 	private static void carga(TaulerSudoku s) throws ExcepcionPosicionFueraRango { // inicializar
 		n = s.getN();
 		nn = s.getNN();
@@ -220,14 +257,11 @@ public class ResolvedorSudoku {
 		}
 	}
 	
+	
 	private static void rec2(int pos) {	// funcion recursiva
 		if(nsols>1)
 			return;
 		niters++;
-		// esta extraña instrucción es para evitar confundir sudokus con múltiples
-		// soluciones como sudokus de una sola solución
-		if(niters>5000000*(1+2*nsols))
-			return;
 		if(ncr==nn*nn) {
 			for(int i=0;i<nn;i++) {
 				for(int j=0;j<nn;j++)
@@ -257,6 +291,45 @@ public class ResolvedorSudoku {
 			}
 		}
 	}
+	
+	private static void rec3(int pos) {	// funcion recursiva
+		if(nsols>1)
+			return;
+		niters++;
+		// esta extraña instrucción es para evitar confundir sudokus con múltiples
+		// soluciones como sudokus de una sola solución
+		if(niters>5000000*(1+2*nsols))
+			return;
+		if(ncr==nn*nn) {
+			for(int i=0;i<nn;i++) {
+				for(int j=0;j<nn;j++)
+					matterm[i][j] = mat[i][j];
+			}
+			nsols++;
+			return;
+		}
+		if(pos>=tamord)
+			return;
+		int xpos = orden[pos]/nn;
+		int ypos = orden[pos]%nn;
+		for(int i=1;i<=nn;i++) {
+			if(!(filas[xpos][i] || columnas[ypos][i] 
+					|| cuadros[(xpos/n)*n+(ypos/n)][i])) {
+				ncr++;
+				filas[xpos][i] = true;
+				columnas[ypos][i] = true;
+				cuadros[(xpos/n)*n+(ypos/n)][i] = true;
+				mat[xpos][ypos] = i;
+				rec3(pos+1);
+				mat[xpos][ypos] = -1;
+				filas[xpos][i] = false;
+				columnas[ypos][i] = false;
+				cuadros[(xpos/n)*n+(ypos/n)][i] = false;
+				ncr--;
+			}
+		}
+	}
+	
 	
 	private static void prepara() {
 		orden = new int[nn*nn-ncr];

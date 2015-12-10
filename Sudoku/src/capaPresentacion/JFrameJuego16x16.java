@@ -7,7 +7,7 @@ import javax.swing.*;
 import DataTransferObjects.DTOCeldaFija;
 import DataTransferObjects.DTOTiempo;
 
-public class JFrameJuego9x9 extends JFrame{
+public class JFrameJuego16x16 extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private int n;
@@ -41,8 +41,11 @@ public class JFrameJuego9x9 extends JFrame{
     private JLabel labNumeroPistas;
     private JPanel panOpciones;
     private JPanel panTiempos;
+    private JScrollPane spJugar;
+    private JPanel panJugar;
+    private JPanel panBotonesFuera;
 	
-	public JFrameJuego9x9(Vector<DTOCeldaFija> vCeldasFijas, String nombreSudoku) {
+	public JFrameJuego16x16(Vector<DTOCeldaFija> vCeldasFijas, String nombreSudoku) {
 		numeroPistas = fActiva = cActiva = 0;
 		this.vCeldasFijas = vCeldasFijas;
 		initComponents(nombreSudoku);
@@ -115,10 +118,10 @@ public class JFrameJuego9x9 extends JFrame{
 	}
 
 	private void initComponents(String nombreSudoku) {
-		nn = 9;
-		n = 3;
+		nn = 16;
+		n = 4;
 		setTitle("Jugar Sudoku: " + nombreSudoku);
-		setSize(840,450); //ancho por alto
+		setSize(890,506); //ancho por alto
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -135,72 +138,67 @@ public class JFrameJuego9x9 extends JFrame{
         labMensError = new JLabel("");
         labNumeroPistas = new JLabel("Numero de pistas: " + numeroPistas);
         labModoEdicion = new JLabel("Modo activo: Edicion de casillas");
-        butVolverMenuSudoku = new JButton("<html>Volver al<br>Menu Sudoku<br>(No se guardaran<br>los cambios)</html>");
-        butSalir = new JButton("<html>Salir<br>(No se guardaran<br>los cambios)</html>");
+        butVolverMenuSudoku = new JButton("<html>Volver al Menu Sudoku (No se guardaran los cambios)</html>");
+        butSalir = new JButton("<html>Salir (No se guardaran los cambios)");
+        spJugar = new JScrollPane();
+        panJugar = new JPanel();
+        panBotonesFuera = new JPanel();
         
         labMensError.setHorizontalAlignment(SwingConstants.CENTER);
 
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        panPrincipal.setPreferredSize(new Dimension(890, 506));
+        
+        spJugar.setPreferredSize(new Dimension(500, 400));
 
-        panPrincipal.setMaximumSize(new Dimension(840, 450));
-        panPrincipal.setMinimumSize(new Dimension(840, 450));
-
-        panSudoku.setMaximumSize(new Dimension(372, 372));
-        panSudoku.setMinimumSize(new Dimension(372, 372));
-
-        GroupLayout panSudokuLayout = new GroupLayout(panSudoku);
-        panSudoku.setLayout(panSudokuLayout);
-        panSudokuLayout.setHorizontalGroup(
-            panSudokuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+        GroupLayout panJugarLayout = new GroupLayout(panJugar);
+        panJugar.setLayout(panJugarLayout);
+        panJugarLayout.setHorizontalGroup(
+            panJugarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
-        panSudokuLayout.setVerticalGroup(
-            panSudokuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        panJugarLayout.setVerticalGroup(
+            panJugarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
 
-        panOpciones.setMaximumSize(new Dimension(40, 372));
-        panOpciones.setMinimumSize(new Dimension(40, 372));
-        panOpciones.setPreferredSize(new Dimension(40, 372));
+        spJugar.setViewportView(panJugar);
 
-        GroupLayout panOpcionesLayout = new GroupLayout(panOpciones);
-        panOpciones.setLayout(panOpcionesLayout);
-        panOpcionesLayout.setHorizontalGroup(
-            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+        panBotonesFuera.setMaximumSize(new Dimension(500, 100));
+        panBotonesFuera.setMinimumSize(new Dimension(500, 100));
+
+
+        GroupLayout panBotonesFueraLayout = new GroupLayout(panBotonesFuera);
+        panBotonesFuera.setLayout(panBotonesFueraLayout);
+        panBotonesFueraLayout.setHorizontalGroup(
+            panBotonesFueraLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panBotonesFueraLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(panBotonesFueraLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
-        panOpcionesLayout.setVerticalGroup(
-            panOpcionesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+        panBotonesFueraLayout.setVerticalGroup(
+            panBotonesFueraLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panBotonesFueraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(butVolverMenuSudoku, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(butSalir, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        butPedirPista.setMaximumSize(new Dimension(150, 40));
-        butPedirPista.setMinimumSize(new Dimension(150, 40));
-
-        butActivarDesModoEdicion.setMaximumSize(new Dimension(150, 55));
-        butActivarDesModoEdicion.setMinimumSize(new Dimension(150, 55));
-
-        butMostrarTiempos.setMaximumSize(new Dimension(150, 40));
-        butMostrarTiempos.setMinimumSize(new Dimension(150, 40));
-
-        butVaciarTablero.setMaximumSize(new Dimension(150, 40));
-        butVaciarTablero.setMinimumSize(new Dimension(150, 40));
-
-        butResuelveSistema.setMaximumSize(new Dimension(150, 55));
-        butResuelveSistema.setMinimumSize(new Dimension(150, 55));
-
-        butGuardarPartida.setMaximumSize(new Dimension(150, 40));
-        butGuardarPartida.setMinimumSize(new Dimension(150, 40));
-
-        labMensError.setMaximumSize(new Dimension(357, 60));
-        labMensError.setMinimumSize(new Dimension(357, 60));
-
-        labNumeroPistas.setMaximumSize(new Dimension(227, 30));
-        labNumeroPistas.setMinimumSize(new Dimension(227, 30));
-
-        labModoEdicion.setMaximumSize(new Dimension(227, 30));
-        labModoEdicion.setMinimumSize(new Dimension(227, 30));
+        butPedirPista.setPreferredSize(new Dimension(150, 40));
+        butActivarDesModoEdicion.setPreferredSize(new Dimension(150, 50));
+        butVaciarTablero.setPreferredSize(new Dimension(150, 40));
+        butResuelveSistema.setPreferredSize(new Dimension(150, 50));
+        butGuardarPartida.setPreferredSize(new Dimension(150, 40));
+        labMensError.setPreferredSize(new Dimension(357, 60));
+        labNumeroPistas.setPreferredSize(new Dimension(227, 30));
+        labModoEdicion.setPreferredSize(new Dimension(227, 30));
 
         GroupLayout panTiemposLayout = new GroupLayout(panTiempos);
         panTiempos.setLayout(panTiemposLayout);
@@ -210,11 +208,8 @@ public class JFrameJuego9x9 extends JFrame{
         );
         panTiemposLayout.setVerticalGroup(
             panTiemposLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        butSalir.setMaximumSize(new Dimension(250, 40));
-        butSalir.setMinimumSize(new Dimension(250, 40));
 
         GroupLayout panPrincipalLayout = new GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -222,85 +217,72 @@ public class JFrameJuego9x9 extends JFrame{
             panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
                 .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(spJugar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panBotonesFuera, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panSudoku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(panOpciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(panPrincipalLayout.createSequentialGroup()
+                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(butGuardarPartida, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labMensError, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 27, Short.MAX_VALUE))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addComponent(butSalir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(butVolverMenuSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(labMensError, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(panTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         panPrincipalLayout.setVerticalGroup(
             panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butVaciarTablero, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(butPedirPista, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butResuelveSistema, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                            .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(butGuardarPartida, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labMensError, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(panTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panOpciones, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butSalir, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(butVolverMenuSudoku, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addComponent(spJugar, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panBotonesFuera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            .addGroup(panPrincipalLayout.createSequentialGroup()
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(butPedirPista, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(butVaciarTablero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(butResuelveSistema, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(butActivarDesModoEdicion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(butMostrarTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butGuardarPartida, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labMensError, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labNumeroPistas, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labModoEdicion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panTiempos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panPrincipal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panPrincipal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panPrincipal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panPrincipal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         
+        rellenarPanelJugar();
         rellenarPanelTiempos();
         rellenarPanelOpciones();
         rellenarPanelSudoku();
@@ -308,29 +290,46 @@ public class JFrameJuego9x9 extends JFrame{
 	}
 	
 	
+	private void rellenarPanelJugar() {
+		panJugar.setPreferredSize(new Dimension(1055, 982));//panJugar.setPreferredSize(new Dimension(1200, 1100));
+		
+		panSudoku.setPreferredSize(new Dimension(975, 975)); //new Dimension(1100, 1200)
+		panSudoku.setLayout(null);
+		panOpciones.setPreferredSize(new Dimension(75, 975));
+		panJugar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panSudoku.setLocation(0,0);
+		JPanel panProva = new JPanel();
+		panProva.setLayout(new BorderLayout());
+		panProva.add(panSudoku, BorderLayout.CENTER);
+		panProva.add(panOpciones, BorderLayout.EAST);
+		panJugar.add(panProva);
+	}
+	
 	private void rellenarPanelTiempos() {
 		labTiempos = new JLabel("");
-		
 	    panTiempos.add(labTiempos);
-		
-	    //panTiempos.setBackground(new Color(248, 255, 172));
-	    //panTiempos.setOpaque(true);
 	}
 	
 	private void rellenarPanelOpciones() {
 		vButOpciones = new Vector<JButton>();
 		panOpciones.setVisible(true);
-		int locI = 3;
+		panOpciones.setLayout(null);
+		Insets insets = panOpciones.getInsets();
+		int tam = 60;
+		int espReg = 3;
 		for (int i = 0; i < nn; ++i) {
 			JButton butAux = new JButton((i+1) + "");
 			butAux.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			butAux.setName("butOpc" + i);
-			butAux.setSize(40, 40);
-			butAux.setLocation(0, locI);
-			locI += 40;
+			//butAux.setPreferredSize(new Dimension(60, tam));
+			//butAux.setLocation(15, locI);
+			int espacioI = insets.top + espReg * (i/n+1);
+			butAux.setBounds(7 + insets.left, i*60+espacioI, 60, tam);
+			//butAux.setBounds(0,locI,40,60);
 			butAux.setVisible(false);
 			vButOpciones.addElement(butAux);
 			panOpciones.add(butAux);
+			//VOY POR AQUI
 		}
 	}
 
@@ -342,6 +341,7 @@ public class JFrameJuego9x9 extends JFrame{
 		int espReg = 3;
 		panSudoku.setBackground(new Color(0, 0, 0));
 		panSudoku.setOpaque(true);
+		Insets insets = panSudoku.getInsets();
 		vPanCeldas = new Vector<JPanel>();
 		for (int i = 0; i < nn; ++i) {
 			String strFila;
@@ -354,12 +354,13 @@ public class JFrameJuego9x9 extends JFrame{
 				else strColumna = j + "";
 				panAux.setName("panCella" + strFila + strColumna);
 				panAux.setBorder(BorderFactory.createLineBorder(Color.black));
-				panAux.setSize(new Dimension(40, 40));
-				panAux.setName("panCelda" + i + "" + j);
+				//panAux.setPreferredSize(new Dimension(60, 60));
+				panAux.setName("panCelda" + strFila + "" + strColumna);
 				rellenarLabelsPanel(panAux,i,j);
-				int espacioJ = espReg * (j/n+1);
-				int espacioI = espReg * (i/n+1);
-				panAux.setLocation(j*40+espacioJ, i*40+espacioI);
+				int espacioJ = insets.left + espReg * (j/n+1);
+				int espacioI = insets.top + espReg * (i/n+1);
+				//panAux.setLocation(j*60+espacioJ, i*60+espacioI);
+				panAux.setBounds(j*60+espacioJ, i*60+espacioI, 60, 60);
 				vPanCeldas.addElement(panAux);
 				panSudoku.add(panAux);
 			}
@@ -370,7 +371,7 @@ public class JFrameJuego9x9 extends JFrame{
 		esCeldaFija[i][j] = false;
 		JPanel panValor = new JPanel();
 		JPanel panMarcas = new JPanel();
-		panMarcas.setSize(new Dimension(40, 40));
+		panMarcas.setSize(new Dimension(60, 60));
 		panMarcas.setLayout(new GridLayout(n, n));
 		vPanCelVM[i][j][0] = panValor;
 		vPanCelVM[i][j][1] = panMarcas;
@@ -380,24 +381,39 @@ public class JFrameJuego9x9 extends JFrame{
 		panMarcas.setName("panMarcas" + i + "" + j);
 		panValor.setName("panValor" + i + "" + j);
 		
+		/*panValor.setVisible(true);
+		panMarcas.setVisible(false);
+		panValor.setPreferredSize(new Dimension(50, 50));
+		panValor.setBackground(new Color(255, 233, 28));
+		panValor.setOpaque(true);*/
+		
 		JLabel labValor = new JLabel("");
-		labValor.setSize(new Dimension(20, 20));//40,40
+		labValor.setSize(new Dimension(40, 40));//60,60
 		labValor.setLocation(0,0);
-		labValor.setFont(new Font("Tahoma", 0, 19));//24
+		labValor.setFont(new Font("Tahoma", 0, 24));//19
 		vLabValores[i][j] = labValor;
 		panValor.add(labValor);
 		//int zf = 0;
 		//int zc = 0;
-		int dim = 40/n;
+		//int dim = 60/n;
+		
+		
+		/*String nombreCelda = panAux.getName();
+		String strFila = nombreCelda.substring(8, 10);
+		String strColu = nombreCelda.substring(10, 12);
+		panValor.setVisible(true);
+		panMarcas.setVisible(false);
+		labValor.setText(strFila+"-"+strColu);*/
+		
 		for (int z = 0; z < nn; ++z) {
 			//zf = z / n;
 			//zc = z % n;
 			JLabel labAux = new JLabel("");
-			labAux.setSize(new Dimension(dim, dim));
+			//labAux.setSize(new Dimension(dim, dim));
 			labAux.setFont(new Font("Tahoma", 0, 9));
 			labAux.setForeground(new Color(60, 60, 60));
 			//labAux.setBackground(new Color(255, 255, 0));
-			labAux.setText("  ");//labAux.setText((z+1) + " ");
+			labAux.setText("  ");/*labAux.setText(panAux.getName());*//*labAux.setText((z+1) + " ");*/
 			vLabMarcas[i][j][z] = labAux;
 			panMarcas.add(labAux);
 		}
