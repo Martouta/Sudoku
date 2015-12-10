@@ -191,9 +191,27 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return vCeldasFijas;
 	}
 	
-	public Vector<DTOInfoCelda> obtenerDatosPartida(String nomSudoku, String nomUsuari) {
-		//POR HACER
-		return new Vector<DTOInfoCelda>();
+	public DTOInfoPartida obtenerDatosPartida(String nomSudoku, String fecha, String nomUsuari) throws ExcepcionTimerYaEnEjecucion, ExcepcionPosicionFueraRango {
+		String nomPartida = nomSudoku + fecha + nomUsuari;
+		DTOInfoPartida infoPartida;
+		p = CtrlPartida.getPartida(nomPartida,CtrlUser.getUsuari(nomUsuari));
+		DTOTiempo tiempoEjecutandose = new DTOTiempo(p.getSegundos(), p.getMinutos(), p.getHoras());
+		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
+		Vector<DTOCeldaFija> vCeldasNoFijas = new Vector<DTOCeldaFija>();
+		TaulerSudoku ts = (TaulerSudoku) p.getJocSudoku().getTauler();
+		int nn = ts.getNN();
+		int n = (int) Math.sqrt(nn);
+		for (int i = 0; i < nn; ++i) {
+			for (int j = 0; j < nn; ++j) {
+				if (! ts.estaVacia(i, j)) {
+					if (ts.estaFija(i, j)) vCeldasFijas.addElement(new DTOCeldaFija(i,j, ts.getNumero(i, j)));
+					else vCeldasNoFijas.addElement(new DTOCeldaFija(i,j, ts.getNumero(i, j)));
+				}
+			}
+		}
+		infoPartida = new DTOInfoPartida(p.getJocSudoku().getId(), tiempoEjecutandose, p.getNumPistas(), vCeldasFijas, vCeldasNoFijas, n);
+		if (!p.getEstadoTimer()) p.startTiempo();
+		return infoPartida;
 	}
 	
 	public int getNSudoku(String nomSudoku){

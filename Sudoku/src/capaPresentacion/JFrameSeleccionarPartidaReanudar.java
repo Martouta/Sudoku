@@ -17,6 +17,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private int numSudokus;
 	private Vector<String> datosARellenar;
 	private Vector<String> nombresSudokus;
+	private Vector<String> fechasSudokus;
 	private JList listPartidas;
 	DefaultListModel demoList = new DefaultListModel();
 	private JPanel panMenu;
@@ -174,12 +175,13 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			Date date = infoPartida.getFechaIni();
 			Calendar calendar = GregorianCalendar.getInstance();
 			calendar.setTime(date);
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
 			rellena = rellena + sdf.format(calendar.getTime());
 			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
 			nombresSudokus.addElement(infoPartida.getNombreSudoku());
+			fechasSudokus.addElement(sdf.format(calendar.getTime()));
 			++cont;
 		}
 	}
@@ -205,4 +207,25 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
         
         panSelectPartidaRanudar.add(panMenu);
 	}
+	
+	public String getNombreSudokuSeleccionado() {
+		String seleccion = (String) listPartidas.getSelectedValue();
+		int pos = Integer.parseInt(seleccion.substring(0, 1));
+		--pos;
+		String nomsudoku = nombresSudokus.get(pos);
+		return nomsudoku;
+	}
+	
+	public String getFechaSudokuSeleccionado() {
+		String seleccion = (String) listPartidas.getSelectedValue();
+		int pos = Integer.parseInt(seleccion.substring(0, 1));
+		--pos;
+		String fechaSudoku = fechasSudokus.get(pos);
+		return fechaSudoku;
+	}
+	
+	public int getCuantosSeleccionados() {
+		return listPartidas.getSelectedValuesList().size();
+	}
+	
 }
