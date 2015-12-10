@@ -141,6 +141,12 @@ public class CtrlCapaPresentacion {
 				pressSalir();
 			}
 		});
+		((JFrameIniciarSesion) frameIniciarSesion).getButVolverMenuPrincipal().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameIniciarSesion.setVisible(false);
+				frameMenuPrincipal.setVisible(true);
+			}
+		});
 		((JFrameIniciarSesion) frameIniciarSesion).getButIniciarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				CtrlCasoUsoIniciarSesion ctrlCUIniciarSesion = new CtrlCasoUsoIniciarSesion();
@@ -176,6 +182,12 @@ public class CtrlCapaPresentacion {
 		((JFrameRegistrarse) frameRegistrarse).getButSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				pressSalir();
+			}
+		});
+		((JFrameRegistrarse) frameRegistrarse).getButVolverMenuPrincipal().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameRegistrarse.setVisible(false);
+				frameMenuPrincipal.setVisible(true);
 			}
 		});
 		((JFrameRegistrarse) frameRegistrarse).getButRegistrarse().addActionListener(new ActionListener() {

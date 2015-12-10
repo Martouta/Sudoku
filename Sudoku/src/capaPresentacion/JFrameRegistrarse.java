@@ -9,6 +9,7 @@ public class JFrameRegistrarse extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton butRegistrarse;
+	private JButton butVolverMenuPrincipal;
     private JButton butSalir;
     private JLabel labNombreUsuario;
     private JLabel labContrasena;
@@ -26,6 +27,10 @@ public class JFrameRegistrarse extends JFrame{
     
     public JButton getButRegistrarse() {
 		return butRegistrarse;
+	}
+    
+    public JButton getButVolverMenuPrincipal() {
+		return butVolverMenuPrincipal;
 	}
 
 	public JButton getButSalir() {
@@ -62,6 +67,7 @@ public class JFrameRegistrarse extends JFrame{
         labMensajeError = new JLabel();
         labCamposObligatorios = new JLabel();
         butRegistrarse = new JButton();
+        butVolverMenuPrincipal = new JButton();
         butSalir = new JButton();
         textfieldNombreUsuario = new JTextField();
         passwordfieldContrasena = new JPasswordField();
@@ -72,6 +78,7 @@ public class JFrameRegistrarse extends JFrame{
         labConfirmContrasena.setText("Confirma la contrasena: ");
         labMensajeError.setText("");
         butRegistrarse.setText("Registrarse");
+        butVolverMenuPrincipal.setText("Volver al Menu Principal");
         butSalir.setText("Salir");
         textfieldNombreUsuario.setText("");
         passwordfieldContrasena.setText("");
@@ -89,7 +96,7 @@ public class JFrameRegistrarse extends JFrame{
         labConfirmContrasena.setPreferredSize(new Dimension(140, 20));
         
         
-		panRegistrarse.setLayout(new GridLayout(7,1));
+		panRegistrarse.setLayout(new GridLayout(8,1));
 		JPanel panNameUser = new JPanel();
 		panNameUser.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panNameUser.add(labNombreUsuario);
@@ -112,6 +119,9 @@ public class JFrameRegistrarse extends JFrame{
 		panButRegistrarse.setLayout(new FlowLayout(FlowLayout.CENTER));
 		//panButRegistrarse.setBackground(new Color(0,0,0));
 		panButRegistrarse.add(butRegistrarse);
+		JPanel panButVolverMenuPrincipal = new JPanel();
+		panButVolverMenuPrincipal.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panButVolverMenuPrincipal.add(butVolverMenuPrincipal);
 		JPanel panButSalir = new JPanel();
 		panButSalir.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panButSalir.add(butSalir);
@@ -122,6 +132,7 @@ public class JFrameRegistrarse extends JFrame{
 		panRegistrarse.add(panCamposObligatorios);
 		panRegistrarse.add(panMensError);
 		panRegistrarse.add(panButRegistrarse);
+		panRegistrarse.add(panButVolverMenuPrincipal);
 		panRegistrarse.add(panButSalir);
 		add(panRegistrarse);
     }
