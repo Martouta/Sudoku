@@ -38,7 +38,6 @@ public class CtrlCapaPresentacion {
 		initComponents();
 		initListeners();
 		frameMenuPrincipal.setVisible(true);
-		cargarTodo();
 	}
 
 	private void initComponents() {
@@ -220,7 +219,7 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				pressCerrarSesion(frameMenuOpciones);
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButGestionPerfilUsu().addActionListener(new ActionListener() {
@@ -272,12 +271,12 @@ public class CtrlCapaPresentacion {
 				pressSalir();
 			}
 		});
-		/*frameGestionPerfiles.getButVolverMenuOpciones().addActionListener(new ActionListener() {
+		frameGestionPerfiles.getButVolverMenuOpciones().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameGestionPerfiles.setVisible(false);
 				frameMenuOpciones.setVisible(true);
 			}
-		});*/
+		});
 		frameGestionPerfiles.getButResetearEstadisticasPerfil().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameGestionPerfiles.setVisible(false);
@@ -374,7 +373,7 @@ public class CtrlCapaPresentacion {
 				        //Ocultar vista actual y mostrar la siguiente:
 				        frameMenuSudoku.setVisible(false);
 				        frameSeleccionarSudokuBD.setVisible(true);
-					} else if (tipoSudoku == "tsGenerado") { //FALTA POR HACER
+					} else if (tipoSudoku == "tsGenerado") {
 						try {
 							DTOSudokuGenerado infoSudokuGenerado = ctrlCUSeleccionarJugarSudoku.obtenerSudokuGenerado(nombreUsuario, dificultad, n);
 							frameMenuSudoku.setVisible(false);
@@ -1497,22 +1496,16 @@ public class CtrlCapaPresentacion {
 	}
     
     private void pressSalir() {
-    	//POR HACER
-		guardarTodo(); 
+    	System.exit(0);
 		System.out.println("Salir pulsado");
 	}
     
-    private void pressCerrarSesion() {
-		//POR HACER
-		System.out.println("Cerrar sesion pulsado");
+    private void pressCerrarSesion(JFrame frameDondeEstaba) {
+    	nombreUsuario = "";
+    	ctrlCUSeleccionarJugarSudoku = null;
+		frameDondeEstaba.setVisible(false);
+		frameMenuPrincipal.setVisible(true);
 	}
     
-    private void cargarTodo() {
-		//POR HACER
-	}
-    
-    private void guardarTodo() {
-		//POR HACER
-	}
 	
 }
