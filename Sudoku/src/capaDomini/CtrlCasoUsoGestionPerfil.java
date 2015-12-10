@@ -36,12 +36,15 @@ public class CtrlCasoUsoGestionPerfil {
 				//JocSudoku del qual usuari nombreUsuario es autor es el js.get(i)
 				
 				for (int j = 0; j < nom.size(); ++j) {
-					if (nom.get(j).equals(js.get(i).getId())) throw new ExcepcionHayPartidaConSudoku(); //si el nom de la partida es igual al nom del joc sudoku no es pot eliminar
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
+	                Date d = p.get(j).getDataIni();
+					if (nom.get(j).equals(js.get(i).getId()+ df.format(d)+nombreUsuario)) throw new ExcepcionHayPartidaConSudoku(); //si el nom de la partida es igual al nom del joc sudoku no es pot eliminar
 					//puede ser que pete, ya que si salta el throw y aun hay otros sudokus que no tienen ninguna partida empezada petara
 				}
 				CtrlJocSudoku.esborraJocSudoku(js.get(i).getId());
 			}
 		}
+		CtrlJocSudoku.end();
 	}
 	
 	public void eliminarPerfilUsuario(String nombreUsuario){ //falla quan te m'es duna partida ja que no les elimina totes
@@ -83,7 +86,7 @@ public class CtrlCasoUsoGestionPerfil {
                 Date d = pp.getDataIni();
 				String id = pp.getJocSudoku().getId() + df.format(d)+nombreUsuario;
 				User usuario = CtrlUser.getUsuari(nombreUsuario);
-				CtrlPartida.esborraPartida(id, usuario);
+				CtrlPartida.esborraPartida(id, usuario); //comentar la linia per veure que quan no eliminem si que visita tots els elements de p
 			}
 		}
 		CtrlPartida.end();
