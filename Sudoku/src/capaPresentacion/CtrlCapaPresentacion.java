@@ -185,7 +185,7 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-					String contrasena = ((JFrameIniciarSesion) frameIniciarSesion).getContrasena();
+					String contrasena = ((JFrameIniciarSesion) frameRegistrarse).getContrasena();
 					if (nombreUsuario.contains(" ") || contrasena.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String confirmContrasena = ((JFrameRegistrarse) frameRegistrarse).getConfirmContrasena();
 					if (! contrasena.equals(confirmContrasena)) throw (new ExcepcionContrasenasNoCoinciden());
