@@ -41,7 +41,7 @@ public class CtrlCasoUsoGestionPerfil {
 					if (nom.get(j).equals(js.get(i).getId()+ df.format(d)+nombreUsuario)) throw new ExcepcionHayPartidaConSudoku(); //si el nom de la partida es igual al nom del joc sudoku no es pot eliminar
 				}
 				CtrlJocSudoku.esborraJocSudoku(js.get(i).getId());
-				js = CtrlJocSudoku.getTaula();
+				js = CtrlJocSudoku.getTaula(); //
 				i = -1;
 			}
 		}
