@@ -293,32 +293,49 @@ public class CtrlCapaPresentacion {
 	}
 	
 	private void initListenersConfirmacionResetearEstadisticas() {
+		CtrlCasoUsoGestionPerfil ctrlCUGestionPerfil = new CtrlCasoUsoGestionPerfil();
 		frameConfirmacionResetearEstadisticas.getButResetear().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				ctrlCUGestionPerfil.eliminarEstadisticasDeUsuario(nombreUsuario);
+				frameConfirmacionResetearEstadisticas.setVisible(false);
+				frameGestionPerfiles.setVisible(true);
 			}
 		});
 		frameConfirmacionResetearEstadisticas.getButNoResetear().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				frameConfirmacionResetearEstadisticas.setVisible(false);
+				frameGestionPerfiles.setVisible(true);
 			}
 		});
 	}
 	
 	private void initListenersConfirmacionBorrarPerfil() {
-		frameConfirmacionBorrarPerfil.getButEliminarPerfEst().addActionListener(new ActionListener() {
+		CtrlCasoUsoGestionPerfil ctrlCUGestionPerfil = new CtrlCasoUsoGestionPerfil();
+		frameConfirmacionBorrarPerfil.getButEliminarPerfSud().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				try {
+					ctrlCUGestionPerfil.eliminarSudokusComoAutor(nombreUsuario);
+					ctrlCUGestionPerfil.eliminarPerfilUsuario(nombreUsuario);
+					nombreUsuario = "";
+					frameConfirmacionBorrarPerfil.setVisible(false);
+					frameMenuPrincipal.setVisible(true);
+				} catch (ExcepcionHayPartidaConSudoku e) {
+					frameConfirmacionBorrarPerfil.setMensajeError(e.getMessage());
+				}
 			}
 		});
 		frameConfirmacionBorrarPerfil.getButEliminarPerfil().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				ctrlCUGestionPerfil.eliminarPerfilUsuario(nombreUsuario);
+				nombreUsuario = "";
+				frameConfirmacionBorrarPerfil.setVisible(false);
+				frameMenuPrincipal.setVisible(true);
 			}
 		});
 		frameConfirmacionBorrarPerfil.getButNoEliminar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER
+				frameConfirmacionBorrarPerfil.setVisible(false);
+				frameGestionPerfiles.setVisible(true);
 			}
 		});
 	}
