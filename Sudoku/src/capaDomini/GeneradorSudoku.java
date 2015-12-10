@@ -19,7 +19,6 @@ public class GeneradorSudoku {
 	
 	public static TaulerSudoku generaSudoku(int n, tipoDificultad dif) throws ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 		TaulerSudoku ts = new TaulerSudoku(n);
-		init(n);
 		try {
 			if(dif==tipoDificultad.trivial)
 				throw new ExcepcionDificultadInvalida();
@@ -33,27 +32,39 @@ public class GeneradorSudoku {
 			return ts;
 		}
 		rand = new Random();
-		while(true) {
-			itera(n);
-			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
-			int aa=ResolvedorSudoku.sols4(ts);
-			if(aa==0) {
-				System.out.println("Sudoku no resoluble, borrando última casilla");
-				ts.borraNumCelda(ultx, ulty);
-				int a = mat[ultx][ulty];
-				filas[ultx][a] = false;
-				columnas[ulty][a] = false;
-				cuadros[(ultx/n)*n+(ulty/n)][a] = false;
-				mat[ultx][ulty] = 0;
-			}
-			else {
-				ts.getCella(ultx, ulty).fijar();
-				if(aa==1) {
-					aa=ResolvedorSudoku.sols3(ts);	// medida de seguridad: este algoritmo
-					if(aa==1)						// no corta la búsqueda
-						break;
+		boolean basaur = false;
+		while(!basaur) {
+			init(n);
+			ts = new TaulerSudoku(n);
+			while(true) {
+				itera(n);
+				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
+				int aa=ResolvedorSudoku.sols4(ts);
+				if(aa==0) {
+					System.out.println("Sudoku no resoluble, borrando última casilla");
+					ts.borraNumCelda(ultx, ulty);
+					int a = mat[ultx][ulty];
+					filas[ultx][a] = false;
+					columnas[ulty][a] = false;
+					cuadros[(ultx/n)*n+(ulty/n)][a] = false;
+					mat[ultx][ulty] = 0;
+				}
+				else {
+					ts.getCella(ultx, ulty).fijar();
+					if(aa==1) {
+						aa=ResolvedorSudoku.sols3(ts);	// medida de seguridad: este algoritmo
+						if(aa==1)						// no corta la búsqueda
+							break;
+					}
 				}
 			}
+			double ratiotemp = ((double) (ts.getNumCeldasRellenas()))/((double)(n*n*n*n));
+			if(dif==tipoDificultad.dificil && ratiotemp<=0.37037)
+				basaur = true;
+			if(dif==tipoDificultad.medio && ratiotemp<=0.39506)
+				basaur = true;
+			if(dif==tipoDificultad.facil && ratiotemp<=0.61728)
+				basaur = true;
 		}
 		if(dif==tipoDificultad.dificil)
 			return ts;
@@ -88,34 +99,47 @@ public class GeneradorSudoku {
 			System.out.println(e.getMessage());
 			return ts;
 		}
-		rand = new Random();
-		while(ts.getNumCeldasRellenas()<(n*n*n*n)/5) {
-			itera(n);
-			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
-			int aa=ResolvedorSudoku.sols4(ts);
-			if(aa==0) {
-				System.out.println("Sudoku no resoluble, borrando última casilla");
-				ts.borraNumCelda(ultx, ulty);
-				int a = mat[ultx][ulty];
-				filas[ultx][a] = false;
-				columnas[ulty][a] = false;
-				cuadros[(ultx/n)*n+(ulty/n)][a] = false;
-				mat[ultx][ulty] = 0;
-			}
-			else {
-				ts.getCella(ultx, ulty).fijar();
-				if(aa==1)
-					break;
-			}
-		}
 		TaulerSudoku ts2 = new TaulerSudoku(n);
-		ts2 = ResolvedorSudoku.resuelveSudoku4(ts);	// es una de las soluciones posibles
-		// a partir de este punto, simplemente rellenamos, que es más rápido
-		while(ResolvedorSudoku.sols4(ts)>1) {
-			int pos = rand.nextInt(n*n*n*n);
-			while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
-				pos = rand.nextInt(n*n*n*n);
-			ts.setNumCelda(pos/(n*n), pos%(n*n), ts2.getNumero(pos/(n*n), pos%(n*n)), true);
+		rand = new Random();
+		boolean basaur = false;
+		while(!basaur) {
+			init(n);
+			ts = new TaulerSudoku(n);
+			while(ts.getNumCeldasRellenas()<(n*n*n*n)/5) {
+				itera(n);
+				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
+				int aa=ResolvedorSudoku.sols4(ts);
+				if(aa==0) {
+					System.out.println("Sudoku no resoluble, borrando última casilla");
+					ts.borraNumCelda(ultx, ulty);
+					int a = mat[ultx][ulty];
+					filas[ultx][a] = false;
+					columnas[ulty][a] = false;
+					cuadros[(ultx/n)*n+(ulty/n)][a] = false;
+					mat[ultx][ulty] = 0;
+				}
+				else {
+					ts.getCella(ultx, ulty).fijar();
+					if(aa==1)
+						break;
+				}
+			}
+			ts2 = new TaulerSudoku(n);
+			ts2 = ResolvedorSudoku.resuelveSudoku4(ts);	// es una de las soluciones posibles
+			// a partir de este punto, simplemente rellenamos, que es más rápido
+			while(ResolvedorSudoku.sols4(ts)>1) {
+				int pos = rand.nextInt(n*n*n*n);
+				while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
+					pos = rand.nextInt(n*n*n*n);
+				ts.setNumCelda(pos/(n*n), pos%(n*n), ts2.getNumero(pos/(n*n), pos%(n*n)), true);
+			}
+			double ratiotemp = ((double) (ts.getNumCeldasRellenas()))/((double)(n*n*n*n));
+			if(dif==tipoDificultad.dificil && ratiotemp<=0.37037)
+				basaur = true;
+			if(dif==tipoDificultad.medio && ratiotemp<=0.39506)
+				basaur = true;
+			if(dif==tipoDificultad.facil && ratiotemp<=0.61728)
+				basaur = true;
 		}
 		if(dif==tipoDificultad.dificil)
 			return ts;
@@ -242,6 +266,7 @@ public class GeneradorSudoku {
 		cuadros[(fila/n)*n+(columna/n)][num] = true;
 		mat[fila][columna] = num;
 	}
+	
 	
 	private static Random rand;
 	private static int ultx;

@@ -27,14 +27,13 @@ public class CtrlCasoUsoGestionPerfil {
 		 ·Si haciendo algo de todo esto te sale algun error de excepcion no cubierta, pon en la cabecera de la funcion throws nombreExcepcion, y pon tantas como te salgan, divididas por comas
 		 */
 		ArrayList<JocSudoku> js = CtrlJocSudoku.getTaula();
-		ArrayList<String> aut = CtrlJocSudoku.getAutores(); //quizas no sea necesario
+		ArrayList<String> aut = CtrlJocSudoku.getAutores();
 		ArrayList<Partida> p = CtrlPartida.getTaula();
 		ArrayList<String> nom = CtrlPartida.getNombresPartidas();
 		for (int i = 0; i < aut.size(); ++i) { //recorro el vector d'autors per veure de quins sudokus n'es propietari
 			if (aut.get(i).equals(nombreUsuario)) { //si en trobo algun del qual n'es propietari, haig de mirar que ningu hi estigui jugant
 				
 				//JocSudoku del qual usuari nombreUsuario es autor es el js.get(i)
-				
 				for (int j = 0; j < nom.size(); ++j) {
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
 	                Date d = p.get(j).getDataIni();
