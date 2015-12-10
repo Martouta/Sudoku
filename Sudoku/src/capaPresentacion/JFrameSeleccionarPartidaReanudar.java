@@ -152,6 +152,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		numSudokus = infoPartidasAMedias.size(); //NECESITAMOS ESTA VARIABLE???!!!
 		datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
+		fechasSudokus = new Vector<String>();
 		int cont = 1;
 		for (DTOPartidaAMedias infoPartida : infoPartidasAMedias) {
 			String rellena = cont + ", " + infoPartida.getNombreSudoku() + ", tiempo de partida real: ";
@@ -176,12 +177,14 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 			Calendar calendar = GregorianCalendar.getInstance();
 			calendar.setTime(date);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
-			rellena = rellena + sdf.format(calendar.getTime());
+			String strFecha = sdf.format(calendar.getTime());
+			rellena = rellena + strFecha;
 			
 			datosARellenar.addElement(rellena);
 			demoList.addElement(rellena);
 			nombresSudokus.addElement(infoPartida.getNombreSudoku());
-			fechasSudokus.addElement(sdf.format(calendar.getTime()));
+			
+			fechasSudokus.addElement(strFecha);
 			++cont;
 		}
 	}
@@ -189,21 +192,6 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private void rellenarPanelMenu() {
         listPartidas = new JList(demoList);
         scrollPane.setViewportView(listPartidas);
-        listPartidas.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting()) return;
-				
-				if (listPartidas.getSelectedValuesList().size() > 1) System.out.println("más de uno");
-				else {
-					String seleccion = (String) listPartidas.getSelectedValue();
-					int pos = Integer.parseInt(seleccion.substring(0, 1));
-					--pos;
-					String nomsudoku = nombresSudokus.get(pos);
-					System.out.println(nomsudoku);
-				}
-			}
-		}); 
         
         panSelectPartidaRanudar.add(panMenu);
 	}
@@ -221,6 +209,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		int pos = Integer.parseInt(seleccion.substring(0, 1));
 		--pos;
 		String fechaSudoku = fechasSudokus.get(pos);
+		
 		return fechaSudoku;
 	}
 	

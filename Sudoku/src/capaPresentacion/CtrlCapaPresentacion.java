@@ -185,7 +185,7 @@ public class CtrlCapaPresentacion {
 				try {
 					nombreUsuario = ((JFrameRegistrarse) frameRegistrarse).getNombreUsuario();
 					if (nombreUsuario.isEmpty()) throw (new ExcepcionCamposVacios());
-					String contrasena = ((JFrameIniciarSesion) frameRegistrarse).getContrasena();
+					String contrasena = ((JFrameRegistrarse) frameRegistrarse).getContrasena();
 					if (nombreUsuario.contains(" ") || contrasena.contains(" ")) throw (new ExcepcionNombreConEspaciosEnBlanco());
 					String confirmContrasena = ((JFrameRegistrarse) frameRegistrarse).getConfirmContrasena();
 					if (! contrasena.equals(confirmContrasena)) throw (new ExcepcionContrasenasNoCoinciden());
@@ -532,7 +532,6 @@ public class CtrlCapaPresentacion {
 					
 					Vector<DTOCeldaFija> vCeldasFijas = ctrlCUSeleccionarJugarSudoku.obtenerSudoku(nomSudoku, nombreUsuario);
 					frameSeleccionarSudokuBD.setVisible(false);
-					System.out.println("Pruebas-CtrlPres-SudokusDeLaBd-: " + vCeldasFijas.size());
 					
 					int n = ctrlCUSeleccionarJugarSudoku.getNSudoku(nomSudoku);
 					if (n==2) {
@@ -596,11 +595,10 @@ public class CtrlCapaPresentacion {
 					if (nSelect > 1) throw new ExcepcionMasDeUnSudokuSeleccionado();
 					
 					String nomSudoku = ((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getNombreSudokuSeleccionado();
-					String fechaSudoku = ((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getNombreSudokuSeleccionado();
+					String fechaSudoku = ((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getFechaSudokuSeleccionado();
 					
 					DTOInfoPartida infoPartida = ctrlCUSeleccionarJugarSudoku.obtenerDatosPartida(nomSudoku, fechaSudoku, nombreUsuario);
 					frameSeleccionarPartidaReanudar.setVisible(false);
-					//System.out.println("Pruebas-CtrlPres-SudokusDeLaBd-: " + vCeldasFijas.size());
 					Vector<DTOCeldaFija> vCeldasFijas = infoPartida.getCeldasFijas();
 					Vector<DTOCeldaFija> vCeldasNoFijas = infoPartida.getCeldasNoFijas();
 					

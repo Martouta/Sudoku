@@ -83,15 +83,14 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public DTOSudokuGenerado obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
 		if(dificultad==tipoDificultad.trivial) throw new ExcepcionMaquinaNoGeneraTriviales();
-		System.out.printf("n es %d\n",n);
+		
 		TaulerSudoku t = new TaulerSudoku(n);
 		if(n<4)
 			t = GeneradorSudoku.generaSudoku(n, dificultad);
 		else
 			t = GeneradorSudoku.generaSudoku2(n,dificultad);
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t); //espero que resuelveSudoku3 no machaque t
-		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSize:" + t.getNumCeldas());
-		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSolSize:" + tsol.getNumCeldas());
+		
 		
 		Date date = new Date();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
@@ -117,7 +116,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 			}
 		}
 		
-		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: VectorCeldasSize:" + V.size());
+		
 		return new DTOSudokuGenerado(idSudoku, V);
 		
 		
@@ -181,20 +180,22 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		
 		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 		TaulerSudoku ts = (TaulerSudoku) js.getTauler();
-		System.out.println("Pruebas-CtrlDomini-obtenerSudoku01-: " + ts.getNumCeldas() + "-" + ts.getNumCeldasRellenas());
+		
 		for (int i = 0; i < ts.alto; ++i) {
 			for (int j = 0; j < ts.ancho; ++j) {
 				if (ts.estaFija(i, j)) vCeldasFijas.addElement(new DTOCeldaFija(i, j, ts.getNumero(i, j)));
 			}
 		}
-		System.out.println("Pruebas-CtrlDomini-obtenerSudoku02-: " + vCeldasFijas.size());
+		
 		return vCeldasFijas;
 	}
 	
 	public DTOInfoPartida obtenerDatosPartida(String nomSudoku, String fecha, String nomUsuari) throws ExcepcionTimerYaEnEjecucion, ExcepcionPosicionFueraRango {
 		String nomPartida = nomSudoku + fecha + nomUsuari;
 		DTOInfoPartida infoPartida;
+		
 		p = CtrlPartida.getPartida(nomPartida,CtrlUser.getUsuari(nomUsuari));
+		
 		DTOTiempo tiempoEjecutandose = new DTOTiempo(p.getSegundos(), p.getMinutos(), p.getHoras());
 		Vector<DTOCeldaFija> vCeldasFijas = new Vector<DTOCeldaFija>();
 		Vector<DTOCeldaFija> vCeldasNoFijas = new Vector<DTOCeldaFija>();
@@ -257,7 +258,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
         String strData = formatter.format(data);
 		String idPartida = p.getJocSudoku().getId() + strData + p.getUsuario().getUsername();
-		System.out.println("PruebasPartidas: " + idPartida);
+		
 		CtrlPartida.afegeixPartida(p,idPartida); //Guarda partida en la bd
 		CtrlPartida.end();
 		return new Date();
