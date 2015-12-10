@@ -83,8 +83,12 @@ public class CtrlCasoUsoSeleccionarSudoku {
 	
 	public DTOSudokuGenerado obtenerSudokuGenerado(String nombreUsuario, tipoDificultad dificultad, int n) throws ExcepcionMaquinaNoGeneraTriviales, ExcepcionTimerYaEnEjecucion, ExcepcionTamanoIncorrecto, ExcepcionPosicionFueraRango, ExcepcionNumCeldasDiferenteTamano, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
 		if(dificultad==tipoDificultad.trivial) throw new ExcepcionMaquinaNoGeneraTriviales();
-		
-		TaulerSudoku t = GeneradorSudoku.generaSudoku2(n,dificultad);
+		System.out.printf("n es %d\n",n);
+		TaulerSudoku t = new TaulerSudoku(n);
+		if(n<4)
+			t = GeneradorSudoku.generaSudoku(n, dificultad);
+		else
+			t = GeneradorSudoku.generaSudoku2(n,dificultad);
 		TaulerSudoku tsol = ResolvedorSudoku.resuelveSudoku3(t); //espero que resuelveSudoku3 no machaque t
 		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSize:" + t.getNumCeldas());
 		System.out.println("Pruebas-CDomini-obtenerSudokuGenerado: TaulerSolSize:" + tsol.getNumCeldas());
@@ -99,8 +103,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		p = new Partida(u,j);
 		
 		//CtrlJocSudoku.init();
-		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku
-		CtrlJocSudoku.end();
+		CtrlJocSudoku.afegeixJocSudoku(j, idSudoku); //afegir sudoku		CtrlJocSudoku.end();
 		
 		Vector<DTOCeldaFija> V = new Vector<DTOCeldaFija>();
 		
