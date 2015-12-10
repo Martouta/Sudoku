@@ -36,7 +36,7 @@ public class GeneradorSudoku {
 		while(true) {
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
-			int aa=ResolvedorSudoku.sols3(ts);
+			int aa=ResolvedorSudoku.sols4(ts);
 			if(aa==0) {
 				System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
@@ -49,7 +49,7 @@ public class GeneradorSudoku {
 			else {
 				ts.getCella(ultx, ulty).fijar();
 				if(aa==1) {
-					aa=ResolvedorSudoku.sols2(ts);	// medida de seguridad: este algoritmo
+					aa=ResolvedorSudoku.sols3(ts);	// medida de seguridad: este algoritmo
 					if(aa==1)						// no corta la búsqueda
 						break;
 				}
@@ -92,7 +92,7 @@ public class GeneradorSudoku {
 		while(ts.getNumCeldasRellenas()<(n*n*n*n)/5) {
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
-			int aa=ResolvedorSudoku.sols3(ts);
+			int aa=ResolvedorSudoku.sols4(ts);
 			if(aa==0) {
 				System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
@@ -109,9 +109,9 @@ public class GeneradorSudoku {
 			}
 		}
 		TaulerSudoku ts2 = new TaulerSudoku(n);
-		ts2 = ResolvedorSudoku.resuelveSudoku3(ts);	// es una de las soluciones posibles
+		ts2 = ResolvedorSudoku.resuelveSudoku4(ts);	// es una de las soluciones posibles
 		// a partir de este punto, simplemente rellenamos, que es más rápido
-		while(ResolvedorSudoku.sols3(ts)>1) {
+		while(ResolvedorSudoku.sols4(ts)>1) {
 			int pos = rand.nextInt(n*n*n*n);
 			while(!ts.estaVacia(pos/(n*n), pos%(n*n)))
 				pos = rand.nextInt(n*n*n*n);
