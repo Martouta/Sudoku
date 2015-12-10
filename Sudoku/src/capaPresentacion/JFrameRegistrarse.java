@@ -53,6 +53,12 @@ public class JFrameRegistrarse extends JFrame{
 		labMensajeError.setText(msj);
 	}
 	
+	public void cleanValues(){
+		textfieldNombreUsuario.setText("");
+		passwordfieldContrasena.setText("");
+		passwordfieldConfirmContrasena.setText("");
+	}
+	
 	private void initComponents() {
 		setTitle("Registrarse");
 		setSize(500,400); //ancho por alto

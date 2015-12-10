@@ -45,6 +45,11 @@ public class JFrameIniciarSesion extends JFrame{
 	public void setMensajeError(String msj){
 		labMensajeError.setText(msj);
 	}
+	
+	public void cleanValues(){
+		textfieldNombreUsuario.setText("");
+		passwordfieldContrasena.setText("");
+	}
 
 	
 	private void initComponents() {
