@@ -28,8 +28,8 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		labEspacioBlanco.setText("");
 		
 		setTitle("Confirmacion Borrar Perfil");
-		setSize(400,500); //ancho por alto
-		setMinimumSize(new Dimension(400, 500));
+		setSize(400,400); //ancho por alto
+		setMinimumSize(new Dimension(400, 400));
 		setResizable(true);
 		
 		labConfirmacionPerfil = new JLabel();
@@ -70,6 +70,8 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		butNoEliminar.setText("No eliminar mi perfil");
 		labMensajeError.setText("");
 		
+		labConfirmacionPerfil.setBounds(110, 25, 220, 50);
+		
 		panConfirmacionBorrarPerfil = new JPanel();
 		panConfirmacionBorrarPerfil.setLayout(new GridLayout(9,1));
 		panConfirmacionBorrarPerfil.add(labConfirmacionPerfil);
@@ -82,6 +84,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panConfirmacionBorrarPerfil.add(panMensError);
+		panConfirmacionBorrarPerfil.setLayout(null);
 		add(panConfirmacionBorrarPerfil);
 	}
 	
