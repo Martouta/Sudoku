@@ -49,7 +49,7 @@ public class JFrameGestionPerfiles extends JFrame {
 		setTitle("Gestion de Perfil");
 		setSize(400,400); //ancho por alto
 		setMinimumSize(new Dimension(400, 400));
-		setResizable(true);
+		setResizable(false);
 		
 		labSeleccioneFuncion = new JLabel();
     	butBorrarPerfil = new JButton();
