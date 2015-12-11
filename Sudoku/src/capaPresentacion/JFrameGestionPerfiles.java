@@ -47,8 +47,8 @@ public class JFrameGestionPerfiles extends JFrame {
 		labEspacioBlanco.setText("");
 		
 		setTitle("Gestion de Perfil");
-		setSize(400,500); //ancho por alto
-		setMinimumSize(new Dimension(400, 500));
+		setSize(400,400); //ancho por alto
+		setMinimumSize(new Dimension(400, 400));
 		setResizable(true);
 		
 		labSeleccioneFuncion = new JLabel();
@@ -68,8 +68,13 @@ public class JFrameGestionPerfiles extends JFrame {
     	butSalir.setText("Salir");
     	labMensajeError.setText("");
     	
-    	//butBorrarPerfil.setBounds(100, 150, 200, 30);
     	
+    	labSeleccioneFuncion.setBounds(125, 25, 220, 50);
+    	butBorrarPerfil.setBounds(80, 100, 220, 50); //x,y,weight,height
+    	butResetearEstadisticasPerfil.setBounds(80, 165, 220, 50);
+    	butVolverMenuOpciones.setBounds(50, 280, 140, 50);
+    	butSalir.setBounds(200, 280, 140, 50);
+   	
     	panGestionPerfil = new JPanel();
     	panGestionPerfil.setLayout(new GridLayout(9,1));
     	panGestionPerfil.add(labSeleccioneFuncion);
@@ -82,7 +87,7 @@ public class JFrameGestionPerfiles extends JFrame {
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panGestionPerfil.add(panMensError); //
-		//panGestionPerfil.setLayout(null);
+		panGestionPerfil.setLayout(null);
     	add(panGestionPerfil);
     }
 }
