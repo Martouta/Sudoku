@@ -207,13 +207,17 @@ public class CtrlPartida {
     
  	// Retorna fals si hi ha hagut cap error i llença excepció o bé si el joc ja hi és i no es pot afegir
  	// id es el identificador de la partida
+    // lo modifica si le das algo que sí está
     public static boolean afegeixPartida(Partida p, String id)
      {
          try {
-             for (String s : nombresPartidas) {
-                 if (Objects.equals(s, id)) {
-                     return false;
+             for(int i=0;i<nombresPartidas.size();i++) {
+            	 if (Objects.equals(nombresPartidas.get(i), id)) {
+                     dirty = true;
+                     partidas.set(i, p);
+                     return dirty;
                  }
+            	 
              }
              nombresPartidas.add(id);
              usuariosPartidas.add(p.getUsuario().getUsername());
