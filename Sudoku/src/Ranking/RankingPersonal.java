@@ -1,5 +1,7 @@
 package Ranking;
 
+//problema a tener en cuenta
+
 import java.util.*;
 import Dificultat.*;
 
