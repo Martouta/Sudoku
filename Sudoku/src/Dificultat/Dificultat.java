@@ -1,7 +1,7 @@
 package Dificultat;
 
 abstract public class Dificultat {
-	private static final String[] d = {"trivial", "facil", "medio", "dificil"};
+	private static final String[] d = {"4x4", "9x9", "16x16"};
 	
 	public static boolean esValida(String s) {
 		for (int i=0; i<d.length; ++i) {
@@ -22,6 +22,8 @@ abstract public class Dificultat {
 			if (d[i].equals(s)) trobat = true;
 			else ++i;
 		}
-		return Integer.parseInt(d[i].substring(0,1));
+		int val = Integer.parseInt(d[i].substring(0,1));
+		if (val == 1) val = 16;
+		return val;
 	}
 }
