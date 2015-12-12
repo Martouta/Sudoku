@@ -27,6 +27,9 @@ public class CtrlCapaPresentacion {
     private static JFrameJuego4x4 frameJuego4x4;
     private static JFrameJuego9x9 frameJuego9x9;
     private static JFrameJuego16x16 frameJuego16x16;
+    private static JFrameRankingGlobal frameRankingGlobal;
+    private static JFrameRankingPersonal frameRankingpersonal;
+    private static JFrameEstadisticasGenerales frameEstadisticasGenerales;
     
     private CtrlCasoUsoSeleccionarSudoku ctrlCUSeleccionarJugarSudoku;
     
@@ -100,6 +103,27 @@ public class CtrlCapaPresentacion {
         frameConfirmacionResetearEstadisticas = new JFrameConfirmacionResetearEstadisticas();
         frameConfirmacionResetearEstadisticas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameConfirmacionResetearEstadisticas.pack();
+        
+        //INIT RANKKING GLOBAL
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameRankingGlobal = new JFrameRankingGlobal();
+        frameRankingGlobal .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameRankingGlobal .pack();
+        frameRankingGlobal.setVisible(false);
+        
+        //INIT RANKKING PERSONAL
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameRankingpersonal = new JFrameRankingPersonal();
+        frameRankingpersonal .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameRankingpersonal .pack();
+        frameRankingpersonal.setVisible(false);
+        
+        //INIT ESTADISTICAS GENERALES
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frameEstadisticasGenerales = new JFrameEstadisticasGenerales();
+        frameEstadisticasGenerales .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameEstadisticasGenerales .pack();
+        frameEstadisticasGenerales.setVisible(false);
 	}
 	
 	private void initListeners() {
@@ -111,6 +135,50 @@ public class CtrlCapaPresentacion {
 		initListenersGestionPerfiles();
 		initListenersConfirmacionResetearEstadisticas();
 		initListenersConfirmacionBorrarPerfil();
+		initListenersRankingGlobal();
+		initListenersRankingPersonal();
+		initListenersEstadisticasGenerales();
+	}
+	
+	private void initListenersRankingGlobal() {
+		frameRankingGlobal.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+		    }
+		});
+		frameRankingGlobal.getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameRankingGlobal.setVisible(false);
+				frameMenuOpciones.setVisible(true);
+		    }
+		});
+	}
+	private void initListenersRankingPersonal() {
+		frameRankingpersonal.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+		    }
+		});
+		frameRankingpersonal.getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameRankingpersonal.setVisible(false);
+				frameMenuOpciones.setVisible(true);
+		    }
+		});
+	}
+	
+	private void initListenersEstadisticasGenerales() {
+		frameEstadisticasGenerales.getButSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				pressSalir();
+		    }
+		});
+		frameEstadisticasGenerales.getButVolverMenuOpciones().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				frameEstadisticasGenerales.setVisible(false);
+				frameMenuOpciones.setVisible(true);
+		    }
+		});
 	}
 	
 	private void initListenersMenuPrincipal() {
@@ -250,16 +318,34 @@ public class CtrlCapaPresentacion {
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingLocal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER //AUN NO ES POSIBLE
+				frameMenuOpciones.setVisible(false);
+				CtrlCasoUsoEstadisticas ctrlCUEstadisticas = new CtrlCasoUsoEstadisticas();
+				DTORankingPersonal infoRankingPersonal = ctrlCUEstadisticas.GetDataRankingPersonal(nombreUsuario);
+				frameRankingpersonal.muestraDatos(infoRankingPersonal);
+				frameRankingpersonal.setVisible(true);
+				
+				//POR HACER
+				
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingGlobal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//POR HACER //AUN NO POSIBLE
+				frameMenuOpciones.setVisible(false);
+				
+				
+				
+				//do stuff
+				frameRankingGlobal.setVisible(true);
+				
+				
+				//POR HACER
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarEstadisticasGenerales().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				frameMenuOpciones.setVisible(false);
+				//
+				frameEstadisticasGenerales.setVisible(true);
 				//POR HACER
 			}
 		});
