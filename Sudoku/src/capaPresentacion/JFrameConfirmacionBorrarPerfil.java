@@ -30,7 +30,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		setTitle("Confirmacion Borrar Perfil");
 		setSize(400,400); //ancho por alto
 		setMinimumSize(new Dimension(400, 400));
-		setResizable(true);
+		setResizable(false);
 		
 		labConfirmacionPerfil = new JLabel();
 		labConfirmacionSudokus = new JLabel();
