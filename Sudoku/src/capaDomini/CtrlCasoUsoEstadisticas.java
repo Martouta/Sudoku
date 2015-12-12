@@ -22,6 +22,7 @@ public class CtrlCasoUsoEstadisticas {
 	
 	private DTOTiempo segundostotalesADTOTiempo(Double segundosTotales) {
 		System.out.println("holaaaaa: " + segundosTotales);
+		if(segundosTotales==null) segundosTotales=0.0; 
 		int tiempoSegundos = segundosTotales.intValue();
 		int segundos = tiempoSegundos%60;
 		int minutos = (tiempoSegundos/60)%60;
