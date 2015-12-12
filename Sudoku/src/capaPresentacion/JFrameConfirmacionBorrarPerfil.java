@@ -67,10 +67,19 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
         
 		//butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");
         butEliminarPerfil.setText(sb.toString());
-		butNoEliminar.setText("No eliminar mi perfil");
+        
+        sb = new StringBuilder(64);
+        sb.append("<html>No eliminar")
+        		.append("<br/>mi perfil</html>");
+        
+		butNoEliminar.setText(sb.toString());
 		labMensajeError.setText("");
 		
-		labConfirmacionPerfil.setBounds(110, 25, 220, 50);
+		labConfirmacionPerfil.setBounds(110, 30, 220, 50);
+		labConfirmacionSudokus.setBounds(110, 130, 220, 50);
+		butEliminarPerfSud.setBounds(20, 260, 110, 80);
+		butEliminarPerfil.setBounds(140, 260, 110, 80);
+		butNoEliminar.setBounds(260, 260, 110, 80);
 		
 		panConfirmacionBorrarPerfil = new JPanel();
 		panConfirmacionBorrarPerfil.setLayout(new GridLayout(9,1));
