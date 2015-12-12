@@ -58,14 +58,12 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
         sb.append("<html>Eliminar Perfil")
         		.append("<br/>y Sudokus</html>");
         
-		//butEliminarPerfSud.setText("Eliminar Perfil y Sudokus");
         butEliminarPerfSud.setText(sb.toString());
         
         sb = new StringBuilder(64);
         sb.append("<html>Eliminar Perfil")
         		.append("<br/>pero no Sudokus</html>");
         
-		//butEliminarPerfil.setText("Eliminar Perfil pero no Sudokus");
         butEliminarPerfil.setText(sb.toString());
         
         sb = new StringBuilder(64);
