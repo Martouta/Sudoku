@@ -62,7 +62,7 @@ public class JFrameGestionPerfiles extends JFrame {
     	butBorrarPerfil.setText("Borrar Perfil");
     	butResetearEstadisticasPerfil.setText("Resetear Estadisticas del Perfil");
     	StringBuilder sb = new StringBuilder(64);
-        sb.append("<html>Volver al")
+        sb.append("<html><div style=\"text-align: center;\">Volver al")
         		.append("<br/>menu opciones</html>");
     	butVolverMenuOpciones.setText(sb.toString());
     	butSalir.setText("Salir");

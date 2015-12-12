@@ -26,9 +26,9 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		labEspacioBlanco.setText("");
 		
 		setTitle("Confirmacion Resetear Estadisticas");
-		setSize(400,500); //ancho por alto
-		setMinimumSize(new Dimension(400, 500));
-		setResizable(true);
+		setSize(400,300); //ancho por alto
+		setMinimumSize(new Dimension(400, 300));
+		setResizable(false);
 		
 		labConfirmacionResetearEstadisticas = new JLabel();
 		butResetear = new JButton();
@@ -37,16 +37,21 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		
 		//PROBAR PARA VER COMO QUEDA MEJOR
 		StringBuilder sb = new StringBuilder(128);
-        sb.append("<html>¿Está seguro de que desea")
+        sb.append("<html><div style=\"text-align: center;\">¿Está seguro de que desea")
         		.append("<br/>eliminar sus estadísticas?")
-        		.append("<br/>También se recalcularán las estadísticas")
-        		.append("<br/>globales y los rankings</html>");
+        		.append("<br/>También se recalcularán las")
+        		.append("<br/>estadísticas globales")
+        		.append("<br/>y los rankings.</html>");
 
 		//labConfirmacionResetearEstadisticas.setText("¿Está seguro de que desea eliminar sus estadísticas? También se recalcularán las estadísticas globales y los rankings");
         labConfirmacionResetearEstadisticas.setText(sb.toString());
         butResetear.setText("Sí, resetear");
 		butNoResetear.setText("No resetear");
 		labMensajeError.setText("");
+		
+		labConfirmacionResetearEstadisticas.setBounds(110, 15, 220, 100);
+		butResetear.setBounds(50, 180, 110, 65);
+		butNoResetear.setBounds(220, 180, 110, 65);
 		
 		panConfirmacionResetearEstadisticas = new JPanel();
 		panConfirmacionResetearEstadisticas.setLayout(new GridLayout(9,1));
@@ -58,6 +63,7 @@ public class JFrameConfirmacionResetearEstadisticas extends JFrame {
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panConfirmacionResetearEstadisticas.add(panMensError);
+		panConfirmacionResetearEstadisticas.setLayout(null);
 		add(panConfirmacionResetearEstadisticas);
 	}
 	

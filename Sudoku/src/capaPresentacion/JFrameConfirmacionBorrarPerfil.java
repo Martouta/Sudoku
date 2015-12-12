@@ -40,14 +40,14 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		labMensajeError = new JLabel();
 		
 		StringBuilder sb = new StringBuilder(64);
-        sb.append("<html>¿Está seguro de que desea")
+        sb.append("<html><div style=\"text-align: center;\">¿Está seguro de que desea")
         		.append("<br/>eliminar el perfil?</html>");
         
 		//labConfirmacionPerfil.setText("¿Está seguro de que desea eliminar el perfil?");
         labConfirmacionPerfil.setText(sb.toString());
         
         sb = new StringBuilder(64);
-        sb.append("<html>¿También quiere eliminar de la")
+        sb.append("<html><div style=\"text-align: center;\">¿También quiere eliminar de la")
         		.append("<br/>base de datos los sudokus")
         		.append("<br/>de los cuáles es autor?</html>");
         
@@ -55,19 +55,19 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
         labConfirmacionSudokus.setText(sb.toString());
         
         sb = new StringBuilder(64);
-        sb.append("<html>Eliminar Perfil")
+        sb.append("<html><div style=\"text-align: center;\">Eliminar Perfil")
         		.append("<br/>y Sudokus</html>");
         
         butEliminarPerfSud.setText(sb.toString());
         
         sb = new StringBuilder(64);
-        sb.append("<html>Eliminar Perfil")
+        sb.append("<html><div style=\"text-align: center;\">Eliminar Perfil")
         		.append("<br/>pero no Sudokus</html>");
         
         butEliminarPerfil.setText(sb.toString());
         
         sb = new StringBuilder(64);
-        sb.append("<html>No eliminar")
+        sb.append("<html><div style=\"text-align: center;\">No eliminar")
         		.append("<br/>mi perfil</html>");
         
 		butNoEliminar.setText(sb.toString());
