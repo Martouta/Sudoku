@@ -26,9 +26,9 @@ public class JFrameRankingPersonal extends JFrame{
     private JButton Salir = new JButton("Salir");
 	private JLabel usu=new JLabel("USUARIO");
 	private JLabel dif=new JLabel("Dificultad");
-	private JLabel facil=new JLabel("4x4");
-	private JLabel normal=new JLabel("9x9");
-	private JLabel dificil=new JLabel("16x16");
+	private JLabel facil=new JLabel("facil");
+	private JLabel normal=new JLabel("medio");
+	private JLabel dificil=new JLabel("dificil");
 	private JLabel sudokusResueltos=new JLabel("Sudokus Resueltos:");
 	private JLabel media=new JLabel("Media pistas/partida:");
 	private JLabel mejt=new JLabel("Mejor tiempo:");
@@ -84,9 +84,9 @@ public class JFrameRankingPersonal extends JFrame{
 		
 		p.setBounds(140,140,30,20);
 		
-		t4.setBounds(140,180,30,20);
-		t9.setBounds(240,180,30,20);
-		t16.setBounds(340,180,30,20);
+		t4.setBounds(140,180,60,20);
+		t9.setBounds(240,180,60,20);
+		t16.setBounds(340,180,60,20);
 		
 		titulo.setBounds(140,10,200,30);
 		labMensajeError = new JLabel();
