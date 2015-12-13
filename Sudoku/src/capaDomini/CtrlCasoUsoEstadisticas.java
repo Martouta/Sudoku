@@ -33,9 +33,9 @@ public class CtrlCasoUsoEstadisticas {
 	
 	public DTORankingPersonal GetDataRankingPersonal(String nomUsuari){
 		RankingPersonal rp = new RankingPersonal(nomUsuari);
-		DTOTiempo mejorTiempo4 = segundostotalesADTOTiempo(rp.getBestTime("4x4"));
-		DTOTiempo mejorTiempo9 = segundostotalesADTOTiempo(rp.getBestTime("9x9"));
-		DTOTiempo mejorTiempo16 = segundostotalesADTOTiempo(rp.getBestTime("16x16"));
+		DTOTiempo mejorTiempo4 = segundostotalesADTOTiempo(rp.getBestTime("facil"));
+		DTOTiempo mejorTiempo9 = segundostotalesADTOTiempo(rp.getBestTime("medio"));
+		DTOTiempo mejorTiempo16 = segundostotalesADTOTiempo(rp.getBestTime("dificil"));
 		
 		Double dPistes = rp.getPistes();
 		int nPistes = dPistes.intValue();
