@@ -1,7 +1,7 @@
 package Dificultat;
 
 abstract public class Dificultat {
-	private static final String[] d = {"4x4", "9x9", "16x16"};
+	private static final String[] d = {"trivial", "facil", "medio", "dificil"};
 	
 	public static boolean esValida(String s) {
 		for (int i=0; i<d.length; ++i) {
