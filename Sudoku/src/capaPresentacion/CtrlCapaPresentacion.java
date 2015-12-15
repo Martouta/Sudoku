@@ -1000,7 +1000,7 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego4x4.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos4x4();}
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos4x4(); pressGuardarPartida(4);}
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -1076,17 +1076,7 @@ public class CtrlCapaPresentacion {
 		frameJuego4x4.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
-					Date fechaGuardado;
-					fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
-					Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
-					calendar.setTime(fechaGuardado);   // assigns calendar to given date 
-					int intHoraGuardado = calendar.get(Calendar.HOUR_OF_DAY);
-					String strHoraGuardado = intHoraGuardado + "";
-					if (intHoraGuardado <= 9) strHoraGuardado = "0" + strHoraGuardado;
-					int intMinutoGuardado = calendar.get(Calendar.MINUTE);
-					String strMinutoGuardado = intMinutoGuardado + "";
-					if (intMinutoGuardado <= 9) strMinutoGuardado = "0" + strMinutoGuardado;
-					frameJuego4x4.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
+					pressGuardarPartida(4);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
 				}
@@ -1114,7 +1104,7 @@ public class CtrlCapaPresentacion {
 								frameJuego4x4.quitarValorCasilla(i, j);
 							}
 							frameJuego4x4.setMensaje("");
-							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos4x4();}
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego4x4.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos4x4(); pressGuardarPartida(4);}
 						}
 						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
@@ -1142,6 +1132,8 @@ public class CtrlCapaPresentacion {
 						frameJuego4x4.colorearCasillaInvalida(i, j);
 						frameJuego4x4.quitarValorCasilla(i, j);
 					} catch (ExcepcionCasillaVaciaNoFijable e) {
+						frameJuego4x4.setMensaje(e.getMessage());
+					} catch (ExcepcionPartidaYaAcabada e) {
 						frameJuego4x4.setMensaje(e.getMessage());
 					}
 				}
@@ -1197,7 +1189,7 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego9x9.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego9x9.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego9x9.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos9x9();}
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego9x9.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos9x9();  pressGuardarPartida(9);}
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -1273,17 +1265,7 @@ public class CtrlCapaPresentacion {
 		frameJuego9x9.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
-					Date fechaGuardado;
-					fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
-					Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
-					calendar.setTime(fechaGuardado);   // assigns calendar to given date 
-					int intHoraGuardado = calendar.get(Calendar.HOUR_OF_DAY);
-					String strHoraGuardado = intHoraGuardado + "";
-					if (intHoraGuardado <= 9) strHoraGuardado = "0" + strHoraGuardado;
-					int intMinutoGuardado = calendar.get(Calendar.MINUTE);
-					String strMinutoGuardado = intMinutoGuardado + "";
-					if (intMinutoGuardado <= 9) strMinutoGuardado = "0" + strMinutoGuardado;
-					frameJuego9x9.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
+					pressGuardarPartida(9);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				}
@@ -1311,7 +1293,7 @@ public class CtrlCapaPresentacion {
 								frameJuego9x9.quitarValorCasilla(i, j);
 							}
 							frameJuego9x9.setMensaje("");
-							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego9x9.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos9x9();}
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego9x9.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos9x9(); pressGuardarPartida(9);}
 						}
 						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
@@ -1339,6 +1321,8 @@ public class CtrlCapaPresentacion {
 						frameJuego9x9.colorearCasillaInvalida(i, j);
 						frameJuego9x9.quitarValorCasilla(i, j);
 					} catch (ExcepcionCasillaVaciaNoFijable e) {
+						frameJuego9x9.setMensaje(e.getMessage());
+					} catch (ExcepcionPartidaYaAcabada e) {
 						frameJuego9x9.setMensaje(e.getMessage());
 					}
 				}
@@ -1394,7 +1378,7 @@ public class CtrlCapaPresentacion {
 					celdaPista = ctrlCUSeleccionarJugarSudoku.pedirPista();
 					frameJuego16x16.nuevaPista(celdaPista.getFila(), celdaPista.getColumna(), celdaPista.getValor());
 					frameJuego16x16.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]");
-					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego16x16.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos16x16();}
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego16x16.setMensaje("Pista anadida, el numero " + celdaPista.getValor() + " en la posicion [" + (celdaPista.getFila()+1) + "," + (celdaPista.getColumna()+1) + "]" + " ¡Sudoku resuelto! :)"); mostrarTiempos16x16(); pressGuardarPartida(16);}
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego16x16.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
@@ -1470,17 +1454,7 @@ public class CtrlCapaPresentacion {
 		frameJuego16x16.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
-					Date fechaGuardado;
-					fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
-					Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
-					calendar.setTime(fechaGuardado);   // assigns calendar to given date 
-					int intHoraGuardado = calendar.get(Calendar.HOUR_OF_DAY);
-					String strHoraGuardado = intHoraGuardado + "";
-					if (intHoraGuardado <= 9) strHoraGuardado = "0" + strHoraGuardado;
-					int intMinutoGuardado = calendar.get(Calendar.MINUTE);
-					String strMinutoGuardado = intMinutoGuardado + "";
-					if (intMinutoGuardado <= 9) strMinutoGuardado = "0" + strMinutoGuardado;
-					frameJuego16x16.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
+					pressGuardarPartida(16);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego16x16.setMensaje(e.getMessage());
 				}
@@ -1508,7 +1482,7 @@ public class CtrlCapaPresentacion {
 								frameJuego16x16.quitarValorCasilla(i, j);
 							}
 							frameJuego16x16.setMensaje("");
-							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego16x16.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos16x16();}
+							if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) {frameJuego16x16.setMensaje("Sudoku resuelto con exito! :)"); mostrarTiempos16x16(); pressGuardarPartida(16);}
 						}
 						else { //modo activo = introducir marca a casilla
 							if (ctrlCUSeleccionarJugarSudoku.estaMarca(i, j, valor)) { //quitar marca
@@ -1536,6 +1510,8 @@ public class CtrlCapaPresentacion {
 						frameJuego16x16.colorearCasillaInvalida(i, j);
 						frameJuego16x16.quitarValorCasilla(i, j);
 					} catch (ExcepcionCasillaVaciaNoFijable e) {
+						frameJuego16x16.setMensaje(e.getMessage());
+					} catch (ExcepcionPartidaYaAcabada e) {
 						frameJuego16x16.setMensaje(e.getMessage());
 					}
 				}
@@ -1595,7 +1571,22 @@ public class CtrlCapaPresentacion {
     
     private void pressSalir() {
     	System.exit(0);
-		System.out.println("Salir pulsado");
+	}
+    
+    private void pressGuardarPartida(int nn) throws ExcepcionPartidaYaAcabada {
+    	Date fechaGuardado;
+		fechaGuardado = ctrlCUSeleccionarJugarSudoku.guardarPartida();
+		Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+		calendar.setTime(fechaGuardado);   // assigns calendar to given date 
+		int intHoraGuardado = calendar.get(Calendar.HOUR_OF_DAY);
+		String strHoraGuardado = intHoraGuardado + "";
+		if (intHoraGuardado <= 9) strHoraGuardado = "0" + strHoraGuardado;
+		int intMinutoGuardado = calendar.get(Calendar.MINUTE);
+		String strMinutoGuardado = intMinutoGuardado + "";
+		if (intMinutoGuardado <= 9) strMinutoGuardado = "0" + strMinutoGuardado;
+		if (nn == 4) frameJuego4x4.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
+		else if (nn == 9) frameJuego9x9.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado);
+		else frameJuego16x16.setMensaje("Partida guardada por ultima vez a las: " + strHoraGuardado + ":" + strMinutoGuardado); //16x16
 	}
     
     private void pressCerrarSesion(JFrame frameDondeEstaba) {
