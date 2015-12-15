@@ -244,10 +244,6 @@ public class CtrlCasoUsoSeleccionarSudoku {
 			for (int j = 0; j < nn; ++j) {
 				DTOCeldaFija celdaSudoku;
 				int val = ts.getNumero(i, j);
-				if (! tausu.estaFija(i, j)) {
-					tausu.borraNumCelda(i, j);
-					tausu.setNumCelda(i, j, val, false);
-				}
 				celdaSudoku = new DTOCeldaFija(i,j,val);
 				vCeldasSudoku.addElement(celdaSudoku);
 			}

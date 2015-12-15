@@ -1052,6 +1052,7 @@ public class CtrlCapaPresentacion {
 				try {
 					int nn = frameJuego4x4.getNN();
 					Vector<DTOCeldaFija> vCeldasSudoku = ctrlCUSeleccionarJugarSudoku.resuelveSistema(nn);
+					pressGuardarPartida(nn);
 					for (DTOCeldaFija celdaSudoku : vCeldasSudoku) {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
@@ -1252,6 +1253,7 @@ public class CtrlCapaPresentacion {
 				try {
 					int nn = frameJuego9x9.getNN();
 					Vector<DTOCeldaFija> vCeldasSudoku = ctrlCUSeleccionarJugarSudoku.resuelveSistema(nn);
+					pressGuardarPartida(nn);
 					for (DTOCeldaFija celdaSudoku : vCeldasSudoku) {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
@@ -1453,6 +1455,7 @@ public class CtrlCapaPresentacion {
 				try {
 					int nn = frameJuego16x16.getNN();
 					Vector<DTOCeldaFija> vCeldasSudoku = ctrlCUSeleccionarJugarSudoku.resuelveSistema(nn);
+					pressGuardarPartida(nn);
 					for (DTOCeldaFija celdaSudoku : vCeldasSudoku) {
 						int i = celdaSudoku.getFila();
 						int j = celdaSudoku.getColumna();
