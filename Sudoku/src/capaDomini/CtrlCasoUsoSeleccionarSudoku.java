@@ -353,4 +353,8 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return tiempoTotal;
 	}
 	
+	public void pausarPartida() throws ExcepcionTimerYaEstaParado {
+		p.pauseTiempo();
+	}
+	
 }
