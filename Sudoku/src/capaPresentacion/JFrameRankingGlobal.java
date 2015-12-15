@@ -3,15 +3,16 @@ package capaPresentacion;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import DataTransferObjects.DTORankingPerTipus;
+import Ranking.Tupla;
+
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 import javax.swing.JLabel;
 
-
-
-//HAY MAIN ABAJO
 
 public class JFrameRankingGlobal extends JFrame{
 	
@@ -25,6 +26,10 @@ public class JFrameRankingGlobal extends JFrame{
 	private JLabel dificil=new JLabel("Dificil");
 	private JLabel uYt=new JLabel("Usuarios y tiempos por dificultad:");
 	private JLabel labMensajeError = new JLabel();
+	private JLabel f1 = new JLabel();
+	
+	
+	
 	
 	 public void setMensajeError(String msj){
 			labMensajeError.setText(msj);
@@ -38,8 +43,15 @@ public class JFrameRankingGlobal extends JFrame{
 		return Salir;
 	}
 	
+	public void muestraDatos(DTORankingPerTipus infoRankingPerTipus) {
+		f1.setText(infoRankingPerTipus.getf1());
+		
+	}
+	
+	
+	
 	public JFrameRankingGlobal(){
-		super("Basic Swing App");
+		super("Ranking Global");
 		
 		setSize(400,300);
 		setMinimumSize(new Dimension(400, 300));
@@ -52,7 +64,7 @@ public class JFrameRankingGlobal extends JFrame{
 		normal.setBounds(180,-30,200,200);
 		dificil.setBounds(300,-30,200,200);
 		uYt.setBounds(100,-70,200,200);
-		
+		f1.setBounds(110,100,40,20);
 		
 		p.add(Volver);
 		p.add(Salir);
@@ -61,6 +73,7 @@ public class JFrameRankingGlobal extends JFrame{
 		p.add(dificil);
 		p.add(uYt);
 		p.add(labMensajeError);
+		p.add(f1);
 		
 		add(p);
 			

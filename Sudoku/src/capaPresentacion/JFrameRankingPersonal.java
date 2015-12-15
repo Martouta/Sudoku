@@ -27,7 +27,7 @@ public class JFrameRankingPersonal extends JFrame{
 	private JLabel usu=new JLabel("USUARIO");
 	private JLabel dif=new JLabel("Dificultad");
 	private JLabel facil=new JLabel("facil");
-	private JLabel normal=new JLabel("medio");
+	private JLabel normal=new JLabel("normal");
 	private JLabel dificil=new JLabel("dificil");
 	private JLabel sudokusResueltos=new JLabel("Sudokus Resueltos:");
 	private JLabel media=new JLabel("Media pistas/partida:");
@@ -73,20 +73,20 @@ public class JFrameRankingPersonal extends JFrame{
 		pan.setLayout(null);
 		Volver.setBounds(5,5,80,30);
 		Salir.setBounds(310,5,80,30);
-		dif.setBounds(20,-30,200,200);
-		facil.setBounds(140,-30,200,200);
-		normal.setBounds(240,-30,200,200);
-		dificil.setBounds(340,-30,200,200);
-		sudokusResueltos.setBounds(0,10,200,200);
-		media.setBounds(0,50,200,200);
-		mejt.setBounds(0,90,200,200);
-		x.setBounds(140,100,30,20);
+		//dif.setBounds(20,70,200,200);
+		facil.setBounds(140,60,200,200);
+		normal.setBounds(230,60,200,200);
+		dificil.setBounds(335,60,200,200);
+		sudokusResueltos.setBounds(120,-30,200,200);
+		media.setBounds(120,10,200,200);
+		mejt.setBounds(20,90,200,200);
+		x.setBounds(240,60,30,20);
 		
-		p.setBounds(140,140,30,20);
+		p.setBounds(240,100,30,20);
 		
-		t4.setBounds(140,180,60,20);
-		t9.setBounds(240,180,60,20);
-		t16.setBounds(340,180,60,20);
+		t4.setBounds(120,180,60,20);
+		t9.setBounds(220,180,60,20);
+		t16.setBounds(320,180,60,20);
 		
 		titulo.setBounds(140,10,200,30);
 		labMensajeError = new JLabel();

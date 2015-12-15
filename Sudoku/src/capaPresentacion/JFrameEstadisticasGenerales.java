@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import DataTransferObjects.DTORankingPersonal;
+import DataTransferObjects.DTORankingGeneral;
+
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -61,9 +64,15 @@ public class JFrameEstadisticasGenerales extends JFrame{
 		xsmj.setText(s);
 	}
 	
+	public void muestraDatos(DTORankingGeneral infoRankingGeneral) {
+		xj.setText(infoRankingGeneral.getnjocs() + "");
+		xu.setText(infoRankingGeneral.getnusuaris() + "");
+		xp.setText(infoRankingGeneral.getnpartides() + "");
+		xsmj.setText(infoRankingGeneral.getpopular() + "");
+	}
 	
 	public JFrameEstadisticasGenerales(){
-		super("Basic Swing App");
+		super("Estadísticas Generales");
 		
 		setSize(400,300);
 		setMinimumSize(new Dimension(400, 300));

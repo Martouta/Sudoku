@@ -331,22 +331,20 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingGlobal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameMenuOpciones.setVisible(false);
+				CtrlCasoUsoEstadisticas ctrlCUEstadisticas = new CtrlCasoUsoEstadisticas();
+				DTORankingPerTipus infoRankingPerTipus = ctrlCUEstadisticas.GetDataRankingPerTipus();
+				frameRankingGlobal.muestraDatos(infoRankingPerTipus);
 				
-				
-				
-				//do stuff
 				frameRankingGlobal.setVisible(true);
-				
-				
-				//POR HACER
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarEstadisticasGenerales().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameMenuOpciones.setVisible(false);
-				//
+				CtrlCasoUsoEstadisticas ctrlCUEstadisticas = new CtrlCasoUsoEstadisticas();
+				DTORankingGeneral infoRankingGeneral = ctrlCUEstadisticas.GetDataEstadisticasGenerales();
+				frameEstadisticasGenerales.muestraDatos(infoRankingGeneral);
 				frameEstadisticasGenerales.setVisible(true);
-				//POR HACER
 			}
 		});
 	}

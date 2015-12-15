@@ -1,2 +1,6 @@
 12 true 12 
-aaa true bbb
+aaa true bbb 
+aleix false 
+jajaja false 
+pepito false 
+lel true a 

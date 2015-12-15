@@ -23,6 +23,7 @@ public class RankingPersonal extends Ranking {
 			String dif = (Dificultat.esValida(s.get(2))) ? s.get(2) : null;
 			double time = Double.parseDouble(s.get(3));
 			int pistes = Integer.parseInt(s.get(4));
+			time = time + pistes * 600;
 			if (usuari.equals(user)) {
 				++jocsResolts;
 				avgPistes += pistes;
