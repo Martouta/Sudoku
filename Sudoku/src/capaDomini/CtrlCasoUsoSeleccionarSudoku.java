@@ -258,8 +258,7 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		p.yaResuelto();
 	}
 	
-	public Date guardarPartida() throws ExcepcionPartidaYaAcabada {
-		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+	public Date guardarPartida() {
 		Date data = p.getDataIni();
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy,HH:mm:ss");
         String strData = formatter.format(data);

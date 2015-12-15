@@ -1076,6 +1076,7 @@ public class CtrlCapaPresentacion {
 		frameJuego4x4.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) throw new ExcepcionPartidaYaAcabada();
 					pressGuardarPartida(4);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego4x4.setMensaje(e.getMessage());
@@ -1265,6 +1266,7 @@ public class CtrlCapaPresentacion {
 		frameJuego9x9.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) throw new ExcepcionPartidaYaAcabada();
 					pressGuardarPartida(9);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego9x9.setMensaje(e.getMessage());
@@ -1454,6 +1456,7 @@ public class CtrlCapaPresentacion {
 		frameJuego16x16.getButGuardarPartida().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
+					if (ctrlCUSeleccionarJugarSudoku.partidaAcabada()) throw new ExcepcionPartidaYaAcabada();
 					pressGuardarPartida(16);
 				} catch (ExcepcionPartidaYaAcabada e) {
 					frameJuego16x16.setMensaje(e.getMessage());
