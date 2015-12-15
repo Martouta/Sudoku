@@ -234,17 +234,25 @@ public class CtrlCasoUsoSeleccionarSudoku {
 		return celdaNueva;
 	}
 	
-	public Vector<DTOCeldaFija> resuelveSistema(int nn) throws ExcepcionPosicionFueraRango, ExcepcionTimerYaEstaParado, ExcepcionPartidaYaAcabada{
+	public Vector<DTOCeldaFija> resuelveSistema(int nn) throws ExcepcionPosicionFueraRango, ExcepcionTimerYaEstaParado, ExcepcionPartidaYaAcabada, ExcepcionNumeroFijo, ExcepcionCasillaBloqueada, ExcepcionValorFueraRango, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable{
 		if (p.getResuelto()) throw new ExcepcionPartidaYaAcabada();
+		TaulerSudoku tausu = (TaulerSudoku) p.getJocSudoku().getTauler();
+		int incremento = tausu.getNumCeldas() - tausu.getNumCeldasRellenas();
 		TaulerSudoku ts = p.getJocSudoku().getTaulerResuelto();
 		Vector<DTOCeldaFija> vCeldasSudoku = new Vector<DTOCeldaFija>();
 		for (int i = 0; i < nn; ++i) {
 			for (int j = 0; j < nn; ++j) {
 				DTOCeldaFija celdaSudoku;
-				celdaSudoku = new DTOCeldaFija(i,j,ts.getNumero(i, j));
+				int val = ts.getNumero(i, j);
+				if (! tausu.estaFija(i, j)) {
+					tausu.borraNumCelda(i, j);
+					tausu.setNumCelda(i, j, val, false);
+				}
+				celdaSudoku = new DTOCeldaFija(i,j,val);
 				vCeldasSudoku.addElement(celdaSudoku);
 			}
 		}
+		p.incrementarNumPistas(incremento);
 		acabarPartida();
 		return vCeldasSudoku;
 	}

@@ -1065,6 +1065,16 @@ public class CtrlCapaPresentacion {
 					frameJuego4x4.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
 					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorFueraRango e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameJuego4x4.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
+					frameJuego4x4.setMensaje(e.getMessage());
 				}
 			}
 		});
@@ -1099,7 +1109,6 @@ public class CtrlCapaPresentacion {
 							if (!ctrlCUSeleccionarJugarSudoku.esValorCelda(i, j, valor)) { //si no es el valor que ya esta puesto, lo anade
 								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j); //tiene que estar, por si en la funcion siguiente salta excepcion, que se haya borrado lo que habia
 								ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
-								frameJuego4x4.ponerValorCasilla(i,j,valor);
 							} else {
 								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j);
 								frameJuego4x4.quitarValorCasilla(i, j);
@@ -1254,6 +1263,16 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionPosicionFueraRango e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
+					frameJuego9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameJuego9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameJuego9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionValorFueraRango e) {
+					frameJuego9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameJuego9x9.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego9x9.setMensaje(e.getMessage());
 				}
 			}
@@ -1444,6 +1463,16 @@ public class CtrlCapaPresentacion {
 				} catch (ExcepcionPosicionFueraRango e) {
 					frameJuego16x16.setMensaje(e.getMessage());
 				} catch (ExcepcionTimerYaEstaParado e) {
+					frameJuego16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionNumeroFijo e) {
+					frameJuego16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaBloqueada e) {
+					frameJuego16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionValorFueraRango e) {
+					frameJuego16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionValorYaPuesto e) {
+					frameJuego16x16.setMensaje(e.getMessage());
+				} catch (ExcepcionCasillaVaciaNoFijable e) {
 					frameJuego16x16.setMensaje(e.getMessage());
 				}
 			}

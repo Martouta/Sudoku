@@ -181,4 +181,8 @@ public class Partida {
 		++nPistas;
 		return sudoku.pedirPista();
 	}
+	
+	public void incrementarNumPistas(int incremento) {
+		nPistas += incremento;
+	}
 }
