@@ -989,14 +989,9 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego4x4.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				try {
-					ctrlCUSeleccionarJugarSudoku.pausarPartida();
-					ctrlCUSeleccionarJugarSudoku = null;
-					frameJuego4x4.setVisible(false);
-					frameMenuSudoku.setVisible(true);
-				} catch (ExcepcionTimerYaEstaParado e) {
-					frameJuego4x4.setMensaje(e.getMessage());
-				}
+				ctrlCUSeleccionarJugarSudoku = null;
+				frameJuego4x4.setVisible(false);
+				frameMenuSudoku.setVisible(true);
 			}
 		});
 		frameJuego4x4.getButPedirPista().addActionListener(new ActionListener() {
@@ -1194,6 +1189,7 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego9x9.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				ctrlCUSeleccionarJugarSudoku = null;
 				frameJuego9x9.setVisible(false);
 				frameMenuSudoku.setVisible(true);
 			}
@@ -1394,6 +1390,7 @@ public class CtrlCapaPresentacion {
 		});
 		frameJuego16x16.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				ctrlCUSeleccionarJugarSudoku = null;
 				frameJuego16x16.setVisible(false);
 				frameMenuSudoku.setVisible(true);
 			}
