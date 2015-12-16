@@ -2840,8 +2840,8 @@ public class CtrlCapaPresentacion {
 				public void mouseClicked(MouseEvent e) {
 					/*System.out.println("pruebas: mouseClicked");*/
 					String nombreCelda = panCelda.getName();
-					String strFila = nombreCelda.substring(8, 9);
-					String strColu = nombreCelda.substring(9, 10);
+					String strFila = nombreCelda.substring(8, 10);
+					String strColu = nombreCelda.substring(10, 12);
 					int i = Integer.parseInt(strFila);
 					int j = Integer.parseInt(strColu);
 					frameJuego16x16.colorearCasillaActiva(i,j);
