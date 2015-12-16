@@ -47,6 +47,7 @@ public class RankingGeneral extends Ranking {
 		int max = -1;	//assignem valor a max
 		int visitats = 0;	//posicions visitades
     	while (visitats <= cont.size()) {
+    		if(Info.size()<=0) break;
     		entry = cont.entrySet().iterator().next();	//prenem els valors de la primera posicio
     		if (max < entry.getValue()) {
     			max = entry.getValue();
