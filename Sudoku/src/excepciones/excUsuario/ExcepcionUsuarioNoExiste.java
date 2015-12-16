@@ -5,6 +5,6 @@ public class ExcepcionUsuarioNoExiste extends Exception{
 
 	@Override
 	public String getMessage() {
-		return "No hay ningun usuario con este nombre de usuario";
+		return "<html>No hay ningun usuario con<br/>este nombre de usuario</html>";
 	}
 }

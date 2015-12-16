@@ -6,23 +6,71 @@ import persistencia.CtrlUser;
 import DataTransferObjects.DTORankingPersonal;
 import DataTransferObjects.DTOTiempo;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import DataTransferObjects.DTORankingGeneral;
 import DataTransferObjects.DTORankingPerTipus;
 import Ranking.*;
 
+
+
 public class CtrlCasoUsoEstadisticas {
 	
-	
-	
+	private static String pathjocs = "src/data/jocs.txt";
+	private static String pathpartidas = "src/data/partidas.txt";
+	private static String pathusers = "src/data/users.txt";
 	
 	
 	public CtrlCasoUsoEstadisticas(){
 		//AQUI VAN LOS .init() NECESARIOS PARA QUE EL RESTO DEL CODIGO FUNCIONE
+		
+		
+		File filejocs = new File(Paths.get(pathjocs).toAbsolutePath().toString());
+		if(!filejocs.exists()){ 
+			filejocs.getParentFile().mkdirs();
+		try {
+			FileWriter jocs = new FileWriter(pathjocs);
+			jocs.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		}
+		
+		
+		File filepar = new File(Paths.get(pathpartidas).toAbsolutePath().toString());
+		if(!filepar.exists()){
+			filepar.getParentFile().mkdirs();
+		try {
+			FileWriter partidas = new FileWriter(pathpartidas);
+			partidas.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
+		
+		File fileus = new File(Paths.get(pathusers).toAbsolutePath().toString());
+		if(!fileus.exists()){
+			fileus.getParentFile().mkdirs();
+		try {
+			FileWriter users = new FileWriter(pathusers);
+			users.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
 				CtrlUser.init();
 				CtrlJocSudoku.init(); //necesario para borrar los sudokus de un usuario
 				CtrlPartida.init(); //necesaria para borrar las partidas de los usuarios
+				
 	}
 	
 	private DTOTiempo segundostotalesADTOTiempo(Double segundosTotales) {
@@ -53,7 +101,7 @@ public class CtrlCasoUsoEstadisticas {
 		RankingPerTipus rtf = new RankingPerTipus("facil",3);
 		
 		ArrayList<Tupla> Tf = rtf.getTempsJugador();
-		
+
 		//////////////////////
 		////////FACIL////////
 		/////////////////////
