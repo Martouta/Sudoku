@@ -52,76 +52,98 @@ public class CtrlCasoUsoEstadisticas {
 	public DTORankingPerTipus GetDataRankingPerTipus(){
 		
 		RankingPerTipus rtf = new RankingPerTipus("facil",3);
-		RankingPerTipus rtm = new RankingPerTipus("medio",3);
-		RankingPerTipus rtd = new RankingPerTipus("dificil",3);
 		
 		ArrayList<Tupla> Tf = rtf.getTempsJugador();
-		ArrayList<Tupla> Tm = rtm.getTempsJugador();
-		ArrayList<Tupla> Td = rtd.getTempsJugador();
 		
 		//////////////////////
 		////////FACIL////////
 		/////////////////////
-		int t=Tf.get(0).getTemps().intValue();
-		int s=t%60;
-		int m=(t/60)%60;
-		int h=t/3600;
-		String f1 = Tf.get(0).getUser() + " " + s + ":" + m + ":" + h;
+		String f1, f2, f3, m1,m2,m3,d1,d2,d3;
+		int t,s,m,h;
 		
+		if(Tf.size()<=0) f1 = "-";
+		else{
+			t=Tf.get(0).getTemps().intValue();
+			s=t%60;
+			m=(t/60)%60;
+			h=t/3600;
+			f1 = Tf.get(0).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		
+		if(Tf.size()<=1) f2 = "-";
+		else{
 		t=Tf.get(1).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String f2 = Tf.get(1).getUser() + " " + s + ":" + m + ":" + h;
-		
+		f2 = Tf.get(1).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		if(Tf.size()<=2) f3 = "-";
+		else{
 		t=Tf.get(2).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String f3 = Tf.get(2).getUser() + " " + s + ":" + m + ":" + h;
-		
+		f3 = Tf.get(2).getUser() + " " + h + ":" + m + ":" + s;
+		}
 		//////////////////////
-		////////NORMAL///////
+		////////MEDIO////////
 		/////////////////////
+		RankingPerTipus rtm = new RankingPerTipus("medio",3);
+		ArrayList<Tupla> Tm = rtm.getTempsJugador();
+		if(Tm.size()<=0) m1 = "-";
+		else{
 		t=Tm.get(0).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String m1 = Tm.get(0).getUser() + " " + s + ":" + m + ":" + h;
-		
+		m1 = Tm.get(0).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		if(Tm.size()<=1) m2 = "-";
+		else{
 		t=Tm.get(1).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String m2 = Tf.get(1).getUser() + " " + s + ":" + m + ":" + h;
-		
+		m2 = Tm.get(1).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		if(Tm.size()<=2) m3 = "-";
+		else{
 		t=Tm.get(2).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String m3 = Tm.get(2).getUser() + " " + s + ":" + m + ":" + h;
-		
+		m3 = Tm.get(2).getUser() + " " + h + ":" + m + ":" + s;
+		}
 		//////////////////////
 		////////DIFICIL///////
 		/////////////////////
+		RankingPerTipus rtd = new RankingPerTipus("dificil",3);
+		ArrayList<Tupla> Td = rtd.getTempsJugador();
+		if(Td.size()<=0) d1 = "-";
+		else{
 		t=Td.get(0).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String d1 = Tm.get(0).getUser() + " " + s + ":" + m + ":" + h;
-		
+		d1 = Td.get(0).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		if(Td.size()<=1) d2 = "-";
+		else{
 		t=Td.get(1).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String d2 = Tf.get(1).getUser() + " " + s + ":" + m + ":" + h;
-		
+		d2=Td.get(1).getUser() + " " + h + ":" + m + ":" + s;
+		}
+		if(Td.size()<=2) d3 = "-";
+		else{
 		t=Td.get(2).getTemps().intValue();
 		s=t%60;
 		m=(t/60)%60;
 		h=t/3600;
-		String d3 = Tm.get(2).getUser() + " " + s + ":" + m + ":" + h;
-		
+		d3 = Td.get(2).getUser() + " " + h + ":" + m + ":" + s;
+		}
 		
 		DTORankingPerTipus infoRankingPerTipus = new DTORankingPerTipus(f1,f2,f3,m1,m2,m3,d1,d2,d3);
 		return infoRankingPerTipus;

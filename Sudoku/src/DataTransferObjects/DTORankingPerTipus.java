@@ -36,7 +36,7 @@ public class DTORankingPerTipus {
 		return m2;
 	}
 	
-	public String getfm(){
+	public String getm3(){
 		return m3;
 	}
 	
