@@ -25,10 +25,10 @@ public class GeneradorSudoku {
 			if(n<2 || n>4)
 				throw new ExcepcionTamanoIncorrecto();
 		} catch (ExcepcionDificultadInvalida e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			return ts;
 		} catch (ExcepcionTamanoIncorrecto e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			return ts;
 		}
 		rand = new Random();
@@ -41,7 +41,7 @@ public class GeneradorSudoku {
 				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 				int aa=ResolvedorSudoku.sols4(ts);
 				if(aa==0) {
-					System.out.println("Sudoku no resoluble, borrando última casilla");
+					//System.out.println("Sudoku no resoluble, borrando última casilla");
 					ts.borraNumCelda(ultx, ulty);
 					int a = mat[ultx][ulty];
 					filas[ultx][a] = false;
@@ -96,7 +96,7 @@ public class GeneradorSudoku {
 			if(dif==tipoDificultad.trivial)
 				throw new ExcepcionDificultadInvalida();
 		} catch (ExcepcionDificultadInvalida e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			return ts;
 		}
 		TaulerSudoku ts2 = new TaulerSudoku(n);
@@ -110,7 +110,7 @@ public class GeneradorSudoku {
 				ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 				int aa=ResolvedorSudoku.sols4(ts);
 				if(aa==0) {
-					System.out.println("Sudoku no resoluble, borrando última casilla");
+					//System.out.println("Sudoku no resoluble, borrando última casilla");
 					ts.borraNumCelda(ultx, ulty);
 					int a = mat[ultx][ulty];
 					filas[ultx][a] = false;
@@ -167,7 +167,7 @@ public class GeneradorSudoku {
 			itera(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 			if(ResolvedorSudoku.sols3(ts)==0) {
-				System.out.println("Sudoku no resoluble, borrando última casilla");
+				//System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
 				int a = mat[ultx][ulty];
 				filas[ultx][a] = false;
@@ -192,7 +192,7 @@ public class GeneradorSudoku {
 			itera2(n);
 			ts.setNumCelda(ultx, ulty, mat[ultx][ulty], false);
 			if(ResolvedorSudoku.sols3(ts)==0) {
-				System.out.println("Sudoku no resoluble, borrando última casilla");
+				//System.out.println("Sudoku no resoluble, borrando última casilla");
 				ts.borraNumCelda(ultx, ulty);
 				int a = mat[ultx][ulty];
 				filas[ultx][a] = false;

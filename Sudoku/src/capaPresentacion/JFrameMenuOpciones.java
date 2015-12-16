@@ -3,7 +3,6 @@ package capaPresentacion;
 import java.awt.*;
 import javax.swing.*;
 
-//FALTA CAMBIAR EL ERROR INESPERADO, EL TAMANO Y HACERLO TODO MÁS BONITO
 
 public class JFrameMenuOpciones extends JFrame{
 	private static final long serialVersionUID = 1L;

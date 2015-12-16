@@ -229,7 +229,7 @@ public class CtrlCapaPresentacion {
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameIniciarSesion.setVisible(false);
 					frameMenuOpciones.setVisible(true);
-					System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
+					//System.out.println("[Mensaje temporal] Sesion iniciada con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
 					nombreUsuario = "";
 					((JFrameIniciarSesion) frameIniciarSesion).setMensajeError(e.getMessage());
@@ -274,7 +274,7 @@ public class CtrlCapaPresentacion {
 					//Si llega hasta aqui es que ha funcionado sin ninguna excepcion
 					frameRegistrarse.setVisible(false);
 					frameMenuOpciones.setVisible(true);
-					System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
+					//System.out.println("[Mensaje temporal] Registrado con el usuario " + nombreUsuario + " con contrasena " + contrasena);		
 				} catch (ExcepcionNombreConEspaciosEnBlanco e) {
 					nombreUsuario = "";
 					((JFrameRegistrarse) frameRegistrarse).setMensajeError(e.getMessage());
@@ -323,9 +323,6 @@ public class CtrlCapaPresentacion {
 				DTORankingPersonal infoRankingPersonal = ctrlCUEstadisticas.GetDataRankingPersonal(nombreUsuario);
 				frameRankingpersonal.muestraDatos(infoRankingPersonal);
 				frameRankingpersonal.setVisible(true);
-				
-				//POR HACER
-				
 			}
 		});
 		((JFrameMenuOpciones) frameMenuOpciones).getButConsultarRankingGlobal().addActionListener(new ActionListener() {

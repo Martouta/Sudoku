@@ -3,7 +3,6 @@ package capaPresentacion;
 import java.awt.*;
 import javax.swing.*;
 
-//FALTA CAMBIAR EL ERROR INESPERADO, EL TAMANO Y HACERLO TODO MÁS BONITO
 
 public class JFrameRegistrarse extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -54,6 +53,7 @@ public class JFrameRegistrarse extends JFrame{
 	}
 	
 	public void cleanValues(){
+		labMensajeError.setText("");
 		textfieldNombreUsuario.setText("");
 		passwordfieldContrasena.setText("");
 		passwordfieldConfirmContrasena.setText("");

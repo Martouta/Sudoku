@@ -1,7 +1,5 @@
 package capaPresentacion;
 
-//FALTA REFINARLO ENTEROOOOOOOOOOO PERO FUNCIONA!
-
 import javax.swing.*;
 
 

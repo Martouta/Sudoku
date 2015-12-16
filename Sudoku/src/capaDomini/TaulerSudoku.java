@@ -21,20 +21,7 @@ public class TaulerSudoku extends Tauler {
     	return n*n;
     }
     
-    /*public void muestraTabla() {
-        for (int i = 0; i < n*n; ++i) {
-            //if (i%n == 0) System.out.println("-----------------------------");
-            for (int j = 0; j < n*n; ++j) {
-                if (j%n == 0) System.out.printf("|");
-                //Cella cellaAux = super.getCella((i*n*n) + j);
-                Cella cellaAux = super.getCella(i,j);
-                if (cellaAux.estaVacia()) System.out.printf(0 + "");
-                else System.out.printf(cellaAux.getNumero() + "");
-            }
-            System.out.printf("%n");
-        }
-    }*/
-    
+    /*
     public void muestraTabla() throws ExcepcionPosicionFueraRango {
         for (int i = 0; i < n*n; ++i) {
             //if (i%n == 0) System.out.println("-----------------------------");
@@ -57,7 +44,6 @@ public class TaulerSudoku extends Tauler {
                 else System.out.printf(cellaAux.getNumero() + "");
             }
             System.out.println("||");
-            //System.out.printf("%n");
             
         }
         System.out.print("++");
@@ -69,6 +55,7 @@ public class TaulerSudoku extends Tauler {
 		}
     	System.out.println();
     }
+    */
     
    public void setNumCelda(int x, int y, int val, boolean fija) throws ExcepcionCasillaBloqueada, ExcepcionPosicionFueraRango, ExcepcionValorFueraRango, ExcepcionNumeroFijo, ExcepcionValorYaPuesto, ExcepcionCasillaVaciaNoFijable {
 	   if (x < 0 || x > n*n || y < 0 || y > n*n) throw (new ExcepcionPosicionFueraRango());

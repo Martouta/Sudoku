@@ -2,10 +2,8 @@ package capaPresentacion;
 
 import java.awt.*;
 import java.util.Enumeration;
-
 import javax.swing.*;
 
-//FALTA MUCHO, EMPEZANDO POR LOS STRINGS Y LAS FUNCIONES "AUXILIARES"
 
 public class JFrameMenuSudoku extends JFrame{
 	private static final long serialVersionUID = 1L;

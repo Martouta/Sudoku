@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import DataTransferObjects.DTORankingPersonal;
 import DataTransferObjects.DTORankingGeneral;
 
 import java.awt.Dimension;

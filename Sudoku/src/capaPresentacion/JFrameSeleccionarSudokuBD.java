@@ -3,12 +3,12 @@ package capaPresentacion;
 import java.awt.*;
 import java.util.Vector;
 import javax.swing.*;
-import javax.swing.event.*;
 
 import DataTransferObjects.DTOSudokuDeLaBD;
 
 public class JFrameSeleccionarSudokuBD extends JFrame{
-	private int numSudokus;
+	private static final long serialVersionUID = 1L;
+	
 	private Vector<String> datosARellenar;
 	private Vector<String> nombresSudokus;
 	private JList listSudokus;
@@ -128,22 +128,7 @@ public class JFrameSeleccionarSudokuBD extends JFrame{
 	}
 	
 	private void rellenaDatos(Vector<DTOSudokuDeLaBD> infoSudokusDeLaBD) {
-		/*datosARellenar = new Vector<String>();
-		nombresSudokus = new Vector<String>();
-		datosARellenar.addElement("1, id01, numero de casillas rellenas: 30");
-		datosARellenar.addElement("2, id02, numero de casillas rellenas: 30");
-		datosARellenar.addElement("3, id03, numero de casillas rellenas: 30");
-		datosARellenar.addElement("4, id06, numero de casillas rellenas: 31");
-		demoList.addElement(datosARellenar.get(0));
-		demoList.addElement(datosARellenar.get(1));
-		demoList.addElement(datosARellenar.get(2));
-		demoList.addElement(datosARellenar.get(3));
-		nombresSudokus.addElement("id01");
-		nombresSudokus.addElement("id02");
-		nombresSudokus.addElement("id03");
-		nombresSudokus.addElement("id06");*/
-		
-		numSudokus = infoSudokusDeLaBD.size(); //NECESITAMOS ESTA VARIABLE???!!!
+		infoSudokusDeLaBD.size();
 		datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
 		int cont = 1;

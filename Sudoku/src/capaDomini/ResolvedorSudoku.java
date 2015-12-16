@@ -29,14 +29,14 @@ public class ResolvedorSudoku {
 		carga(s);
 		rec();
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
 	public static int sols1(TaulerSudoku s) throws ExcepcionPosicionFueraRango {
 		carga(s);
 		rec();
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -45,7 +45,7 @@ public class ResolvedorSudoku {
 		TaulerSudoku sol = new TaulerSudoku(n);
 		rec();
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -55,7 +55,7 @@ public class ResolvedorSudoku {
 		if(!flag)
 			rec();
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -64,7 +64,7 @@ public class ResolvedorSudoku {
 		siso();
 		if(!flag)
 			rec();
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -75,7 +75,7 @@ public class ResolvedorSudoku {
 		if(!flag)
 			rec();
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -87,7 +87,7 @@ public class ResolvedorSudoku {
 			rec2(0);
 		}
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -98,7 +98,7 @@ public class ResolvedorSudoku {
 			prepara();
 			rec2(0);
 		}
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -111,7 +111,7 @@ public class ResolvedorSudoku {
 			rec2(0);
 		}
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	
@@ -124,7 +124,7 @@ public class ResolvedorSudoku {
 			rec3(0);
 		}
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -135,7 +135,7 @@ public class ResolvedorSudoku {
 			prepara();
 			rec3(0);
 		}
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return nsols;
 	}
 	
@@ -148,7 +148,7 @@ public class ResolvedorSudoku {
 			rec3(0);
 		}
 		guarda(sol);
-		System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
+		//System.out.printf("Se ha ejecutado el algoritmo, %d iteraciones\n", niters);
 		return sol;
 	}
 	

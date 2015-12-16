@@ -10,7 +10,6 @@ public class JFrameProponerSudoku9x9 extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private int nn;
-	private int anchoPantalla;
 	private Vector<JTextField> vCeldas;
 	
 	private JPanel panSudoku;
@@ -124,7 +123,6 @@ public class JFrameProponerSudoku9x9 extends JFrame{
 	
 	private void initComponents() {
 		setTitle("Proponer Sudoku");
-		anchoPantalla = 794;
 		setSize(794,428); //ancho por alto
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

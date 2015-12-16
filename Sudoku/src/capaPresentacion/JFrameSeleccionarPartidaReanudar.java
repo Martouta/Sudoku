@@ -7,14 +7,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 import javax.swing.*;
-import javax.swing.event.*;
 
 import DataTransferObjects.DTOPartidaAMedias;
 
 public class JFrameSeleccionarPartidaReanudar extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	private int numSudokus;
 	private Vector<String> datosARellenar;
 	private Vector<String> nombresSudokus;
 	private Vector<String> fechasSudokus;
@@ -149,7 +147,7 @@ public class JFrameSeleccionarPartidaReanudar extends JFrame{
 		nombresSudokus.addElement("sudo05");
 		nombresSudokus.addElement("sudo06");*/
 		
-		numSudokus = infoPartidasAMedias.size(); //NECESITAMOS ESTA VARIABLE???!!!
+		infoPartidasAMedias.size();
 		datosARellenar = new Vector<String>();
 		nombresSudokus = new Vector<String>();
 		fechasSudokus = new Vector<String>();

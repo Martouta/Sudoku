@@ -47,6 +47,7 @@ public class JFrameIniciarSesion extends JFrame{
 	}
 	
 	public void cleanValues(){
+		labMensajeError.setText("");
 		textfieldNombreUsuario.setText("");
 		passwordfieldContrasena.setText("");
 	}

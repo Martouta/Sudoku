@@ -132,11 +132,11 @@ public class Partida {
 		return vCjtoMarcas.get(x*nn + y).estaMarcado(val);
 	}
 	
-	public void mostrarMarcasPosicion(int x, int y) throws ExcepcionValorFueraRango{
+	/*public void mostrarMarcasPosicion(int x, int y) throws ExcepcionValorFueraRango{
 		for (int i = 1; i <= nn; ++i) {
 			if (vCjtoMarcas.get(x*nn + y).estaMarcado(i)) System.out.println(i + " ");
 		}
-	}
+	}*/
 	
 	public boolean hayMarcaPosicion(int x, int y) throws ExcepcionValorFueraRango{
 		for (int i = 1; i <= nn; ++i) {
