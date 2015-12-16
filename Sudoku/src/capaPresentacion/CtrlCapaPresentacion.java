@@ -1111,6 +1111,7 @@ public class CtrlCapaPresentacion {
 							if (!ctrlCUSeleccionarJugarSudoku.esValorCelda(i, j, valor)) { //si no es el valor que ya esta puesto, lo anade
 								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j); //tiene que estar, por si en la funcion siguiente salta excepcion, que se haya borrado lo que habia
 								ctrlCUSeleccionarJugarSudoku.anadirValorCelda(i, j, valor);
+								frameJuego4x4.ponerValorCasilla(i, j, valor);
 							} else {
 								ctrlCUSeleccionarJugarSudoku.quitarValorCelda(i, j);
 								frameJuego4x4.quitarValorCasilla(i, j);
