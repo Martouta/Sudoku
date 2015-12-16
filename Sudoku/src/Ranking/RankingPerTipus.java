@@ -19,7 +19,7 @@ public class RankingPerTipus extends Ranking{
 		for (int j=0; j<Info.size(); j++){ //Per cada linia d'info
 			ArrayList<String> s = Info.get(j);
 			if (s.get(2).equals(d) && s.get(5).equals("true")){ //Selecciona la linia de la dificultat seleccionada per l'usuari
-				System.out.println("if"+d);////
+				//System.out.println("if"+d);////
 				String user = new String(s.get(0)); //Agafa l'user
 				double time = Double.parseDouble(s.get(3));
 				int pistes = Integer.parseInt(s.get(4));
@@ -33,7 +33,7 @@ public class RankingPerTipus extends Ranking{
 			}
 		Collections.sort(tempsJugador, new CustomComparator()); //Ordenem ArrayList
 		}
-		System.out.println("mida:" + tempsJugador.size());///
+		//System.out.println("mida:" + tempsJugador.size());///
 	}
 	
 	public void setnEntrades(int nEntrades) {

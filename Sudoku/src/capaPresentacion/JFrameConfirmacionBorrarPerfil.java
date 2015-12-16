@@ -37,7 +37,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		butEliminarPerfSud = new JButton();
 		butEliminarPerfil = new JButton();
 		butNoEliminar = new JButton();
-		labMensajeError = new JLabel();
+		labMensajeError = new JLabel("");
 		
 		StringBuilder sb = new StringBuilder(64);
         sb.append("<html><div style=\"text-align: center;\">¿Está seguro de que desea")
@@ -71,7 +71,6 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
         		.append("<br/>mi perfil</html>");
         
 		butNoEliminar.setText(sb.toString());
-		labMensajeError.setText("");
 		
 		labConfirmacionPerfil.setBounds(110, 30, 220, 50);
 		labConfirmacionSudokus.setBounds(110, 130, 220, 50);
@@ -91,6 +90,7 @@ public class JFrameConfirmacionBorrarPerfil extends JFrame {
 		panMensError.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panMensError.add(labMensajeError);
 		panConfirmacionBorrarPerfil.add(panMensError);
+		panMensError.setBounds(50, 200, 300, 50);
 		panConfirmacionBorrarPerfil.setLayout(null);
 		add(panConfirmacionBorrarPerfil);
 	}

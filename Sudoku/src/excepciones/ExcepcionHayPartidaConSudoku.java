@@ -5,6 +5,6 @@ public class ExcepcionHayPartidaConSudoku extends Exception {
 
 	@Override
 	public String getMessage() {
-		return "No se puede borrar un sudoku con una partida en la BD con este sudoku";
+		return "<html>No se puede borrar un sudoku con<br/>una partida en la BD con este sudoku</html>";
 	}
 }

@@ -40,9 +40,9 @@ public class RankingPersonal extends Ranking {
 	
 	public RankingPersonal(String usuari){
 		this.usuari = usuari;
-		System.out.println("Carregant informació...");
+		//System.out.println("Carregant informació...");
 		CTRLRanking.carregar(this, "partidas");
-		System.out.println("Generant rànquing...");
+		//System.out.println("Generant rànquing...");
 		this.inicialitza();
 	}
 	
