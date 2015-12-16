@@ -162,12 +162,7 @@ public class CtrlCapaPresentacion {
 		frameRankingGlobal.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				frameRankingGlobal.getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-
-		            public void actionPerformed(ActionEvent e)
-		            {
-		                pressSalir();
-		            }
+		        {public void actionPerformed(ActionEvent e){pressSalir();}
 		});
 		
 		frameRankingGlobal.getButVolverMenuOpciones().addActionListener(new ActionListener() {
@@ -175,6 +170,15 @@ public class CtrlCapaPresentacion {
 				frameRankingGlobal.setVisible(false);
 				frameMenuOpciones.setVisible(true);
 		    }
+		});
+		
+		frameRankingGlobal.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameRankingGlobal.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        {public void actionPerformed(ActionEvent e){
+		        	frameRankingGlobal.setVisible(false);
+					frameMenuOpciones.setVisible(true);
+		        }
 		});
 		
 		frameRankingGlobal.getButVolverMenuOpciones().addKeyListener(new KeyListener() {
@@ -211,15 +215,20 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		
+		frameRankingpersonal.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameRankingpersonal.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        {public void actionPerformed(ActionEvent e){
+		        	frameRankingpersonal.setVisible(false);
+					frameMenuOpciones.setVisible(true);
+		        }
+		});
+		
 		frameRankingpersonal.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				frameRankingpersonal.getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-
-		            public void actionPerformed(ActionEvent e)
-		            {
-		                pressSalir();
-		            }
+		        {public void actionPerformed(ActionEvent e){pressSalir();}
 		});
 		
 		frameRankingpersonal.getButVolverMenuOpciones().addActionListener(new ActionListener() {
@@ -263,17 +272,19 @@ public class CtrlCapaPresentacion {
 		});
 		
 		frameEstadisticasGenerales.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
-				frameEstadisticasGenerales.getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-
-		            public void actionPerformed(ActionEvent e)
-		            {
-		                pressSalir();
-		            }
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameEstadisticasGenerales.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        {public void actionPerformed(ActionEvent e){
+		        	frameEstadisticasGenerales.setVisible(false);
+					frameMenuOpciones.setVisible(true);
+		        }
 		});
 		
-		
+		frameEstadisticasGenerales.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
+				frameEstadisticasGenerales.getRootPane().getActionMap().put("Cancel", new AbstractAction()
+		        {public void actionPerformed(ActionEvent e){pressSalir();}
+		});
 		
 		frameEstadisticasGenerales.getButVolverMenuOpciones().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -321,8 +332,7 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuPrincipal) frameMenuPrincipal).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				((JFrameMenuPrincipal) frameMenuPrincipal).getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-		            public void actionPerformed(ActionEvent e){pressSalir();}
+		        { public void actionPerformed(ActionEvent e){pressSalir();}
 		});
 		
 		((JFrameMenuPrincipal) frameMenuPrincipal).getButIniciarSesion().addActionListener(new ActionListener() {
@@ -396,11 +406,17 @@ public class CtrlCapaPresentacion {
 		((JFrameIniciarSesion) frameIniciarSesion).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				((JFrameIniciarSesion) frameIniciarSesion).getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-		            public void actionPerformed(ActionEvent e){pressSalir();}
+		        { public void actionPerformed(ActionEvent e){pressSalir();}
 		});
 		
-		
+		((JFrameIniciarSesion) frameIniciarSesion).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameIniciarSesion) frameIniciarSesion).getRootPane().getActionMap().put("Volver", new AbstractAction()
+				{ public void actionPerformed(ActionEvent e){
+					frameIniciarSesion.setVisible(false);
+					frameMenuPrincipal.setVisible(true);
+				}
+		});
 		
 		((JFrameIniciarSesion) frameIniciarSesion).getButVolverMenuPrincipal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -493,10 +509,17 @@ public class CtrlCapaPresentacion {
 		((JFrameRegistrarse) frameRegistrarse).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				((JFrameRegistrarse) frameRegistrarse).getRootPane().getActionMap().put("Cancel", new AbstractAction()
-		        { 
-		            public void actionPerformed(ActionEvent e){pressSalir();}
+		        {public void actionPerformed(ActionEvent e){pressSalir();}
 		});
-		
+				
+		((JFrameRegistrarse) frameRegistrarse).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameRegistrarse) frameRegistrarse).getRootPane().getActionMap().put("Volver", new AbstractAction()
+				{public void actionPerformed(ActionEvent e){
+					frameRegistrarse.setVisible(false);
+					frameMenuPrincipal.setVisible(true);
+				}
+		});
 		
 		((JFrameRegistrarse) frameRegistrarse).getButVolverMenuPrincipal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -592,12 +615,18 @@ public class CtrlCapaPresentacion {
 		});
 		
 		((JFrameMenuOpciones) frameMenuOpciones).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameMenuOpciones) frameMenuOpciones).getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){pressCerrarSesion(frameMenuOpciones);}
+		});
+		
+		((JFrameMenuOpciones) frameMenuOpciones).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
 				((JFrameMenuOpciones) frameMenuOpciones).getRootPane().getActionMap().put("Cancel", new AbstractAction()
 		        { 
 		            public void actionPerformed(ActionEvent e){pressSalir();}
 		});
-		
 		
 		((JFrameMenuOpciones) frameMenuOpciones).getButCerrarSesion().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -795,6 +824,16 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		frameGestionPerfiles.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameGestionPerfiles.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameGestionPerfiles.setVisible(false);
+						frameMenuOpciones.setVisible(true);
+		            }
+		});
+		
 		frameGestionPerfiles.getButVolverMenuOpciones().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -884,6 +923,16 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		frameConfirmacionResetearEstadisticas.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameConfirmacionResetearEstadisticas.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameConfirmacionResetearEstadisticas.setVisible(false);
+						frameGestionPerfiles.setVisible(true);
+		            }
+		});
+		
 		frameConfirmacionResetearEstadisticas.getButNoResetear().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -965,6 +1014,17 @@ public class CtrlCapaPresentacion {
 				frameGestionPerfiles.setVisible(true);
 			}
 		});
+		
+		frameConfirmacionBorrarPerfil.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameConfirmacionBorrarPerfil.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameConfirmacionBorrarPerfil.setVisible(false);
+						frameGestionPerfiles.setVisible(true);
+		            }
+		});
+		
 		frameConfirmacionBorrarPerfil.getButNoEliminar().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -1144,6 +1204,16 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		((JFrameMenuSudoku) frameMenuSudoku).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameMenuSudoku) frameMenuSudoku).getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameMenuSudoku.setVisible(false);
+						frameMenuOpciones.setVisible(true);
+		            }
+		});
+		
 		((JFrameMenuSudoku) frameMenuSudoku).getButVolverMenuOpciones().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -1282,6 +1352,17 @@ public class CtrlCapaPresentacion {
 				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
+		});
+		
+		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameSeleccionarSudokuBD.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
 		});
 		
 		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButVolverMenuSudoku().addKeyListener(new KeyListener() {
@@ -1425,6 +1506,17 @@ public class CtrlCapaPresentacion {
 				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
+		});
+		
+		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameSeleccionarPartidaReanudar.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
 		});
 		
 		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getButVolverMenuSudoku().addKeyListener(new KeyListener() {
@@ -1674,6 +1766,17 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		frameProponerSudoku4x4.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameProponerSudoku4x4.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameProponerSudoku4x4.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
+		});
+		
 		frameProponerSudoku4x4.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -1746,6 +1849,17 @@ public class CtrlCapaPresentacion {
 			}
 		});
 		
+		frameProponerSudoku9x9.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameProponerSudoku9x9.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameProponerSudoku9x9.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
+		});
+		
 		frameProponerSudoku9x9.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -1816,6 +1930,17 @@ public class CtrlCapaPresentacion {
 				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
+		});
+		
+		frameProponerSudoku16x16.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameProponerSudoku16x16.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	frameProponerSudoku16x16.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
 		});
 		
 		frameProponerSudoku16x16.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
@@ -2066,6 +2191,19 @@ public class CtrlCapaPresentacion {
 				frameMenuSudoku.setVisible(true);
 			}
 		});
+		
+		frameJuego4x4.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameJuego4x4.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	ctrlCUSeleccionarJugarSudoku = null;
+						frameJuego4x4.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
+		});
+		
 		frameJuego4x4.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -2404,6 +2542,19 @@ public class CtrlCapaPresentacion {
 				frameMenuSudoku.setVisible(true);
 			}
 		});
+		
+		frameJuego9x9.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameJuego9x9.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	ctrlCUSeleccionarJugarSudoku = null;
+						frameJuego9x9.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
+		});
+		
 		frameJuego9x9.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
@@ -2739,6 +2890,19 @@ public class CtrlCapaPresentacion {
 				frameMenuSudoku.setVisible(true);
 			}
 		});
+		
+		frameJuego16x16.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		        KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Volver"); //$NON-NLS-1$
+				frameJuego16x16.getRootPane().getActionMap().put("Volver", new AbstractAction()
+		        { 
+		            public void actionPerformed(ActionEvent e){
+		            	ctrlCUSeleccionarJugarSudoku = null;
+						frameJuego16x16.setVisible(false);
+						((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
+						frameMenuSudoku.setVisible(true);
+		            }
+		});
+		
 		frameJuego16x16.getButVolverMenuSudoku().addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {}
