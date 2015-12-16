@@ -31,6 +31,10 @@ public class JFrameMenuSudoku extends JFrame{
 	public JFrameMenuSudoku(){
 		initComponents();
 	}
+	
+	public void cleanValues() {
+		labInfo.setText("");
+	}
 
 	public String tipoSudokuElegido(){
 		String tipoSudoku = "";
@@ -94,7 +98,6 @@ public class JFrameMenuSudoku extends JFrame{
 	
 	private void initComponents() {
 		setTitle("Menu Sudoku");
-		//ESTOS TAMANOS?????
 		setSize(400,800); //ancho por alto
 		setMinimumSize(new Dimension(400, 550));
 		setResizable(true);

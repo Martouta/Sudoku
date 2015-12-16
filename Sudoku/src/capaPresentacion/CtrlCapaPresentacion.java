@@ -313,6 +313,7 @@ public class CtrlCapaPresentacion {
 		((JFrameMenuOpciones) frameMenuOpciones).getButSelectSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameMenuOpciones.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -611,6 +612,7 @@ public class CtrlCapaPresentacion {
 		((JFrameSeleccionarSudokuBD) frameSeleccionarSudokuBD).getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameSeleccionarSudokuBD.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -677,6 +679,7 @@ public class CtrlCapaPresentacion {
 		((JFrameSeleccionarPartidaReanudar) frameSeleccionarPartidaReanudar).getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameSeleccionarPartidaReanudar.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -766,6 +769,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku4x4.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameProponerSudoku4x4.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -840,6 +844,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku9x9.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameProponerSudoku9x9.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -914,6 +919,7 @@ public class CtrlCapaPresentacion {
 		frameProponerSudoku16x16.getButVolverMenuSudoku().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				frameProponerSudoku16x16.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -988,6 +994,7 @@ public class CtrlCapaPresentacion {
 			public void actionPerformed(ActionEvent evt) {
 				ctrlCUSeleccionarJugarSudoku = null;
 				frameJuego4x4.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -1190,6 +1197,7 @@ public class CtrlCapaPresentacion {
 			public void actionPerformed(ActionEvent evt) {
 				ctrlCUSeleccionarJugarSudoku = null;
 				frameJuego9x9.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
@@ -1392,6 +1400,7 @@ public class CtrlCapaPresentacion {
 			public void actionPerformed(ActionEvent evt) {
 				ctrlCUSeleccionarJugarSudoku = null;
 				frameJuego16x16.setVisible(false);
+				((JFrameMenuSudoku) frameMenuSudoku).cleanValues();
 				frameMenuSudoku.setVisible(true);
 			}
 		});
